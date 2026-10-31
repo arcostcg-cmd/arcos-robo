@@ -1,0 +1,186 @@
+# Arcos TCG: configuração do robô. Copie para config.yaml e preencha.
+# Tokens NÃO ficam aqui: use variáveis de ambiente (ou segredos do GitHub)
+#   TELEGRAM_TOKEN   (do @BotFather)
+#   INSTAGRAM_TOKEN  (token de longa duração da Meta, vence em ~60 dias)
+# Confira tudo com:  python bot.py --diagnostico --testar-lojas
+
+banco: precos.db                  # promoções e radar
+banco_curiosidades: curiosidades.db
+banco_noticias: noticias.db       # um banco por módulo: os agendamentos não brigam
+pausa_entre_paginas_seg: 5
+
+telegram:
+  ativo: true
+  canal: "@arcostcg"          # o bot precisa ser administrador do canal
+  admin_chat: ""              # seu ID pessoal: recebe alertas de falha, cupons e radar
+
+instagram:
+  ativo: false                # ligue depois de testar o Telegram
+  conta_id: ""                # ID da conta profissional do Instagram
+  versao_api: "v23.0"         # confira a versão atual no painel da Meta
+  reserva_cota: 3             # publicações guardadas na cota diária da API só para os furos
+  hashtags: ["#pokemontcg", "#tcgbrasil", "#promocao", "#cartaspokemon", "#mtgbrasil"]
+
+curiosidades:
+  arquivo: curiosidades.yaml
+  # Link público da pasta bot/imagens (o Instagram exige). Vale para TODOS os carrosséis.
+  #   GitHub Actions: "https://raw.githubusercontent.com/USUARIO/REPO/main/imagens"
+  #   Oracle (nginx): "http://IP_DO_SERVIDOR/imagens"
+  url_publica_imagens: ""
+  hashtags: ["#tcg", "#pokemontcg", "#mtg", "#yugioh", "#onepiececardgame", "#lorcana", "#vocesabia"]
+
+regras:
+  desconto_minimo: 0.10       # só posta com pelo menos 10% abaixo do preço normal
+  alerta_suspeito: 0.40       # mais de 40% abaixo = suspeito, descarta
+  dias_historico: 30          # janela do preço normal (mediana)
+  minimo_leituras: 5          # sem esse histórico, não posta (use referencia_manual no início)
+  nao_repetir_horas: 24
+  max_posts_telegram_dia: 20
+  max_posts_instagram_dia: 8  # o Instagram limita publicações por API; evite spam
+  cupom_teste_dias: 7         # cupom testado há mais que isso não vai para o post
+  confianca_minima: 3         # nota mínima da loja (1 a 5, dada pelo Auditor) para postar
+
+# ---------------------------------------------------------------- lojas
+# Só lojas com aprovada: true são lidas. Critérios em references/lojas.md.
+# link_afiliado:
+#   false                                  -> sem comissão
+#   true                                   -> as URLs cadastradas já são links de afiliado
+#   {parametros: {tag: "arcostcg-20"}}     -> acrescenta parâmetros na URL (ex.: Amazon)
+#   {modelo: "https://exemplo.com/r?u={url}"} -> redirecionador do programa de afiliados
+lojas:
+  - id: copag_ml
+    nome: "Copag (loja oficial no Mercado Livre)"
+    site: "https://www.mercadolivre.com.br"
+    aprovada: true
+    conferida_em: "2026-10-31"
+    link_afiliado: false
+    confianca: 5              # 1 a 5, dada pelo Auditor de Lojas (desempata o ranking)
+    # reputacao: "MercadoLíder, +500 vendas"   # conferida pelo Auditor; aparece no post
+    paginas_cupom: []         # páginas OFICIAIS de cupom/promoção da loja (o caçador lê)
+    observacao: "Distribuidora oficial de Pokémon TCG. O ML pode bloquear robôs: teste com --diagnostico --testar-lojas; se bloquear, use os links do programa de afiliados."
+  - id: epicgame
+    nome: "Epic Game"
+    aprovada: false
+    conferida_em: "2026-10-31"
+    observacao: "REPROVADA: reputação 'Ruim' (0.0) no Reclame Aqui segundo siteconfiavel.com.br."
+
+# ---------------------------------------------------------------- anti-golpe
+# Travas do Analista Anti-Golpe (guia: references/anti-golpe.md).
+# lista_negra: domínios e vendedores que NUNCA são lidos nem postados, e que o radar
+#   destaca quando um concorrente divulga. É INTERNA: serve para não divulgar, não para acusar.
+# termos_suspeitos: se o nome do anúncio tiver um destes, ele é descartado e o admin é avisado.
+anti_golpe:
+  lista_negra: []
+  #  - dominio: "loja-clonada-exemplo.com"
+  #    motivo: "site clonado de loja conhecida, CNPJ de outra empresa"
+  #    desde: "2026-10-31"
+  #    fonte: "link da evidência (Reclame Aqui, Procon, imprensa)"
+  termos_suspeitos: ["réplica", "replica", "proxy", "custom", "fan made", "fanmade", "repack",
+                     "lote misterioso", "lote surpresa", "não oficial", "nao oficial", "orica",
+                     "weighed", "pesado", "falsificad", "imitação", "imitacao", "paralelo", "genérico"]
+
+# ---------------------------------------------------------------- cupons
+# Duas origens: (1) cadastrados aqui à mão; (2) achados pelo caçador nas paginas_cupom
+# das lojas e aprovados pelo admin no Telegram com /cupom_ok (ficam no banco).
+# Só cupom oficial e testado. Fora da validade ou sem teste recente, sai sozinho do post.
+cupons: []
+#  - loja: copag_ml
+#    codigo: "ARCOS10"
+#    descricao: "10% off em boosters"
+#    percentual: 10
+#    valido_ate: "2026-11-30"
+#    testado_em: "2026-10-31"
+#    comissao: "5% das vendas com o cupom"   # controle interno, não aparece no post
+
+# ---------------------------------------------------------------- produtos
+# palavras: termos que identificam o produto nos posts dos concorrentes (radar).
+produtos:
+  - nome: "Pokémon TCG Booster Box (exemplo)"
+    jogo: Pokémon
+    descricao: "Lacrado, nacional (Copag)"
+    palavras: ["booster box", "pokemon", "36"]
+    # Opcionais do texto da oferta no Telegram:
+    # bandeira: "🇧🇷"              # nacional
+    # unidades: 36                 # mostra "Cada booster sai por R$ X"
+    # unidade_nome: "boosters"
+    # unidade_singular: "booster"
+    # frete_gratis: true           # só se for frete grátis de verdade para todo o Brasil
+    # referencia_manual: 899.90   # preço normal enquanto o histórico é pequeno
+    ofertas:
+      - loja: copag_ml
+        url: "https://www.mercadolivre.com.br/EXEMPLO"
+
+# ---------------------------------------------------------------- radar
+# Canais PÚBLICOS do Telegram de concorrentes (só o nome, sem @).
+# O radar só avisa o admin; nunca copia nem posta nada dos concorrentes.
+radar:
+  ativo: false
+  canais: []
+  # Páginas PÚBLICAS de promoção de sites (sem login). Nunca grupos de WhatsApp.
+  sites: []
+  #  - "https://promo.deckcerto.com/"
+
+# ---------------------------------------------------------------- notícias
+# Stories e posts automáticos com notícias de TCG do mundo todo.
+# Teste as fontes no servidor:  python noticias.py --testar-fontes
+# Fonte que "NÃO RESPONDE": troque a URL ou apague. Tipos: oficial | imprensa | blog | forum
+# blog e forum = sempre RUMOR.
+# Tudo que vem de fórum, ou fala em leak/vazamento, sai com o selo RUMOR.
+noticias:
+  ativo: false
+  max_stories_dia: 5
+  max_posts_dia: 1           # o destaque do dia vira carrossel (nunca um rumor)
+  janela_horas: 24          # roda a cada 10 min, 24h; pega o furo assim que sai
+  # Furo: notícia CONFIRMADA e importante, de fonte oficial ou imprensa, publicada há
+  # até 90 minutos. Sai em story E no feed, fora do limite diário, sem destaque de "furo".
+  # Nunca é rumor.
+  furo:
+    ativo: true
+    janela_minutos: 90
+    max_por_dia: 10          # trava de segurança contra excesso
+    tipos: [oficial, imprensa]
+    palavras: ["announce", "announced", "reveal", "revealed", "release date", "new set",
+      "new expansion", "ban list", "banned", "errata", "world championship", "worlds",
+      "anuncia", "anunciad", "revelad", "data de lançamento", "nova coleção", "banimento"]
+  hashtags: ["#noticiastcg", "#pokemontcg", "#mtg", "#onepiececardgame", "#yugioh", "#lorcana"]
+  # IA que resume e traduz SÓ o que está na fonte; números são conferidos pelo robô.
+  #   anthropic -> variável ANTHROPIC_API_KEY (pago, barato por notícia)
+  #   gemini    -> variável GEMINI_API_KEY (tem plano gratuito com limites; confira o
+  #                nome do modelo atual no Google AI Studio)
+  #   nenhum    -> só fontes em português são postadas
+  # Gemini grátis: crie a chave em aistudio.google.com e guarde como GEMINI_API_KEY.
+  # No plano grátis o Google pode usar o conteúdo enviado para melhorar os produtos dele
+  # (o robô só envia notícias públicas). Os limites aparecem em aistudio.google.com/rate-limit.
+  ia:
+    provedor: gemini
+    modelo: ""               # vazio = o robô escolhe o modelo "flash" estável mais novo
+    max_por_execucao: 10     # resumos por rodada (protege o limite grátis)
+  palavras_relevantes: ["set", "expansion", "release", "reveal", "announce", "leak",
+    "banned", "ban list", "errata", "championship", "worlds", "prerelease", "promo",
+    "coleção", "lançamento", "pré-venda", "banimento", "campeonato"]
+  # Furo de rumor: vazamento ou boato quente de fórum, fã ou blog, de até 90 minutos.
+  # Sai em story fora do limite, SEMPRE com "Rumor:" no título, selo e aviso na legenda.
+  furo_rumor:
+    ativo: true
+    janela_minutos: 90
+    max_por_dia: 10
+    tambem_no_feed: false      # true = também vira carrossel no feed (com selo de rumor)
+    palavras: ["leak", "leaked", "datamine", "spoiler", "rumor", "rumour", "set list",
+      "card list", "first look", "reveal", "vazamento", "vazou", "lista de cartas"]
+  # intervalo_minutos: de quanto em quanto tempo ler cada fonte (padrão 10). O Reddit bloqueia
+  # leituras frequentes de servidores: deixe 30 ou mais. Fonte que bloquear fica 1 hora em pausa.
+  fontes:
+    - {nome: "PokéBeach", url: "https://www.pokebeach.com/feed", tipo: imprensa, jogo: Pokémon, idioma: en}
+    - {nome: "Reddit r/PokemonTCG", url: "https://www.reddit.com/r/PokemonTCG/.rss", tipo: forum, jogo: Pokémon, idioma: en, intervalo_minutos: 30}
+    - {nome: "Reddit r/magicTCG", url: "https://www.reddit.com/r/magicTCG/.rss", tipo: forum, jogo: Magic, idioma: en, intervalo_minutos: 30}
+    - {nome: "Reddit r/OnePieceTCG", url: "https://www.reddit.com/r/OnePieceTCG/.rss", tipo: forum, jogo: One Piece, idioma: en, intervalo_minutos: 30}
+    - {nome: "Reddit r/yugioh", url: "https://www.reddit.com/r/yugioh/.rss", tipo: forum, jogo: Yu-Gi-Oh!, idioma: en, intervalo_minutos: 30}
+    - {nome: "Reddit r/Lorcana", url: "https://www.reddit.com/r/Lorcana/.rss", tipo: forum, jogo: Lorcana, idioma: en, intervalo_minutos: 30}
+    - {nome: "Reddit r/DigimonCardGame2020", url: "https://www.reddit.com/r/DigimonCardGame2020/.rss", tipo: forum, jogo: Digimon, idioma: en, intervalo_minutos: 30}
+    # Fóruns de vazamentos e blogs de fãs (sempre saem como RUMOR). Teste com --testar-fontes.
+    - {nome: "Reddit r/PokeLeaks", url: "https://www.reddit.com/r/PokeLeaks/.rss", tipo: forum, jogo: Pokémon, intervalo_minutos: 30}
+    - {nome: "PokeGuardian", url: "https://www.pokeguardian.com/feed", tipo: blog, jogo: Pokémon}
+    - {nome: "MTG Rocks", url: "https://mtgrocks.com/feed/", tipo: blog, jogo: Magic}
+    - {nome: "Draftsim", url: "https://draftsim.com/feed/", tipo: blog, jogo: Magic}
+    # Fontes OFICIAIS (pesam mais e saem sem selo de rumor): adicione aqui os feeds
+    # de notícias das editoras quando confirmar a URL com --testar-fontes.

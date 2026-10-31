@@ -1,0 +1,51 @@
+name: Sistema de Promocoes
+on:
+  schedule:
+    - cron: "*/30 * * * *"   # a cada 30 min (o GitHub pode atrasar alguns minutos)
+  workflow_dispatch: {}
+concurrency:
+  group: robo-promocoes
+  cancel-in-progress: false
+permissions:
+  contents: write
+jobs:
+  rodar:
+    # Só roda sozinho depois de ligar a variável ROBO_ATIVO=true (Settings > Secrets and variables > Actions > Variables)
+    if: vars.ROBO_ATIVO == 'true' || github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - run: pip install requests pyyaml pillow
+      - name: Testes (se falhar, nada é postado)
+        run: python arcos.py testes
+      - name: Configurar git
+        run: |
+          git config user.name "robo-tcg"
+          git config user.email "robo-tcg@users.noreply.github.com"
+      - name: Caçar cupons e ler os comandos do admin (/cupom_ok, /cupom_ruim)
+        env:
+          TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
+        run: python arcos.py cupons || true
+      - name: Coletar preços e montar os carrosséis
+        run: |
+          python arcos.py promocoes preparar
+          git add -A
+          git diff --cached --quiet || git commit -m "precos e carrosseis"
+          for i in 1 2 3 4 5; do git pull --rebase && git push && break; sleep $((i*7)); done
+          sleep 60
+      - name: Postar os carrosséis
+        env:
+          TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
+          INSTAGRAM_TOKEN: ${{ secrets.INSTAGRAM_TOKEN }}
+        run: python arcos.py promocoes publicar
+      - name: Radar de concorrentes (só alerta o admin)
+        env:
+          TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
+        run: python arcos.py radar || true
+      - name: Salvar o que foi postado
+        run: |
+          git add -A
+          git diff --cached --quiet || git commit -m "ofertas postadas"
+          for i in 1 2 3 4 5; do git pull --rebase && git push && break; sleep $((i*7)); done

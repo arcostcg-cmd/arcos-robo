@@ -1,0 +1,44 @@
+name: Sistema de Noticias - curiosidades
+on:
+  schedule:
+    - cron: "0 12,16,22 * * *"   # 9h, 13h e 19h no horário de Brasília (UTC-3)
+  workflow_dispatch: {}
+concurrency:
+  group: robo-curiosidades
+  cancel-in-progress: false
+permissions:
+  contents: write
+jobs:
+  postar:
+    # Só roda sozinho depois de ligar a variável ROBO_ATIVO=true (Settings > Secrets and variables > Actions > Variables)
+    if: vars.ROBO_ATIVO == 'true' || github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - run: |
+          pip install requests pyyaml pillow
+      - name: Testes (se falhar, nada é postado)
+        run: python arcos.py testes
+      - name: Configurar git
+        run: |
+          git config user.name "robo-tcg"
+          git config user.email "robo-tcg@users.noreply.github.com"
+      - name: Montar o carrossel e publicar as imagens (o Instagram exige link público)
+        run: |
+          python arcos.py curiosidades preparar
+          git add -A
+          git diff --cached --quiet || git commit -m "imagem da curiosidade"
+          for i in 1 2 3 4 5; do git pull --rebase && git push && break; sleep $((i*7)); done
+          sleep 60
+      - name: Postar
+        env:
+          TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
+          INSTAGRAM_TOKEN: ${{ secrets.INSTAGRAM_TOKEN }}
+        run: python arcos.py curiosidades publicar
+      - name: Salvar o que foi postado
+        run: |
+          git add -A
+          git diff --cached --quiet || git commit -m "curiosidade postada"
+          for i in 1 2 3 4 5; do git pull --rebase && git push && break; sleep $((i*7)); done
