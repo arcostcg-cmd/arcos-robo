@@ -1,0 +1,23 @@
+{
+ "item": {
+  "id": "mtg-primeiro-tcg",
+  "jogo": "Magic",
+  "titulo": "O primeiro TCG moderno",
+  "texto": "Magic: The Gathering é reconhecido pelo Guinness como o primeiro jogo de cartas colecionáveis moderno. Criado pelo professor de matemática Richard Garfield, foi lançado pela Wizards of the Coast em 5 de agosto de 1993.",
+  "fonte_nome": "Guinness World Records",
+  "fonte_url": "https://www.guinnessworldrecords.com/world-records/first-modern-trading-card-game",
+  "verificado_em": "2026-10-31",
+  "busca_imagem": "Magic The Gathering cards"
+ },
+ "slides": [
+  "/home/runner/work/arcos-robo/arcos-robo/imagens/cur-mtg-primeiro-tcg-1.jpg",
+  "/home/runner/work/arcos-robo/arcos-robo/imagens/cur-mtg-primeiro-tcg-2.jpg",
+  "/home/runner/work/arcos-robo/arcos-robo/imagens/cur-mtg-primeiro-tcg-3.jpg",
+  "/home/runner/work/arcos-robo/arcos-robo/imagens/cur-mtg-primeiro-tcg-4.jpg",
+  "/home/runner/work/arcos-robo/arcos-robo/imagens/cur-mtg-primeiro-tcg-5.jpg"
+ ],
+ "creditos": [
+  "Texto: Arcos TCG, com base em Guinness World Records",
+  "Foto: Tourtefouille · CC BY-SA 4.0 · Wikimedia Commons"
+ ]
+}
