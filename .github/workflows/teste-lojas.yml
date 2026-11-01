@@ -20,6 +20,16 @@ jobs:
           lojas = {l["id"]: l for l in cfg["lojas"] if l.get("aprovada")}
           tok = marketplaces.ml_token()
           print(f"Mercado Livre: token oficial {'OK' if tok else 'FALHOU ' + marketplaces.ULTIMO_ERRO_TOKEN['msg']}\n")
+          for cam in ["/products/MLB74773271", "/products/MLB74773271/items", "/items?ids=MLB7077055110",
+                      "/sites/MLB/search?q=box%20display%20pokemon%20me05", "/items/MLB7077055110"]:
+              try:
+                  r = marketplaces.requests.get(marketplaces.ML_API + cam, timeout=20,
+                                                headers={"Authorization": f"Bearer {tok}"} if tok else {})
+                  corpo = r.text[:160].replace("|", "/").replace("\n", " ")
+                  print(f"- `{cam.split('?')[0]}` -> {r.status_code} {corpo}")
+              except Exception as e:
+                  print(f"- `{cam}` -> erro {type(e).__name__}")
+          print()
           print("| Produto | Loja | Resultado |\n|---|---|---|")
           for p in cfg["produtos"]:
               for o in p["ofertas"]:
