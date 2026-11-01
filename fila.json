@@ -1,0 +1,78 @@
+[
+ {
+  "produto": "Pokémon Booster Box Escuridão Absoluta Darkrai Português",
+  "jogo": "Pokémon",
+  "loja": "mercadolivre",
+  "loja_nome": "Mercado Livre",
+  "preco": 408.3,
+  "ref": 457.9,
+  "ref_fonte": "historico",
+  "url": "https://produto.mercadolivre.com.br/MLB-7845019914",
+  "link": "https://produto.mercadolivre.com.br/MLB-7845019914",
+  "imagem": "https://http2.mlstatic.com/D_NQ_NP_984863-MLA118698052702_102026-F.jpg",
+  "visto": "2026-11-01T18:04:45-03:00",
+  "descricao": "Lacrado",
+  "afiliado": false,
+  "cupom": null,
+  "preco_final": 408.3,
+  "confianca": 4,
+  "bandeira": "",
+  "unidades": null,
+  "unidade_nome": "unidades",
+  "unidade_singular": "unidade",
+  "reputacao": "",
+  "alerta_loja": "",
+  "frete_gratis": false,
+  "ainda_valendo": false,
+  "slides": [
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/promo-pok-mon-booster-box-escurid-o-absoluta-darkrai-por-mercadolivre-40830-1.jpg",
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/promo-pok-mon-booster-box-escurid-o-absoluta-darkrai-por-mercadolivre-40830-2.jpg",
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/promo-pok-mon-booster-box-escurid-o-absoluta-darkrai-por-mercadolivre-40830-3.jpg",
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/promo-pok-mon-booster-box-escurid-o-absoluta-darkrai-por-mercadolivre-40830-4.jpg"
+  ],
+  "creditos": [
+   "Imagem do produto: Mercado Livre"
+  ],
+  "destinos": [
+   "telegram"
+  ]
+ },
+ {
+  "produto": "Cartas One Piece Tcg Starter Deck Eustass Captain Kid St-36 Cartas One Piece Tcg Starter D",
+  "jogo": "One Piece",
+  "loja": "mercadolivre",
+  "loja_nome": "Mercado Livre",
+  "preco": 184.0,
+  "ref": 199.95,
+  "ref_fonte": "loja",
+  "url": "https://produto.mercadolivre.com.br/MLB-5126841749",
+  "link": "https://produto.mercadolivre.com.br/MLB-5126841749",
+  "imagem": "https://http2.mlstatic.com/D_NQ_NP_753526-MLA115967323789_082026-F.jpg",
+  "visto": "2026-11-01T18:07:11-03:00",
+  "descricao": "Lacrado",
+  "afiliado": false,
+  "cupom": null,
+  "preco_final": 184.0,
+  "confianca": 4,
+  "bandeira": "",
+  "unidades": null,
+  "unidade_nome": "unidades",
+  "unidade_singular": "unidade",
+  "reputacao": "",
+  "alerta_loja": "",
+  "frete_gratis": false,
+  "ainda_valendo": false,
+  "slides": [
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/promo-cartas-one-piece-tcg-starter-deck-eustass-captain--mercadolivre-18400-1.jpg",
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/promo-cartas-one-piece-tcg-starter-deck-eustass-captain--mercadolivre-18400-2.jpg",
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/promo-cartas-one-piece-tcg-starter-deck-eustass-captain--mercadolivre-18400-3.jpg",
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/promo-cartas-one-piece-tcg-starter-deck-eustass-captain--mercadolivre-18400-4.jpg"
+  ],
+  "creditos": [
+   "Imagem do produto: Mercado Livre"
+  ],
+  "destinos": [
+   "telegram"
+  ]
+ }
+]
