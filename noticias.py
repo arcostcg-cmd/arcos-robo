@@ -252,7 +252,7 @@ _MODELO_GEMINI = None
 
 
 def escolher_modelo_gemini(modelos):
-    """Escolhe o modelo 'flash' estável mais novo que gera texto."""
+    """Escolhe o modelo flash estável mais novo (de preferência o lite, mais rápido)."""
     bons = []
     for m in modelos:
         nome = m.get("name", "").split("/")[-1]
@@ -262,7 +262,7 @@ def escolher_modelo_gemini(modelos):
         if any(x in nome for x in ("preview", "exp", "image", "tts", "live", "audio", "thinking")):
             continue
         versao = [int(n) for n in re.findall(r"\d+", nome)[:2]] or [0]
-        bons.append((versao, "lite" not in nome, nome))
+        bons.append((versao, "lite" in nome, nome))  # lite: bem mais rápido para resumo curto
     return max(bons)[2] if bons else None
 
 
