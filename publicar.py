@@ -29,11 +29,12 @@ def telegram_album(cfg, caminhos, legenda, html=False):
     r.raise_for_status()
 
 
-def telegram_texto(cfg, texto, chat=None):
+def telegram_texto(cfg, texto, chat=None, html=False):
     token = os.environ["TELEGRAM_TOKEN"]
     r = requests.post(f"https://api.telegram.org/bot{token}/sendMessage", timeout=30,
                       data={"chat_id": chat or cfg["telegram"]["canal"], "text": texto,
-                            "disable_web_page_preview": False})
+                            "disable_web_page_preview": False,
+                            **({"parse_mode": "HTML"} if html else {})})
     r.raise_for_status()
 
 

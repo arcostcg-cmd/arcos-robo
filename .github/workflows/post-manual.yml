@@ -1,0 +1,29 @@
+name: Post manual de oferta (aprovado pelo Marcos)
+on:
+  push:
+    paths: ["pedidos/post-manual.json"]
+  workflow_dispatch: {}
+jobs:
+  postar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - run: pip install requests pyyaml pillow
+      - name: Postar no canal
+        env:
+          TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
+        run: |
+          python - <<'PY'
+          import json, yaml, bot, publicar
+          cfg = yaml.safe_load(open("config.yaml", encoding="utf-8"))
+          o = json.load(open("pedidos/post-manual.json", encoding="utf-8"))
+          linhas = bot.texto_telegram(o).split("\n")
+          # post sem imagem: troca a linha de crédito de imagem
+          linhas = ["🔗 Link de afiliado" if l.startswith("📷 Imagem") else l for l in linhas]
+          texto = "\n".join(linhas)
+          print(texto)
+          publicar.telegram_texto(cfg, texto, html=True)
+          print("Enviado ao canal", cfg["telegram"]["canal"])
+          PY
