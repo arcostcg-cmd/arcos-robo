@@ -522,6 +522,37 @@ class TestRadarSites(unittest.TestCase):
         self.assertIn("Booster Box", posts[0][1])
 
 
+class TestPlataformaLiga(unittest.TestCase):
+    PAG = (
+        '<html><head><title>(PT-BR) Caixa de Booster - For&ccedil;as Temporais | Loja X</title>'
+        '<meta property="og:image" content="//repo.exemplo.com/img.jpg"/></head><body>'
+        '<div class="table-produtos-body">'
+        '<div class="table-produtos-row"><div class="title-mobile">Condi&#231;&#227;o</div><div>Lacrado</div>'
+        '<div class="title-mobile">Estoque</div><div> 2 unid. </div>'
+        '<div class="title-mobile">Pre&#231;o</div><div>R$ 1.299,90</div></div>'
+        '<div class="table-produtos-row"><div class="title-mobile">Condi&#231;&#227;o</div><div>Usado</div>'
+        '<div class="title-mobile">Estoque</div><div> 1 unid. <span title="Item sob encomenda."></span></div>'
+        '<div class="title-mobile">Pre&#231;o</div><div>R$ 999,90</div></div>'
+        '</div><div class="table-produtos-footer"></div>'
+        '<div class="price"><span>R$ 4,99</span></div></body></html>')
+
+    def test_le_preco_estoque_e_imagem(self):
+        preco, estoque, img = bot.extrair_oferta(self.PAG)
+        self.assertEqual(preco, 1299.90)  # a linha que não é "Lacrado" não conta
+        self.assertTrue(estoque)
+        self.assertEqual(img, "https://repo.exemplo.com/img.jpg")
+        self.assertEqual(bot.extrair_nome(self.PAG), "(PT-BR) Caixa de Booster - Forças Temporais")
+
+    def test_pre_venda_nao_posta(self):
+        pag = self.PAG.replace("<body>", "<body>Item se encontra em PRE ORDER. Previsão de envio: 06/11")
+        self.assertFalse(bot.extrair_oferta(pag)[1])
+
+    def test_sem_estoque(self):
+        pag = self.PAG.replace(" 2 unid. ", " 0 unid. ")
+        preco, estoque, _ = bot.extrair_oferta(pag)
+        self.assertFalse(estoque)
+
+
 class TestComandoCentral(unittest.TestCase):
     def test_ajuda_e_comando_desconhecido(self):
         import arcos

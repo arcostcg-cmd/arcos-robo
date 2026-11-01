@@ -48,21 +48,49 @@ regras:
 #   {parametros: {tag: "arcostcg-20"}}     -> acrescenta parâmetros na URL (ex.: Amazon)
 #   {modelo: "https://exemplo.com/r?u={url}"} -> redirecionador do programa de afiliados
 lojas:
+  - id: freitas
+    nome: "Freitas TCG"
+    site: "https://www.freitastcg.com.br"
+    aprovada: true
+    conferida_em: "2026-10-31"
+    link_afiliado: false
+    confianca: 4
+    reputacao: "Reclame Aqui: Ótima"
+    paginas_cupom: []
+    observacao: "Reclame Aqui ÓTIMA (8,5/10, 94,1% resolvidas, empresa verificada) em 31/10/2026. CNPJ 46.680.887/0001-07. Plataforma Liga."
+  - id: cardsofparadise
+    nome: "Cards of Paradise"
+    site: "https://www.cardsofparadise.com.br"
+    aprovada: true
+    conferida_em: "2026-10-31"
+    link_afiliado: false
+    confianca: 3
+    paginas_cupom: []
+    observacao: "11 anos no Reclame Aqui com 1 reclamação (sem nota por ter poucas). CNPJ 45.802.678/0001-26. Plataforma Liga. Nota 3 até ter mais histórico."
   - id: copag_ml
     nome: "Copag (loja oficial no Mercado Livre)"
     site: "https://www.mercadolivre.com.br"
     aprovada: true
     conferida_em: "2026-10-31"
     link_afiliado: false
-    confianca: 5              # 1 a 5, dada pelo Auditor de Lojas (desempata o ranking)
-    # reputacao: "MercadoLíder, +500 vendas"   # conferida pelo Auditor; aparece no post
-    paginas_cupom: []         # páginas OFICIAIS de cupom/promoção da loja (o caçador lê)
-    observacao: "Distribuidora oficial de Pokémon TCG. O ML pode bloquear robôs: teste com --diagnostico --testar-lojas; se bloquear, use os links do programa de afiliados."
+    confianca: 5
+    paginas_cupom: []
+    observacao: "Distribuidora oficial. Só a loja oficial no Mercado Livre (proteção do ML). Sem produtos cadastrados ainda: o ML costuma bloquear robôs; use links do programa de afiliados."
+  - id: copag_site
+    nome: "Copag (site próprio)"
+    aprovada: false
+    conferida_em: "2026-10-31"
+    observacao: "REPROVADA: Reclame Aqui 'Não Recomendada' (nota 3,7/10, 31% resolvidas, abr-set/2026)."
   - id: epicgame
     nome: "Epic Game"
     aprovada: false
     conferida_em: "2026-10-31"
     observacao: "REPROVADA: reputação 'Ruim' (0.0) no Reclame Aqui segundo siteconfiavel.com.br."
+  - id: viptcg
+    nome: "VIP TCG"
+    aprovada: false
+    conferida_em: "2026-10-31"
+    observacao: "AGUARDANDO: só 1 ano no Reclame Aqui, sem histórico (critério pede 2 anos para loja sem nota)."
 
 # ---------------------------------------------------------------- anti-golpe
 # Travas do Analista Anti-Golpe (guia: references/anti-golpe.md).
@@ -94,21 +122,170 @@ cupons: []
 
 # ---------------------------------------------------------------- produtos
 # palavras: termos que identificam o produto nos posts dos concorrentes (radar).
+# Referência (referencia_manual) = preço normal conferido na Freitas TCG em 31/10/2026.
+# IDs da plataforma Liga (prod=...) são os mesmos em todas as lojas dessa plataforma.
 produtos:
-  - nome: "Pokémon TCG Booster Box (exemplo)"
+  - nome: Caixa de Booster Megaevolução 5 - Escuridão Absoluta
     jogo: Pokémon
-    descricao: "Lacrado, nacional (Copag)"
-    palavras: ["booster box", "pokemon", "36"]
-    # Opcionais do texto da oferta no Telegram:
-    # bandeira: "🇧🇷"              # nacional
-    # unidades: 36                 # mostra "Cada booster sai por R$ X"
-    # unidade_nome: "boosters"
-    # unidade_singular: "booster"
-    # frete_gratis: true           # só se for frete grátis de verdade para todo o Brasil
-    # referencia_manual: 899.90   # preço normal enquanto o histórico é pequeno
+    descricao: Lacrada, nacional (PT-BR), 36 boosters
+    palavras:
+    - escuridao absoluta
+    - caixa
+    - booster box
+    - '36'
+    referencia_manual: 449.98
+    unidades: 36
+    unidade_nome: boosters
+    unidade_singular: booster
+    bandeira: 🇧🇷
     ofertas:
-      - loja: copag_ml
-        url: "https://www.mercadolivre.com.br/EXEMPLO"
+    - loja: freitas
+      url: https://www.freitastcg.com.br/?view=ecom/item&prod=360203
+    - loja: cardsofparadise
+      url: https://www.cardsofparadise.com.br/?view=ecom/item&prod=360203
+  - nome: Coleção Treinador Avançado Megaevolução 5 - Escuridão Absoluta
+    jogo: Pokémon
+    descricao: Lacrada, nacional (PT-BR)
+    palavras:
+    - escuridao absoluta
+    - treinador avancado
+    - etb
+    referencia_manual: 399.89
+    bandeira: 🇧🇷
+    ofertas:
+    - loja: freitas
+      url: https://www.freitastcg.com.br/?view=ecom/item&prod=360197
+    - loja: cardsofparadise
+      url: https://www.cardsofparadise.com.br/?view=ecom/item&prod=360197
+  - nome: Caixa de Booster Megaevolução 4 - Caos Ascendente
+    jogo: Pokémon
+    descricao: Lacrada, nacional (PT-BR), 36 boosters
+    palavras:
+    - caos ascendente
+    - caixa
+    - booster box
+    - '36'
+    referencia_manual: 449.98
+    unidades: 36
+    unidade_nome: boosters
+    unidade_singular: booster
+    bandeira: 🇧🇷
+    ofertas:
+    - loja: freitas
+      url: https://www.freitastcg.com.br/?view=ecom/item&prod=353458
+    - loja: cardsofparadise
+      url: https://www.cardsofparadise.com.br/?view=ecom/item&prod=353458
+  - nome: Coleção Treinador Avançado Megaevolução 4 - Caos Ascendente
+    jogo: Pokémon
+    descricao: Lacrada, nacional (PT-BR)
+    palavras:
+    - caos ascendente
+    - treinador avancado
+    - etb
+    referencia_manual: 399.99
+    bandeira: 🇧🇷
+    ofertas:
+    - loja: freitas
+      url: https://www.freitastcg.com.br/?view=ecom/item&prod=353551
+    - loja: cardsofparadise
+      url: https://www.cardsofparadise.com.br/?view=ecom/item&prod=353551
+  - nome: Caixa de Booster Megaevolução 3 - Equilíbrio Perfeito
+    jogo: Pokémon
+    descricao: Lacrada, nacional (PT-BR), 36 boosters
+    palavras:
+    - equilibrio perfeito
+    - caixa
+    - booster box
+    - '36'
+    referencia_manual: 449.89
+    unidades: 36
+    unidade_nome: boosters
+    unidade_singular: booster
+    bandeira: 🇧🇷
+    ofertas:
+    - loja: freitas
+      url: https://www.freitastcg.com.br/?view=ecom/item&prod=348374
+    - loja: cardsofparadise
+      url: https://www.cardsofparadise.com.br/?view=ecom/item&prod=348374
+  - nome: Coleção Treinador Avançado Megaevolução 3 - Equilíbrio Perfeito
+    jogo: Pokémon
+    descricao: Lacrada, nacional (PT-BR)
+    palavras:
+    - equilibrio perfeito
+    - treinador avancado
+    - etb
+    referencia_manual: 399.89
+    bandeira: 🇧🇷
+    ofertas:
+    - loja: freitas
+      url: https://www.freitastcg.com.br/?view=ecom/item&prod=348371
+    - loja: cardsofparadise
+      url: https://www.cardsofparadise.com.br/?view=ecom/item&prod=348371
+  - nome: Caixa de Booster Megaevolução 6 - Reinado Delta
+    jogo: Pokémon
+    descricao: Lacrada, nacional (PT-BR), 36 boosters
+    palavras:
+    - reinado delta
+    - caixa
+    - booster box
+    - '36'
+    referencia_manual: 459.99
+    unidades: 36
+    unidade_nome: boosters
+    unidade_singular: booster
+    bandeira: 🇧🇷
+    ofertas:
+    - loja: freitas
+      url: https://www.freitastcg.com.br/?view=ecom/item&prod=371480
+    - loja: cardsofparadise
+      url: https://www.cardsofparadise.com.br/?view=ecom/item&prod=371480
+  - nome: Coleção Treinador Avançado Megaevolução 6 - Reinado Delta
+    jogo: Pokémon
+    descricao: Lacrada, nacional (PT-BR)
+    palavras:
+    - reinado delta
+    - treinador avancado
+    - etb
+    referencia_manual: 449.99
+    bandeira: 🇧🇷
+    ofertas:
+    - loja: freitas
+      url: https://www.freitastcg.com.br/?view=ecom/item&prod=371478
+    - loja: cardsofparadise
+      url: https://www.cardsofparadise.com.br/?view=ecom/item&prod=371478
+  - nome: Caixa de Booster Lorcana - Attack of the Vine
+    jogo: Lorcana
+    descricao: Lacrada, importada (inglês), 24 boosters
+    palavras:
+    - lorcana
+    - attack of the vine
+    - booster box
+    referencia_manual: 1299.99
+    unidades: 24
+    unidade_nome: boosters
+    unidade_singular: booster
+    ofertas:
+    - loja: freitas
+      url: https://www.freitastcg.com.br/?view=ecom/item&prod=363927
+    - loja: cardsofparadise
+      url: https://www.cardsofparadise.com.br/?view=ecom/item&prod=363927
+  - nome: Caixa de Booster One Piece PRB-01 - The Best
+    jogo: One Piece
+    descricao: Lacrada, importada (inglês), 20 boosters
+    palavras:
+    - one piece
+    - prb-01
+    - the best
+    - booster box
+    referencia_manual: 748.89
+    unidades: 20
+    unidade_nome: boosters
+    unidade_singular: booster
+    ofertas:
+    - loja: freitas
+      url: https://www.freitastcg.com.br/?view=ecom/item&prod=308084
+    - loja: cardsofparadise
+      url: https://www.cardsofparadise.com.br/?view=ecom/item&prod=308084
 
 # ---------------------------------------------------------------- radar
 # Canais PÚBLICOS do Telegram de concorrentes (só o nome, sem @).

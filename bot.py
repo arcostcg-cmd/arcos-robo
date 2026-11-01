@@ -99,12 +99,59 @@ def _percorrer(o):
             yield from _percorrer(v)
 
 
+LIGA_LINHA_RE = re.compile(r'<div class="table-produtos-row".*?(?=<div class="table-produtos-row"|$)', re.S)
+LIGA_PRECO_RE = re.compile(r'Pre(?:ç|&#231;|&ccedil;)o</div>\s*<div>\s*R\$\s*([\d.]+,\d{2})', re.I)
+LIGA_ESTOQUE_RE = re.compile(r'Estoque</div>\s*<div>\s*(\d+)\s*unid', re.I)
+
+
+def extrair_oferta_liga(html):
+    """Lojas na plataforma de e-commerce da rede Liga (?view=ecom/item...), sem JSON-LD.
+
+    Lê a tabela de produtos da página: só linhas "Lacrado" e com estoque > 0.
+    Produto em PRÉ-VENDA conta como "sem estoque" (não posta), por segurança.
+    Retorna (preco, em_estoque, imagem) ou None.
+    """
+    pre_venda = re.search(r"encontra em pr[ée][\s-]?(order|venda)|previs[ãa]o de envio", html, re.I)
+    i = html.find('class="table-produtos-body"')
+    if i < 0:
+        return None
+    corpo = html[i:]
+    fim = corpo.find('<div class="table-produtos-footer')
+    corpo = corpo[:fim] if fim > 0 else corpo[:60000]
+    precos_ok, precos_todos = [], []
+    for linha in LIGA_LINHA_RE.findall(corpo):
+        mp = LIGA_PRECO_RE.search(linha)
+        if not mp:
+            continue
+        preco = para_float(mp.group(1))
+        precos_todos.append(preco)
+        me = LIGA_ESTOQUE_RE.search(linha)
+        lacrado = re.search(r">\s*Lacrado\s*<", linha, re.I)
+        if lacrado and me and int(me.group(1)) > 0 and not pre_venda:
+            precos_ok.append(preco)
+    if not precos_todos:
+        return None
+    og = re.search(r'<meta[^>]+property="og:image"[^>]+content="([^"]+)"', html, re.I)
+    img = og.group(1) if og else None
+    if img and img.startswith("//"):
+        img = "https:" + img
+    if precos_ok:
+        return min(precos_ok), True, img
+    return min(precos_todos), False, img
+
+
 def extrair_oferta(html):
     """Lê o bloco JSON-LD schema.org/Product da página.
 
     Retorna (preco, em_estoque, imagem) ou None. A maioria das lojas virtuais
-    (Nuvemshop, Tray, Shopify, VTEX, WooCommerce) publica esse bloco.
+    (Nuvemshop, Tray, Shopify, VTEX, WooCommerce) publica esse bloco. Sem ele,
+    tenta a plataforma da rede Liga (usada por muitas lojas de TCG no Brasil).
     """
+    res = _extrair_jsonld(html)
+    return res if res else extrair_oferta_liga(html)
+
+
+def _extrair_jsonld(html):
     for bloco in LD_RE.findall(html):
         try:
             dados = json.loads(bloco.strip())
@@ -167,7 +214,10 @@ def extrair_nome(html):
             if "Product" in tipos and o.get("name"):
                 return str(o["name"])
     m = re.search(r"<title[^>]*>(.*?)</title>", html or "", re.S | re.I)
-    return m.group(1).strip() if m else ""
+    if not m:
+        return ""
+    import html as html_lib
+    return html_lib.unescape(m.group(1)).split(" | ")[0].strip()
 
 
 def dominio(url):
