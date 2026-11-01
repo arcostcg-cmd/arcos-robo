@@ -376,7 +376,9 @@ def preparar(cfg, con):
     janela = agora() - timedelta(hours=n.get("janela_horas", 24))
     candidatas = []
     for fonte in n.get("fontes", []):
-        for item in ler_fonte_com_calma(con, fonte):
+        lidos = ler_fonte_com_calma(con, fonte)
+        log.info("Fonte %s: %d itens lidos", fonte["nome"], len(lidos or []))
+        for item in lidos or []:
             if item["data"] and item["data"].astimezone(timezone.utc) < janela.astimezone(timezone.utc):
                 continue
             if con.execute("SELECT 1 FROM noticias WHERE link=?", (item["link"],)).fetchone():
@@ -385,6 +387,7 @@ def preparar(cfg, con):
                 continue
             candidatas.append((pontuar(item, fonte), item, fonte))
     candidatas.sort(key=lambda x: -x[0])
+    log.info("Candidatas novas (24 h, relevantes, inéditas): %d", len(candidatas))
 
     vagas_story = max(0, max_story - postadas_hoje(con, "story"))
     vagas_post = max(0, max_post - postadas_hoje(con, "post"))
