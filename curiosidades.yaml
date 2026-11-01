@@ -295,3 +295,70 @@
   fonte_url: "https://en.wikipedia.org/wiki/Digimon_Card_Game"
   verificado_em: "2026-11-01"
   busca_imagem: "Digimon card game"
+
+# ---- One Piece (destaque): lote 01/11/2026
+- id: op-cores-verso
+  jogo: One Piece
+  titulo: "Três cores de verso"
+  gancho: "No One Piece Card Game, dá para saber o tipo da carta pelo verso"
+  texto: "No One Piece Card Game, as cartas de Líder têm verso vermelho, as de Personagem têm verso azul e as DON!! têm verso branco. As DON!! ficam num deck separado do principal."
+  pergunta: "Qual é o seu Líder favorito?"
+  fonte_nome: "Wikipédia (One Piece Card Game)"
+  fonte_url: "https://en.wikipedia.org/wiki/One_Piece_Card_Game"
+  verificado_em: "2026-11-01"
+  busca_imagem: "One Piece Card Game"
+
+- id: op-4-decks
+  jogo: One Piece
+  titulo: "Os quatro decks da estreia"
+  gancho: "O One Piece Card Game estreou com quatro tripulações"
+  texto: "O jogo saiu no Japão em 8 de julho de 2022 e no mundo em 2 de dezembro de 2022. A estreia teve quatro decks iniciais: Chapéus de Palha, Pior Geração, Sete Corsários e Piratas das Feras."
+  pergunta: "Qual dessas quatro tripulações você escolheria?"
+  fonte_nome: "Wikipédia (One Piece Card Game)"
+  fonte_url: "https://en.wikipedia.org/wiki/One_Piece_Card_Game"
+  verificado_em: "2026-11-01"
+  busca_imagem: "One Piece cosplay"
+
+- id: op-cor-do-lider
+  jogo: One Piece
+  titulo: "A regra da cor do Líder"
+  gancho: "No One Piece, quem manda no seu deck é o Líder"
+  texto: "No One Piece Card Game, as cartas que não são Líder só podem ser usadas se tiverem a cor do seu Líder. E cada jogador só pode ter uma carta de Stage em jogo por vez."
+  pergunta: "Você prefere deck de uma cor ou de duas?"
+  fonte_nome: "Wikipédia (One Piece Card Game)"
+  fonte_url: "https://en.wikipedia.org/wiki/One_Piece_Card_Game"
+  verificado_em: "2026-11-01"
+  busca_imagem: "One Piece Card Game"
+
+- id: op-netflix
+  jogo: One Piece
+  titulo: "Cartas com os atores da Netflix"
+  gancho: "Tem carta de One Piece com o elenco da série da Netflix"
+  texto: "O One Piece Card Game ganhou um conjunto de cartas com arte alternativa mostrando os personagens da série live-action da Netflix."
+  pergunta: "Você curtiu a série live-action?"
+  fonte_nome: "Wikipédia (One Piece Card Game)"
+  fonte_url: "https://en.wikipedia.org/wiki/One_Piece_Card_Game"
+  verificado_em: "2026-11-01"
+  busca_imagem: "One Piece live action"
+
+- id: op-basquete-roubo
+  jogo: One Piece
+  titulo: "Cartas roubadas no basquete"
+  gancho: "Cartas de One Piece foram roubadas de uma sala trancada"
+  texto: "Em janeiro de 2026, cartas promocionais da segunda temporada da série da Netflix foram distribuídas em jogos de basquete universitário nos EUA. Na Rutgers, depois da segunda distribuição, as cartas que sobraram foram roubadas de um escritório trancado."
+  pergunta: "Você já foi atrás de uma carta promocional?"
+  fonte_nome: "Wikipédia (One Piece Card Game)"
+  fonte_url: "https://en.wikipedia.org/wiki/One_Piece_Card_Game"
+  verificado_em: "2026-11-01"
+  busca_imagem: "college basketball game"
+
+- id: op-iniciante
+  jogo: One Piece
+  titulo: "Bom para começar"
+  gancho: "Quer começar num TCG? Esse é um dos mais fáceis de aprender"
+  texto: "Uma partida de One Piece Card Game dura de 35 a 60 minutos. O site TheGamer escreveu que as regras simplificadas são amigáveis para iniciantes e fáceis de aprender."
+  pergunta: "Qual foi o TCG mais fácil que você já aprendeu?"
+  fonte_nome: "Wikipédia (One Piece Card Game)"
+  fonte_url: "https://en.wikipedia.org/wiki/One_Piece_Card_Game"
+  verificado_em: "2026-11-01"
+  busca_imagem: "One Piece Card Game"

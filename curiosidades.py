@@ -33,17 +33,37 @@ def preparar_banco(con):
     con.commit()
 
 
-def escolher(con, itens):
+DESTAQUES = ["Pokémon", "One Piece"]  # mais espaço no feed, sem abandonar os outros jogos
+
+
+def escolher(con, itens, destaques=None):
+    """Rodízio: Pokémon, One Piece, outro jogo, Pokémon, One Piece, outro jogo...
+
+    No "outro jogo" entra o que está há mais tempo sem aparecer (Magic, Yu-Gi-Oh!,
+    Lorcana, Digimon...), então nenhum jogo fica de fora.
+    """
+    destaques = destaques or DESTAQUES
     feitos = {r[0] for r in con.execute("SELECT id FROM curiosidades_postadas")}
     pendentes = [c for c in itens if c["id"] not in feitos]
-    ultimo = con.execute(
-        "SELECT jogo FROM curiosidades_postadas ORDER BY postado_em DESC LIMIT 1"
-    ).fetchone()
-    if ultimo:  # evita dois posts seguidos do mesmo jogo
-        outros = [c for c in pendentes if c["jogo"] != ultimo[0]]
+    if not pendentes:
+        return None, 0
+    hist = [r[0] for r in con.execute(
+        "SELECT jogo FROM curiosidades_postadas ORDER BY postado_em DESC")]
+    ciclo = destaques + ["outro"]
+    vez = ciclo[len(hist) % len(ciclo)]
+    if vez == "outro":
+        outros = [c for c in pendentes if c["jogo"] not in destaques]
         if outros:
-            return outros[0], len(pendentes)
-    return (pendentes[0] if pendentes else None), len(pendentes)
+            def ultima_vez(jogo):
+                return hist.index(jogo) if jogo in hist else 10 ** 6
+            return max(outros, key=lambda c: ultima_vez(c["jogo"])), len(pendentes)
+    else:
+        da_vez = [c for c in pendentes if c["jogo"] == vez]
+        if da_vez:
+            return da_vez[0], len(pendentes)
+    ultimo = hist[0] if hist else None  # sem item do jogo da vez: evita repetir o último jogo
+    outros = [c for c in pendentes if c["jogo"] != ultimo]
+    return (outros or pendentes)[0], len(pendentes)
 
 
 def legenda(c, creditos, cfg, rede):

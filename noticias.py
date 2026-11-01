@@ -384,8 +384,12 @@ def preparar(cfg, con):
     fr = n.get("furo_rumor", {})
     vagas_furo_rumor = max(0, fr.get("max_por_dia", 10) - postadas_hoje(con, "furo_rumor"))
 
+    bonus = cfg.get("destaque_jogos", {"Pokémon": 6, "One Piece": 6})  # vale como "X horas mais nova"
+
     def prioridade(c):  # furo confirmado, depois furo de rumor, depois o resto
-        return (0 if eh_furo(c[1], c[2], cfg) else 1 if eh_furo_rumor(c[1], c[2], cfg) else 2, -c[0])
+        extra = bonus.get(c[2].get("jogo"), 0)
+        return (0 if eh_furo(c[1], c[2], cfg) else 1 if eh_furo_rumor(c[1], c[2], cfg) else 2,
+                -(c[0] + extra))
     candidatas.sort(key=prioridade)
     fila, vistos = [], set()
     chamadas, max_ia = 0, n.get("ia", {}).get("max_por_execucao", 10)

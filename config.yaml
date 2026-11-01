@@ -6,7 +6,10 @@
 
 banco: precos.db                  # promoções e radar
 banco_curiosidades: curiosidades.db
-banco_noticias: noticias.db       # um banco por módulo: os agendamentos não brigam
+banco_noticias: noticias.db
+# Pokémon e One Piece em destaque (notícias ganham vantagem de 6 h na fila; curiosidades
+# seguem o rodízio Pokémon, One Piece, outro jogo). Os outros jogos nunca ficam de fora.
+destaque_jogos: {"Pokémon": 6, "One Piece": 6}       # um banco por módulo: os agendamentos não brigam
 pausa_entre_paginas_seg: 5
 
 telegram:
