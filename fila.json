@@ -1,0 +1,74 @@
+[
+ {
+  "produto": "Booster Yu-Gi-Oh! Investida Crescente (Edição Especial)",
+  "jogo": "Yu-Gi-Oh!",
+  "loja": "mercadolivre",
+  "loja_nome": "Mercado Livre",
+  "preco": 39.99,
+  "ref": 59.9,
+  "ref_fonte": "loja",
+  "url": "https://produto.mercadolivre.com.br/MLB-3443273577",
+  "link": "https://produto.mercadolivre.com.br/MLB-3443273577",
+  "imagem": "https://http2.mlstatic.com/D_NQ_NP_993945-MLA99508686712_112025-F.jpg",
+  "visto": "2026-11-01T11:40:00-03:00",
+  "descricao": "Lacrado, nacional (português)",
+  "afiliado": false,
+  "cupom": null,
+  "preco_final": 39.99,
+  "confianca": 4,
+  "bandeira": "🇧🇷",
+  "unidades": null,
+  "unidade_nome": "unidades",
+  "unidade_singular": "unidade",
+  "reputacao": "",
+  "frete_gratis": false,
+  "slides": [
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/promo-booster-yu-gi-oh-investida-crescente-edi-o-especia-mercadolivre-3999-1.jpg",
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/promo-booster-yu-gi-oh-investida-crescente-edi-o-especia-mercadolivre-3999-2.jpg",
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/promo-booster-yu-gi-oh-investida-crescente-edi-o-especia-mercadolivre-3999-3.jpg",
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/promo-booster-yu-gi-oh-investida-crescente-edi-o-especia-mercadolivre-3999-4.jpg"
+  ],
+  "creditos": [
+   "Imagem do produto: Mercado Livre"
+  ],
+  "destinos": [
+   "telegram"
+  ]
+ },
+ {
+  "produto": "Play Booster Box Magic: Avatar - A Lenda de Aang",
+  "jogo": "Magic",
+  "loja": "mercadolivre",
+  "loja_nome": "Mercado Livre",
+  "preco": 1039.69,
+  "ref": 1404.99,
+  "ref_fonte": "loja",
+  "url": "https://produto.mercadolivre.com.br/MLB-6071265468",
+  "link": "https://produto.mercadolivre.com.br/MLB-6071265468",
+  "imagem": "https://http2.mlstatic.com/D_NQ_NP_987850-MLA101194074934_122025-F.jpg",
+  "visto": "2026-11-01T11:39:44-03:00",
+  "descricao": "Lacrada, Play Booster Box",
+  "afiliado": false,
+  "cupom": null,
+  "preco_final": 1039.69,
+  "confianca": 4,
+  "bandeira": "",
+  "unidades": null,
+  "unidade_nome": "unidades",
+  "unidade_singular": "unidade",
+  "reputacao": "",
+  "frete_gratis": false,
+  "slides": [
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/promo-play-booster-box-magic-avatar-a-lenda-de-aang-mercadolivre-103969-1.jpg",
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/promo-play-booster-box-magic-avatar-a-lenda-de-aang-mercadolivre-103969-2.jpg",
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/promo-play-booster-box-magic-avatar-a-lenda-de-aang-mercadolivre-103969-3.jpg",
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/promo-play-booster-box-magic-avatar-a-lenda-de-aang-mercadolivre-103969-4.jpg"
+  ],
+  "creditos": [
+   "Imagem do produto: Mercado Livre"
+  ],
+  "destinos": [
+   "telegram"
+  ]
+ }
+]
