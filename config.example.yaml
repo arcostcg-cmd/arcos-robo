@@ -1232,6 +1232,23 @@ produtos:
 # ---------------------------------------------------------------- radar
 # Canais PÚBLICOS do Telegram de concorrentes (só o nome, sem @).
 # O radar só avisa o admin; nunca copia nem posta nada dos concorrentes.
+# ---------------------------------------------------------------- AliExpress (API oficial de afiliados)
+# Liga quando ALI_APP_KEY, ALI_APP_SECRET e ALI_TRACKING_ID estiverem nos Secrets.
+aliexpress:
+  ativo: true
+  min_avaliacao: 95          # % de avaliação positiva mínima
+  min_vendas: 50             # vendas mínimas do produto
+  max_por_execucao: 1        # constância: 1 oferta do AliExpress por rodada
+  termos:
+    - {q: "pokemon tcg booster box", jogo: Pokémon, categoria: Lacrado}
+    - {q: "pokemon card binder official", jogo: Pokémon, categoria: Acessório}
+    - {q: "one piece card game booster", jogo: One Piece, categoria: Lacrado}
+    - {q: "one piece figure banpresto", jogo: One Piece, categoria: Colecionável}
+    - {q: "pokemon figure official", jogo: Pokémon, categoria: Colecionável}
+    - {q: "dragon ball figure banpresto", jogo: Dragon Ball, categoria: Colecionável}
+    - {q: "card sleeves dragon shield", jogo: TCG, categoria: Acessório}
+    - {q: "ultra pro deck box", jogo: TCG, categoria: Acessório}
+
 radar:
   ativo: false
   canais: []

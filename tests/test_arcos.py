@@ -659,3 +659,34 @@ class TestDescontoDaLoja(unittest.TestCase):
         self.assertIsNone(self.bot.desconto_da_loja(self.con, "P", "ml", 95, None, self.r))
         self.add(50, 100)
         self.assertIsNone(self.bot.desconto_da_loja(self.con, "P", "ml", 50, None, self.r))
+
+
+class TestAliExpress(unittest.TestCase):
+    def cfg(self):
+        return {"regras": {"desconto_minimo": 0.05, "alerta_suspeito": 0.40},
+                "aliexpress": {"min_avaliacao": 95, "min_vendas": 50},
+                "anti_golpe": {"termos_suspeitos": ["proxy", "réplica"]},
+                "lojas": [{"id": "aliexpress", "alerta": "⚠️ cuidado"}]}
+
+    def p(self, **kw):
+        base = {"product_title": "One Piece Figure Banpresto Luffy", "target_sale_price": "90.00",
+                "target_original_price": "120.00", "evaluate_rate": "98.1%", "lastest_volume": 300,
+                "product_main_image_url": "http://x/i.jpg", "promotion_link": "http://s.click/x"}
+        return {**base, **kw}
+
+    def test_aprova_e_alerta(self):
+        import aliexpress
+        of, m = aliexpress.avaliar(self.cfg(), self.p())
+        self.assertIsNotNone(of, m)
+        self.assertEqual(of["alerta_loja"], "⚠️ cuidado")
+
+    def test_recusa_falso_e_desconto_irreal(self):
+        import aliexpress
+        self.assertIsNone(aliexpress.avaliar(self.cfg(), self.p(product_title="Pokemon proxy cards"))[0])
+        self.assertIsNone(aliexpress.avaliar(self.cfg(), self.p(target_original_price="400"))[0])
+        self.assertIsNone(aliexpress.avaliar(self.cfg(), self.p(evaluate_rate="80%"))[0])
+
+    def test_assinatura_estavel(self):
+        import aliexpress
+        self.assertEqual(aliexpress.assinatura({"b": "2", "a": "1"}, "s"),
+                         aliexpress.assinatura({"a": "1", "b": "2"}, "s"))
