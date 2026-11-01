@@ -15,8 +15,18 @@ jobs:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         run: |
           python - <<'PY'
-          import yaml, noticias
-          cfg = yaml.safe_load(open("config.yaml", encoding="utf-8"))
-          import time; t = time.time()
-          print("RESPOSTA:", noticias.chamar_ia(cfg, "Traduza para português do Brasil, só a tradução: 'New Pokémon TCG set revealed today.'"), "| segundos:", round(time.time() - t, 1))
+          import os, time, requests
+          k = os.environ["GEMINI_API_KEY"]
+          ms = requests.get("https://generativelanguage.googleapis.com/v1beta/models", params={"key": k, "pageSize": 200}).json()["models"]
+          nomes = [m["name"].split("/")[-1] for m in ms if "generateContent" in m.get("supportedGenerationMethods", []) and ("flash" in m["name"] or "gemma" in m["name"])]
+          print("MODELOS:", nomes)
+          for n in nomes[:14]:
+              t = time.time()
+              try:
+                  r = requests.post(f"https://generativelanguage.googleapis.com/v1beta/models/{n}:generateContent", params={"key": k}, timeout=60,
+                      json={"contents": [{"parts": [{"text": "Traduza para português, só a tradução: New set revealed today."}]}]})
+                  txt = r.json()["candidates"][0]["content"]["parts"][0]["text"].strip()[:60] if r.ok else r.text[:80]
+              except Exception as e:
+                  txt = type(e).__name__
+              print(f"TEMPO {n}: {time.time()-t:.1f}s | {txt}")
           PY
