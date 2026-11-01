@@ -408,6 +408,12 @@ def ultimas_leituras(con, produto, loja, n=2):
     ).fetchall()
 
 
+def ultima_postagem(con, produto, loja):
+    row = con.execute("SELECT MAX(postado_em) FROM postados WHERE produto=? AND loja=?",
+                      (produto, loja)).fetchone()
+    return row[0] if row else None
+
+
 def ja_postado(con, produto, loja, preco, canal, horas):
     desde = iso(agora() - timedelta(hours=horas))
     return con.execute(
@@ -518,7 +524,8 @@ def texto_telegram(o):
     o = {**o, "produto": escape(o["produto"]), "loja_nome": escape(o["loja_nome"]),
          "reputacao": escape(o.get("reputacao") or "")}
     titulo = f"{o.get('bandeira', '')} {o['produto'].upper()}".strip()
-    linhas = [f"🔥 {titulo}"]
+    linhas = [f"🔁 AINDA VALENDO (preço conferido de novo agora)\n🔥 {titulo}" if o.get("ainda_valendo")
+              else f"🔥 {titulo}"]
     if o.get("unidades"):
         linhas.append(f"({o['unidades']} {o.get('unidade_nome', 'unidades')})")
     linhas += ["", f"De: <s>{reais(o['ref'])}</s> Por: <b>{reais(o['preco'])}</b>",
@@ -598,12 +605,17 @@ def preparar(cfg, con, aprovadas):
         if velho.stat().st_mtime < limite:
             velho.unlink()
     fila = []
+    candidatas = []
     for o in aprovadas:
         destinos = [c for c, _ in canais(cfg)
                     if not ja_postado(con, o["produto"], o["loja"], o["preco"], c,
                                       r["nao_repetir_horas"])]
-        if not destinos:
-            continue
+        if destinos:
+            candidatas.append((ultima_postagem(con, o["produto"], o["loja"]), o, destinos))
+    # constância: poucas por rodada, primeiro as que nunca saíram, depois as mais antigas
+    candidatas.sort(key=lambda x: x[0] or "")
+    for ultima, o, destinos in candidatas[:r.get("max_por_execucao", 99)]:
+        o = {**o, "ainda_valendo": bool(ultima)}  # oferta conferida de novo e ainda no ar
         foto = imagens.baixar(o["imagem"]) if o.get("imagem") else None
         slides, creditos = carrossel.carrossel_promocao(o, foto, PASTA_IMG)
         fila.append({**o, "slides": [str(x) for x in slides],

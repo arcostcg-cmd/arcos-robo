@@ -39,7 +39,8 @@ regras:
   alerta_suspeito: 0.40       # mais de 40% abaixo = suspeito, descarta
   dias_historico: 30          # janela do preço normal (mediana)
   minimo_leituras: 5          # sem esse histórico, não posta (use referencia_manual no início)
-  nao_repetir_horas: 24
+  nao_repetir_horas: 6        # oferta que continua valendo volta ao canal depois de 6 h, com "AINDA VALENDO"
+  max_por_execucao: 2         # constância: até 2 promoções por rodada, em vez de todas de uma vez
   max_posts_telegram_dia: 20
   max_posts_instagram_dia: 0  # promoções ficam no Telegram; o feed do Instagram tem só os 3 posts planejados
   cupom_teste_dias: 7         # cupom testado há mais que isso não vai para o post
