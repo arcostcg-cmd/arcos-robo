@@ -19,11 +19,15 @@ jobs:
           import json, yaml, bot, publicar
           cfg = yaml.safe_load(open("config.yaml", encoding="utf-8"))
           o = json.load(open("pedidos/post-manual.json", encoding="utf-8"))
-          linhas = bot.texto_telegram(o).split("\n")
-          # post sem imagem: troca a linha de crédito de imagem
-          linhas = ["🔗 Link de afiliado" if l.startswith("📷 Imagem") else l for l in linhas]
-          texto = "\n".join(linhas)
+          # regra do Marcos: toda promoção vai com a foto do produto do site da loja
+          if not o.get("imagem"):
+              raise SystemExit("pedido sem 'imagem': promoção só sai com a foto do produto")
+          texto = bot.texto_telegram(o)
           print(texto)
-          publicar.telegram_texto(cfg, texto, html=True)
+          import os, requests
+          r = requests.post(f"https://api.telegram.org/bot{os.environ['TELEGRAM_TOKEN']}/sendPhoto",
+                            timeout=60, data={"chat_id": cfg["telegram"]["canal"], "photo": o["imagem"],
+                                              "caption": texto, "parse_mode": "HTML"})
+          print(r.status_code, r.text[:300]); r.raise_for_status()
           print("Enviado ao canal", cfg["telegram"]["canal"])
           PY
