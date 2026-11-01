@@ -1,5 +1,7 @@
 name: Teste - arte com carta oficial
 on:
+  push:
+    paths: ["pedidos/arte.json"]
   workflow_dispatch:
     inputs:
       imagem:
@@ -34,12 +36,15 @@ jobs:
           CREDITO: ${{ inputs.credito }}
           JOGO: ${{ inputs.jogo }}
           NOME: ${{ inputs.nome }}
+          EVENTO: ${{ github.event_name }}
         run: |
           python - <<'PY'
-          import os
+          import json, os
           from pathlib import Path
           import carrossel, noticias
-          carta = noticias.imagem_oficial({"link": "", "imagem": os.environ["IMG"]}, {"tipo": "oficial"})
+          if os.environ.get("EVENTO") == "push":
+              os.environ.update({k.upper(): v for k, v in json.load(open("pedidos/arte.json", encoding="utf-8")).items()})
+          carta = noticias.imagem_oficial({"link": "", "imagem": os.environ.get("IMAGEM") or os.environ["IMG"]}, {"tipo": "oficial"})
           assert carta is not None, "não consegui baixar a imagem oficial"
           p = Path("amostras"); p.mkdir(exist_ok=True)
           n, t, c, j = os.environ["NOME"], os.environ["TITULO"], os.environ["CREDITO"], os.environ["JOGO"]
@@ -49,4 +54,4 @@ jobs:
           print("ok", carta.size)
           PY
           git config user.name "robo-tcg"; git config user.email "robo-tcg@users.noreply.github.com"
-          git add amostras && git commit -m "amostra de arte: $NOME" && git push || echo "nada novo"
+          git add amostras && git commit -m "amostra de arte" && (for i in 1 2 3; do git pull --rebase && git push && break; sleep 5; done) || echo "nada novo"
