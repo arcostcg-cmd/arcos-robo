@@ -22,7 +22,8 @@ jobs:
           # regra do Marcos: toda promoção vai com a foto do produto do site da loja
           if not o.get("imagem"):
               raise SystemExit("pedido sem 'imagem': promoção só sai com a foto do produto")
-          texto = bot.texto_telegram(o)
+          # notícia: legenda pronta; promoção: formato padrão de oferta
+          texto = o["legenda"] if o.get("legenda") else bot.texto_telegram(o)
           print(texto)
           import os, requests
           r = requests.post(f"https://api.telegram.org/bot{os.environ['TELEGRAM_TOKEN']}/sendPhoto",
