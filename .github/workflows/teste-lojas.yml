@@ -17,6 +17,8 @@ jobs:
         env:
           ML_CLIENT_ID: ${{ secrets.ML_CLIENT_ID }}
           ML_CLIENT_SECRET: ${{ secrets.ML_CLIENT_SECRET }}
+          SHOPEE_APP_ID: ${{ secrets.SHOPEE_APP_ID }}
+          SHOPEE_SECRET: ${{ secrets.SHOPEE_SECRET }}
         run: |
           python - <<'PY' | tee -a "$GITHUB_STEP_SUMMARY"
           import time, yaml, bot, marketplaces
@@ -34,8 +36,9 @@ jobs:
                   if loja.get("api") in marketplaces.AGUARDANDO_CHAVE:
                       print(f"| {p['nome'][:55]} | {loja['nome']} | aguardando chave do programa de afiliados |")
                       continue
-                  if loja.get("api") == "mercadolivre":
-                      r, erro = marketplaces.ml_oferta(o["url"], loja)
+                  if loja.get("api") in ("mercadolivre", "shopee"):
+                      ler = marketplaces.ml_oferta if loja["api"] == "mercadolivre" else marketplaces.shopee_oferta
+                      r, erro = ler(o["url"], loja)
                       res = r[:3] if r else None
                       if r:
                           erro = None

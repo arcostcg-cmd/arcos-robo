@@ -331,8 +331,9 @@ def coletar(cfg, con):
             if loja.get("so_acessorios") and prod.get("tipo") != "acessorio":
                 log.warning("Anti-golpe: %s só pode ser usada para acessórios (%s)", loja["id"], prod["nome"])
                 continue
-            if api == "mercadolivre":
-                res, erro = marketplaces.ml_oferta(item["url"], loja)
+            if api in ("mercadolivre", "shopee"):
+                ler = marketplaces.ml_oferta if api == "mercadolivre" else marketplaces.shopee_oferta
+                res, erro = ler(item["url"], loja)
                 url_anuncio = item["url"]
                 if res:
                     preco, estoque, img, titulo, selo, url_anuncio = res

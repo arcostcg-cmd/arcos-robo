@@ -17,6 +17,8 @@ jobs:
         env:
           ML_CLIENT_ID: ${{ secrets.ML_CLIENT_ID }}
           ML_CLIENT_SECRET: ${{ secrets.ML_CLIENT_SECRET }}
+          SHOPEE_APP_ID: ${{ secrets.SHOPEE_APP_ID }}
+          SHOPEE_SECRET: ${{ secrets.SHOPEE_SECRET }}
         run: |
           python - <<'PY'
           import json
@@ -40,6 +42,18 @@ jobs:
                   menor = min((float(o["price"]) for o in ofic), default=None)
                   lojas = sorted({o["official_store_id"] for o in ofic})
                   linhas.append(f"- {pid} | {nome[:90]} | ofertas: {len(ofs)} | lojas oficiais: {lojas} | menor oficial: {menor}\n")
+          import os
+          if os.environ.get("SHOPEE_APP_ID"):
+              linhas.append("\n# Shopee (só Shopee Mall)\n")
+              for t in termos:
+                  linhas.append(f"\n## {t}\n")
+                  try:
+                      for n in m.shopee_chamar({"keyword": t, "page": 1, "limit": 20}):
+                          ok, selo = m.shopee_confiavel(n, {})
+                          if ok:
+                              linhas.append(f"- {n.get('productLink')} | {n.get('productName','')[:80]} | R$ {n.get('priceMin')} | {n.get('shopName')} | vendas {n.get('sales')}\n")
+                  except Exception as e:
+                      linhas.append(f"- erro: {e}\n")
           Path("amostras").mkdir(exist_ok=True)
           Path("amostras/catalogo.md").write_text("".join(linhas), encoding="utf-8")
           print("".join(linhas))

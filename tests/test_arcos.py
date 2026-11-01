@@ -590,6 +590,15 @@ class TestMarketplaces(unittest.TestCase):
         self.assertEqual(o["item_id"], "MLB1")  # gold verde é aceito no modo geral
         self.assertEqual(marketplaces.ml_catalogo_id("https://www.mercadolivre.com.br/box/p/MLB74773271?x=1"), "MLB74773271")
 
+    def test_shopee_assinatura_ids_e_selo(self):
+        import hashlib
+        self.assertEqual(marketplaces.shopee_assinatura("1", "s", "{}", 10),
+                         hashlib.sha256(b"110{}s").hexdigest())
+        self.assertEqual(marketplaces.shopee_ids("https://shopee.com.br/Box-Pokemon-i.123.456?x=1"), (123, 456))
+        self.assertTrue(marketplaces.shopee_confiavel({"shopType": [1]}, {})[0])
+        self.assertFalse(marketplaces.shopee_confiavel({"shopType": [], "shopId": 9}, {})[0])
+        self.assertTrue(marketplaces.shopee_confiavel({"shopType": [], "shopId": 9}, {"shopee_lojas": [9]})[0])
+
     def test_aviso_de_compra_livre_em_todo_post(self):
         o = {"produto": "Box", "loja_nome": "Loja", "preco": 90.0, "ref": 100.0,
              "visto": bot.iso(bot.agora()), "url": "http://a", "afiliado": True, "descricao": "Lacrado"}

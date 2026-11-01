@@ -24,7 +24,6 @@ ULTIMO_ERRO_TOKEN = {"msg": ""}
 # Integrações que dependem de aprovação em programa de afiliados
 AGUARDANDO_CHAVE = {
     "amazon": "API de afiliados da Amazon (liberada após as primeiras vendas no Amazon Associados)",
-    "shopee": "API do Shopee Afiliados (após aprovação no programa)",
     "aliexpress": "API do AliExpress Portals (após aprovação no programa)",
 }
 
@@ -187,3 +186,72 @@ def ml_oferta_catalogo(url, loja):
         return None, f"API do Mercado Livre (catálogo) respondeu {cod}"
     except Exception as e:
         return None, f"API do Mercado Livre (catálogo): {type(e).__name__}"
+
+
+# ------------------------------------------------------------ Shopee (API oficial de afiliados)
+SHOPEE_API = "https://open-api.affiliate.shopee.com.br/graphql"
+SHOPEE_QUERY = """query($keyword:String,$itemId:Int64,$shopId:Int64,$page:Int,$limit:Int){
+  productOfferV2(keyword:$keyword,itemId:$itemId,shopId:$shopId,page:$page,limit:$limit){
+    nodes{ itemId shopId productName priceMin priceMax shopName shopType ratingStar sales imageUrl offerLink productLink }
+  }
+}"""
+
+
+def shopee_assinatura(app_id, segredo, payload, ts):
+    """Assinatura exigida pela API de afiliados: SHA256(AppId + Timestamp + Payload + Secret)."""
+    import hashlib
+    return hashlib.sha256(f"{app_id}{ts}{payload}{segredo}".encode("utf-8")).hexdigest()
+
+
+def shopee_chamar(variaveis):
+    import json as _json
+    app_id, seg = os.environ.get("SHOPEE_APP_ID"), os.environ.get("SHOPEE_SECRET")
+    if not app_id or not seg:
+        raise RuntimeError("cadastre SHOPEE_APP_ID e SHOPEE_SECRET (Shopee Afiliados > Open API)")
+    payload = _json.dumps({"query": SHOPEE_QUERY, "variables": variaveis}, separators=(",", ":"))
+    ts = int(time.time())
+    h = {"Content-Type": "application/json",
+         "Authorization": f"SHA256 Credential={app_id}, Timestamp={ts}, Signature={shopee_assinatura(app_id, seg, payload, ts)}"}
+    r = requests.post(SHOPEE_API, data=payload, headers=h, timeout=25)
+    r.raise_for_status()
+    j = r.json()
+    if j.get("errors"):
+        raise RuntimeError(str(j["errors"])[:200])
+    return (j.get("data") or {}).get("productOfferV2", {}).get("nodes") or []
+
+
+def shopee_ids(url):
+    """'https://shopee.com.br/produto-i.123.456' ou '.../product/123/456' -> (shop_id, item_id)."""
+    m = re.search(r"-i\.(\d+)\.(\d+)", url or "") or re.search(r"/product/(\d+)/(\d+)", url or "")
+    return (int(m.group(1)), int(m.group(2))) if m else (None, None)
+
+
+def shopee_confiavel(n, loja):
+    """Só Shopee Mall / Loja Oficial (shopType 1) ou lojas da lista branca do config."""
+    tipos = n.get("shopType") or []
+    tipos = tipos if isinstance(tipos, list) else [tipos]
+    if n.get("shopId") in set(loja.get("shopee_lojas") or []):
+        return True, "Loja aprovada pelo Arcos"
+    if 1 in tipos:
+        return True, "Shopee Mall (loja oficial)"
+    return False, "vendedor sem selo Shopee Mall"
+
+
+def shopee_oferta(url, loja):
+    """Lê uma oferta da Shopee pela API de afiliados. Devolve ((preco, estoque, img, titulo, selo, link), erro)."""
+    shop_id, item_id = shopee_ids(url)
+    if not item_id:
+        return None, "link da Shopee sem código do produto"
+    try:
+        nodes = shopee_chamar({"itemId": item_id, "shopId": shop_id, "page": 1, "limit": 1})
+    except Exception as e:
+        return None, f"Shopee: {str(e)[:150]}"
+    if not nodes:
+        return None, "Shopee: produto não encontrado (ou sem estoque)"
+    n = nodes[0]
+    ok, selo = shopee_confiavel(n, loja)
+    if not ok:
+        return None, f"barrado: {selo}"
+    preco = float(n.get("priceMin") or n.get("priceMax"))
+    link = n.get("offerLink") or n.get("productLink") or url  # offerLink já é o link de afiliado
+    return (preco, True, n.get("imageUrl"), n.get("productName", ""), selo, link), None

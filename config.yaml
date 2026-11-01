@@ -106,13 +106,14 @@ lojas:
   - id: shopee
     nome: "Shopee"
     site: "https://shopee.com.br"
-    api: shopee
+    api: shopee                # API oficial do Shopee Afiliados; precisa de SHOPEE_APP_ID e SHOPEE_SECRET
     aprovada: true
-    conferida_em: "2026-10-31"
-    link_afiliado: true
+    conferida_em: "2026-11-01"
+    link_afiliado: true        # a API já devolve o link de afiliado (offerLink)
     confianca: 3
+    shopee_lojas: []           # IDs de lojas aprovadas pelo Auditor além do Shopee Mall
     paginas_cupom: []
-    observacao: "Só Shopee Mall / Loja Oficial. Vendedor comum nunca (risco alto de falsificado)."
+    observacao: "Só Shopee Mall / Loja Oficial (shopType 1) ou loja da lista branca. Vendedor comum nunca (risco alto de falsificado)."
   - id: aliexpress
     nome: "AliExpress"
     site: "https://pt.aliexpress.com"
