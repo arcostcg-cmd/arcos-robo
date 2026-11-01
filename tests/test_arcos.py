@@ -149,7 +149,7 @@ class TestCarrossel(unittest.TestCase):
             self.assertEqual(len(p), 4)
             self.assertIn("Imagem do produto: Loja A", cred)
             q, _ = carrossel.carrossel_curiosidade(c, None, Path(d))
-            self.assertGreaterEqual(len(q), 4)
+            self.assertGreaterEqual(len(q), 3)
             self.assertTrue(all(x.exists() for x in p + q))
 
 

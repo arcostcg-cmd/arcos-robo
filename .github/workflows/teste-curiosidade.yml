@@ -1,0 +1,30 @@
+name: Teste - prévia de curiosidades (não posta)
+on:
+  push:
+    paths: ["pedidos/teste-curiosidade.txt"]
+  workflow_dispatch: {}
+permissions:
+  contents: write
+jobs:
+  previa:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - run: pip install requests pyyaml pillow
+      - run: |
+          python - <<'PY'
+          import yaml, imagens, carrossel as C, curiosidades as Q
+          from pathlib import Path
+          ids = open("pedidos/teste-curiosidade.txt").read().split()
+          it = {x["id"]: x for x in yaml.safe_load(open("curiosidades.yaml", encoding="utf-8"))}
+          for k in ids:
+              c = it[k]; n = len(C._frases(c["texto"], 110)) + 2
+              termos = [c["busca_imagem"]] + c.get("buscas_imagem", []) + Q.BUSCAS_JOGO.get(c["jogo"], []) + Q.GERAIS
+              fotos = imagens.buscar_commons_varias(termos, n)
+              print(k, len(fotos), [f["credito"] for f in fotos])
+              C.carrossel_curiosidade(c, fotos, Path("amostras/curiosidades"))
+          PY
+          git config user.name "robo-tcg"; git config user.email "robo-tcg@users.noreply.github.com"
+          git add amostras && git commit -m "prévia de curiosidades" && (for i in 1 2 3; do git pull --rebase && git push && break; sleep 5; done) || echo "nada novo"

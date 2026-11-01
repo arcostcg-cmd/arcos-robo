@@ -61,12 +61,32 @@ def legenda(c, creditos, cfg, rede):
             f"🔔 Promoções verificadas no nosso Telegram (link na bio).\n\n{tags}").strip()
 
 
+# Buscas extras por jogo: fotos de pessoas jogando, eventos e coleções (Wikimedia Commons, licença livre)
+BUSCAS_JOGO = {
+    "Pokémon": ["Pokémon Trading Card Game players", "Pokémon World Championships", "Pokémon cards collection"],
+    "Magic": ["Magic: The Gathering players", "Magic The Gathering tournament", "Magic The Gathering cards"],
+    "Yu-Gi-Oh!": ["Yu-Gi-Oh! tournament", "Yu-Gi-Oh! players", "Yu-Gi-Oh! cards"],
+    "One Piece": ["One Piece Card Game", "One Piece cosplay", "trading card game tournament"],
+    "Lorcana": ["Disney Lorcana", "Lorcana cards", "trading card game players"],
+    "Digimon": ["Digimon card game", "Digimon cosplay", "trading card game players"],
+}
+GERAIS = ["trading card game players", "collectible card game tournament", "trading cards collection"]
+
+
 def preparar(cfg, con, itens):
     c, restantes = escolher(con, itens)
     if not c:
         return None, 0
-    foto = imagens.buscar_commons(c["busca_imagem"]) if c.get("busca_imagem") else None
-    slides, creditos = carrossel.carrossel_curiosidade(c, foto, BASE / "imagens")
+    n = len(carrossel._frases(c["texto"], limite=110)) + 2
+    termos = ([c["busca_imagem"]] if c.get("busca_imagem") else []) + c.get("buscas_imagem", []) \
+        + BUSCAS_JOGO.get(c["jogo"], []) + GERAIS
+    fotos = imagens.buscar_commons_varias(termos, n)
+    cartas = []
+    for k in c.get("cartas_oficiais", []):  # só imagens de fonte OFICIAL, com crédito
+        img = imagens.baixar(k["url"])
+        if img is not None:
+            cartas.append({"imagem": img, "credito": f"Imagem: {k['credito']}"})
+    slides, creditos = carrossel.carrossel_curiosidade(c, fotos, BASE / "imagens", cartas)
     dados = {"item": c, "slides": [str(s) for s in slides], "creditos": creditos}
     PREPARADA.write_text(json.dumps(dados, ensure_ascii=False, indent=1), encoding="utf-8")
     return dados, restantes

@@ -397,55 +397,96 @@ def slide_texto(bloco, i, total, acento, semente, selo="ARCOS TCG"):
     return s
 
 
-def carrossel_curiosidade(c, foto_info, pasta):
-    """c = item de curiosidades.yaml; foto_info = retorno de buscar_commons ou None."""
+def foto_cheia(foto, acento=AMARELO, semente="x", escuro_de=0.38):
+    """Foto ocupando o slide inteiro, com degradê escuro embaixo para o texto ler bem."""
+    if foto is None:
+        return fundo_feed(acento=acento, semente=semente)
+    base = ImageOps.fit(foto.convert("RGB"), (W, H), Image.LANCZOS)
+    veu = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+    dv = ImageDraw.Draw(veu)
+    r, g, b = ImageColor.getrgb(NOITE1)
+    ini = int(H * escuro_de)
+    for y in range(ini, H):
+        a = int(235 * ((y - ini) / (H - ini)) ** 0.85)
+        dv.line([(0, y), (W, y)], fill=(r, g, b, a))
+    dv.rectangle([0, 0, W, 170], fill=(r, g, b, 70))  # leitura do logo e do selo
+    return Image.alpha_composite(base.convert("RGBA"), veu).convert("RGB")
+
+
+def _texto_rodape(d, texto, acento, maior=92, menor=54, topo=None):
+    """Texto grande na parte de baixo do slide (área escura do degradê)."""
+    f = caber(d, texto, "Fredoka-Bold.ttf", W - 144, 430, maior, menor, 1.05)
+    linhas = quebrar(d, texto, f, W - 144)
+    alt = len(linhas) * int(f.size * 1.05)
+    y = topo if topo is not None else H - 150 - alt
+    destaque(d, 72, y - 40, 120, acento)
+    escrever(d, (72, y), texto, f, BRANCO, W - 144, 1.05, stroke_width=max(3, f.size // 18),
+             stroke_fill=NOITE1)
+
+
+def carrossel_curiosidade(c, fotos, pasta, cartas=None):
+    """Carrossel visual: cada slide é uma imagem (foto livre ou carta oficial) com pouco texto.
+
+    fotos  = lista de retornos de imagens.buscar_commons_varias (ou um único dict, ou None)
+    cartas = lista de {"imagem": PIL.Image, "credito": str} de fontes OFICIAIS (opcional)
+    """
+    if isinstance(fotos, dict):
+        fotos = [fotos]
+    fotos, cartas = list(fotos or []), list(cartas or [])
     ac = ACENTO["curiosidade"]
-    blocos = _frases(c["texto"])
-    total = 1 + len(blocos) + 2
+    blocos = _frases(c["texto"], limite=110)
+    total = 1 + len(blocos) + 1
     capa = c.get("gancho") or c["titulo"]
     sem = c["id"]
-    slides = []
+    selo = f"VOCÊ SABIA? · {c['jogo'].upper()}"[:34]
+    visuais = [("carta", x) for x in cartas] + [("foto", x) for x in fotos]
 
-    s = fundo_feed(acento=ac, semente=sem)
-    if foto_info:
-        s = moldura_foto(s, foto_info["imagem"], (96, 200, W - 96, 760), acento=ac)
-    d = cabecalho(s, f"VOCÊ SABIA? · {c['jogo'].upper()}"[:34], ac)
-    y0 = 830 if foto_info else 300
-    destaque(d, 72, y0 - 34, 120, ac)
-    titulo_grande(d, (72, y0), capa, W - 144, 360 if foto_info else 760, 104 if foto_info else 140, 56)
+    def visual(k):
+        return visuais[k % len(visuais)] if visuais else (None, None)
+
+    def montar(k):
+        tipo, v = visual(k)
+        if tipo == "carta":
+            img, _ = colar_carta(fundo_feed(acento=ac, semente=f"{sem}{k}"), v["imagem"], 760, 560)
+            return img
+        return foto_cheia(v["imagem"] if v else None, ac, f"{sem}{k}")
+
+    slides = []
+    s = montar(0)
+    d = cabecalho(s, selo, ac)
+    _texto_rodape(d, capa, ac, 120, 64)
     rodape(d, 1, total, "Arrasta pro lado »", ac)
     slides.append(s)
 
     for i, b in enumerate(blocos, 2):
-        slides.append(slide_texto(b, i, total, ac, f"{sem}{i}", f"VOCÊ SABIA? · {c['jogo'].upper()}"[:34]))
+        s = montar(i - 1)
+        d = cabecalho(s, selo, ac)
+        _texto_rodape(d, b, ac, 76, 46)
+        rodape(d, i, total, "Continua »", ac)
+        slides.append(s)
 
-    s = fundo_feed(acento=ac, semente=sem + "f")
-    d = cabecalho(s, "FONTE", ac)
-    destaque(d, 72, 250, 120, ac)
-    escrever(d, (72, 290), c["fonte_nome"], tit(76), BRANCO, W - 144, 1.05)
-    dominio = re.sub(r"^https?://(www\.)?", "", c["fonte_url"]).split("/")[0]
-    d.text((72, 620), dominio, font=txt(40), fill=SUAVE)
-    data = datetime.fromisoformat(c["verificado_em"]).strftime("%d/%m/%Y")
-    d.text((72, 690), f"Conferido em {data}", font=txt2(34), fill=SUAVE)
-    escrever(d, (72, 900), "No Arcos, toda curiosidade tem fonte. Nada de boato.", txt(46), ac, W - 144)
-    rodape(d, total - 1, total, None)
-    slides.append(s)
-
-    s = fundo_feed(acento=CORAL, semente=sem + "x", claro=True)
+    s = montar(total - 1) if len(visuais) > 1 else fundo_feed(acento=CORAL, semente=sem + "x", claro=True)
+    if len(visuais) > 1:  # escurece mais para a chamada final
+        s = Image.blend(s, fundo_feed(acento=CORAL, semente=sem + "x", claro=True), 0.55)
     d = cabecalho(s, "ARCOS TCG", ac)
-    y = titulo_grande(d, (72, 220), chamada_final(c), W - 144, 420, 104, 60)
+    y = titulo_grande(d, (72, 230), chamada_final(c), W - 144, 400, 108, 60)
     if c.get("pergunta"):
         y = escrever(d, (72, y + 50), "Comenta aí: " + c["pergunta"], txt(46), ac, W - 144, 1.2)
-    pilula(d, (72, max(760, y + 60)), "Promoções verificadas no Telegram · link na bio", txt(30), BRANCO, NOITE1)
-    creditos = [f"Texto: Arcos TCG, com base em {c['fonte_nome']}"]
-    if foto_info:
-        creditos.append(foto_info["credito"])
-    yy = 1080
+    pilula(d, (72, max(740, y + 60)), "Promoções verificadas no Telegram · link na bio", txt(30), BRANCO, NOITE1)
+    data = datetime.fromisoformat(c["verificado_em"]).strftime("%d/%m/%Y")
+    creditos = [f"Texto: Arcos TCG, com base em {c['fonte_nome']} (conferido em {data})"]
+    creditos += [x["credito"] for x in cartas] + [x["credito"] for x in fotos]
+    vistos, cred_unicos = set(), []
     for cr in creditos:
-        yy = escrever(d, (72, yy), cr, txt2(28), SUAVE, W - 144) + 6
+        if cr not in vistos:
+            vistos.add(cr)
+            cred_unicos.append(cr)
+    yy = 1000
+    for cr in cred_unicos[:5]:
+        yy = escrever(d, (72, yy), cr, txt2(24), BRANCO, W - 144) + 4
     rodape(d, total, total, None)
     slides.append(s)
-    return salvar(slides, pasta, f"cur-{c['id']}"), creditos
+    return salvar(slides, pasta, f"cur-{c['id']}"), cred_unicos
 
 
 def carrossel_promocao(o, foto, pasta):
