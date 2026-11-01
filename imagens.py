@@ -29,6 +29,10 @@ def _get(url, **kw):
     return r
 
 
+NAO_FOTO = re.compile(r"diagram|scheme|schema|template|anatomy|logo|icon|map|chart|layout|"
+                      r"[\u0400-\u04FF\u3040-\u30FF\u4E00-\u9FFF]", re.I)
+
+
 def baixar(url):
     """Baixa uma imagem e devolve um PIL.Image em RGB, ou None."""
     try:
@@ -89,6 +93,8 @@ def _commons_termo(termo, largura, minimo_lado):
         log.warning("Busca no Commons falhou (%s): %s", termo, e)
         return
     for p in sorted(paginas.values(), key=lambda x: x.get("index", 99)):
+        if NAO_FOTO.search(p.get("title", "")):  # esquemas, logos, mapas: não servem de foto
+            continue
         info = (p.get("imageinfo") or [{}])[0]
         if info.get("mime") not in ("image/jpeg", "image/png"):
             continue
