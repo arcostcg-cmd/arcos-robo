@@ -1,0 +1,27 @@
+{
+ "item": {
+  "id": "onepiece-don",
+  "jogo": "One Piece",
+  "titulo": "Por que One Piece tem cartas DON!!?",
+  "gancho": "Por que One Piece tem um deck só de DON!!?",
+  "texto": "O One Piece Card Game, da Bandai, saiu no Japão em 8 de julho de 2022 e no mundo em 2 de dezembro de 2022. Os recursos ficam num baralho separado de cartas DON!!, para o jogador não comprar cartas inúteis no meio da partida.",
+  "pergunta": "Qual é o seu líder favorito no One Piece Card Game?",
+  "fonte_nome": "Wikipédia (One Piece Card Game)",
+  "fonte_url": "https://en.wikipedia.org/wiki/One_Piece_Card_Game",
+  "verificado_em": "2026-10-31",
+  "busca_imagem": "One Piece Card Game"
+ },
+ "slides": [
+  "/home/runner/work/arcos-robo/arcos-robo/imagens/cur-onepiece-don-1.jpg",
+  "/home/runner/work/arcos-robo/arcos-robo/imagens/cur-onepiece-don-2.jpg",
+  "/home/runner/work/arcos-robo/arcos-robo/imagens/cur-onepiece-don-3.jpg",
+  "/home/runner/work/arcos-robo/arcos-robo/imagens/cur-onepiece-don-4.jpg"
+ ],
+ "creditos": [
+  "Texto: Arcos TCG, com base em Wikipédia (One Piece Card Game) (conferido em 31/10/2026)",
+  "Foto: OhanaUnitedTalk page · CC BY-SA 4.0 · Wikimedia Commons",
+  "Foto: KPNO/NOIRLab/NSF/AURA/Adam Block · CC BY 4.0 · Wikimedia Commons",
+  "Foto: Meatteeq.doc · CC BY-SA 4.0 · Wikimedia Commons",
+  "Foto: The Portable Antiquities Scheme, Ben Jones, 2017-12-01 09:49 · CC BY 2.0 · Wikimedia Commons"
+ ]
+}
