@@ -213,7 +213,7 @@ class TestGemini(unittest.TestCase):
             {"name": "models/gemini-3.0-pro", "supportedGenerationMethods": ["generateContent"]},
             {"name": "models/embedding-001", "supportedGenerationMethods": ["embedContent"]},
         ]
-        self.assertEqual(noticias.escolher_modelo_gemini(modelos), "gemini-3.0-flash")
+        self.assertEqual(noticias.escolher_modelo_gemini(modelos), "gemini-3.0-flash-lite")
         self.assertIsNone(noticias.escolher_modelo_gemini([]))
 
 
