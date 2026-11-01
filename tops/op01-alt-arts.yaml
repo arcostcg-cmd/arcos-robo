@@ -1,0 +1,22 @@
+id: top10-op01-alt-arts
+quando: "2026-11-02T19:00"
+jogo: One Piece
+titulo: "As 10 Alt Arts mais valiosas de Romance Dawn (OP-01)"
+gancho: "As 10 Alt Arts mais valiosas da primeira coleção de One Piece"
+fonte_preco: "PriceCharting (sem nota, versão em inglês)"
+fonte_url: "https://www.pricecharting.com/console/one-piece-romance-dawn"
+data: "01/11/2026"
+credito_imagem: "Bandai (onepiece-cardgame.com)"
+pergunta: "Qual Alt Art de One Piece você mais queria ter?"
+hashtags: "#onepiececardgame #onepiecetcg #onepiece #romancedawn #tcgbrasil #arcostcg"
+itens:
+  - {pos: 1, nome: "Monkey.D.Luffy (Alt Art)", numero: "OP01-003", preco: "US$ 899,50", imagem: "https://en.onepiece-cardgame.com/images/cardlist/card/OP01-003_p1.png"}
+  - {pos: 2, nome: "Roronoa Zoro (Alt Art)", numero: "OP01-001", preco: "US$ 482,93", imagem: "https://en.onepiece-cardgame.com/images/cardlist/card/OP01-001_p1.png"}
+  - {pos: 3, nome: "Trafalgar Law (Alt Art)", numero: "OP01-002", preco: "US$ 435,00", imagem: "https://en.onepiece-cardgame.com/images/cardlist/card/OP01-002_p1.png"}
+  - {pos: 4, nome: "Roronoa Zoro (Alt Art)", numero: "OP01-025", preco: "US$ 246,29", imagem: "https://en.onepiece-cardgame.com/images/cardlist/card/OP01-025_p1.png"}
+  - {pos: 5, nome: "Donquixote Doflamingo (Alt Art)", numero: "OP01-060", preco: "US$ 200,00", imagem: "https://en.onepiece-cardgame.com/images/cardlist/card/OP01-060_p1.png"}
+  - {pos: 6, nome: "Monkey.D.Luffy (Alt Art)", numero: "OP01-024", preco: "US$ 194,72", imagem: "https://en.onepiece-cardgame.com/images/cardlist/card/OP01-024_p1.png"}
+  - {pos: 7, nome: "Boa Hancock (Alt Art)", numero: "OP01-078", preco: "US$ 119,35", imagem: "https://en.onepiece-cardgame.com/images/cardlist/card/OP01-078_p1.png"}
+  - {pos: 8, nome: "Kaido (Alt Art)", numero: "OP01-061", preco: "US$ 110,84", imagem: "https://en.onepiece-cardgame.com/images/cardlist/card/OP01-061_p1.png"}
+  - {pos: 9, nome: "Crocodile (Alt Art)", numero: "OP01-062", preco: "US$ 110,10", imagem: "https://en.onepiece-cardgame.com/images/cardlist/card/OP01-062_p1.png"}
+  - {pos: 10, nome: "Yamato (Alt Art)", numero: "OP01-121", preco: "US$ 98,79", imagem: "https://en.onepiece-cardgame.com/images/cardlist/card/OP01-121_p1.png"}

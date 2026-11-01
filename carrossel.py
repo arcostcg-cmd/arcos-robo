@@ -656,7 +656,7 @@ def carrossel_top10(top, imagens_cartas, pasta, prefixo):
     itens = {i["pos"]: i for i in top["itens"]}
     sem = prefixo
     rodape_txt = (f"{top.get('rotulo_fonte', 'Preço')}: {top['fonte_preco'].split(' (')[0]} · {top['data']}"
-                  f" · Imagem: The Pokémon Company")
+                  f" · Imagem: {top.get('credito_imagem', 'The Pokémon Company').split(' (')[0]}")
     slides = []
 
     def base(k):
