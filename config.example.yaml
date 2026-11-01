@@ -23,6 +23,7 @@ instagram:
   versao_api: "v23.0"         # confira a versão atual no painel da Meta
   api_host: "graph.instagram.com"  # login do Instagram (sem página do Facebook)
   reserva_cota: 3             # publicações guardadas na cota diária da API só para os furos
+  max_feed_dia: 3             # pedido do Marcos: no máximo 3 posts por dia no feed (9h, 13h e 19h)
   hashtags: ["#pokemontcg", "#tcgbrasil", "#promocao", "#cartaspokemon", "#mtgbrasil"]
 
 curiosidades:
@@ -40,7 +41,7 @@ regras:
   minimo_leituras: 5          # sem esse histórico, não posta (use referencia_manual no início)
   nao_repetir_horas: 24
   max_posts_telegram_dia: 20
-  max_posts_instagram_dia: 8  # o Instagram limita publicações por API; evite spam
+  max_posts_instagram_dia: 0  # promoções ficam no Telegram; o feed do Instagram tem só os 3 posts planejados
   cupom_teste_dias: 7         # cupom testado há mais que isso não vai para o post
   confianca_minima: 3         # nota mínima da loja (1 a 5, dada pelo Auditor) para postar
 
@@ -453,6 +454,7 @@ noticias:
   ativo: true
   max_stories_dia: 5
   max_posts_dia: 1           # o destaque do dia vira carrossel (nunca um rumor)
+  instagram_feed: false      # notícias vão para os stories; o feed fica com os 3 posts planejados
   janela_horas: 24          # roda a cada 10 min, 24h; pega o furo assim que sai
   # Furo: notícia CONFIRMADA e importante, de fonte oficial ou imprensa, publicada há
   # até 90 minutos. Sai em story E no feed, fora do limite diário, sem destaque de "furo".

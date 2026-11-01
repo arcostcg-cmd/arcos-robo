@@ -112,6 +112,39 @@ def preparar(cfg, con, itens):
     return dados, restantes
 
 
+AGENDA = BASE / "agenda.yaml"
+
+
+def post_da_agenda(con, janela_horas=3):
+    """Post planejado (ex.: Top 10) cujo horário chegou. Fica em agenda.yaml e as imagens em imagens/.
+
+    Formato de cada item: quando ("2026-11-02T09:00", horário de Brasília), id, jogo, slides (nomes em
+    imagens/), legenda_telegram, legenda_instagram. Se nada estiver na hora, segue a curiosidade normal.
+    """
+    from datetime import datetime, timedelta, timezone
+    if not AGENDA.exists():
+        return None
+    br = timezone(timedelta(hours=-3))
+    agora_br = datetime.now(br)
+    feitos = {r[0] for r in con.execute("SELECT id FROM curiosidades_postadas")}
+    for it in yaml.safe_load(AGENDA.read_text(encoding="utf-8")) or []:
+        quando = datetime.fromisoformat(it["quando"]).replace(tzinfo=br)
+        if it["id"] in feitos or not (quando <= agora_br < quando + timedelta(hours=janela_horas)):
+            continue
+        slides = [str(BASE / "imagens" / n) for n in it["slides"]]
+        if all((BASE / "imagens" / n).exists() for n in it["slides"]):
+            return {"item": {"id": it["id"], "jogo": it.get("jogo", "TCG")}, "slides": slides,
+                    "creditos": [], "legendas": {"telegram": it["legenda_telegram"],
+                                                  "instagram": it["legenda_instagram"]}}
+    return None
+
+
+def texto_post(dados, cfg, rede):
+    if dados.get("legendas"):
+        return dados["legendas"][rede]
+    return legenda(dados["item"], dados["creditos"], cfg, rede)
+
+
 def avisar_admin(cfg, texto):
     chat = cfg["telegram"].get("admin_chat")
     if chat:
@@ -142,7 +175,13 @@ def main():
     con = abrir_banco(BASE / cfg.get("banco_curiosidades", "curiosidades.db"))
     preparar_banco(con)
 
-    if a.etapa in ("tudo", "preparar"):
+    planejado = post_da_agenda(con) if a.etapa in ("tudo", "preparar") else None
+    if planejado:
+        PREPARADA.write_text(json.dumps(planejado, ensure_ascii=False, indent=1), encoding="utf-8")
+        log.info("Post planejado da agenda: %s", planejado["item"]["id"])
+        if a.etapa == "preparar" or a.simular:
+            return
+    elif a.etapa in ("tudo", "preparar"):
         dados, restantes = preparar(cfg, con, itens)
         if not dados:
             log.warning("Sem curiosidades inéditas")
@@ -169,13 +208,13 @@ def main():
     ok = False
     if cfg["telegram"].get("ativo"):
         try:
-            publicar.telegram_album(cfg, dados["slides"], legenda(c, dados["creditos"], cfg, "telegram"))
+            publicar.telegram_album(cfg, dados["slides"], texto_post(dados, cfg, "telegram"))
             ok = True
         except Exception as e:
             log.error("Telegram falhou: %s", e)
     if cfg["instagram"].get("ativo"):
         try:
-            publicar.instagram_carrossel(cfg, dados["slides"], legenda(c, dados["creditos"], cfg, "instagram"))
+            publicar.instagram_carrossel(cfg, dados["slides"], texto_post(dados, cfg, "instagram"))
             ok = True
         except Exception as e:
             log.error("Instagram falhou: %s", e)

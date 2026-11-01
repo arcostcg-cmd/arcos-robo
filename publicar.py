@@ -77,8 +77,34 @@ def conferir_cota(cfg):
         raise CotaInstagram(f"cota do Instagram quase no fim ({uso}/{total})")
 
 
+def feed_cheio(cfg):
+    """True se o feed do Instagram já recebeu instagram.max_feed_dia posts hoje (horário de Brasília).
+
+    Conta direto na API (fonte única de verdade, vale para todos os módulos do robô).
+    """
+    from datetime import datetime, timedelta, timezone
+    limite = cfg["instagram"].get("max_feed_dia", 3)
+    try:
+        r = requests.get(f"{_ig(cfg)}/{cfg['instagram']['conta_id']}/media", timeout=30, params={
+            "fields": "timestamp,media_product_type", "limit": 25,
+            "access_token": os.environ["INSTAGRAM_TOKEN"]})
+        br = timezone(timedelta(hours=-3))
+        hoje = datetime.now(br).date()
+        n = 0
+        for m in r.json().get("data", []):
+            if m.get("media_product_type", "FEED") != "FEED":
+                continue
+            t = datetime.strptime(m["timestamp"], "%Y-%m-%dT%H:%M:%S%z").astimezone(br)
+            n += t.date() == hoje
+        return n >= limite
+    except Exception:
+        return False
+
+
 def instagram_carrossel(cfg, caminhos, legenda, furo=False):
-    """Publica 2 a 10 imagens como um único carrossel."""
+    """Publica 2 a 10 imagens como um único carrossel (respeita o limite diário do feed)."""
+    if feed_cheio(cfg):
+        raise CotaInstagram(f"feed já tem {cfg['instagram'].get('max_feed_dia', 3)} posts hoje")
     if not furo:
         conferir_cota(cfg)
     token = os.environ["INSTAGRAM_TOKEN"]

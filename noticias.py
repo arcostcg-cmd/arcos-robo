@@ -542,7 +542,8 @@ def publicar_fila(cfg, con, simular):
                 urgente = n["formato"] in ("furo", "furo_rumor")  # furo usa a reserva da cota
                 if n.get("story"):
                     publicar.instagram_story(cfg, n["story"][0], furo=urgente)
-                if len(n["slides"]) > 1:  # tem carrossel: vai pro feed
+                # feed do Instagram: só os 3 posts planejados por dia; notícia vai para story
+                if len(n["slides"]) > 1 and cfg.get("noticias", {}).get("instagram_feed", False):
                     publicar.instagram_carrossel(cfg, n["slides"], legenda(n, cfg, "instagram"), furo=urgente)
                 ok = True
             except Exception as e:
