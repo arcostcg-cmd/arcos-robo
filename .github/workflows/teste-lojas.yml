@@ -1,6 +1,10 @@
 name: Teste - ler preços das lojas
 on:
+  push:
+    paths: ["pedidos/teste-lojas.txt"]
   workflow_dispatch: {}
+permissions:
+  contents: write
 jobs:
   lojas:
     runs-on: ubuntu-latest
@@ -50,3 +54,6 @@ jobs:
                   print(f"| {p['nome'][:55]} | {lojas[o['loja']]['nome']} | {txt} |")
                   time.sleep(2)
           PY
+          mkdir -p amostras && cp "$GITHUB_STEP_SUMMARY" amostras/teste-lojas.md || true
+          git config user.name "robo-tcg"; git config user.email "robo-tcg@users.noreply.github.com"
+          git add amostras && git commit -m "resultado do teste de lojas" && (for i in 1 2 3; do git pull --rebase && git push && break; sleep 5; done) || echo "nada novo"
