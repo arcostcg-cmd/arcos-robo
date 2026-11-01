@@ -362,3 +362,15 @@
   fonte_url: "https://en.wikipedia.org/wiki/One_Piece_Card_Game"
   verificado_em: "2026-11-01"
   busca_imagem: "One Piece Card Game"
+
+- id: pokemon-pikachu-gangnam-2026
+  jogo: Pokémon
+  titulo: "Pikachus no desfile de Gangnam"
+  gancho: "Um desfile em Seul terminou com dezenas de Pikachus"
+  texto: "Em 3 de outubro de 2026, o Grand Parade do Gangnam Festival, em Seul, terminou com uma aparição surpresa de dezenas de Pikachus. A organização tinha anunciado 34. O desfile fez parte das comemorações dos 30 anos de Pokémon."
+  pergunta: "Você iria num desfile desses?"
+  fonte_nome: "Noticias RCN"
+  fonte_url: "https://www.noticiasrcn.com/tendencias/pikachu-desfile-corea-del-sur-video-1068590"
+  verificado_em: "2026-11-01"
+  busca_imagem: "Pikachu Outbreak"
+  buscas_imagem: ["Pikachu parade", "Pikachu Yokohama"]

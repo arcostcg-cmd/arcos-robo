@@ -1,0 +1,22 @@
+name: Ferramenta - descobrir produtos confiáveis no Mercado Livre (não posta)
+on:
+  push:
+    paths: ["pedidos/descobrir.json"]
+  workflow_dispatch: {}
+permissions:
+  contents: write
+jobs:
+  descobrir:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - run: pip install requests pyyaml pillow
+      - env:
+          ML_CLIENT_ID: ${{ secrets.ML_CLIENT_ID }}
+          ML_CLIENT_SECRET: ${{ secrets.ML_CLIENT_SECRET }}
+        run: python descobrir.py pedidos/descobrir.json amostras/produtos-descobertos.yaml
+      - run: |
+          git config user.name "robo-tcg"; git config user.email "robo-tcg@users.noreply.github.com"
+          git add amostras && git commit -m "produtos descobertos" && (for i in 1 2 3; do git pull --rebase && git push && break; sleep 5; done) || echo "nada novo"
