@@ -28,6 +28,7 @@ import json
 import logging
 import os
 import re
+from pathlib import Path
 import xml.etree.ElementTree as ET
 from datetime import datetime, timedelta, timezone
 
@@ -280,14 +281,22 @@ def modelo_gemini(ia):
     return _MODELO_GEMINI
 
 
+def regras_equipe():
+    """Instruções fixas da equipe Arcos (resumo da skill), enviadas como instrução de sistema."""
+    arq = Path(__file__).resolve().parent / "equipe" / "regras-ia.md"
+    return arq.read_text(encoding="utf-8") if arq.exists() else ""
+
+
 def chamar_ia(cfg, prompt):
     ia = cfg.get("noticias", {}).get("ia", {})
+    sistema = regras_equipe()
     prov = ia.get("provedor", "nenhum")
     if prov == "anthropic":
         r = requests.post("https://api.anthropic.com/v1/messages", timeout=60, headers={
             "x-api-key": os.environ["ANTHROPIC_API_KEY"], "anthropic-version": "2023-06-01",
             "content-type": "application/json"}, json={
             "model": ia.get("modelo", "claude-haiku-5-5"), "max_tokens": 400,
+            **({"system": sistema} if sistema else {}),
             "messages": [{"role": "user", "content": prompt}]})
         if r.status_code == 429:
             raise LimiteIA("limite da API atingido")
@@ -299,6 +308,7 @@ def chamar_ia(cfg, prompt):
             f"https://generativelanguage.googleapis.com/v1beta/models/{modelo}:generateContent",
             params={"key": os.environ["GEMINI_API_KEY"]}, timeout=60,
             json={"contents": [{"parts": [{"text": prompt}]}],
+                  **({"systemInstruction": {"parts": [{"text": sistema}]}} if sistema else {}),
                   "generationConfig": {"temperature": 0.2}})
         if r.status_code == 429:
             raise LimiteIA("limite do Gemini atingido")
