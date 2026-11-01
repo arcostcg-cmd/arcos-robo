@@ -655,7 +655,8 @@ def carrossel_top10(top, imagens_cartas, pasta, prefixo):
     ac = AMARELO
     itens = {i["pos"]: i for i in top["itens"]}
     sem = prefixo
-    rodape_txt = f"Preço: {top['fonte_preco'].split(' (')[0]} · {top['data']} · Imagem: The Pokémon Company"
+    rodape_txt = (f"{top.get('rotulo_fonte', 'Preço')}: {top['fonte_preco'].split(' (')[0]} · {top['data']}"
+                  f" · Imagem: The Pokémon Company")
     slides = []
 
     def base(k):
@@ -704,7 +705,8 @@ def carrossel_top10(top, imagens_cartas, pasta, prefixo):
         s, (x0, y0, x1, y1) = colar_carta(s, _carta_nitida(imagens_cartas[pos], 720), 720, 600)
         d = cabecalho(s, "O Nº 1!" if pos == 1 else f"TOP 10 · {top['jogo'].upper()}", ac)
         _posicao(d, 72, 150, pos, ac)
-        escrever(d, (72, y1 + 34), f"{it['nome']} · {it['numero']}", txt(40), BRANCO, W - 144, 1.1)
+        escrever(d, (72, y1 + 34), f"{it['nome']} · {it['numero']}" if it.get("numero") else it["nome"],
+                 txt(40), BRANCO, W - 144, 1.1)
         _preco(d, (0, y1 + 100), it["preco"])
         credito(d)
         numero(d, k, 10, SUAVE)

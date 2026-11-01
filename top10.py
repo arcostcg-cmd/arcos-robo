@@ -16,17 +16,18 @@ BASE = Path(__file__).resolve().parent
 
 
 def legendas(t):
-    linhas = [f"{i['pos']}º {i['nome']} ({i['numero']}): {i['preco']}" for i in sorted(t["itens"], key=lambda x: -x["pos"])]
+    linhas = [f"{i['pos']}º {i['nome']}" + (f" ({i['numero']})" if i.get("numero") else "") + f": {i['preco']}"
+              for i in sorted(t["itens"], key=lambda x: -x["pos"])]
     corpo = "\n".join(linhas)
-    comum = (f"Preços de referência de cartas sem nota (versão em inglês), segundo {t['fonte_preco'].split(' (')[0]}, "
+    comum = t.get("nota_legenda") or (f"Preços de referência de cartas sem nota (versão em inglês), segundo {t['fonte_preco'].split(' (')[0]}, "
              f"consultados em {t['data']}. Não são preços oficiais nem garantia de venda; mudam todo dia.")
     ig = (f"🏆 {t['titulo']}\n\nArrasta até o fim e descobre qual é o nº 1 👀\n\n{corpo}\n\n"
           f"📊 {comum}\n📷 Imagens das cartas: The Pokémon Company (pokemon.com/br)\n\n"
-          f"💬 Qual dessas você tem ou queria ter?\n🔖 Salva pra consultar depois\n\n"
+          f"💬 {t.get('pergunta', 'Qual dessas você tem ou queria ter?')}\n🔖 Salva pra consultar depois\n\n"
           f"🔔 Promoções verificadas no nosso Telegram (link na bio).\n\n"
-          f"#pokemontcg #megaevolucao #pokemon #cartaspokemon #tcgbrasil #arcostcg")
+          + t.get("hashtags", "#pokemontcg #pokemon #cartaspokemon #tcgbrasil #arcostcg"))
     tg = (f"🏆 {t['titulo'].upper()}\n\n{corpo}\n\n📊 {comum}\nFonte: {t['fonte_url']}\n"
-          f"📷 Imagens: The Pokémon Company (pokemon.com/br)\n\n💬 Qual dessas você tem?")
+          f"📷 Imagens: The Pokémon Company (pokemon.com/br)\n\n💬 {t.get('pergunta', 'Qual dessas você tem?')}")
     return tg, ig
 
 
@@ -34,7 +35,7 @@ def main(arq):
     t = yaml.safe_load(open(arq, encoding="utf-8"))
     cartas = {}
     for i in t["itens"]:
-        img = imagens.baixar(t["imagem_base"].format(n=i["n"]))
+        img = imagens.baixar(i.get("imagem") or t["imagem_base"].format(n=i["n"]))
         if img is None:
             raise SystemExit(f"sem imagem oficial para {i['nome']}: não monto o post")
         cartas[i["pos"]] = img

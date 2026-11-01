@@ -1,0 +1,23 @@
+id: top10-pokemon-do-ano-2020
+quando: "2026-11-02T13:00"
+jogo: Pokémon
+titulo: "Os 10 Pokémon mais votados do mundo"
+gancho: "Os 10 Pokémon mais votados por 6,6 milhões de fãs"
+rotulo_fonte: "Votos"
+fonte_preco: "Pokémon do Ano 2020"
+fonte_url: "https://pokemondb.net/news/281/pokemon-of-the-year-results-announced-and-zarude-revealed"
+data: "fev/2020"
+pergunta: "Seu favorito está na lista? Qual é?"
+nota_legenda: "Resultado do Pokémon do Ano, votação oficial da The Pokémon Company com o Google em 2020: mais de 6,6 milhões de votos no mundo todo (dados divulgados em 27/02/2020, via Pokémon Database). As cartas são só ilustração de cada Pokémon."
+hashtags: "#pokemon #pokemontcg #greninja #pokemondoano #tcgbrasil #arcostcg"
+itens:
+  - {pos: 1, nome: "Greninja", preco: "140.559 votos", imagem: "https://assets.pokemon.com/static-assets/content-assets/cms2-pt-br/img/cards/web/ME04/ME04_PT-BR_116.png"}
+  - {pos: 2, nome: "Lucario", preco: "102.259 votos", imagem: "https://assets.pokemon.com/static-assets/content-assets/cms2-pt-br/img/cards/web/SVP/SVP_PT-BR_17.png"}
+  - {pos: 3, nome: "Mimikyu", preco: "99.077 votos", imagem: "https://assets.pokemon.com/static-assets/content-assets/cms2-pt-br/img/cards/web/ME2PT5/ME2PT5_PT-BR_238.png"}
+  - {pos: 4, nome: "Charizard", preco: "93.968 votos", imagem: "https://assets.pokemon.com/static-assets/content-assets/cms2-pt-br/img/cards/web/SVP/SVP_PT-BR_161.png"}
+  - {pos: 5, nome: "Umbreon", preco: "67.062 votos", imagem: "https://assets.pokemon.com/static-assets/content-assets/cms2-pt-br/img/cards/web/30TH/30TH_PT-BR_92.png"}
+  - {pos: 6, nome: "Sylveon", preco: "66.029 votos", imagem: "https://assets.pokemon.com/static-assets/content-assets/cms2-pt-br/img/cards/web/30TH/30TH_PT-BR_153.png"}
+  - {pos: 7, nome: "Garchomp", preco: "61.877 votos", imagem: "https://assets.pokemon.com/static-assets/content-assets/cms2-pt-br/img/cards/web/SV04/SV04_PT-BR_260.png"}
+  - {pos: 8, nome: "Rayquaza", preco: "60.939 votos", imagem: "https://assets.pokemon.com/static-assets/content-assets/cms2-pt-br/img/cards/web/SM7/SM7_PT-BR_177.png"}
+  - {pos: 9, nome: "Gardevoir", preco: "60.596 votos", imagem: "https://assets.pokemon.com/static-assets/content-assets/cms2-pt-br/img/cards/web/SV01/SV01_PT-BR_245.png"}
+  - {pos: 10, nome: "Gengar", preco: "60.214 votos", imagem: "https://assets.pokemon.com/static-assets/content-assets/cms2-pt-br/img/cards/web/ME2PT5/ME2PT5_PT-BR_284.png"}
