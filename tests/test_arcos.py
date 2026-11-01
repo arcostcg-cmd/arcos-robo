@@ -578,6 +578,18 @@ class TestMarketplaces(unittest.TestCase):
         with self.assertRaises(ValueError):  # usado nunca
             marketplaces.interpretar_item_ml({**self.ITEM, "condition": "used", "official_store_id": 1}, {})
 
+    def test_catalogo_escolhe_mais_barata_confiavel(self):
+        ofertas = [{"item_id": "MLB1", "price": 300.0, "seller_id": 1, "condition": "new"},          # vendedor comum
+                   {"item_id": "MLB2", "price": 349.9, "official_store_id": 236642, "condition": "new"},
+                   {"item_id": "MLB3", "price": 360.0, "official_store_id": 999, "condition": "new"}]
+        so_pokemon = {"ml_lojas_oficiais": [236642]}
+        o, selo = marketplaces.escolher_oferta_catalogo(ofertas, {}, so_pokemon)
+        self.assertEqual((o["item_id"], selo), ("MLB2", "Loja Oficial"))
+        vend = {1: {"seller_reputation": {"power_seller_status": "gold", "level_id": "5_green"}}}
+        o, selo = marketplaces.escolher_oferta_catalogo(ofertas, vend, {})
+        self.assertEqual(o["item_id"], "MLB1")  # gold verde é aceito no modo geral
+        self.assertEqual(marketplaces.ml_catalogo_id("https://www.mercadolivre.com.br/box/p/MLB74773271?x=1"), "MLB74773271")
+
     def test_aviso_de_compra_livre_em_todo_post(self):
         o = {"produto": "Box", "loja_nome": "Loja", "preco": 90.0, "ref": 100.0,
              "visto": bot.iso(bot.agora()), "url": "http://a", "afiliado": True, "descricao": "Lacrado"}

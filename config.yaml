@@ -72,8 +72,9 @@ lojas:
   - id: copag_ml
     nome: "Loja Oficial Pokémon (Mercado Livre)"
     site: "https://www.mercadolivre.com.br"
-    api: mercadolivre          # API oficial; precisa de ML_CLIENT_ID e ML_CLIENT_SECRET nos Secrets
-    ml_exigir: [oficial]       # só anúncios da Loja Oficial
+    api: mercadolivre          # API oficial (catálogo /p/MLB...); precisa de ML_CLIENT_ID e ML_CLIENT_SECRET
+    ml_exigir: [oficial]
+    ml_lojas_oficiais: [236642]   # 236642 = Loja Oficial Pokémon no Mercado Livre
     aprovada: true
     conferida_em: "2026-10-31"
     link_afiliado: false       # troque para true quando as URLs forem links do Afiliados Mercado Livre
@@ -85,7 +86,7 @@ lojas:
     nome: "Mercado Livre"
     site: "https://www.mercadolivre.com.br"
     api: mercadolivre
-    ml_exigir: [oficial, platinum, gold]   # Loja Oficial ou MercadoLíder Platinum/Gold com reputação verde
+    ml_exigir: [oficial, platinum, gold]   # qualquer Loja Oficial, ou MercadoLíder Platinum/Gold com reputação verde
     aprovada: true
     conferida_em: "2026-10-31"
     link_afiliado: false
@@ -191,7 +192,9 @@ produtos:
     - loja: cardsofparadise
       url: https://www.cardsofparadise.com.br/?view=ecom/item&prod=360203
     - loja: copag_ml
-      url: https://produto.mercadolivre.com.br/MLB-7077055110
+      url: https://www.mercadolivre.com.br/p/MLB74773271
+    - loja: mercadolivre
+      url: https://www.mercadolivre.com.br/p/MLB74773271
   - nome: Coleção Treinador Avançado Megaevolução 5 - Escuridão Absoluta
     jogo: Pokémon
     descricao: Lacrada, nacional (PT-BR)
@@ -347,7 +350,9 @@ produtos:
     bandeira: 🇧🇷
     ofertas:
     - loja: copag_ml
-      url: https://produto.mercadolivre.com.br/MLB-7077055152
+      url: https://www.mercadolivre.com.br/p/MLB74743819
+    - loja: mercadolivre
+      url: https://www.mercadolivre.com.br/p/MLB74743819
   - nome: Blister Quádruplo Megaevolução 5 - Escuridão Absoluta
     jogo: Pokémon
     descricao: Lacrado, nacional (PT-BR), 4 boosters
@@ -359,7 +364,9 @@ produtos:
     bandeira: 🇧🇷
     ofertas:
     - loja: copag_ml
-      url: https://produto.mercadolivre.com.br/MLB-4836905127
+      url: https://www.mercadolivre.com.br/p/MLB74454821
+    - loja: mercadolivre
+      url: https://www.mercadolivre.com.br/p/MLB74454821
 
 # ---------------------------------------------------------------- radar
 # Canais PÚBLICOS do Telegram de concorrentes (só o nome, sem @).

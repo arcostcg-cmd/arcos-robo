@@ -99,6 +99,8 @@ def interpretar_item_ml(item, vendedor, exigir=("oficial", "platinum", "gold")):
 
 def ml_oferta(url, loja):
     """Lê uma oferta do Mercado Livre pela API oficial. Devolve (res, erro)."""
+    if ml_catalogo_id(url):
+        return ml_oferta_catalogo(url, loja)
     iid = ml_id(url)
     if not iid:
         return None, "link do Mercado Livre sem código MLB"
@@ -106,7 +108,7 @@ def ml_oferta(url, loja):
         item = _ml_get(f"/items/{iid}")
         vendedor = _ml_get(f"/users/{item['seller_id']}") if not item.get("official_store_id") else {}
         exigir = tuple(loja.get("ml_exigir") or ("oficial", "platinum", "gold"))
-        return interpretar_item_ml(item, vendedor, exigir), None
+        return interpretar_item_ml(item, vendedor, exigir) + (url,), None
     except ValueError as e:
         return None, f"barrado: {e}"
     except requests.HTTPError as e:
@@ -120,3 +122,68 @@ def ml_oferta(url, loja):
         return None, f"API do Mercado Livre respondeu {cod} ({token}){motivo}"
     except Exception as e:
         return None, f"API do Mercado Livre: {e}"
+
+
+def ml_catalogo_id(url):
+    """'https://www.mercadolivre.com.br/.../p/MLB74773271' -> 'MLB74773271'."""
+    m = re.search(r"/p/(MLB\d+)", url or "", re.I)
+    return m.group(1).upper() if m else None
+
+
+def escolher_oferta_catalogo(ofertas, vendedores, loja):
+    """Entre as ofertas do catálogo, a mais barata de vendedor confiável.
+
+    loja.ml_lojas_oficiais: lista de IDs de lojas oficiais aceitas (ex.: [236642] = Pokémon).
+    loja.ml_exigir: "oficial" (qualquer loja oficial), "platinum", "gold".
+    Devolve (oferta, selo) ou (None, motivo).
+    """
+    exigir = tuple(loja.get("ml_exigir") or ("oficial", "platinum", "gold"))
+    oficiais = set(loja.get("ml_lojas_oficiais") or [])
+    boas = []
+    for o in ofertas:
+        if o.get("currency_id", "BRL") != "BRL" or (o.get("condition") or "new") != "new":
+            continue
+        loja_of = o.get("official_store_id")
+        if oficiais:
+            if loja_of in oficiais:
+                boas.append((o, "Loja Oficial"))
+            continue
+        ok, selo = vendedor_confiavel(o, vendedores.get(o.get("seller_id")), exigir)
+        if ok:
+            boas.append((o, selo))
+    if not boas:
+        return None, "nenhuma oferta de vendedor confiável no catálogo"
+    return min(boas, key=lambda x: float(x[0]["price"]))
+
+
+def ml_oferta_catalogo(url, loja):
+    """Lê um produto do CATÁLOGO do Mercado Livre (/p/MLB...) pela API oficial.
+
+    Devolve ((preco, estoque, imagem, titulo, selo, url_do_anuncio), None) ou (None, erro).
+    """
+    cid = ml_catalogo_id(url)
+    try:
+        prod = _ml_get(f"/products/{cid}")
+        ofertas = _ml_get(f"/products/{cid}/items").get("results") or []
+        vendedores = {}
+        if not loja.get("ml_lojas_oficiais"):
+            for o in ofertas[:15]:
+                sid = o.get("seller_id")
+                if sid and sid not in vendedores and not o.get("official_store_id"):
+                    try:
+                        vendedores[sid] = _ml_get(f"/users/{sid}")
+                    except Exception:
+                        vendedores[sid] = {}
+        oferta, selo = escolher_oferta_catalogo(ofertas, vendedores, loja)
+        if not oferta:
+            return None, f"barrado: {selo}"
+        fotos = prod.get("pictures") or []
+        img = fotos[0].get("url") if fotos else None
+        iid = oferta["item_id"]
+        link = f"https://produto.mercadolivre.com.br/MLB-{iid[3:]}" if iid.upper().startswith("MLB") else url
+        return (float(oferta["price"]), True, img, prod.get("name", ""), selo, link), None
+    except requests.HTTPError as e:
+        cod = e.response.status_code if e.response is not None else "?"
+        return None, f"API do Mercado Livre (catálogo) respondeu {cod}"
+    except Exception as e:
+        return None, f"API do Mercado Livre (catálogo): {type(e).__name__}"

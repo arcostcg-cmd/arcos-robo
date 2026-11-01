@@ -20,15 +20,6 @@ jobs:
           lojas = {l["id"]: l for l in cfg["lojas"] if l.get("aprovada")}
           tok = marketplaces.ml_token()
           print(f"Mercado Livre: token oficial {'OK' if tok else 'FALHOU ' + marketplaces.ULTIMO_ERRO_TOKEN['msg']}\n")
-          import json
-          h = {"Authorization": f"Bearer {tok}"} if tok else {}
-          j = marketplaces.requests.get(marketplaces.ML_API + "/products/MLB74773271/items", headers=h, timeout=20).json()
-          r0 = j["results"][0]
-          print("Campos da oferta: `" + ", ".join(sorted(r0.keys())) + "`\n")
-          print("Exemplo (sem dados pessoais): `" + json.dumps({k: r0.get(k) for k in ["item_id","price","official_store_id","condition","seller_id","tags","available_quantity","listing_type_id"]}, ensure_ascii=False)[:400] + "`\n")
-          u = marketplaces.requests.get(marketplaces.ML_API + f"/users/{r0['seller_id']}", headers=h, timeout=20)
-          print(f"/users -> {u.status_code} " + u.text[:200].replace("|","/") + "\n")
-          print()
           print("| Produto | Loja | Resultado |\n|---|---|---|")
           for p in cfg["produtos"]:
               for o in p["ofertas"]:
@@ -42,6 +33,10 @@ jobs:
                   if loja.get("api") == "mercadolivre":
                       r, erro = marketplaces.ml_oferta(o["url"], loja)
                       res = r[:3] if r else None
+                      if r:
+                          erro = None
+                          print(f"| {p['nome'][:55]} | {loja['nome']} | R$ {r[0]:.2f} · {r[4]} · {r[5]} |")
+                          continue
                       termo = bot.termo_suspeito(cfg, r[3]) if r else None
                   else:
                       html, erro = bot.baixar_pagina(o["url"], tentativas=2)

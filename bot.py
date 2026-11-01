@@ -333,8 +333,9 @@ def coletar(cfg, con):
                 continue
             if api == "mercadolivre":
                 res, erro = marketplaces.ml_oferta(item["url"], loja)
+                url_anuncio = item["url"]
                 if res:
-                    preco, estoque, img, titulo, selo = res
+                    preco, estoque, img, titulo, selo, url_anuncio = res
                     termo = termo_suspeito(cfg, titulo)
                     if termo:
                         alerta_golpe(cfg, con, item["url"],
@@ -348,6 +349,7 @@ def coletar(cfg, con):
             else:
                 html, erro = baixar_pagina(item["url"])
                 res = None
+                url_anuncio = item["url"]
             if html:
                 termo = termo_suspeito(cfg, extrair_nome(html))
                 if termo:
@@ -366,7 +368,7 @@ def coletar(cfg, con):
             preco, estoque, img = res
             con.execute(
                 "INSERT INTO precos VALUES (?,?,?,?,?,?,?)",
-                (prod["nome"], loja["id"], item["url"], preco, int(estoque),
+                (prod["nome"], loja["id"], url_anuncio, preco, int(estoque),
                  img, iso(agora())),
             )
             lidos += 1
