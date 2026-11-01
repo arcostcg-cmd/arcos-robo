@@ -1,0 +1,36 @@
+name: Teste - arte com carta oficial
+on:
+  workflow_dispatch: {}
+permissions:
+  contents: write
+jobs:
+  arte:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - run: pip install requests pyyaml pillow
+      - name: Gerar artes de amostra (não posta nada)
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import carrossel, noticias
+          base = ("https://mcdn.pokemon.com/image/upload/c_fit,w_734,h_1024/f_png/v1/live/pcom-cms/"
+                  "static-assets/cms3/us/img/merchandise/tiles/2026/mcdonalds/cards/M26_EN_{}.png")
+          fonte = {"tipo": "oficial", "nome": "Pokémon (oficial)"}
+          pasta = Path("amostras"); pasta.mkdir(exist_ok=True)
+          titulo = "Cartas do McLanche Feliz Pokémon chegam ao Brasil em janeiro de 2027"
+          for n in (1, 4, 8, 12):
+              carta = noticias.imagem_oficial({"link": "", "imagem": base.format(n)}, fonte)
+              print(n, "imagem:", None if carta is None else carta.size)
+              if carta is None:
+                  continue
+              carrossel.arte_carta_story(carta, titulo, "Pokémon", "The Pokémon Company (pokemon.com)",
+                                         semente=n).save(pasta / f"mcdonalds-story-{n}.jpg", quality=88)
+              if n == 1:
+                  carrossel.arte_carta_post(carta, titulo, "Pokémon", "The Pokémon Company (pokemon.com)",
+                                            semente=n).save(pasta / "mcdonalds-post-1.jpg", quality=88)
+          PY
+          git config user.name "robo-tcg"; git config user.email "robo-tcg@users.noreply.github.com"
+          git add amostras && git commit -m "amostras de arte" && git push || echo "nada novo"
