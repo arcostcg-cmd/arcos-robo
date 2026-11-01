@@ -18,6 +18,7 @@ instagram:
   ativo: false                # ligue depois de testar o Telegram
   conta_id: ""                # ID da conta profissional do Instagram
   versao_api: "v23.0"         # confira a versão atual no painel da Meta
+  api_host: "graph.instagram.com"  # login do Instagram (sem página do Facebook)
   reserva_cota: 3             # publicações guardadas na cota diária da API só para os furos
   hashtags: ["#pokemontcg", "#tcgbrasil", "#promocao", "#cartaspokemon", "#mtgbrasil"]
 
@@ -26,7 +27,7 @@ curiosidades:
   # Link público da pasta bot/imagens (o Instagram exige). Vale para TODOS os carrosséis.
   #   GitHub Actions: "https://raw.githubusercontent.com/USUARIO/REPO/main/imagens"
   #   Oracle (nginx): "http://IP_DO_SERVIDOR/imagens"
-  url_publica_imagens: ""
+  url_publica_imagens: "https://raw.githubusercontent.com/arcostcg-cmd/arcos-robo/main/imagens"
   hashtags: ["#tcg", "#pokemontcg", "#mtg", "#yugioh", "#onepiececardgame", "#lorcana", "#vocesabia"]
 
 regras:

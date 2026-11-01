@@ -12,7 +12,9 @@
 - id: pikachu-illustrator-recorde
   jogo: Pokémon
   titulo: "A carta Pokémon mais cara da história"
+  gancho: "US$ 16 milhões em uma única carta"
   texto: "Em fevereiro de 2026, um Pikachu Illustrator nota PSA 10 foi vendido por US$ 16,49 milhões em leilão da Goldin. Quem vendeu foi Logan Paul, que tinha comprado a mesma carta em 2021 por US$ 5,275 milhões. É recorde do Guinness."
+  pergunta: "Se você tivesse essa carta, vendia ou guardava?"
   fonte_nome: "Guinness World Records"
   fonte_url: "https://guinnessworldrecords.com/world-records/452634-most-expensive-pokemon-trading-card-sold-at-auction"
   verificado_em: "2026-10-31"
@@ -21,7 +23,9 @@
 - id: pikachu-illustrator-origem
   jogo: Pokémon
   titulo: "A carta que nunca foi vendida em loja"
+  gancho: "Essa carta nunca foi vendida em loja"
   texto: "O Pikachu Illustrator foi desenhado por Atsuko Nishida, creditada como criadora original do Pikachu. A carta nunca foi vendida: foi entregue apenas como prêmio de um concurso de ilustração em 1998."
+  pergunta: "Qual carta você nunca venderia?"
   fonte_nome: "Guinness World Records"
   fonte_url: "https://guinnessworldrecords.com/world-records/452634-most-expensive-pokemon-trading-card-sold-at-auction"
   verificado_em: "2026-10-31"
@@ -30,7 +34,9 @@
 - id: pokemon-85-bilhoes
   jogo: Pokémon
   titulo: "85 bilhões de cartas"
+  gancho: "Quantas cartas Pokémon existem no mundo?"
   texto: "Até 31 de março de 2026, já tinham sido produzidas mais de 85 bilhões de cartas de Pokémon TCG, vendidas em mais de 90 países e regiões. Só no último ano fiscal foram cerca de 10 bilhões."
+  pergunta: "Quantas cartas você acha que tem na sua coleção?"
   fonte_nome: "The Pokémon Company, via PokeGuardian"
   fonte_url: "https://www.pokeguardian.com/3191786_pokemon-cards-continue-strong-sales-as-total-production-hits-85-billion"
   verificado_em: "2026-10-31"
@@ -39,7 +45,9 @@
 - id: yugioh-guinness
   jogo: Yu-Gi-Oh!
   titulo: "Recorde mundial de vendas"
+  gancho: "Yu-Gi-Oh! já foi o TCG mais vendido do mundo"
   texto: "Em 2009, o Guinness reconheceu Yu-Gi-Oh! como o jogo de cartas colecionáveis mais vendido do mundo, com mais de 22 bilhões de cartas. Em março de 2011, a Konami já falava em 25,2 bilhões desde 1999."
+  pergunta: "Qual é o seu deck favorito de Yu-Gi-Oh!?"
   fonte_nome: "Wikipédia (Yu-Gi-Oh! Trading Card Game)"
   fonte_url: "https://en.wikipedia.org/wiki/Yu-Gi-Oh!_Trading_Card_Game"
   verificado_em: "2026-10-31"
@@ -48,7 +56,9 @@
 - id: yugioh-tokyo-dome
   jogo: Yu-Gi-Oh!
   titulo: "O evento que virou tumulto"
+  gancho: "O evento de Yu-Gi-Oh! que precisou de polícia"
   texto: "Em agosto de 1999, um evento de Yu-Gi-Oh! no Tokyo Dome reuniu mais de 55 mil pessoas. A Konami cancelou no meio, houve tumulto e a polícia precisou ser chamada."
+  pergunta: "Qual foi o maior evento de TCG que você já foi?"
   fonte_nome: "Wikipédia (Yu-Gi-Oh! Trading Card Game)"
   fonte_url: "https://en.wikipedia.org/wiki/Yu-Gi-Oh!_Trading_Card_Game"
   verificado_em: "2026-10-31"
@@ -57,7 +67,9 @@
 - id: yugioh-falsificacao-upper-deck
   jogo: Yu-Gi-Oh!
   titulo: "Quando a própria distribuidora falsificou cartas"
+  gancho: "A própria distribuidora falsificou cartas"
   texto: "Em 2008, a Konami processou a Upper Deck, então distribuidora de Yu-Gi-Oh! no Ocidente, por cartas falsificadas. Em 2009, a Justiça responsabilizou a Upper Deck pela falsificação. Por isso vale sempre comprar de loja confiável."
+  pergunta: "Você já recebeu carta falsa? Conta como percebeu."
   fonte_nome: "Wikipédia (Yu-Gi-Oh! Trading Card Game)"
   fonte_url: "https://en.wikipedia.org/wiki/Yu-Gi-Oh!_Trading_Card_Game"
   verificado_em: "2026-10-31"
@@ -66,7 +78,9 @@
 - id: black-lotus-3-milhoes
   jogo: Magic
   titulo: "Black Lotus de US$ 3 milhões"
+  gancho: "Uma carta de Magic por US$ 3 milhões"
   texto: "Uma Black Lotus da edição Alpha, com nota máxima Pristine 10 da CGC, foi vendida por US$ 3 milhões, recorde para uma carta de Magic na época (2024). A ilustração é de Christopher Rush."
+  pergunta: "Qual carta de Magic você mais queria ter?"
   fonte_nome: "Star City Games"
   fonte_url: "https://articles.starcitygames.com/magic-the-gathering/alpha-black-lotus-sells-for-3-million-breaks-record-for-most-expensive-magic-single-ever-sold/"
   verificado_em: "2026-10-31"
@@ -75,7 +89,9 @@
 - id: one-ring-unica
   jogo: Magic
   titulo: "Uma carta, uma única cópia no mundo"
+  gancho: "Só existe uma cópia dessa carta no mundo"
   texto: "O Um Anel (The One Ring) da coleção O Senhor dos Anéis de Magic, de 2023, teve uma única cópia impressa. Foi encontrada por um jogador e comprada pelo cantor Post Malone. Era avaliada em até US$ 2 milhões; o valor pago não foi divulgado oficialmente."
+  pergunta: "Se você achasse essa carta num booster, fazia o quê?"
   fonte_nome: "NPR"
   fonte_url: "https://npr.org/2023/08/03/1191841285/post-malone-bought-magic-gathering-mtg-one-ring-card-million"
   verificado_em: "2026-10-31"
@@ -84,7 +100,9 @@
 - id: onepiece-don
   jogo: One Piece
   titulo: "Por que One Piece tem cartas DON!!?"
+  gancho: "Por que One Piece tem um deck só de DON!!?"
   texto: "O One Piece Card Game, da Bandai, saiu no Japão em 8 de julho de 2022 e no mundo em 2 de dezembro de 2022. Os recursos ficam num baralho separado de cartas DON!!, para o jogador não comprar cartas inúteis no meio da partida."
+  pergunta: "Qual é o seu líder favorito no One Piece Card Game?"
   fonte_nome: "Wikipédia (One Piece Card Game)"
   fonte_url: "https://en.wikipedia.org/wiki/One_Piece_Card_Game"
   verificado_em: "2026-10-31"
@@ -93,8 +111,187 @@
 - id: lorcana-estreia
   jogo: Lorcana
   titulo: "A estreia da Disney nos TCGs"
+  gancho: "A Disney entrou no mundo dos TCGs"
   texto: "Disney Lorcana, da Ravensburger, estreou em agosto de 2023 com The First Chapter, primeiro nas lojas independentes e de hobby. O set inicial tinha mais de 200 cartas com ilustrações originais de personagens Disney."
+  pergunta: "Qual personagem Disney você quer ver em carta?"
   fonte_nome: "License Global"
   fonte_url: "https://www.licenseglobal.com/toys-games/ravensburger-s-disney-lorcana-announces-first-release-date"
   verificado_em: "2026-10-31"
   busca_imagem: "Disney Lorcana"
+
+# ---- lote 2 (01/11/2026): com gancho (capa que desperta curiosidade) e pergunta (puxa conversa)
+- id: pokemon-estreia-1996
+  jogo: Pokémon
+  titulo: "Quem trouxe Pokémon para o Ocidente"
+  gancho: "Não foi a Pokémon Company que lançou as cartas nos EUA"
+  texto: "O Pokémon TCG estreou no Japão em 20 de outubro de 1996, pela Media Factory. Nos Estados Unidos, quem lançou foi a Wizards of the Coast, a mesma de Magic: o Base Set chegou lá em 9 de janeiro de 1999."
+  pergunta: "Qual foi a sua primeira carta Pokémon?"
+  fonte_nome: "Wikipédia (Pokémon Trading Card Game)"
+  fonte_url: "https://en.wikipedia.org/wiki/Pok%C3%A9mon_Trading_Card_Game"
+  verificado_em: "2026-11-01"
+  busca_imagem: "Pokémon Trading Card Game"
+
+- id: pokemon-hasbro-325
+  jogo: Pokémon
+  titulo: "Pokémon valeu uma empresa inteira"
+  gancho: "400 mil pacotes em menos de 6 semanas"
+  texto: "Em janeiro de 1999, a Wizards of the Coast contou ter vendido 400 mil pacotes de Pokémon em menos de seis semanas. No mesmo ano, a Hasbro comprou a Wizards por US$ 325 milhões, de olho na força de Pokémon."
+  pergunta: "Você acha que as cartas de hoje vão valer muito daqui a 25 anos?"
+  fonte_nome: "Wikipédia (Pokémon Trading Card Game)"
+  fonte_url: "https://en.wikipedia.org/wiki/Pok%C3%A9mon_Trading_Card_Game"
+  verificado_em: "2026-11-01"
+  busca_imagem: "Pokémon trading cards"
+
+- id: pokemon-mundial-2002
+  jogo: Pokémon
+  titulo: "O primeiro Mundial de Pokémon TCG"
+  gancho: "O primeiro Mundial de Pokémon tinha só uns 100 jogadores"
+  texto: "O primeiro Campeonato Mundial de Pokémon TCG aconteceu em 2002, em Seattle, nos Estados Unidos. Foi organizado pela Wizards of the Coast e reuniu pouco mais de 100 convidados de vários países."
+  pergunta: "Você jogaria um campeonato ou prefere colecionar?"
+  fonte_nome: "Wikipédia (Pokémon Trading Card Game)"
+  fonte_url: "https://en.wikipedia.org/wiki/Pok%C3%A9mon_Trading_Card_Game"
+  verificado_em: "2026-11-01"
+  busca_imagem: "Pokémon World Championships"
+
+- id: pokemon-pocket
+  jogo: Pokémon
+  titulo: "Pokémon TCG Pocket"
+  gancho: "Dois boosters grátis por dia, todo dia"
+  texto: "O Pokémon TCG Pocket foi anunciado em 27 de fevereiro de 2024 e lançado no mundo todo em 30 de outubro de 2024. Ele dá dois boosters gratuitos por dia para abrir no celular."
+  pergunta: "Você joga o Pocket ou só cartas físicas?"
+  fonte_nome: "Wikipédia (Pokémon Trading Card Game)"
+  fonte_url: "https://en.wikipedia.org/wiki/Pok%C3%A9mon_Trading_Card_Game"
+  verificado_em: "2026-11-01"
+  busca_imagem: "Pokémon Trading Card Game"
+
+- id: pokemon-kadabra-geller
+  jogo: Pokémon
+  titulo: "O processo do Kadabra"
+  gancho: "Um mágico processou a Nintendo por causa de um Pokémon"
+  texto: "Em 2000, o ilusionista Uri Geller processou a Nintendo dizendo que o Kadabra usava elementos da identidade dele, como a colher entortada. Em 2020, ele declarou que tinha desistido do caso."
+  pergunta: "Você tem alguma carta do Kadabra na coleção?"
+  fonte_nome: "Wikipédia (Pokémon Trading Card Game)"
+  fonte_url: "https://en.wikipedia.org/wiki/Pok%C3%A9mon_Trading_Card_Game"
+  verificado_em: "2026-11-01"
+  busca_imagem: "Pokémon trading cards"
+
+- id: mtg-roborally
+  jogo: Magic
+  titulo: "Magic nasceu de um não"
+  gancho: "Magic só existe porque outro jogo foi recusado"
+  texto: "Richard Garfield ofereceu o RoboRally à Wizards of the Coast. Peter Adkison achou o jogo complicado demais para publicar e pediu outra coisa: um jogo portátil, para jogar nos intervalos das convenções. A resposta de Garfield foi Magic."
+  pergunta: "Qual foi o primeiro TCG que você jogou?"
+  fonte_nome: "Wikipédia (Magic: The Gathering)"
+  fonte_url: "https://en.wikipedia.org/wiki/Magic:_The_Gathering"
+  verificado_em: "2026-11-01"
+  busca_imagem: "Magic The Gathering cards"
+
+- id: mtg-reserved-list
+  jogo: Magic
+  titulo: "A Reserved List"
+  gancho: "Existem cartas que a Wizards prometeu nunca mais imprimir"
+  texto: "A Reserved List reúne cartas das edições de Alpha até Urza's Destiny que a Wizards of the Coast se comprometeu a nunca reimprimir. Como a tiragem foi pequena, algumas valem de US$ 200 a mais de US$ 1.000."
+  pergunta: "Você acha certo nunca reimprimir ou deveria ter reimpressão?"
+  fonte_nome: "Wikipédia (Magic: The Gathering)"
+  fonte_url: "https://en.wikipedia.org/wiki/Magic:_The_Gathering"
+  verificado_em: "2026-11-01"
+  busca_imagem: "Magic The Gathering cards"
+
+- id: mtg-10-milhoes-1993
+  jogo: Magic
+  titulo: "Esgotou em semanas"
+  gancho: "10 milhões de cartas sumiram das prateleiras em 1993"
+  texto: "Magic foi lançado em agosto de 1993 e, até outubro do mesmo ano, a Wizards of the Coast já tinha vendido todo o estoque de 10 milhões de cartas."
+  pergunta: "Qual lançamento recente você viu esgotar mais rápido?"
+  fonte_nome: "Wikipédia (Magic: The Gathering)"
+  fonte_url: "https://en.wikipedia.org/wiki/Magic:_The_Gathering"
+  verificado_em: "2026-11-01"
+  busca_imagem: "Magic The Gathering cards"
+
+- id: mtg-50-milhoes
+  jogo: Magic
+  titulo: "50 milhões de jogadores"
+  gancho: "Quantas pessoas jogam Magic no mundo?"
+  texto: "Em fevereiro de 2023, a estimativa era de cerca de 50 milhões de jogadores de Magic no mundo. Em 2015, o jornal The Guardian falava em uns 20 milhões."
+  pergunta: "Quantos amigos seus jogam Magic?"
+  fonte_nome: "Wikipédia (Magic: The Gathering)"
+  fonte_url: "https://en.wikipedia.org/wiki/Magic:_The_Gathering"
+  verificado_em: "2026-11-01"
+  busca_imagem: "Magic The Gathering tournament"
+
+- id: mtg-pro-tour-1996
+  jogo: Magic
+  titulo: "Jogar cartas virou profissão"
+  gancho: "Desde 1996 dá para ganhar dinheiro jogando Magic"
+  texto: "Em 1996, a Wizards of the Coast criou o Pro Tour, um circuito de torneios de Magic com prêmios em dinheiro. Foi um dos primeiros passos para os TCGs terem jogadores profissionais."
+  pergunta: "Você toparia jogar profissionalmente?"
+  fonte_nome: "Wikipédia (Magic: The Gathering)"
+  fonte_url: "https://en.wikipedia.org/wiki/Magic:_The_Gathering"
+  verificado_em: "2026-11-01"
+  busca_imagem: "Magic The Gathering tournament"
+
+- id: ygo-speed-duel
+  jogo: Yu-Gi-Oh!
+  titulo: "Speed Duel"
+  gancho: "Um duelo de Yu-Gi-Oh! em 10 minutos"
+  texto: "O Speed Duel saiu em janeiro de 2019. Cada jogador começa com 4000 LP e tem só 3 zonas de monstro e 3 de Magia e Armadilha, sem Main Phase 2. As partidas duram, em média, uns 10 minutos."
+  pergunta: "Você prefere duelo rápido ou o formato tradicional?"
+  fonte_nome: "Wikipédia (Yu-Gi-Oh! Trading Card Game)"
+  fonte_url: "https://en.wikipedia.org/wiki/Yu-Gi-Oh!_Trading_Card_Game"
+  verificado_em: "2026-11-01"
+  busca_imagem: "Yu-Gi-Oh! Trading Card Game"
+
+- id: ygo-rush-maximum
+  jogo: Yu-Gi-Oh!
+  titulo: "Monstros Maximum"
+  gancho: "Três cartas na mão viram um monstro só"
+  texto: "No Rush Duel, lançado em abril de 2020 e hoje só no Japão e na Coreia, existem os Maximum Monsters: três cartas que, reunidas na mão, são invocadas como um único monstro gigante. Lá também não existe chain."
+  pergunta: "Queria ver o Rush Duel no Brasil?"
+  fonte_nome: "Wikipédia (Yu-Gi-Oh! Trading Card Game)"
+  fonte_url: "https://en.wikipedia.org/wiki/Yu-Gi-Oh!_Trading_Card_Game"
+  verificado_em: "2026-11-01"
+  busca_imagem: "Yu-Gi-Oh! Trading Card Game"
+
+- id: ygo-formato-tradicional
+  jogo: Yu-Gi-Oh!
+  titulo: "O formato onde as banidas voltam"
+  gancho: "Tem um formato de Yu-Gi-Oh! em que carta banida é liberada"
+  texto: "No Traditional Format, criado em outubro de 2004, as cartas proibidas podem ser usadas, com 1 cópia por deck. Já a lista de Proibidas e Limitadas do formato normal é atualizada mais ou menos a cada três meses."
+  pergunta: "Qual carta banida você traria de volta?"
+  fonte_nome: "Wikipédia (Yu-Gi-Oh! Trading Card Game)"
+  fonte_url: "https://en.wikipedia.org/wiki/Yu-Gi-Oh!_Trading_Card_Game"
+  verificado_em: "2026-11-01"
+  busca_imagem: "Yu-Gi-Oh! Trading Card Game"
+
+- id: lorcana-20-lore
+  jogo: Lorcana
+  titulo: "Como se ganha no Lorcana"
+  gancho: "No Lorcana você não precisa zerar a vida de ninguém"
+  texto: "Em Disney Lorcana, vence quem junta 20 pontos de lore primeiro. O recurso do jogo é a tinta, em seis cores: Amber, Amethyst, Emerald, Ruby, Sapphire e Steel."
+  pergunta: "Qual é a sua cor de tinta favorita?"
+  fonte_nome: "Wikipédia (Disney Lorcana)"
+  fonte_url: "https://en.wikipedia.org/wiki/Disney_Lorcana"
+  verificado_em: "2026-11-01"
+  busca_imagem: "Disney Lorcana"
+
+- id: lorcana-d23
+  jogo: Lorcana
+  titulo: "Promos de mil dólares"
+  gancho: "Cartas de brinde que viraram US$ 3 mil"
+  texto: "Lorcana é o primeiro card game da Ravensburger. As cartas promocionais distribuídas na D23 Expo de 2022, antes do lançamento, foram revendidas por US$ 1.000 a US$ 3.000. Em 2023, o jogo ganhou o prêmio de melhor card game em andamento do Tabletop Awards."
+  pergunta: "Você guarda as cartas promocionais que ganha?"
+  fonte_nome: "Wikipédia (Disney Lorcana)"
+  fonte_url: "https://en.wikipedia.org/wiki/Disney_Lorcana"
+  verificado_em: "2026-11-01"
+  busca_imagem: "Disney Lorcana"
+
+- id: digimon-1997
+  jogo: Digimon
+  titulo: "Digimon tem card game desde 1997"
+  gancho: "O card game de Digimon é quase tão antigo quanto o de Pokémon"
+  texto: "O primeiro Digimon Card Game saiu no Japão em 1997, pela Bandai. A versão atual, com um sistema novo, foi lançada em 2020 junto com o anime Digimon Adventure e chegou ao Ocidente em janeiro de 2021."
+  pergunta: "Você é time Pokémon ou time Digimon?"
+  fonte_nome: "Wikipédia (Digimon)"
+  fonte_url: "https://en.wikipedia.org/wiki/Digimon_Card_Game"
+  verificado_em: "2026-11-01"
+  busca_imagem: "Digimon card game"

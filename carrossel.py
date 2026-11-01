@@ -236,10 +236,26 @@ def _frases(texto, limite=170):
     return blocos[:5]
 
 
+CHAMADAS_FINAIS = [
+    "Salva pra mostrar na próxima partida",
+    "Manda pro amigo que precisa saber disso",
+    "Salva e manda pro seu grupo",
+    "Marca quem vai dizer \"eu sabia\"",
+]
+
+
+def chamada_final(c):
+    """Chamada do último slide: varia por post (novidade) e é sempre um convite, nunca pressão."""
+    if c.get("chamada"):
+        return c["chamada"]
+    return CHAMADAS_FINAIS[sum(map(ord, c["id"])) % len(CHAMADAS_FINAIS)]
+
+
 def carrossel_curiosidade(c, foto_info, pasta):
     """c = item de curiosidades.yaml; foto_info = retorno de buscar_commons ou None."""
     blocos = _frases(c["texto"])
     total = 1 + len(blocos) + 2
+    capa = c.get("gancho") or c["titulo"]
     slides = []
 
     # 1. capa
@@ -248,12 +264,12 @@ def carrossel_curiosidade(c, foto_info, pasta):
     pilula(d, (72, 72), f"VOCÊ SABIA? · {c['jogo'].upper()}", txt(30), NAVY, AMARELO)
     if foto_info:
         colar_foto(s, foto_info["imagem"], (72, 190, W - 72, 760))
-        f_t = caber(d, c["titulo"], "Fredoka-Bold.ttf", W - 144, 360, 110, 60, 1.0)
-        escrever(d, (72, 800), c["titulo"], f_t, BRANCO, W - 144, 1.0,
+        f_t = caber(d, capa, "Fredoka-Bold.ttf", W - 144, 360, 110, 60, 1.0)
+        escrever(d, (72, 800), capa, f_t, BRANCO, W - 144, 1.0,
                  stroke_width=8, stroke_fill=NAVY)
     else:
-        f_t = caber(d, c["titulo"], "Fredoka-Bold.ttf", W - 144, 760, 150, 80, 1.0)
-        escrever(d, (72, 260), c["titulo"], f_t, BRANCO, W - 144, 1.0,
+        f_t = caber(d, capa, "Fredoka-Bold.ttf", W - 144, 760, 150, 80, 1.0)
+        escrever(d, (72, 260), capa, f_t, BRANCO, W - 144, 1.0,
                  stroke_width=10, stroke_fill=NAVY)
     d.text((72, 1220), "Arrasta pro lado »", font=txt(36), fill=NAVY)
     numero(d, 1, total, NAVY)
@@ -288,9 +304,11 @@ def carrossel_curiosidade(c, foto_info, pasta):
     # créditos e chamada
     s = Image.new("RGB", (W, H), CORAL)
     d = ImageDraw.Draw(s)
-    escrever(d, (72, 150), "Salva e manda pro seu grupo", tit(110), BRANCO, W - 144, 1.0,
-             stroke_width=8, stroke_fill=NAVY)
-    d.text((72, 620), "Promoções verificadas no Telegram · link na bio",
+    y_cta = escrever(d, (72, 150), chamada_final(c), tit(100), BRANCO, W - 144, 1.0,
+                     stroke_width=8, stroke_fill=NAVY)
+    if c.get("pergunta"):
+        y_cta = escrever(d, (72, y_cta + 40), "Comenta aí: " + c["pergunta"], txt(44), NAVY, W - 144, 1.2)
+    d.text((72, max(620, y_cta + 40)), "Promoções verificadas no Telegram · link na bio",
            font=txt(36), fill=NAVY)
     creditos = [f"Texto: Arcos TCG, com base em {c['fonte_nome']}"]
     if foto_info:

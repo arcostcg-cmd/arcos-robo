@@ -45,6 +45,14 @@ def url_publica(cfg, caminho):
     return f"{base.rstrip('/')}/{Path(caminho).name}"
 
 
+def _ig(cfg):
+    """Host da API: graph.instagram.com (login do Instagram, sem página do Facebook)
+    ou graph.facebook.com (conta ligada a uma página). Definido em instagram.api_host."""
+    ic = cfg["instagram"]
+    host = ic.get("api_host", "graph.facebook.com")
+    return f"https://{host}/{ic.get('versao_api', 'v23.0')}"
+
+
 class CotaInstagram(Exception):
     """A cota diária de publicações da API do Instagram acabou."""
 
@@ -56,9 +64,8 @@ def conferir_cota(cfg):
     """
     token = os.environ["INSTAGRAM_TOKEN"]
     ig = cfg["instagram"]["conta_id"]
-    v = cfg["instagram"].get("versao_api", "v23.0")
     try:
-        r = requests.get(f"https://graph.facebook.com/{v}/{ig}/content_publishing_limit",
+        r = requests.get(f"{_ig(cfg)}/{ig}/content_publishing_limit",
                          params={"fields": "quota_usage,config", "access_token": token}, timeout=30)
         dados = (r.json().get("data") or [{}])[0]
         uso = dados.get("quota_usage")
@@ -76,8 +83,7 @@ def instagram_carrossel(cfg, caminhos, legenda, furo=False):
         conferir_cota(cfg)
     token = os.environ["INSTAGRAM_TOKEN"]
     ig = cfg["instagram"]["conta_id"]
-    v = cfg["instagram"].get("versao_api", "v23.0")
-    base = f"https://graph.facebook.com/{v}/{ig}"
+    base = f"{_ig(cfg)}/{ig}"
     filhos = []
     for c in caminhos[:10]:
         r = requests.post(f"{base}/media", timeout=60, data={
@@ -92,7 +98,7 @@ def instagram_carrossel(cfg, caminhos, legenda, furo=False):
     pai = r.json()["id"]
     for _ in range(12):  # espera o Instagram processar as imagens
         time.sleep(10)
-        st = requests.get(f"https://graph.facebook.com/{v}/{pai}", timeout=30, params={
+        st = requests.get(f"{_ig(cfg)}/{pai}", timeout=30, params={
             "fields": "status_code", "access_token": token}).json()
         if st.get("status_code") == "FINISHED":
             break
@@ -129,8 +135,7 @@ def instagram_story(cfg, caminho, furo=False):
         conferir_cota(cfg)
     token = os.environ["INSTAGRAM_TOKEN"]
     ig = cfg["instagram"]["conta_id"]
-    v = cfg["instagram"].get("versao_api", "v23.0")
-    base = f"https://graph.facebook.com/{v}/{ig}"
+    base = f"{_ig(cfg)}/{ig}"
     r = requests.post(f"{base}/media", timeout=60, data={
         "image_url": url_publica(cfg, caminho), "media_type": "STORIES",
         "access_token": token})

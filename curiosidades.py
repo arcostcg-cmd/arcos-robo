@@ -50,10 +50,15 @@ def legenda(c, creditos, cfg, rede):
     tags = " ".join(cfg.get("curiosidades", {}).get("hashtags", []))
     cred = "\n".join(creditos)
     if rede == "telegram":
-        return (f"🧠 VOCÊ SABIA? • {c['jogo']}\n\n{c['titulo']}\n\n{c['texto']}\n\n"
+        perg = f"💬 {c['pergunta']}\n\n" if c.get("pergunta") else ""
+        return (f"🧠 VOCÊ SABIA? • {c['jogo']}\n\n{c['titulo']}\n\n{c['texto']}\n\n{perg}"
                 f"📚 Fonte: {c['fonte_nome']}\n{c['fonte_url']}\n\n{cred}")
-    return (f"🧠 Você sabia? • {c['jogo']}\n\n{c['titulo']}\n\n{c['texto']}\n\n"
-            f"📚 Fonte: {c['fonte_nome']}\n{cred}\n\n{tags}").strip()
+    abertura = c.get("gancho") or c["titulo"]
+    perg = f"💬 {c['pergunta']}\n\n" if c.get("pergunta") else ""
+    return (f"🧠 {abertura}\n\n{c['titulo']} • {c['jogo']}\n\n{c['texto']}\n\n{perg}"
+            f"🔖 {carrossel.chamada_final(c)}\n\n"
+            f"📚 Fonte: {c['fonte_nome']}\n{cred}\n\n"
+            f"🔔 Promoções verificadas no nosso Telegram (link na bio).\n\n{tags}").strip()
 
 
 def preparar(cfg, con, itens):
