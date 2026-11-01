@@ -35,7 +35,7 @@ curiosidades:
   hashtags: ["#tcg", "#pokemontcg", "#mtg", "#yugioh", "#onepiececardgame", "#lorcana", "#vocesabia"]
 
 regras:
-  desconto_minimo: 0.10       # só posta com pelo menos 10% abaixo do preço normal
+  desconto_minimo: 0.05       # decisão do Marcos (01/11): mostra a partir de 5%, sempre com o % real no post
   alerta_suspeito: 0.40       # mais de 40% abaixo = suspeito, descarta
   dias_historico: 30          # janela do preço normal (mediana)
   minimo_leituras: 5          # sem esse histórico, não posta (use referencia_manual no início)
@@ -125,7 +125,8 @@ lojas:
     site: "https://pt.aliexpress.com"
     api: aliexpress
     aprovada: true
-    so_acessorios: true        # anti-golpe: só sleeves, deck box, pasta, playmat. Cartas e boosters NUNCA.
+    so_acessorios: false       # decisão do Marcos (01/11): cartas e colecionáveis também, SEMPRE com alerta de falsificação
+    alerta: "⚠️ AliExpress tem muita carta e figure falsificada. Compre só de loja oficial da marca, confira avaliações, fotos reais e lacre."
     conferida_em: "2026-10-31"
     link_afiliado: true
     confianca: 3
@@ -166,7 +167,11 @@ anti_golpe:
 # Duas origens: (1) cadastrados aqui à mão; (2) achados pelo caçador nas paginas_cupom
 # das lojas e aprovados pelo admin no Telegram com /cupom_ok (ficam no banco).
 # Só cupom oficial e testado. Fora da validade ou sem teste recente, sai sozinho do post.
-cupons: []
+cupons:
+  # Cupons gerais do Mercado Livre (decisão do Marcos, 01/11: usar enquanto não temos cupom próprio).
+  # Testados na conta: "Inserir código" em mercadolivre.com.br/cupons. 100TODOSITE: esgotado em 01/11.
+  - {loja: mercadolivre, codigo: "SITE200111", descricao: "R$ 20 OFF em todo o site, compra mínima R$ 299", valor: 20, minimo: 299, valido_ate: "2026-11-01", expira_em: "2026-11-01T14:50:00-03:00", testado_em: "2026-11-01"}
+  - {loja: copag_ml, codigo: "SITE200111", descricao: "R$ 20 OFF em todo o site, compra mínima R$ 299", valor: 20, minimo: 299, valido_ate: "2026-11-01", expira_em: "2026-11-01T14:50:00-03:00", testado_em: "2026-11-01"}
 #  - loja: copag_ml
 #    codigo: "ARCOS10"
 #    descricao: "10% off em boosters"

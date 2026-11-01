@@ -497,7 +497,7 @@ def avaliar(cfg, con):
                 "bandeira": prod.get("bandeira", ""), "unidades": prod.get("unidades"),
                 "unidade_nome": prod.get("unidade_nome", "unidades"),
                 "unidade_singular": prod.get("unidade_singular", "unidade"),
-                "reputacao": loja.get("reputacao", ""),
+                "reputacao": loja.get("reputacao", ""), "alerta_loja": loja.get("alerta", ""),
                 "frete_gratis": prod.get("frete_gratis", loja.get("frete_gratis", False)),
             }
             if motivo:
@@ -544,6 +544,11 @@ def texto_telegram(o):
     linhas.append(f"🏪 Loja: <b>{o['loja_nome']}</b>{vend} ✅ verificada pelo Arcos")
     if o.get("frete_gratis"):
         linhas.append("🚚 Frete grátis")
+    if o.get("bandeira") in ("🇯🇵", "🇨🇳", "🇺🇸", "🇰🇷"):
+        idioma = {"🇯🇵": "japonês", "🇨🇳": "chinês", "🇺🇸": "inglês", "🇰🇷": "coreano"}[o["bandeira"]]
+        linhas.append(f"🌎 Importado: cartas em {idioma}")
+    if o.get("alerta_loja"):
+        linhas.append(o["alerta_loja"])
     linhas += ["", f"🛒 Compre aqui: {o.get('link') or o['url']}", "",
                f"⏰ Preço conferido em {hora}. Pode mudar a qualquer momento."]
     if o.get("cupom") and final < o["preco"]:

@@ -48,19 +48,26 @@ def cupom_valido(cfg, loja_id, hoje=None):
             continue
         if validade < hoje or testado < hoje - timedelta(days=dias):
             continue
+        if c.get("expira_em"):  # cupom relâmpago: vale até a hora exata
+            from datetime import datetime, timezone
+            fim = datetime.fromisoformat(str(c["expira_em"]))
+            if datetime.now(timezone.utc) >= fim.astimezone(timezone.utc):
+                continue
         vigentes.append(c)
     if not vigentes:
         return None
-    return max(vigentes, key=lambda c: float(c.get("percentual", 0) or 0))
+    return max(vigentes, key=lambda c: float(c.get("percentual", 0) or 0) + float(c.get("valor", 0) or 0) / 10)
 
 
 def preco_com_cupom(preco, cupom):
     """Preço final estimado com o cupom (percentual e pedido mínimo). Sem cupom, o próprio preço."""
-    if not cupom or not cupom.get("percentual"):
+    if not cupom or not (cupom.get("percentual") or cupom.get("valor")):
         return preco
     minimo = cupom.get("minimo") or 0
     if preco < float(minimo):
         return preco
+    if cupom.get("valor"):  # desconto fixo em reais (ex.: R$ 20 OFF)
+        return round(max(0.0, preco - float(cupom["valor"])), 2)
     return round(preco * (1 - float(cupom["percentual"]) / 100), 2)
 
 

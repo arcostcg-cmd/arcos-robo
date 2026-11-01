@@ -15,10 +15,29 @@ import marketplaces as m
 
 JOGOS = [("pokémon", "Pokémon"), ("pokemon", "Pokémon"), ("one piece", "One Piece"), ("magic", "Magic"),
          ("yu-gi-oh", "Yu-Gi-Oh!"), ("yugioh", "Yu-Gi-Oh!"), ("lorcana", "Lorcana"), ("digimon", "Digimon"),
-         ("dragon ball", "Dragon Ball Super")]
-TIPOS = re.compile(r"booster|box|deck|treinador avan|elite trainer|etb|blister|lata|tin|cole[cç][aã]o|bundle|starter|kit", re.I)
-FORA = re.compile(r"tatuagem|adesivo|estojo|boneco|pel[uú]cia|camis|caneca|chaveiro|capinha|fich[aá]rio|sleeve|shield|playmat|"
-                  r"mochila|lote|avuls|proxy|r[eé]plica|custom|repack|misterios", re.I)
+         ("dragon ball", "Dragon Ball"), ("naruto", "Naruto"), ("demon slayer", "Demon Slayer"),
+         ("jujutsu", "Jujutsu Kaisen"), ("my hero", "My Hero Academia"), ("zelda", "Nintendo"), ("mario", "Nintendo")]
+
+
+def bandeira(nome):
+    n = nome.lower()
+    if "japon" in n or "japan" in n:
+        return "🇯🇵"
+    if "chin" in n:
+        return "🇨🇳"
+    if "ingl" in n or "english" in n or "(en)" in n:
+        return "🇺🇸"
+    if "portugu" in n or "pt-br" in n or "copag" in n:
+        return "🇧🇷"
+    return ""
+
+
+def categoria(nome):
+    return "Colecionável" if re.search(r"figure|figura|est[aá]tua|funko|nendoroid|banpresto|model kit|gunpla|pel[uú]cia", nome, re.I) else "Lacrado"
+TIPOS = re.compile(r"booster|box|deck|treinador avan|elite trainer|etb|blister|lata|tin|cole[cç][aã]o|bundle|starter|kit|"
+                   r"action figure|figure|figura|est[aá]tua|funko|nendoroid|banpresto|bandai spirits|model kit|gunpla|pel[uú]cia", re.I)
+FORA = re.compile(r"tatuagem|adesivo|estojo|camis|caneca|chaveiro|capinha|fich[aá]rio|sleeve|shield|playmat|"
+                  r"mochila|lote|avuls|proxy|r[eé]plica|custom|repack|misterios|gen[eé]ric|similar|inspirad", re.I)
 
 
 def jogo_de(nome):
@@ -48,7 +67,8 @@ def main(entrada, saida):
             preco, estoque, img, titulo, selo, _ = res
             if not estoque or not img:
                 continue
-            novos.append({"nome": nome[:90], "jogo": jogo_de(nome), "descricao": "Lacrado",
+            novos.append({"nome": nome[:90], "jogo": jogo_de(nome), "descricao": categoria(nome),
+                          "bandeira": bandeira(nome),
                           "palavras": [], "ofertas": [{"loja": "mercadolivre", "url": url}],
                           "_preco_hoje": preco, "_selo": selo})
             print(f"OK {pid} | {nome[:70]} | R$ {preco} | {selo}")
