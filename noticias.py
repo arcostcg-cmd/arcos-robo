@@ -306,7 +306,7 @@ def chamar_ia(cfg, prompt):
         modelo = modelo_gemini(ia)
         r = requests.post(
             f"https://generativelanguage.googleapis.com/v1beta/models/{modelo}:generateContent",
-            params={"key": os.environ["GEMINI_API_KEY"]}, timeout=60,
+            params={"key": os.environ["GEMINI_API_KEY"]}, timeout=120,
             json={"contents": [{"parts": [{"text": prompt}]}],
                   **({"systemInstruction": {"parts": [{"text": sistema}]}} if sistema else {}),
                   "generationConfig": {"temperature": 0.2}})
