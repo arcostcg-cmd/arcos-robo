@@ -52,6 +52,7 @@ lojas:
     nome: "Freitas TCG"
     site: "https://www.freitastcg.com.br"
     aprovada: true
+    coleta_automatica: false   # a loja bloqueia robôs (403); só varredura manual até autorizar
     conferida_em: "2026-10-31"
     link_afiliado: false
     confianca: 4
@@ -62,20 +63,66 @@ lojas:
     nome: "Cards of Paradise"
     site: "https://www.cardsofparadise.com.br"
     aprovada: true
+    coleta_automatica: false   # a loja bloqueia robôs (403); só varredura manual até autorizar
     conferida_em: "2026-10-31"
     link_afiliado: false
     confianca: 3
     paginas_cupom: []
     observacao: "11 anos no Reclame Aqui com 1 reclamação (sem nota por ter poucas). CNPJ 45.802.678/0001-26. Plataforma Liga. Nota 3 até ter mais histórico."
   - id: copag_ml
-    nome: "Copag (loja oficial no Mercado Livre)"
+    nome: "Loja Oficial Pokémon (Mercado Livre)"
     site: "https://www.mercadolivre.com.br"
+    api: mercadolivre          # API oficial; precisa de ML_CLIENT_ID e ML_CLIENT_SECRET nos Secrets
+    ml_exigir: [oficial]       # só anúncios da Loja Oficial
+    aprovada: true
+    conferida_em: "2026-10-31"
+    link_afiliado: false       # troque para true quando as URLs forem links do Afiliados Mercado Livre
+    confianca: 5
+    reputacao: "Loja Oficial, MercadoLíder Platinum, +1 mi de vendas"
+    paginas_cupom: []
+    observacao: "Loja oficial Pokémon no ML (produtos Copag), MercadoLíder Platinum, +1 milhão de vendas, conferida em 31/10/2026."
+  - id: mercadolivre
+    nome: "Mercado Livre"
+    site: "https://www.mercadolivre.com.br"
+    api: mercadolivre
+    ml_exigir: [oficial, platinum, gold]   # Loja Oficial ou MercadoLíder Platinum/Gold com reputação verde
     aprovada: true
     conferida_em: "2026-10-31"
     link_afiliado: false
-    confianca: 5
+    confianca: 4
     paginas_cupom: []
-    observacao: "Distribuidora oficial. Só a loja oficial no Mercado Livre (proteção do ML). Sem produtos cadastrados ainda: o ML costuma bloquear robôs; use links do programa de afiliados."
+    observacao: "Cada anúncio é conferido pela API: vendedor sem selo é barrado automaticamente. Produto usado nunca."
+  - id: amazon
+    nome: "Amazon"
+    site: "https://www.amazon.com.br"
+    api: amazon                # liga quando a API de afiliados for liberada
+    aprovada: true
+    conferida_em: "2026-10-31"
+    link_afiliado: {parametros: {tag: "COLE_SUA_TAG-20"}}
+    confianca: 5
+    paginas_cupom: ["https://www.amazon.com.br/cupons"]
+    observacao: "Só 'Vendido e entregue por Amazon' ou loja oficial da marca."
+  - id: shopee
+    nome: "Shopee"
+    site: "https://shopee.com.br"
+    api: shopee
+    aprovada: true
+    conferida_em: "2026-10-31"
+    link_afiliado: true
+    confianca: 3
+    paginas_cupom: []
+    observacao: "Só Shopee Mall / Loja Oficial. Vendedor comum nunca (risco alto de falsificado)."
+  - id: aliexpress
+    nome: "AliExpress"
+    site: "https://pt.aliexpress.com"
+    api: aliexpress
+    aprovada: true
+    so_acessorios: true        # anti-golpe: só sleeves, deck box, pasta, playmat. Cartas e boosters NUNCA.
+    conferida_em: "2026-10-31"
+    link_afiliado: true
+    confianca: 3
+    paginas_cupom: []
+    observacao: "Muitas cartas e boosters vendidos lá são falsificados. Só acessórios de loja oficial da marca."
   - id: copag_site
     nome: "Copag (site próprio)"
     aprovada: false
@@ -143,6 +190,8 @@ produtos:
       url: https://www.freitastcg.com.br/?view=ecom/item&prod=360203
     - loja: cardsofparadise
       url: https://www.cardsofparadise.com.br/?view=ecom/item&prod=360203
+    - loja: copag_ml
+      url: https://produto.mercadolivre.com.br/MLB-7077055110
   - nome: Coleção Treinador Avançado Megaevolução 5 - Escuridão Absoluta
     jogo: Pokémon
     descricao: Lacrada, nacional (PT-BR)
@@ -286,6 +335,31 @@ produtos:
       url: https://www.freitastcg.com.br/?view=ecom/item&prod=308084
     - loja: cardsofparadise
       url: https://www.cardsofparadise.com.br/?view=ecom/item&prod=308084
+
+  - nome: Blister Triplo Megaevolução 5 - Escuridão Absoluta
+    jogo: Pokémon
+    descricao: Lacrado, nacional (PT-BR), 3 boosters
+    palavras: [escuridao absoluta, blister triplo]
+    referencia_manual: 42.99
+    unidades: 3
+    unidade_nome: boosters
+    unidade_singular: booster
+    bandeira: 🇧🇷
+    ofertas:
+    - loja: copag_ml
+      url: https://produto.mercadolivre.com.br/MLB-7077055152
+  - nome: Blister Quádruplo Megaevolução 5 - Escuridão Absoluta
+    jogo: Pokémon
+    descricao: Lacrado, nacional (PT-BR), 4 boosters
+    palavras: [escuridao absoluta, quadruplo]
+    referencia_manual: 55.99
+    unidades: 4
+    unidade_nome: boosters
+    unidade_singular: booster
+    bandeira: 🇧🇷
+    ofertas:
+    - loja: copag_ml
+      url: https://produto.mercadolivre.com.br/MLB-4836905127
 
 # ---------------------------------------------------------------- radar
 # Canais PÚBLICOS do Telegram de concorrentes (só o nome, sem @).

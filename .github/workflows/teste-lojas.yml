@@ -10,9 +10,12 @@ jobs:
         with: { python-version: "3.12" }
       - run: pip install requests pyyaml pillow
       - name: Ler cada oferta cadastrada (sem postar nada)
+        env:
+          ML_CLIENT_ID: ${{ secrets.ML_CLIENT_ID }}
+          ML_CLIENT_SECRET: ${{ secrets.ML_CLIENT_SECRET }}
         run: |
           python - <<'PY' | tee -a "$GITHUB_STEP_SUMMARY"
-          import time, yaml, bot
+          import time, yaml, bot, marketplaces
           cfg = yaml.safe_load(open("config.yaml", encoding="utf-8"))
           lojas = {l["id"]: l for l in cfg["lojas"] if l.get("aprovada")}
           print("| Produto | Loja | Resultado |\n|---|---|---|")
@@ -20,9 +23,19 @@ jobs:
               for o in p["ofertas"]:
                   if o["loja"] not in lojas:
                       continue
-                  html, erro = bot.baixar_pagina(o["url"], tentativas=2)
-                  res = bot.extrair_oferta(html) if html else None
-                  termo = bot.termo_suspeito(cfg, bot.extrair_nome(html)) if html else None
+                  loja = lojas[o["loja"]]
+                  termo = None
+                  if loja.get("api") in marketplaces.AGUARDANDO_CHAVE:
+                      print(f"| {p['nome'][:55]} | {loja['nome']} | aguardando chave do programa de afiliados |")
+                      continue
+                  if loja.get("api") == "mercadolivre":
+                      r, erro = marketplaces.ml_oferta(o["url"], loja)
+                      res = r[:3] if r else None
+                      termo = bot.termo_suspeito(cfg, r[3]) if r else None
+                  else:
+                      html, erro = bot.baixar_pagina(o["url"], tentativas=2)
+                      res = bot.extrair_oferta(html) if html else None
+                      termo = bot.termo_suspeito(cfg, bot.extrair_nome(html)) if html else None
                   if res:
                       preco, est, img = res
                       txt = f"R$ {preco:.2f} · {'em estoque' if est else 'sem estoque/pré-venda'}" + (f" · ⚠ termo '{termo}'" if termo else "")

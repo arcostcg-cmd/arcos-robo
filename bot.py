@@ -27,6 +27,10 @@ import requests
 import yaml
 
 import afiliados
+import marketplaces
+
+AVISO_COMPRA = ("ℹ️ O Arcos só mostra promoções. A compra é livre e espontânea, "
+                "por decisão de cada um: não forçamos nem incentivamos.")
 
 BASE = Path(__file__).resolve().parent
 UA = {
@@ -317,7 +321,33 @@ def coletar(cfg, con):
                 log.warning("Anti-golpe: %s está na lista negra (%s)", item["url"], golpe)
                 alerta_golpe(cfg, con, item["url"], f"Domínio na lista negra: {golpe}")
                 continue
-            html, erro = baixar_pagina(item["url"])
+            if loja.get("coleta_automatica") is False:
+                continue  # loja bloqueia robôs: só varredura manual (references/varredura-manual.md)
+            api = loja.get("api")
+            if api in marketplaces.AGUARDANDO_CHAVE:
+                log.info("Pulando %s: integração aguardando %s", loja["id"],
+                         marketplaces.AGUARDANDO_CHAVE[api])
+                continue
+            if loja.get("so_acessorios") and prod.get("tipo") != "acessorio":
+                log.warning("Anti-golpe: %s só pode ser usada para acessórios (%s)", loja["id"], prod["nome"])
+                continue
+            if api == "mercadolivre":
+                res, erro = marketplaces.ml_oferta(item["url"], loja)
+                if res:
+                    preco, estoque, img, titulo, selo = res
+                    termo = termo_suspeito(cfg, titulo)
+                    if termo:
+                        alerta_golpe(cfg, con, item["url"],
+                                     f"Termo suspeito no anúncio: \"{termo}\" ({prod['nome']})")
+                        continue
+                    res = (preco, estoque, img)
+                elif erro and erro.startswith("barrado"):
+                    log.warning("Mercado Livre %s: %s", item["url"], erro)
+                    continue
+                html = None
+            else:
+                html, erro = baixar_pagina(item["url"])
+                res = None
             if html:
                 termo = termo_suspeito(cfg, extrair_nome(html))
                 if termo:
@@ -325,7 +355,8 @@ def coletar(cfg, con):
                     alerta_golpe(cfg, con, item["url"],
                                  f"Termo suspeito no anúncio: \"{termo}\" ({prod['nome']})")
                     continue
-            res = extrair_oferta(html) if html else None
+            if html:
+                res = extrair_oferta(html)
             if not res:
                 erro = erro or "sem preço legível (a loja pode ter mudado o site)"
                 log.warning("Falha em %s: %s", item["url"], erro)
@@ -477,6 +508,7 @@ def texto_telegram(o):
     if o.get("cupom") and final < o["preco"]:
         linhas.append("*Confira as regras do cupom na loja.")
     linhas.append(f"📷 Imagem: {o['loja_nome']}" + (" · 🔗 Link de afiliado" if o["afiliado"] else ""))
+    linhas.append(AVISO_COMPRA)
     return "\n".join(linhas)
 
 
@@ -493,7 +525,8 @@ def texto_instagram(o, cfg):
         f"💰 {reais(o['preco'])} na {o['loja_nome']} (−{desc}% do preço normal)\n"
         f"📦 {o['descricao']}\n{cup}\n"
         f"Link no nosso Telegram (está na bio).\n"
-        f"Preço conferido em {hora} e pode mudar a qualquer momento.{afil}\n\n"
+        f"Preço conferido em {hora} e pode mudar a qualquer momento.{afil}\n"
+        f"{AVISO_COMPRA}\n\n"
         f"{tags}"
     ).strip()
 

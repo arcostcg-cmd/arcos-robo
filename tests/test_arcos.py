@@ -8,6 +8,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 import afiliados  # noqa: E402
+import marketplaces  # noqa: E402
 import bot  # noqa: E402
 import radar  # noqa: E402
 
@@ -551,6 +552,38 @@ class TestPlataformaLiga(unittest.TestCase):
         pag = self.PAG.replace(" 2 unid. ", " 0 unid. ")
         preco, estoque, _ = bot.extrair_oferta(pag)
         self.assertFalse(estoque)
+
+
+class TestMarketplaces(unittest.TestCase):
+    ITEM = {"id": "MLB123", "price": 899.9, "currency_id": "BRL", "condition": "new",
+            "status": "active", "available_quantity": 3, "seller_id": 9, "title": "Booster Box",
+            "pictures": [{"secure_url": "https://http2.mlstatic.com/x.jpg"}]}
+
+    def test_codigo_mlb(self):
+        self.assertEqual(marketplaces.ml_id("https://produto.mercadolivre.com.br/MLB-3456789012-box-_JM"),
+                         "MLB3456789012")
+        self.assertIsNone(marketplaces.ml_id("https://www.mercadolivre.com.br/sem-codigo"))
+
+    def test_loja_oficial_passa(self):
+        preco, est, img, _, selo = marketplaces.interpretar_item_ml({**self.ITEM, "official_store_id": 77}, {})
+        self.assertEqual((preco, est, selo), (899.9, True, "Loja Oficial"))
+        self.assertTrue(img.startswith("https://"))
+
+    def test_platinum_verde_passa_e_vendedor_comum_e_barrado(self):
+        bom = {"seller_reputation": {"power_seller_status": "platinum", "level_id": "5_green"}}
+        self.assertEqual(marketplaces.interpretar_item_ml(self.ITEM, bom)[4], "MercadoLíder Platinum")
+        comum = {"seller_reputation": {"power_seller_status": None, "level_id": "3_yellow"}}
+        with self.assertRaises(ValueError):
+            marketplaces.interpretar_item_ml(self.ITEM, comum)
+        with self.assertRaises(ValueError):  # usado nunca
+            marketplaces.interpretar_item_ml({**self.ITEM, "condition": "used", "official_store_id": 1}, {})
+
+    def test_aviso_de_compra_livre_em_todo_post(self):
+        o = {"produto": "Box", "loja_nome": "Loja", "preco": 90.0, "ref": 100.0,
+             "visto": bot.iso(bot.agora()), "url": "http://a", "afiliado": True, "descricao": "Lacrado"}
+        self.assertIn("livre e espontânea", bot.texto_telegram(o))
+        cfg = {"instagram": {"hashtags": []}}
+        self.assertIn("não forçamos nem incentivamos", bot.texto_instagram(o, cfg))
 
 
 class TestComandoCentral(unittest.TestCase):
