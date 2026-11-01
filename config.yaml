@@ -933,6 +933,14 @@ noticias:
   # leituras frequentes de servidores: deixe 30 ou mais. Fonte que bloquear fica 1 hora em pausa.
   fontes:
     - {nome: "PokéBeach", url: "https://www.pokebeach.com/feed", tipo: imprensa, jogo: Pokémon, idioma: en}
+    # Imprensa via Google Notícias (agrega vários sites; a fonte original aparece no título). Adicionado em 01/11/2026:
+    # o Reddit bloqueia os servidores do GitHub (429) e PokéBeach/blogs davam poucos itens.
+    - {nome: "Google Notícias: Pokémon TCG", url: "https://news.google.com/rss/search?q=%22Pok%C3%A9mon+TCG%22+OR+%22Pok%C3%A9mon+Estampas+Ilustradas%22&hl=pt-BR&gl=BR&ceid=BR:pt-419", tipo: imprensa, jogo: Pokémon, idioma: pt}
+    - {nome: "Google Notícias: Pokémon TCG (EN)", url: "https://news.google.com/rss/search?q=%22Pokemon+TCG%22+when:2d&hl=en-US&gl=US&ceid=US:en", tipo: imprensa, jogo: Pokémon, idioma: en}
+    - {nome: "Google Notícias: One Piece Card Game", url: "https://news.google.com/rss/search?q=%22One+Piece+Card+Game%22+when:3d&hl=en-US&gl=US&ceid=US:en", tipo: imprensa, jogo: One Piece, idioma: en}
+    - {nome: "Google Notícias: Magic", url: "https://news.google.com/rss/search?q=%22Magic:+The+Gathering%22+when:2d&hl=en-US&gl=US&ceid=US:en", tipo: imprensa, jogo: Magic, idioma: en}
+    - {nome: "Google Notícias: Yu-Gi-Oh!", url: "https://news.google.com/rss/search?q=%22Yu-Gi-Oh%22+card+when:3d&hl=en-US&gl=US&ceid=US:en", tipo: imprensa, jogo: Yu-Gi-Oh!, idioma: en}
+    - {nome: "Google Notícias: Lorcana", url: "https://news.google.com/rss/search?q=%22Disney+Lorcana%22+when:3d&hl=en-US&gl=US&ceid=US:en", tipo: imprensa, jogo: Lorcana, idioma: en}
     - {nome: "Reddit r/PokemonTCG", url: "https://www.reddit.com/r/PokemonTCG/.rss", tipo: forum, jogo: Pokémon, idioma: en, intervalo_minutos: 30}
     - {nome: "Reddit r/magicTCG", url: "https://www.reddit.com/r/magicTCG/.rss", tipo: forum, jogo: Magic, idioma: en, intervalo_minutos: 30}
     - {nome: "Reddit r/OnePieceTCG", url: "https://www.reddit.com/r/OnePieceTCG/.rss", tipo: forum, jogo: One Piece, idioma: en, intervalo_minutos: 30}
