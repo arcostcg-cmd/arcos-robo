@@ -48,21 +48,98 @@ regras:
 #   {parametros: {tag: "arcostcg-20"}}     -> acrescenta parâmetros na URL (ex.: Amazon)
 #   {modelo: "https://exemplo.com/r?u={url}"} -> redirecionador do programa de afiliados
 lojas:
+  - id: freitas
+    nome: "Freitas TCG"
+    site: "https://www.freitastcg.com.br"
+    aprovada: true
+    coleta_automatica: false   # a loja bloqueia robôs (403); só varredura manual até autorizar
+    conferida_em: "2026-10-31"
+    link_afiliado: false
+    confianca: 4
+    reputacao: "Reclame Aqui: Ótima"
+    paginas_cupom: []
+    observacao: "Reclame Aqui ÓTIMA (8,5/10, 94,1% resolvidas, empresa verificada) em 31/10/2026. CNPJ 46.680.887/0001-07. Plataforma Liga."
+  - id: cardsofparadise
+    nome: "Cards of Paradise"
+    site: "https://www.cardsofparadise.com.br"
+    aprovada: true
+    coleta_automatica: false   # a loja bloqueia robôs (403); só varredura manual até autorizar
+    conferida_em: "2026-10-31"
+    link_afiliado: false
+    confianca: 3
+    paginas_cupom: []
+    observacao: "11 anos no Reclame Aqui com 1 reclamação (sem nota por ter poucas). CNPJ 45.802.678/0001-26. Plataforma Liga. Nota 3 até ter mais histórico."
   - id: copag_ml
-    nome: "Copag (loja oficial no Mercado Livre)"
+    nome: "Loja Oficial Pokémon (Mercado Livre)"
     site: "https://www.mercadolivre.com.br"
+    api: mercadolivre          # API oficial (catálogo /p/MLB...); precisa de ML_CLIENT_ID e ML_CLIENT_SECRET
+    ml_exigir: [oficial]
+    ml_lojas_oficiais: [236642]   # 236642 = Loja Oficial Pokémon no Mercado Livre
+    aprovada: true
+    conferida_em: "2026-10-31"
+    link_afiliado: false       # troque para true quando as URLs forem links do Afiliados Mercado Livre
+    confianca: 5
+    reputacao: "Loja Oficial, MercadoLíder Platinum, +1 mi de vendas"
+    paginas_cupom: []
+    observacao: "Loja oficial Pokémon no ML (produtos Copag), MercadoLíder Platinum, +1 milhão de vendas, conferida em 31/10/2026."
+  - id: mercadolivre
+    nome: "Mercado Livre"
+    site: "https://www.mercadolivre.com.br"
+    api: mercadolivre
+    ml_exigir: [oficial, platinum, gold]   # qualquer Loja Oficial, ou MercadoLíder Platinum/Gold com reputação verde
     aprovada: true
     conferida_em: "2026-10-31"
     link_afiliado: false
-    confianca: 5              # 1 a 5, dada pelo Auditor de Lojas (desempata o ranking)
-    # reputacao: "MercadoLíder, +500 vendas"   # conferida pelo Auditor; aparece no post
-    paginas_cupom: []         # páginas OFICIAIS de cupom/promoção da loja (o caçador lê)
-    observacao: "Distribuidora oficial de Pokémon TCG. O ML pode bloquear robôs: teste com --diagnostico --testar-lojas; se bloquear, use os links do programa de afiliados."
+    confianca: 4
+    paginas_cupom: []
+    observacao: "Cada anúncio é conferido pela API: vendedor sem selo é barrado automaticamente. Produto usado nunca."
+  - id: amazon
+    nome: "Amazon"
+    site: "https://www.amazon.com.br"
+    api: amazon                # liga quando a API de afiliados for liberada
+    aprovada: true
+    conferida_em: "2026-10-31"
+    link_afiliado: {parametros: {tag: "arcostcg-20"}}
+    confianca: 5
+    paginas_cupom: ["https://www.amazon.com.br/cupons"]
+    observacao: "Só 'Vendido e entregue por Amazon' ou loja oficial da marca."
+  - id: shopee
+    nome: "Shopee"
+    site: "https://shopee.com.br"
+    api: shopee                # API oficial do Shopee Afiliados; precisa de SHOPEE_APP_ID e SHOPEE_SECRET
+    aprovada: true
+    conferida_em: "2026-11-01"
+    link_afiliado: true        # a API já devolve o link de afiliado (offerLink)
+    confianca: 3
+    shopee_lojas: []           # IDs de lojas aprovadas pelo Auditor além do Shopee Mall
+    paginas_cupom: []
+    observacao: "Só Shopee Mall / Loja Oficial (shopType 1) ou loja da lista branca. Vendedor comum nunca (risco alto de falsificado)."
+  - id: aliexpress
+    nome: "AliExpress"
+    site: "https://pt.aliexpress.com"
+    api: aliexpress
+    aprovada: true
+    so_acessorios: true        # anti-golpe: só sleeves, deck box, pasta, playmat. Cartas e boosters NUNCA.
+    conferida_em: "2026-10-31"
+    link_afiliado: true
+    confianca: 3
+    paginas_cupom: []
+    observacao: "Muitas cartas e boosters vendidos lá são falsificados. Só acessórios de loja oficial da marca."
+  - id: copag_site
+    nome: "Copag (site próprio)"
+    aprovada: false
+    conferida_em: "2026-10-31"
+    observacao: "REPROVADA: Reclame Aqui 'Não Recomendada' (nota 3,7/10, 31% resolvidas, abr-set/2026)."
   - id: epicgame
     nome: "Epic Game"
     aprovada: false
     conferida_em: "2026-10-31"
     observacao: "REPROVADA: reputação 'Ruim' (0.0) no Reclame Aqui segundo siteconfiavel.com.br."
+  - id: viptcg
+    nome: "VIP TCG"
+    aprovada: false
+    conferida_em: "2026-10-31"
+    observacao: "AGUARDANDO: só 1 ano no Reclame Aqui, sem histórico (critério pede 2 anos para loja sem nota)."
 
 # ---------------------------------------------------------------- anti-golpe
 # Travas do Analista Anti-Golpe (guia: references/anti-golpe.md).
@@ -94,21 +171,263 @@ cupons: []
 
 # ---------------------------------------------------------------- produtos
 # palavras: termos que identificam o produto nos posts dos concorrentes (radar).
+# Referência (referencia_manual) = preço normal conferido na Freitas TCG em 31/10/2026.
+# IDs da plataforma Liga (prod=...) são os mesmos em todas as lojas dessa plataforma.
 produtos:
-  - nome: "Pokémon TCG Booster Box (exemplo)"
+  - nome: Caixa de Booster Megaevolução 5 - Escuridão Absoluta
     jogo: Pokémon
-    descricao: "Lacrado, nacional (Copag)"
-    palavras: ["booster box", "pokemon", "36"]
-    # Opcionais do texto da oferta no Telegram:
-    # bandeira: "🇧🇷"              # nacional
-    # unidades: 36                 # mostra "Cada booster sai por R$ X"
-    # unidade_nome: "boosters"
-    # unidade_singular: "booster"
-    # frete_gratis: true           # só se for frete grátis de verdade para todo o Brasil
-    # referencia_manual: 899.90   # preço normal enquanto o histórico é pequeno
+    descricao: Lacrada, nacional (PT-BR), 36 boosters
+    palavras:
+    - escuridao absoluta
+    - caixa
+    - booster box
+    - '36'
+    referencia_manual: 449.98
+    unidades: 36
+    unidade_nome: boosters
+    unidade_singular: booster
+    bandeira: 🇧🇷
     ofertas:
-      - loja: copag_ml
-        url: "https://www.mercadolivre.com.br/EXEMPLO"
+    - loja: freitas
+      url: https://www.freitastcg.com.br/?view=ecom/item&prod=360203
+    - loja: cardsofparadise
+      url: https://www.cardsofparadise.com.br/?view=ecom/item&prod=360203
+    - loja: copag_ml
+      url: https://www.mercadolivre.com.br/p/MLB74773271
+    - loja: mercadolivre
+      url: https://www.mercadolivre.com.br/p/MLB74773271
+  - nome: Coleção Treinador Avançado Megaevolução 5 - Escuridão Absoluta
+    jogo: Pokémon
+    descricao: Lacrada, nacional (PT-BR)
+    palavras:
+    - escuridao absoluta
+    - treinador avancado
+    - etb
+    referencia_manual: 399.89
+    bandeira: 🇧🇷
+    ofertas:
+    - loja: freitas
+      url: https://www.freitastcg.com.br/?view=ecom/item&prod=360197
+    - loja: cardsofparadise
+      url: https://www.cardsofparadise.com.br/?view=ecom/item&prod=360197
+  - nome: Caixa de Booster Megaevolução 4 - Caos Ascendente
+    jogo: Pokémon
+    descricao: Lacrada, nacional (PT-BR), 36 boosters
+    palavras:
+    - caos ascendente
+    - caixa
+    - booster box
+    - '36'
+    referencia_manual: 449.98
+    unidades: 36
+    unidade_nome: boosters
+    unidade_singular: booster
+    bandeira: 🇧🇷
+    ofertas:
+    - loja: freitas
+      url: https://www.freitastcg.com.br/?view=ecom/item&prod=353458
+    - loja: cardsofparadise
+      url: https://www.cardsofparadise.com.br/?view=ecom/item&prod=353458
+  - nome: Coleção Treinador Avançado Megaevolução 4 - Caos Ascendente
+    jogo: Pokémon
+    descricao: Lacrada, nacional (PT-BR)
+    palavras:
+    - caos ascendente
+    - treinador avancado
+    - etb
+    referencia_manual: 399.99
+    bandeira: 🇧🇷
+    ofertas:
+    - loja: freitas
+      url: https://www.freitastcg.com.br/?view=ecom/item&prod=353551
+    - loja: cardsofparadise
+      url: https://www.cardsofparadise.com.br/?view=ecom/item&prod=353551
+  - nome: Caixa de Booster Megaevolução 3 - Equilíbrio Perfeito
+    jogo: Pokémon
+    descricao: Lacrada, nacional (PT-BR), 36 boosters
+    palavras:
+    - equilibrio perfeito
+    - caixa
+    - booster box
+    - '36'
+    referencia_manual: 449.89
+    unidades: 36
+    unidade_nome: boosters
+    unidade_singular: booster
+    bandeira: 🇧🇷
+    ofertas:
+    - loja: freitas
+      url: https://www.freitastcg.com.br/?view=ecom/item&prod=348374
+    - loja: cardsofparadise
+      url: https://www.cardsofparadise.com.br/?view=ecom/item&prod=348374
+  - nome: Coleção Treinador Avançado Megaevolução 3 - Equilíbrio Perfeito
+    jogo: Pokémon
+    descricao: Lacrada, nacional (PT-BR)
+    palavras:
+    - equilibrio perfeito
+    - treinador avancado
+    - etb
+    referencia_manual: 399.89
+    bandeira: 🇧🇷
+    ofertas:
+    - loja: freitas
+      url: https://www.freitastcg.com.br/?view=ecom/item&prod=348371
+    - loja: cardsofparadise
+      url: https://www.cardsofparadise.com.br/?view=ecom/item&prod=348371
+  - nome: Caixa de Booster Megaevolução 6 - Reinado Delta
+    jogo: Pokémon
+    descricao: Lacrada, nacional (PT-BR), 36 boosters
+    palavras:
+    - reinado delta
+    - caixa
+    - booster box
+    - '36'
+    referencia_manual: 459.99
+    unidades: 36
+    unidade_nome: boosters
+    unidade_singular: booster
+    bandeira: 🇧🇷
+    ofertas:
+    - loja: freitas
+      url: https://www.freitastcg.com.br/?view=ecom/item&prod=371480
+    - loja: cardsofparadise
+      url: https://www.cardsofparadise.com.br/?view=ecom/item&prod=371480
+  - nome: Coleção Treinador Avançado Megaevolução 6 - Reinado Delta
+    jogo: Pokémon
+    descricao: Lacrada, nacional (PT-BR)
+    palavras:
+    - reinado delta
+    - treinador avancado
+    - etb
+    referencia_manual: 449.99
+    bandeira: 🇧🇷
+    ofertas:
+    - loja: freitas
+      url: https://www.freitastcg.com.br/?view=ecom/item&prod=371478
+    - loja: cardsofparadise
+      url: https://www.cardsofparadise.com.br/?view=ecom/item&prod=371478
+  - nome: Caixa de Booster Lorcana - Attack of the Vine
+    jogo: Lorcana
+    descricao: Lacrada, importada (inglês), 24 boosters
+    palavras:
+    - lorcana
+    - attack of the vine
+    - booster box
+    referencia_manual: 1299.99
+    unidades: 24
+    unidade_nome: boosters
+    unidade_singular: booster
+    ofertas:
+    - loja: freitas
+      url: https://www.freitastcg.com.br/?view=ecom/item&prod=363927
+    - loja: cardsofparadise
+      url: https://www.cardsofparadise.com.br/?view=ecom/item&prod=363927
+  - nome: Caixa de Booster One Piece PRB-01 - The Best
+    jogo: One Piece
+    descricao: Lacrada, importada (inglês), 20 boosters
+    palavras:
+    - one piece
+    - prb-01
+    - the best
+    - booster box
+    referencia_manual: 748.89
+    unidades: 20
+    unidade_nome: boosters
+    unidade_singular: booster
+    ofertas:
+    - loja: freitas
+      url: https://www.freitastcg.com.br/?view=ecom/item&prod=308084
+    - loja: cardsofparadise
+      url: https://www.cardsofparadise.com.br/?view=ecom/item&prod=308084
+
+  - nome: Blister Triplo Megaevolução 5 - Escuridão Absoluta
+    jogo: Pokémon
+    descricao: Lacrado, nacional (PT-BR), 3 boosters
+    palavras: [escuridao absoluta, blister triplo]
+    referencia_manual: 42.99
+    unidades: 3
+    unidade_nome: boosters
+    unidade_singular: booster
+    bandeira: 🇧🇷
+    ofertas:
+    - loja: copag_ml
+      url: https://www.mercadolivre.com.br/p/MLB74743819
+    - loja: mercadolivre
+      url: https://www.mercadolivre.com.br/p/MLB74743819
+  - nome: Blister Quádruplo Megaevolução 5 - Escuridão Absoluta
+    jogo: Pokémon
+    descricao: Lacrado, nacional (PT-BR), 4 boosters
+    palavras: [escuridao absoluta, quadruplo]
+    referencia_manual: 55.99
+    unidades: 4
+    unidade_nome: boosters
+    unidade_singular: booster
+    bandeira: 🇧🇷
+    ofertas:
+    - loja: copag_ml
+      url: https://www.mercadolivre.com.br/p/MLB74454821
+    - loja: mercadolivre
+      url: https://www.mercadolivre.com.br/p/MLB74454821
+
+# Outros jogos no Mercado Livre (catálogo oficial; só Loja Oficial ou MercadoLíder Platinum/Gold)
+  - nome: "Play Booster Box Magic: Avatar - A Lenda de Aang"
+    jogo: Magic
+    descricao: "Lacrada, Play Booster Box"
+    palavras: ["magic", "avatar", "play booster", "box"]
+    referencia_manual: 1039.69   # preço da loja oficial em 01/11/2026; confira com a LigaMagic
+    ofertas:
+    - loja: mercadolivre
+      url: https://www.mercadolivre.com.br/p/MLB63263678
+  - nome: "Booster Box Disney Lorcana - Whispers in the Well"
+    jogo: Lorcana
+    descricao: "Lacrada, importada (inglês), 24 boosters"
+    palavras: ["lorcana", "whispers in the well", "booster box"]
+    referencia_manual: 1299.99   # mesmo preço de caixa equivalente na Freitas TCG
+    unidades: 24
+    unidade_nome: boosters
+    unidade_singular: booster
+    ofertas:
+    - loja: mercadolivre
+      url: https://www.mercadolivre.com.br/p/MLB67410626
+  - nome: "Deck Inicial One Piece Card Game (Bandai)"
+    jogo: One Piece
+    descricao: "Lacrado, deck inicial com 50 cartas"
+    palavras: ["one piece", "deck inicial", "starter deck"]
+    referencia_manual: 199.9   # preço da loja oficial em 01/11/2026
+    ofertas:
+    - loja: mercadolivre
+      url: https://www.mercadolivre.com.br/p/MLB28233925
+  - nome: "Booster Yu-Gi-Oh! Investida Crescente (Edição Especial)"
+    jogo: Yu-Gi-Oh!
+    descricao: "Lacrado, nacional (português)"
+    palavras: ["yu-gi-oh", "investida crescente"]
+    referencia_manual: 39.99   # preço da loja oficial em 01/11/2026
+    bandeira: 🇧🇷
+    ofertas:
+    - loja: mercadolivre
+      url: https://www.mercadolivre.com.br/p/MLB22269299
+  - nome: "Yu-Gi-Oh! Vórtice Ardente (3 boosters)"
+    jogo: Yu-Gi-Oh!
+    descricao: "Lacrado, nacional (português), 3 boosters"
+    palavras: ["yu-gi-oh", "vortice ardente"]
+    referencia_manual: 106.31   # preço da loja oficial em 01/11/2026
+    unidades: 3
+    unidade_nome: boosters
+    unidade_singular: booster
+    bandeira: 🇧🇷
+    ofertas:
+    - loja: mercadolivre
+      url: https://www.mercadolivre.com.br/p/MLB28158161
+  - nome: "Booster Box Digimon Card Game EX-09"
+    jogo: Digimon
+    descricao: "Lacrada, importada (inglês), 24 boosters"
+    palavras: ["digimon", "ex-09", "booster box"]
+    unidades: 24
+    unidade_nome: boosters
+    unidade_singular: booster
+    ofertas:
+    - loja: mercadolivre
+      url: https://www.mercadolivre.com.br/p/MLB52110195
 
 # ---------------------------------------------------------------- radar
 # Canais PÚBLICOS do Telegram de concorrentes (só o nome, sem @).
@@ -127,7 +446,7 @@ radar:
 # blog e forum = sempre RUMOR.
 # Tudo que vem de fórum, ou fala em leak/vazamento, sai com o selo RUMOR.
 noticias:
-  ativo: false
+  ativo: true
   max_stories_dia: 5
   max_posts_dia: 1           # o destaque do dia vira carrossel (nunca um rumor)
   janela_horas: 24          # roda a cada 10 min, 24h; pega o furo assim que sai
@@ -179,8 +498,11 @@ noticias:
     - {nome: "Reddit r/DigimonCardGame2020", url: "https://www.reddit.com/r/DigimonCardGame2020/.rss", tipo: forum, jogo: Digimon, idioma: en, intervalo_minutos: 30}
     # Fóruns de vazamentos e blogs de fãs (sempre saem como RUMOR). Teste com --testar-fontes.
     - {nome: "Reddit r/PokeLeaks", url: "https://www.reddit.com/r/PokeLeaks/.rss", tipo: forum, jogo: Pokémon, intervalo_minutos: 30}
-    - {nome: "PokeGuardian", url: "https://www.pokeguardian.com/feed", tipo: blog, jogo: Pokémon}
+    # - {nome: "PokeGuardian", url: "https://www.pokeguardian.com/feed", tipo: blog, jogo: Pokémon}   # 404 em 01/11/2026
     - {nome: "MTG Rocks", url: "https://mtgrocks.com/feed/", tipo: blog, jogo: Magic}
     - {nome: "Draftsim", url: "https://draftsim.com/feed/", tipo: blog, jogo: Magic}
-    # Fontes OFICIAIS (pesam mais e saem sem selo de rumor): adicione aqui os feeds
-    # de notícias das editoras quando confirmar a URL com --testar-fontes.
+    # Fontes OFICIAIS (pesam mais, saem sem selo de rumor e PODEM usar a imagem real da
+    # carta, com crédito, montada na arte do Arcos). Rumor e vazamento nunca levam imagem.
+    # Os sites oficiais testados em 01/11/2026 não têm RSS (404 / formato inválido).
+    # Quando houver um feed oficial, cadastre assim (credito_imagem aparece na arte e na legenda):
+    # - {nome: "Editora X (oficial)", url: "https://.../feed", tipo: oficial, jogo: Pokémon, idioma: en, credito_imagem: "Editora X"}

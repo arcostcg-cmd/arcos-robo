@@ -99,7 +99,7 @@ lojas:
     api: amazon                # liga quando a API de afiliados for liberada
     aprovada: true
     conferida_em: "2026-10-31"
-    link_afiliado: {parametros: {tag: "COLE_SUA_TAG-20"}}
+    link_afiliado: {parametros: {tag: "arcostcg-20"}}
     confianca: 5
     paginas_cupom: ["https://www.amazon.com.br/cupons"]
     observacao: "Só 'Vendido e entregue por Amazon' ou loja oficial da marca."
