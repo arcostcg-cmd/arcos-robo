@@ -598,6 +598,25 @@ class TestMarketplaces(unittest.TestCase):
         self.assertIn("não forçamos nem incentivamos", bot.texto_instagram(o, cfg))
 
 
+class TestArteCarta(unittest.TestCase):
+    def test_arte_mantem_a_carta_e_rumor_nao_busca_imagem(self):
+        from PIL import Image
+        import carrossel
+        import noticias
+        carta = Image.new("RGB", (734, 1024), (10, 200, 30))
+        st = carrossel.arte_carta_story(carta, "Nova carta revelada", "Pokémon", "The Pokémon Company", semente=1)
+        self.assertEqual(st.size, (1080, 1920))
+        self.assertEqual(st.getpixel((540, 830))[:3], (10, 200, 30))  # centro da carta intacto
+        self.assertIsNone(noticias.imagem_oficial({"link": "http://x"}, {"tipo": "forum"}))
+        self.assertIsNone(noticias.imagem_oficial({"link": "http://x"}, {"tipo": "imprensa"}))
+
+    def test_rss_com_imagem(self):
+        import noticias
+        xml = ('<rss xmlns:media="http://search.yahoo.com/mrss/"><channel><item><title>New card</title>'
+               '<link>http://o.com/a</link><media:content url="http://o.com/c.jpg"/></item></channel></rss>')
+        self.assertEqual(noticias.ler_feed(xml)[0]["imagem"], "http://o.com/c.jpg")
+
+
 class TestComandoCentral(unittest.TestCase):
     def test_ajuda_e_comando_desconhecido(self):
         import arcos

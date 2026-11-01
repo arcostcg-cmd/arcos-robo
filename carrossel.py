@@ -370,3 +370,137 @@ def carrossel_noticia(n, pasta):
     numero(d, 3, 3, "#C9CEE6")
     slides.append(s)
     return salvar(slides, pasta, f"news-{slug(n['titulo'])}")
+
+
+# ------------------------------------------------------------ arte em volta da carta real
+# A carta (imagem oficial) fica INTACTA no centro; só o fundo é arte generativa do Arcos.
+# Sem personagens nem logos de terceiros no fundo: só formas, luz e cores da marca.
+
+ESTILOS_ARTE = ["explosao", "neon", "holo", "halftone"]
+
+
+def _gradiente(w, h, c1, c2, vertical=True):
+    from PIL import Image as _I
+    base = _I.new("RGB", (w, h), c1)
+    topo = _I.new("RGB", (w, h), c2)
+    mask = _I.linear_gradient("L").resize((w, h))
+    if not vertical:
+        mask = mask.rotate(90, expand=False).resize((w, h))
+    return _I.composite(topo, base, mask)
+
+
+def fundo_arte(w, h, estilo=None, semente=None):
+    """Fundo jovem e colorido, gerado por algoritmo (sem custo, sem API)."""
+    import math
+    import random
+    from PIL import ImageFilter
+    rnd = random.Random(semente)
+    estilo = estilo or rnd.choice(ESTILOS_ARTE)
+    paletas = [(ROXO, CORAL), (NAVY, ROXO), (CORAL, AMARELO), ("#1B1F5E", "#FF5D73")]
+    c1, c2 = rnd.choice(paletas)
+    img = _gradiente(w, h, c1, c2)
+    cam = Image.new("RGBA", (w, h), (0, 0, 0, 0))
+    d = ImageDraw.Draw(cam)
+    cx, cy = w // 2, int(h * 0.45)
+    if estilo in ("explosao", "holo"):
+        raios = 28 if estilo == "explosao" else 60
+        for i in range(raios):
+            a1 = 2 * math.pi * i / raios
+            a2 = a1 + math.pi / raios * (0.6 if estilo == "explosao" else 0.3)
+            r = max(w, h) * 1.2
+            cor = (255, 255, 255, 38) if i % 2 else (255, 210, 63, 30)
+            d.polygon([(cx, cy), (cx + r * math.cos(a1), cy + r * math.sin(a1)),
+                       (cx + r * math.cos(a2), cy + r * math.sin(a2))], fill=cor)
+    if estilo == "neon":
+        for k in range(9):
+            r = 120 + k * 95
+            d.ellipse([cx - r, cy - r, cx + r, cy + r], outline=(255, 255, 255, 60 - k * 5), width=6)
+    if estilo == "halftone":
+        passo = 34
+        for y in range(0, h, passo):
+            for x in range(0, w, passo):
+                dist = math.hypot(x - cx, y - cy) / max(w, h)
+                rr = max(1, int(14 * (1 - dist)))
+                d.ellipse([x - rr, y - rr, x + rr, y + rr], fill=(255, 255, 255, 40))
+    # bolhas de luz (bokeh) e brilhos
+    for _ in range(22):
+        r = rnd.randint(20, 110)
+        x, y = rnd.randint(0, w), rnd.randint(0, h)
+        cor = rnd.choice([(255, 255, 255, 45), (255, 210, 63, 55), (255, 93, 115, 50), (108, 77, 255, 55)])
+        d.ellipse([x - r, y - r, x + r, y + r], fill=cor)
+    cam = cam.filter(ImageFilter.GaussianBlur(3))
+    d2 = ImageDraw.Draw(cam)
+    for _ in range(26):  # estrelinhas
+        x, y, s = rnd.randint(0, w), rnd.randint(0, h), rnd.randint(8, 22)
+        d2.polygon([(x, y - s), (x + s * 0.25, y - s * 0.25), (x + s, y), (x + s * 0.25, y + s * 0.25),
+                    (x, y + s), (x - s * 0.25, y + s * 0.25), (x - s, y), (x - s * 0.25, y - s * 0.25)],
+                   fill=(255, 255, 255, 200))
+    img = Image.alpha_composite(img.convert("RGBA"), cam)
+    return img.convert("RGB")
+
+
+def colar_carta(fundo, carta, caixa_alt, cy):
+    """Carta intacta, com borda branca, brilho e sombra. Devolve a caixa usada."""
+    from PIL import ImageFilter
+    W_, _ = fundo.size
+    carta = carta.convert("RGBA")
+    escala = caixa_alt / carta.height
+    cw, ch = int(carta.width * escala), int(carta.height * escala)
+    if cw > W_ * 0.82:
+        escala = W_ * 0.82 / carta.width
+        cw, ch = int(carta.width * escala), int(carta.height * escala)
+    carta = carta.resize((cw, ch), Image.LANCZOS)
+    x, y = (W_ - cw) // 2, cy - ch // 2
+    brilho = Image.new("RGBA", fundo.size, (0, 0, 0, 0))
+    ImageDraw.Draw(brilho).rounded_rectangle([x - 40, y - 40, x + cw + 40, y + ch + 40], radius=60,
+                                             fill=(255, 210, 63, 150))
+    brilho = brilho.filter(ImageFilter.GaussianBlur(45))
+    sombra = Image.new("RGBA", fundo.size, (0, 0, 0, 0))
+    ImageDraw.Draw(sombra).rounded_rectangle([x + 18, y + 28, x + cw + 18, y + ch + 28], radius=30,
+                                             fill=(0, 0, 0, 140))
+    sombra = sombra.filter(ImageFilter.GaussianBlur(18))
+    base = Image.alpha_composite(fundo.convert("RGBA"), brilho)
+    base = Image.alpha_composite(base, sombra)
+    moldura = Image.new("RGBA", (cw + 24, ch + 24), (255, 255, 255, 255))
+    m = Image.new("L", moldura.size, 0)
+    ImageDraw.Draw(m).rounded_rectangle([0, 0, cw + 23, ch + 23], radius=28, fill=255)
+    base.paste(moldura, (x - 12, y - 12), m)
+    mc = Image.new("L", (cw, ch), 0)
+    ImageDraw.Draw(mc).rounded_rectangle([0, 0, cw - 1, ch - 1], radius=20, fill=255)
+    base.paste(carta, (x, y), mc)
+    return base.convert("RGB"), (x, y, x + cw, y + ch)
+
+
+def arte_carta_story(carta, titulo, jogo, credito, rumor=False, semente=None):
+    """Story 1080×1920: carta real no centro, arte em volta, título e crédito."""
+    SW, SH = 1080, 1920
+    img = fundo_arte(SW, SH, semente=semente)
+    img, (x0, y0, x1, y1) = colar_carta(img, carta, 820, 830)
+    d = ImageDraw.Draw(img)
+    logo(img, 72, 220, 0.9)
+    selo = "RUMOR · NÃO CONFIRMADO" if rumor else "NOVA CARTA"
+    pilula(d, (72, 330), selo, txt(34), CORAL if rumor else AMARELO, BRANCO if rumor else NAVY, borda=NAVY)
+    pilula(d, (SW - 72 - d.textlength(jogo.upper()[:20], font=txt(30)) - 56, 330), jogo.upper()[:20], txt(30), BRANCO, NAVY)
+    t = ("Rumor: " + titulo) if rumor and not titulo.lower().startswith("rumor") else titulo
+    ft = caber(d, t, "Fredoka-Bold.ttf", SW - 144, 190, 84, 46, 1.05)
+    yt = escrever(d, (72, y1 + 45), t, ft, BRANCO, SW - 144, 1.05, stroke_width=6, stroke_fill=NAVY)
+    yc = max(yt + 20, 1490)
+    d.text((72, yc), f"Imagem: {credito}"[:70], font=txt2(30), fill=BRANCO, stroke_width=3, stroke_fill=NAVY)
+    d.text((72, yc + 45), "Link e detalhes no nosso Telegram", font=txt2(30), fill=AMARELO, stroke_width=3, stroke_fill=NAVY)
+    return img
+
+
+def arte_carta_post(carta, titulo, jogo, credito, rumor=False, semente=None):
+    """Capa de carrossel 1080×1350 com a carta real e arte em volta."""
+    img = fundo_arte(W, H, semente=semente)
+    img, (x0, y0, x1, y1) = colar_carta(img, carta, 820, 640)
+    d = ImageDraw.Draw(img)
+    logo(img, 72, 60, 0.8)
+    selo = "RUMOR · NÃO CONFIRMADO" if rumor else "NOVA CARTA"
+    pilula(d, (W - 72 - d.textlength(selo, font=txt(30)) - 56, 70), selo, txt(30),
+           CORAL if rumor else AMARELO, BRANCO if rumor else NAVY, borda=NAVY)
+    t = ("Rumor: " + titulo) if rumor and not titulo.lower().startswith("rumor") else titulo
+    ft = caber(d, t, "Fredoka-Bold.ttf", W - 144, 200, 72, 44, 1.05)
+    escrever(d, (72, y1 + 40), t, ft, BRANCO, W - 144, 1.05, stroke_width=5, stroke_fill=NAVY)
+    d.text((72, H - 70), f"Imagem: {credito}"[:70], font=txt2(26), fill=BRANCO, stroke_width=3, stroke_fill=NAVY)
+    return img

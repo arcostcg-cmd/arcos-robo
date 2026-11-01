@@ -77,9 +77,15 @@ def ler_feed(xml_texto):
     ns = {"a": "http://www.w3.org/2005/Atom"}
     itens = []
     for it in raiz.iter("item"):  # RSS
+        img = None
+        for tag in ("{http://search.yahoo.com/mrss/}content", "{http://search.yahoo.com/mrss/}thumbnail", "enclosure"):
+            el = it.find(tag)
+            if el is not None and el.get("url") and (tag != "enclosure" or "image" in (el.get("type") or "")):
+                img = el.get("url")
+                break
         itens.append({"titulo": limpar(_texto(it, "title")), "link": _texto(it, "link"),
                       "data": _data(_texto(it, "pubDate")),
-                      "resumo": limpar(_texto(it, "description"))[:1500]})
+                      "resumo": limpar(_texto(it, "description"))[:1500], "imagem": img})
     for it in raiz.iter("{http://www.w3.org/2005/Atom}entry"):  # Atom (Reddit usa Atom)
         link = it.find("a:link", ns)
         itens.append({"titulo": limpar(_texto(it, "{http://www.w3.org/2005/Atom}title")),
@@ -423,20 +429,78 @@ def preparar(cfg, con):
         else:
             continue
         no_feed = formato in ("post", "furo") or (formato == "furo_rumor" and fr.get("tambem_no_feed"))
-        story = [] if formato == "post" else [str(carrossel.story_noticia(noticia, BASE / "imagens"))]
-        feed = [str(x) for x in carrossel.carrossel_noticia(noticia, BASE / "imagens")] if no_feed else []
+        carta = imagem_oficial(item, fonte) if not noticia["rumor"] else None
+        if carta is not None:
+            credito = fonte.get("credito_imagem") or fonte["nome"]
+            noticia["credito_imagem"] = credito
+            story = [] if formato == "post" else [str(salvar_arte(carrossel.arte_carta_story(
+                carta, noticia["titulo"], noticia["jogo"], credito, semente=chave), "story", chave))]
+            feed = []
+            if no_feed:
+                capa = salvar_arte(carrossel.arte_carta_post(
+                    carta, noticia["titulo"], noticia["jogo"], credito, semente=chave), "capa", chave)
+                feed = [str(capa)] + [str(x) for x in carrossel.carrossel_noticia(noticia, BASE / "imagens")][1:]
+        else:
+            story = [] if formato == "post" else [str(carrossel.story_noticia(noticia, BASE / "imagens"))]
+            feed = [str(x) for x in carrossel.carrossel_noticia(noticia, BASE / "imagens")] if no_feed else []
         fila.append({**noticia, "formato": formato, "story": story, "slides": feed or story})
     FILA.write_text(json.dumps(fila, ensure_ascii=False, indent=1), encoding="utf-8")
     log.info("Notícias na fila: %d", len(fila))
     return fila
 
 
+OG_IMG_RE = re.compile(r'<meta[^>]+(?:property|name)=["\'](?:og:image|twitter:image)["\'][^>]+content=["\']([^"\']+)', re.I)
+
+
+def imagem_oficial(item, fonte):
+    """Imagem REAL da carta/produto, só de fonte OFICIAL (ou com imagem: true no config).
+
+    Rumor e vazamento nunca levam imagem: imagem vazada pode ser de material
+    confidencial e as editoras derrubam posts com ela. Devolve PIL.Image ou None.
+    """
+    from io import BytesIO
+
+    from PIL import Image
+    if not (fonte.get("tipo") == "oficial" or fonte.get("imagem") is True):
+        return None
+    try:
+        url = item.get("imagem")
+        if not url:
+            r = requests.get(item["link"], headers=UA, timeout=20)
+            r.raise_for_status()
+            m = OG_IMG_RE.search(r.text)
+            url = m.group(1) if m else None
+        if not url:
+            return None
+        if url.startswith("//"):
+            url = "https:" + url
+        r = requests.get(url, headers=UA, timeout=20)
+        r.raise_for_status()
+        img = Image.open(BytesIO(r.content))
+        img.load()
+        if min(img.size) < 300:  # pequena demais: melhor o design sem foto
+            return None
+        return img.convert("RGB")
+    except Exception as e:
+        log.info("Sem imagem oficial para %s: %s", item.get("link"), type(e).__name__)
+        return None
+
+
+def salvar_arte(img, tipo, chave):
+    pasta = BASE / "imagens"
+    pasta.mkdir(parents=True, exist_ok=True)
+    caminho = pasta / f"carta-{tipo}-{chave[:30]}.jpg"
+    img.save(caminho, "JPEG", quality=88)
+    return caminho
+
+
 def legenda(n, cfg, rede):
     selo = "🟠 RUMOR — não confirmado oficialmente\n\n" if n["rumor"] else ""
     tags = " ".join(cfg.get("noticias", {}).get("hashtags", []))
     if rede == "telegram":
+        cred = f"\n📷 Imagem: {n['credito_imagem']}" if n.get("credito_imagem") else ""
         return (f"📰 {n['jogo'].upper()} | {selo}{n['titulo']}\n\n{n['resumo']}\n\n"
-                f"Fonte: {n['fonte']}\n{n['link']}")
+                f"Fonte: {n['fonte']}\n{n['link']}{cred}")
     return f"📰 {n['jogo']} | {selo}{n['titulo']}\n\n{n['resumo']}\n\nFonte: {n['fonte']}\n\n{tags}".strip()
 
 

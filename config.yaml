@@ -385,7 +385,7 @@ radar:
 # blog e forum = sempre RUMOR.
 # Tudo que vem de fórum, ou fala em leak/vazamento, sai com o selo RUMOR.
 noticias:
-  ativo: false
+  ativo: true
   max_stories_dia: 5
   max_posts_dia: 1           # o destaque do dia vira carrossel (nunca um rumor)
   janela_horas: 24          # roda a cada 10 min, 24h; pega o furo assim que sai
@@ -440,5 +440,7 @@ noticias:
     - {nome: "PokeGuardian", url: "https://www.pokeguardian.com/feed", tipo: blog, jogo: Pokémon}
     - {nome: "MTG Rocks", url: "https://mtgrocks.com/feed/", tipo: blog, jogo: Magic}
     - {nome: "Draftsim", url: "https://draftsim.com/feed/", tipo: blog, jogo: Magic}
-    # Fontes OFICIAIS (pesam mais e saem sem selo de rumor): adicione aqui os feeds
-    # de notícias das editoras quando confirmar a URL com --testar-fontes.
+    # Fontes OFICIAIS (pesam mais, saem sem selo de rumor e PODEM usar a imagem real da
+    # carta, com crédito, montada na arte do Arcos). Rumor e vazamento nunca levam imagem.
+    - {nome: "Magic: The Gathering (oficial)", url: "https://magic.wizards.com/en/rss/rss.xml", tipo: oficial, jogo: Magic, idioma: en, credito_imagem: "Wizards of the Coast"}
+    - {nome: "Pokémon (oficial)", url: "https://www.pokemon.com/us/pokemon-news/rss", tipo: oficial, jogo: Pokémon, idioma: en, credito_imagem: "The Pokémon Company"}
