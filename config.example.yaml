@@ -915,7 +915,7 @@ noticias:
   # (o robô só envia notícias públicas). Os limites aparecem em aistudio.google.com/rate-limit.
   ia:
     provedor: gemini
-    modelo: ""               # vazio = o robô escolhe o modelo "flash" estável mais novo
+    modelo: "gemini-flash-lite-latest"  # medido em 01/11: ~1 s por resumo (o flash comum levava 90 s e estourava o tempo)
     max_por_execucao: 10     # resumos por rodada (protege o limite grátis)
   palavras_relevantes: ["set", "expansion", "release", "reveal", "announce", "leak",
     "banned", "ban list", "errata", "championship", "worlds", "prerelease", "promo",

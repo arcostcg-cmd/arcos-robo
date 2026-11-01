@@ -575,7 +575,7 @@ def carrossel_noticia(n, pasta):
     rumor = bool(n.get("rumor"))
     ac = ACENTO["rumor" if rumor else "noticia"]
     sem = n["titulo"]
-    selo = (f"RUMOR · NÃO CONFIRMADO" if rumor else f"NOTÍCIA · {n['jogo'].upper()[:20]}")
+    selo = ("RUMOR · NÃO CONFIRMADO" if rumor else f"NOTÍCIA · {n['jogo'].upper()[:20]}")
     slides = []
     s = fundo_feed(acento=ac, semente=sem)
     d = cabecalho(s, selo, ac, NOITE1 if not rumor else BRANCO)
