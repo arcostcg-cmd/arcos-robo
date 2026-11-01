@@ -252,7 +252,7 @@ _MODELO_GEMINI = None
 
 
 def escolher_modelo_gemini(modelos):
-    """Escolhe o modelo flash estável mais novo (de preferência o lite, mais rápido)."""
+    """Escolhe o modelo 'flash' estável mais novo que gera texto."""
     bons = []
     for m in modelos:
         nome = m.get("name", "").split("/")[-1]
@@ -262,7 +262,7 @@ def escolher_modelo_gemini(modelos):
         if any(x in nome for x in ("preview", "exp", "image", "tts", "live", "audio", "thinking")):
             continue
         versao = [int(n) for n in re.findall(r"\d+", nome)[:2]] or [0]
-        bons.append((versao, "lite" in nome, nome))  # lite: bem mais rápido para resumo curto
+        bons.append((versao, "lite" not in nome, nome))
     return max(bons)[2] if bons else None
 
 
@@ -307,15 +307,8 @@ def chamar_ia(cfg, prompt):
         url = f"https://generativelanguage.googleapis.com/v1beta/models/{modelo}:generateContent"
         corpo = {"contents": [{"parts": [{"text": prompt}]}],
                  **({"systemInstruction": {"parts": [{"text": sistema}]}} if sistema else {}),
-                 # resumo curto não precisa de "raciocínio" longo: fica bem mais rápido
-                 "generationConfig": {"temperature": 0.2, "thinkingConfig": {"thinkingBudget": 0}}}
+                 "generationConfig": {"temperature": 0.2}}
         r = requests.post(url, params={"key": os.environ["GEMINI_API_KEY"]}, timeout=120, json=corpo)
-        if r.status_code == 400:  # modelo que não aceita desligar o raciocínio: tenta no mínimo
-            corpo["generationConfig"]["thinkingConfig"] = {"thinkingLevel": "low"}
-            r = requests.post(url, params={"key": os.environ["GEMINI_API_KEY"]}, timeout=120, json=corpo)
-        if r.status_code == 400:
-            corpo["generationConfig"].pop("thinkingConfig")
-            r = requests.post(url, params={"key": os.environ["GEMINI_API_KEY"]}, timeout=120, json=corpo)
         if r.status_code == 429:
             raise LimiteIA("limite do Gemini atingido")
         r.raise_for_status()
