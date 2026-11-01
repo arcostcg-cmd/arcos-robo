@@ -1,0 +1,48 @@
+name: Ferramenta - buscar produtos no catálogo do Mercado Livre
+on:
+  push:
+    paths: ["pedidos/catalogo.json"]
+  workflow_dispatch: {}
+permissions:
+  contents: write
+jobs:
+  buscar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - run: pip install requests pyyaml pillow
+      - name: Buscar (só leitura, não posta nada)
+        env:
+          ML_CLIENT_ID: ${{ secrets.ML_CLIENT_ID }}
+          ML_CLIENT_SECRET: ${{ secrets.ML_CLIENT_SECRET }}
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          import marketplaces as m
+          termos = json.load(open("pedidos/catalogo.json", encoding="utf-8"))["termos"]
+          linhas = ["# Catálogo do Mercado Livre (busca automática)\n"]
+          for t in termos:
+              linhas.append(f"\n## {t}\n")
+              try:
+                  r = m._ml_get(f"/products/search?status=active&site_id=MLB&q={m.requests.utils.quote(t)}&limit=8")
+              except Exception as e:
+                  linhas.append(f"- erro na busca: {e}\n"); continue
+              for p in (r.get("results") or [])[:8]:
+                  pid, nome = p.get("id"), p.get("name", "")
+                  try:
+                      ofs = m._ml_get(f"/products/{pid}/items").get("results") or []
+                  except Exception:
+                      ofs = []
+                  ofic = [o for o in ofs if o.get("official_store_id") and (o.get("condition") or "new") == "new"]
+                  menor = min((float(o["price"]) for o in ofic), default=None)
+                  lojas = sorted({o["official_store_id"] for o in ofic})
+                  linhas.append(f"- {pid} | {nome[:90]} | ofertas: {len(ofs)} | lojas oficiais: {lojas} | menor oficial: {menor}\n")
+          Path("amostras").mkdir(exist_ok=True)
+          Path("amostras/catalogo.md").write_text("".join(linhas), encoding="utf-8")
+          print("".join(linhas))
+          PY
+          git config user.name "robo-tcg"; git config user.email "robo-tcg@users.noreply.github.com"
+          git add amostras && git commit -m "busca no catálogo" && (for i in 1 2 3; do git pull --rebase && git push && break; sleep 5; done) || echo "nada novo"
