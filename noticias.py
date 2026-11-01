@@ -429,7 +429,10 @@ def preparar(cfg, con):
         if not texto:
             continue
         vistos.add(chave)
-        noticia = {**texto, "jogo": fonte.get("jogo", "TCG"), "fonte": fonte["nome"],
+        nome_fonte = fonte["nome"]
+        if nome_fonte.startswith("Google Notícias") and " - " in item["titulo"]:
+            nome_fonte = item["titulo"].rsplit(" - ", 1)[1].strip()  # o veículo original, não o agregador
+        noticia = {**texto, "jogo": fonte.get("jogo", "TCG"), "fonte": nome_fonte,
                    "link": item["link"], "rumor": eh_rumor(item, fonte),
                    "data": item["data"].isoformat() if item["data"] else iso(agora())}
         if noticia["rumor"] and not noticia["titulo"].lower().startswith("rumor"):
