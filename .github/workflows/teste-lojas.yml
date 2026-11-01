@@ -18,6 +18,8 @@ jobs:
           import time, yaml, bot, marketplaces
           cfg = yaml.safe_load(open("config.yaml", encoding="utf-8"))
           lojas = {l["id"]: l for l in cfg["lojas"] if l.get("aprovada")}
+          tok = marketplaces.ml_token()
+          print(f"Mercado Livre: token oficial {'OK' if tok else 'FALHOU ' + marketplaces.ULTIMO_ERRO_TOKEN['msg']}\n")
           print("| Produto | Loja | Resultado |\n|---|---|---|")
           for p in cfg["produtos"]:
               for o in p["ofertas"]:

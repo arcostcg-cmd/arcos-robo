@@ -19,6 +19,7 @@ import requests
 log = logging.getLogger("marketplaces")
 ML_API = "https://api.mercadolibre.com"
 _token = {"valor": None, "expira": 0}
+ULTIMO_ERRO_TOKEN = {"msg": ""}
 
 # Integrações que dependem de aprovação em programa de afiliados
 AGUARDANDO_CHAVE = {
@@ -48,7 +49,15 @@ def ml_token():
         _token.update(valor=j["access_token"], expira=time.time() + int(j.get("expires_in", 3600)) - 60)
         return _token["valor"]
     except Exception as e:
-        log.warning("Mercado Livre: não consegui o token oficial: %s", e)
+        detalhe = ""
+        if isinstance(e, requests.HTTPError) and e.response is not None:
+            try:
+                j = e.response.json()
+                detalhe = f" [{j.get('error')}: {str(j.get('message'))[:120]}]"
+            except Exception:
+                pass
+        log.warning("Mercado Livre: não consegui o token oficial: %s%s", type(e).__name__, detalhe)
+        ULTIMO_ERRO_TOKEN["msg"] = f"{type(e).__name__}{detalhe}"
         return None
 
 
@@ -102,7 +111,12 @@ def ml_oferta(url, loja):
         return None, f"barrado: {e}"
     except requests.HTTPError as e:
         cod = e.response.status_code if e.response is not None else "?"
-        dica = " (cadastre ML_CLIENT_ID e ML_CLIENT_SECRET)" if cod in (401, 403) else ""
-        return None, f"API do Mercado Livre respondeu {cod}{dica}"
+        try:
+            j = e.response.json()
+            motivo = f" [{j.get('code') or j.get('error') or ''}: {str(j.get('message') or '')[:120]}]"
+        except Exception:
+            motivo = ""
+        token = "com token" if _token["valor"] else "SEM token"
+        return None, f"API do Mercado Livre respondeu {cod} ({token}){motivo}"
     except Exception as e:
         return None, f"API do Mercado Livre: {e}"
