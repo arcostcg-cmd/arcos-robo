@@ -1,0 +1,21 @@
+name: Teste - chave do Gemini
+on:
+  push:
+    paths: ["pedidos/teste-gemini.txt"]
+  workflow_dispatch: {}
+jobs:
+  teste:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - run: pip install requests pyyaml pillow
+      - env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: |
+          python - <<'PY'
+          import yaml, noticias
+          cfg = yaml.safe_load(open("config.yaml", encoding="utf-8"))
+          print("RESPOSTA:", noticias.chamar_ia(cfg, "Traduza para português do Brasil, só a tradução: 'New Pokémon TCG set revealed today.'"))
+          PY
