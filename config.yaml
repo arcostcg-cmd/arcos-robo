@@ -368,6 +368,66 @@ produtos:
     - loja: mercadolivre
       url: https://www.mercadolivre.com.br/p/MLB74454821
 
+# Outros jogos no Mercado Livre (catálogo oficial; só Loja Oficial ou MercadoLíder Platinum/Gold)
+  - nome: "Play Booster Box Magic: Avatar - A Lenda de Aang"
+    jogo: Magic
+    descricao: "Lacrada, Play Booster Box"
+    palavras: ["magic", "avatar", "play booster", "box"]
+    referencia_manual: 1039.69   # preço da loja oficial em 01/11/2026; confira com a LigaMagic
+    ofertas:
+    - loja: mercadolivre
+      url: https://www.mercadolivre.com.br/p/MLB63263678
+  - nome: "Booster Box Disney Lorcana - Whispers in the Well"
+    jogo: Lorcana
+    descricao: "Lacrada, importada (inglês), 24 boosters"
+    palavras: ["lorcana", "whispers in the well", "booster box"]
+    referencia_manual: 1299.99   # mesmo preço de caixa equivalente na Freitas TCG
+    unidades: 24
+    unidade_nome: boosters
+    unidade_singular: booster
+    ofertas:
+    - loja: mercadolivre
+      url: https://www.mercadolivre.com.br/p/MLB67410626
+  - nome: "Deck Inicial One Piece Card Game (Bandai)"
+    jogo: One Piece
+    descricao: "Lacrado, deck inicial com 50 cartas"
+    palavras: ["one piece", "deck inicial", "starter deck"]
+    referencia_manual: 199.9   # preço da loja oficial em 01/11/2026
+    ofertas:
+    - loja: mercadolivre
+      url: https://www.mercadolivre.com.br/p/MLB28233925
+  - nome: "Booster Yu-Gi-Oh! Investida Crescente (Edição Especial)"
+    jogo: Yu-Gi-Oh!
+    descricao: "Lacrado, nacional (português)"
+    palavras: ["yu-gi-oh", "investida crescente"]
+    referencia_manual: 39.99   # preço da loja oficial em 01/11/2026
+    bandeira: 🇧🇷
+    ofertas:
+    - loja: mercadolivre
+      url: https://www.mercadolivre.com.br/p/MLB22269299
+  - nome: "Yu-Gi-Oh! Vórtice Ardente (3 boosters)"
+    jogo: Yu-Gi-Oh!
+    descricao: "Lacrado, nacional (português), 3 boosters"
+    palavras: ["yu-gi-oh", "vortice ardente"]
+    referencia_manual: 106.31   # preço da loja oficial em 01/11/2026
+    unidades: 3
+    unidade_nome: boosters
+    unidade_singular: booster
+    bandeira: 🇧🇷
+    ofertas:
+    - loja: mercadolivre
+      url: https://www.mercadolivre.com.br/p/MLB28158161
+  - nome: "Booster Box Digimon Card Game EX-09"
+    jogo: Digimon
+    descricao: "Lacrada, importada (inglês), 24 boosters"
+    palavras: ["digimon", "ex-09", "booster box"]
+    unidades: 24
+    unidade_nome: boosters
+    unidade_singular: booster
+    ofertas:
+    - loja: mercadolivre
+      url: https://www.mercadolivre.com.br/p/MLB52110195
+
 # ---------------------------------------------------------------- radar
 # Canais PÚBLICOS do Telegram de concorrentes (só o nome, sem @).
 # O radar só avisa o admin; nunca copia nem posta nada dos concorrentes.
