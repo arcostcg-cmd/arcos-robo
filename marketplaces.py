@@ -155,6 +155,12 @@ def escolher_oferta_catalogo(ofertas, vendedores, loja):
     return min(boas, key=lambda x: float(x[0]["price"]))
 
 
+# Preço "de" (riscado) que a própria loja informa no anúncio, por URL lida. Usado só como
+# referência extra: o robô ainda exige vendedor confiável, 2 leituras iguais e preço que não
+# esteja acima do normal registrado.
+PRECO_DE = {}
+
+
 def ml_oferta_catalogo(url, loja):
     """Lê um produto do CATÁLOGO do Mercado Livre (/p/MLB...) pela API oficial.
 
@@ -180,6 +186,11 @@ def ml_oferta_catalogo(url, loja):
         img = fotos[0].get("url") if fotos else None
         iid = oferta["item_id"]
         link = f"https://produto.mercadolivre.com.br/MLB-{iid[3:]}" if iid.upper().startswith("MLB") else url
+        orig = oferta.get("original_price")
+        if orig and float(orig) > float(oferta["price"]):
+            PRECO_DE[url] = float(orig)
+        else:
+            PRECO_DE.pop(url, None)
         return (float(oferta["price"]), True, img, prod.get("name", ""), selo, link), None
     except requests.HTTPError as e:
         cod = e.response.status_code if e.response is not None else "?"

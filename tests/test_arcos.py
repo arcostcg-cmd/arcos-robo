@@ -633,3 +633,29 @@ class TestComandoCentral(unittest.TestCase):
         self.assertEqual(arcos.main(["inexistente"]), 2)
         self.assertIn(("promocoes", "preparar"), arcos.COMANDOS)
         self.assertIn(("noticias", "fontes"), arcos.COMANDOS)
+
+
+class TestDescontoDaLoja(unittest.TestCase):
+    def setUp(self):
+        import sqlite3, bot
+        self.bot = bot
+        self.con = sqlite3.connect(":memory:")
+        self.con.executescript("CREATE TABLE preco_de_loja(produto TEXT, loja TEXT, preco REAL, preco_de REAL, visto_em TEXT);")
+        self.r = {"desconto_minimo": 0.10, "alerta_suspeito": 0.40}
+
+    def add(self, preco, de):
+        self.con.execute("INSERT INTO preco_de_loja VALUES ('P','ml',?,?,'2026-11-01T10:00:00')", (preco, de))
+
+    def test_aceita_desconto_real(self):
+        self.add(90, 120)
+        self.assertEqual(self.bot.desconto_da_loja(self.con, "P", "ml", 90, None, self.r), 120)
+
+    def test_recusa_preco_acima_do_normal(self):
+        self.add(90, 120)
+        self.assertIsNone(self.bot.desconto_da_loja(self.con, "P", "ml", 90, 80, self.r))
+
+    def test_recusa_desconto_pequeno_ou_suspeito(self):
+        self.add(95, 100)
+        self.assertIsNone(self.bot.desconto_da_loja(self.con, "P", "ml", 95, None, self.r))
+        self.add(50, 100)
+        self.assertIsNone(self.bot.desconto_da_loja(self.con, "P", "ml", 50, None, self.r))

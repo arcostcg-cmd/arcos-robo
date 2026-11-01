@@ -76,6 +76,8 @@ def abrir_banco(caminho):
         CREATE TABLE IF NOT EXISTS precos(
             produto TEXT, loja TEXT, url TEXT, preco REAL,
             em_estoque INTEGER, imagem TEXT, visto_em TEXT);
+        CREATE TABLE IF NOT EXISTS preco_de_loja(
+            produto TEXT, loja TEXT, preco REAL, preco_de REAL, visto_em TEXT);
         CREATE TABLE IF NOT EXISTS postados(
             produto TEXT, loja TEXT, preco REAL, canal TEXT, postado_em TEXT);
         CREATE INDEX IF NOT EXISTS idx_precos ON precos(produto, loja, visto_em);
@@ -372,6 +374,10 @@ def coletar(cfg, con):
                 (prod["nome"], loja["id"], url_anuncio, preco, int(estoque),
                  img, iso(agora())),
             )
+            pde = marketplaces.PRECO_DE.get(item["url"]) if loja.get("api") == "mercadolivre" else None
+            if pde:
+                con.execute("INSERT INTO preco_de_loja VALUES (?,?,?,?,?)",
+                            (prod["nome"], loja["id"], preco, pde, iso(agora())))
             lidos += 1
             time.sleep(pausa)
     con.commit()
@@ -411,6 +417,24 @@ def ja_postado(con, produto, loja, preco, canal, horas):
     ).fetchone() is not None
 
 
+def desconto_da_loja(con, produto, loja, preco, ref, regras):
+    """Preço "de" informado pela loja (Mercado Livre), aceito só com travas:
+    - a última leitura tem o mesmo preço atual e um preço "de" pelo menos desconto_minimo acima;
+    - o preço atual não está acima do normal que o robô já registrou (quando há histórico);
+    - o desconto não passa do limite de preço suspeito.
+    """
+    row = con.execute("SELECT preco, preco_de FROM preco_de_loja WHERE produto=? AND loja=? "
+                      "ORDER BY visto_em DESC LIMIT 1", (produto, loja)).fetchone()
+    if not row or abs(row[0] - preco) > 0.01:
+        return None
+    pde = row[1]
+    if preco > pde * (1 - regras["desconto_minimo"]) or preco < pde * (1 - regras["alerta_suspeito"]):
+        return None
+    if ref is not None and preco > ref * 1.02:
+        return None
+    return pde
+
+
 def avaliar(cfg, con):
     """Devolve (aprovadas, descartadas). Uma aprovada por produto: a mais barata."""
     r = cfg["regras"]
@@ -439,12 +463,18 @@ def avaliar(cfg, con):
                 motivo = "sem estoque"
             elif len(leit) < 2 or abs(leit[1][0] - preco) > 0.01:
                 motivo = "preço ainda não confirmado em 2 leituras seguidas"
-            elif ref is None:
+            ref_item, ref_fonte = ref, "historico"
+            pde = desconto_da_loja(con, prod["nome"], loja_id, preco, ref, r)
+            if not motivo and pde and (ref is None or preco > ref * (1 - r["desconto_minimo"])):
+                ref_item, ref_fonte = pde, "loja"  # desconto informado pela loja, com as travas
+            if motivo:
+                pass
+            elif ref_item is None:
                 motivo = "histórico insuficiente para saber o preço normal"
-            elif preco < ref * (1 - r["alerta_suspeito"]):
+            elif preco < ref_item * (1 - r["alerta_suspeito"]):
                 motivo = (f"preço suspeito: {reais(preco)} está mais de "
                           f"{int(r['alerta_suspeito']*100)}% abaixo da referência")
-            elif preco > ref * (1 - r["desconto_minimo"]):
+            elif preco > ref_item * (1 - r["desconto_minimo"]):
                 motivo = "desconto pequeno demais"
             elif loja.get("confianca", 3) < conf_min:
                 motivo = f"loja com nota de confiança {loja.get('confianca')} (mínimo {conf_min})"
@@ -454,7 +484,7 @@ def avaliar(cfg, con):
             item = {
                 "produto": prod["nome"], "jogo": prod.get("jogo", ""),
                 "loja": loja_id, "loja_nome": loja["nome"], "preco": preco,
-                "ref": ref, "url": url, "link": link, "imagem": img, "visto": visto,
+                "ref": ref_item, "ref_fonte": ref_fonte, "url": url, "link": link, "imagem": img, "visto": visto,
                 "descricao": prod.get("descricao", "Lacrado"),
                 "afiliado": eh_afiliado, "cupom": cupom, "preco_final": preco_final,
                 "confianca": loja.get("confianca", 3),
@@ -492,7 +522,8 @@ def texto_telegram(o):
     if o.get("unidades"):
         linhas.append(f"({o['unidades']} {o.get('unidade_nome', 'unidades')})")
     linhas += ["", f"De: <s>{reais(o['ref'])}</s> Por: <b>{reais(o['preco'])}</b>",
-               f"<b>{desc}% abaixo do preço normal</b>"]
+               f"<b>{desc}% de desconto</b> (preço \"de\" informado pela loja)" if o.get("ref_fonte") == "loja"
+               else f"<b>{desc}% abaixo do preço normal</b>"]
     if o.get("unidades"):
         linhas.append(f"Cada {o.get('unidade_singular', 'unidade')} sai por <b>{reais(final / o['unidades'])}</b>")
     linhas.append("")
