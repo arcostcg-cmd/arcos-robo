@@ -17,5 +17,6 @@ jobs:
           python - <<'PY'
           import yaml, noticias
           cfg = yaml.safe_load(open("config.yaml", encoding="utf-8"))
-          print("RESPOSTA:", noticias.chamar_ia(cfg, "Traduza para português do Brasil, só a tradução: 'New Pokémon TCG set revealed today.'"))
+          import time; t = time.time()
+          print("RESPOSTA:", noticias.chamar_ia(cfg, "Traduza para português do Brasil, só a tradução: 'New Pokémon TCG set revealed today.'"), "| segundos:", round(time.time() - t, 1))
           PY

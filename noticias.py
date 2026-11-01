@@ -304,12 +304,18 @@ def chamar_ia(cfg, prompt):
         return r.json()["content"][0]["text"]
     if prov == "gemini":
         modelo = modelo_gemini(ia)
-        r = requests.post(
-            f"https://generativelanguage.googleapis.com/v1beta/models/{modelo}:generateContent",
-            params={"key": os.environ["GEMINI_API_KEY"]}, timeout=120,
-            json={"contents": [{"parts": [{"text": prompt}]}],
-                  **({"systemInstruction": {"parts": [{"text": sistema}]}} if sistema else {}),
-                  "generationConfig": {"temperature": 0.2}})
+        url = f"https://generativelanguage.googleapis.com/v1beta/models/{modelo}:generateContent"
+        corpo = {"contents": [{"parts": [{"text": prompt}]}],
+                 **({"systemInstruction": {"parts": [{"text": sistema}]}} if sistema else {}),
+                 # resumo curto não precisa de "raciocínio" longo: fica bem mais rápido
+                 "generationConfig": {"temperature": 0.2, "thinkingConfig": {"thinkingBudget": 0}}}
+        r = requests.post(url, params={"key": os.environ["GEMINI_API_KEY"]}, timeout=120, json=corpo)
+        if r.status_code == 400:  # modelo que não aceita desligar o raciocínio: tenta no mínimo
+            corpo["generationConfig"]["thinkingConfig"] = {"thinkingLevel": "low"}
+            r = requests.post(url, params={"key": os.environ["GEMINI_API_KEY"]}, timeout=120, json=corpo)
+        if r.status_code == 400:
+            corpo["generationConfig"].pop("thinkingConfig")
+            r = requests.post(url, params={"key": os.environ["GEMINI_API_KEY"]}, timeout=120, json=corpo)
         if r.status_code == 429:
             raise LimiteIA("limite do Gemini atingido")
         r.raise_for_status()
