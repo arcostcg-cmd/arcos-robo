@@ -1,0 +1,20 @@
+id: top10-me01-mais-valiosas
+quando: "2026-11-01T19:00"
+jogo: Pokémon
+titulo: "As 10 cartas mais valiosas de Megaevolução"
+gancho: "As 10 cartas mais valiosas de Megaevolução"
+fonte_preco: "PriceCharting (sem nota, versão em inglês)"
+fonte_url: "https://www.pricecharting.com/console/pokemon-mega-evolution"
+data: "01/11/2026"
+imagem_base: "https://assets.pokemon.com/static-assets/content-assets/cms2-pt-br/img/cards/web/ME01/ME01_PT-BR_{n}.png"
+itens:
+  - {pos: 1, n: 188, nome: "Mega Lucario ex", numero: "188/132", preco: "US$ 181,71"}
+  - {pos: 2, n: 179, nome: "Mega Lucario ex", numero: "179/132", preco: "US$ 160,00"}
+  - {pos: 3, n: 178, nome: "Mega Gardevoir ex", numero: "178/132", preco: "US$ 157,24"}
+  - {pos: 4, n: 187, nome: "Mega Gardevoir ex", numero: "187/132", preco: "US$ 150,13"}
+  - {pos: 5, n: 177, nome: "Mega Venusaur ex", numero: "177/132", preco: "US$ 121,37"}
+  - {pos: 6, n: 181, nome: "Mega Latias ex", numero: "181/132", preco: "US$ 60,00"}
+  - {pos: 7, n: 182, nome: "Mega Kangaskhan ex", numero: "182/132", preco: "US$ 51,67"}
+  - {pos: 8, n: 184, nome: "Determinação da Lílian", numero: "184/132", preco: "US$ 45,88"}
+  - {pos: 9, n: 180, nome: "Mega Absol ex", numero: "180/132", preco: "US$ 43,13"}
+  - {pos: 10, n: 183, nome: "Traquinagem da Acerola", numero: "183/132", preco: "US$ 26,98"}

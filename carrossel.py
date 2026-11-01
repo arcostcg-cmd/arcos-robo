@@ -617,3 +617,96 @@ def story_noticia(n, pasta):
     caminho = pasta / f"news-{slug(n['titulo'])}.jpg"
     s.save(caminho, "JPEG", quality=85)
     return caminho
+
+
+# ------------------------------------------------------------ série Top 10 (contagem regressiva)
+
+def _carta_nitida(img, altura):
+    """Amplia a imagem oficial com cuidado (no máximo 2,2x) e devolve nítida."""
+    from PIL import ImageFilter
+    img = img.convert("RGBA")
+    esc = min(altura / img.height, 2.2)
+    img = img.resize((int(img.width * esc), int(img.height * esc)), Image.LANCZOS)
+    return img.filter(ImageFilter.UnsharpMask(radius=1.6, percent=90, threshold=2))
+
+
+def _posicao(d, x, y, pos, acento):
+    f = tit(150)
+    t = f"{pos}º"
+    d.text((x + 8, y + 8), t, font=f, fill=NOITE1)
+    d.text((x, y), t, font=f, fill=acento, stroke_width=8, stroke_fill=NOITE1)
+
+
+def _preco(d, xy, texto, centro=True):
+    f = tit(76)
+    w = d.textlength(texto, font=f)
+    x, y = xy
+    if centro:
+        x = (W - w) // 2 - 30
+    d.rounded_rectangle([x, y, x + w + 60, y + 110], radius=30, fill=AMARELO)
+    d.text((x + 30, y + 10), texto, font=f, fill=NOITE1)
+
+
+def carrossel_top10(top, imagens_cartas, pasta, prefixo):
+    """top = {titulo, gancho, jogo, fonte_preco, data, nota, itens:[{pos, nome, numero, preco}]}
+    imagens_cartas = {pos: PIL.Image} (só imagem OFICIAL). Instagram aceita 10 imagens:
+    capa, 10º e 9º juntos, 8º ao 2º, e o 1º revelado no fim.
+    """
+    ac = AMARELO
+    itens = {i["pos"]: i for i in top["itens"]}
+    sem = prefixo
+    rodape_txt = f"Preço: {top['fonte_preco'].split(' (')[0]} · {top['data']} · Imagem: The Pokémon Company"
+    slides = []
+
+    def base(k):
+        return fundo_feed(acento=[AMARELO, CORAL, "#9C86FF"][k % 3], semente=f"{sem}{k}")
+
+    def credito(d):
+        d.text((72, H - 64), rodape_txt[:80], font=txt2(22), fill=SUAVE)
+
+    # capa: o 1º lugar escondido (silhueta escura) + pergunta
+    s = base(0)
+    um = _carta_nitida(imagens_cartas[1], 700)
+    silh = Image.new("RGBA", um.size, (14, 18, 51, 255))
+    silh.putalpha(um.split()[-1])
+    s, cx = colar_carta(s, silh.convert("RGB"), 640, 520)
+    d = cabecalho(s, f"TOP 10 · {top['jogo'].upper()}", ac)
+    f_q = tit(220)
+    q = "?"
+    d.text(((W - d.textlength(q, font=f_q)) // 2, 380), q, font=f_q, fill=AMARELO, stroke_width=10, stroke_fill=NOITE1)
+    _texto_rodape(d, top["gancho"], ac, 92, 54, topo=900)
+    rodape(d, 1, 10, "Arrasta e descobre o nº 1 »", ac)
+    slides.append(s)
+
+    # 10º e 9º lado a lado
+    s = base(1)
+    for j, pos in enumerate((10, 9)):
+        c = _carta_nitida(imagens_cartas[pos], 600)
+        c = ImageOps.contain(c, (430, 600), Image.LANCZOS)
+        x0 = 90 + j * 480
+        caixa = Image.new("RGBA", (c.width + 20, c.height + 20), (255, 255, 255, 255))
+        s.paste(caixa.convert("RGB"), (x0 - 10, 330 - 10))
+        s.paste(c, (x0, 330), c)
+        d = ImageDraw.Draw(s)
+        d.text((x0, 190), f"{pos}º", font=tit(110), fill=AMARELO, stroke_width=7, stroke_fill=NOITE1)
+        it = itens[pos]
+        escrever(d, (x0, 960), it["nome"], txt(34), BRANCO, 430, 1.1)
+        d.text((x0, 1050), it["preco"], font=tit(58), fill=AMARELO, stroke_width=4, stroke_fill=NOITE1)
+    cabecalho(s, f"TOP 10 · {top['jogo'].upper()}", ac)
+    credito(d)
+    numero(d, 2, 10, SUAVE)
+    slides.append(s)
+
+    # 8º ao 1º
+    for k, pos in enumerate(range(8, 0, -1), 3):
+        it = itens[pos]
+        s = base(k)
+        s, (x0, y0, x1, y1) = colar_carta(s, _carta_nitida(imagens_cartas[pos], 720), 720, 600)
+        d = cabecalho(s, "O Nº 1!" if pos == 1 else f"TOP 10 · {top['jogo'].upper()}", ac)
+        _posicao(d, 72, 150, pos, ac)
+        escrever(d, (72, y1 + 34), f"{it['nome']} · {it['numero']}", txt(40), BRANCO, W - 144, 1.1)
+        _preco(d, (0, y1 + 100), it["preco"])
+        credito(d)
+        numero(d, k, 10, SUAVE)
+        slides.append(s)
+    return salvar(slides, pasta, prefixo)
