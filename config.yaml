@@ -437,10 +437,11 @@ noticias:
     - {nome: "Reddit r/DigimonCardGame2020", url: "https://www.reddit.com/r/DigimonCardGame2020/.rss", tipo: forum, jogo: Digimon, idioma: en, intervalo_minutos: 30}
     # Fóruns de vazamentos e blogs de fãs (sempre saem como RUMOR). Teste com --testar-fontes.
     - {nome: "Reddit r/PokeLeaks", url: "https://www.reddit.com/r/PokeLeaks/.rss", tipo: forum, jogo: Pokémon, intervalo_minutos: 30}
-    - {nome: "PokeGuardian", url: "https://www.pokeguardian.com/feed", tipo: blog, jogo: Pokémon}
+    # - {nome: "PokeGuardian", url: "https://www.pokeguardian.com/feed", tipo: blog, jogo: Pokémon}   # 404 em 01/11/2026
     - {nome: "MTG Rocks", url: "https://mtgrocks.com/feed/", tipo: blog, jogo: Magic}
     - {nome: "Draftsim", url: "https://draftsim.com/feed/", tipo: blog, jogo: Magic}
     # Fontes OFICIAIS (pesam mais, saem sem selo de rumor e PODEM usar a imagem real da
     # carta, com crédito, montada na arte do Arcos). Rumor e vazamento nunca levam imagem.
-    - {nome: "Magic: The Gathering (oficial)", url: "https://magic.wizards.com/en/rss/rss.xml", tipo: oficial, jogo: Magic, idioma: en, credito_imagem: "Wizards of the Coast"}
-    - {nome: "Pokémon (oficial)", url: "https://www.pokemon.com/us/pokemon-news/rss", tipo: oficial, jogo: Pokémon, idioma: en, credito_imagem: "The Pokémon Company"}
+    # Os sites oficiais testados em 01/11/2026 não têm RSS (404 / formato inválido).
+    # Quando houver um feed oficial, cadastre assim (credito_imagem aparece na arte e na legenda):
+    # - {nome: "Editora X (oficial)", url: "https://.../feed", tipo: oficial, jogo: Pokémon, idioma: en, credito_imagem: "Editora X"}
