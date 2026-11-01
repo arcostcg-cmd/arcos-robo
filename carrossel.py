@@ -7,7 +7,7 @@ import re
 from datetime import datetime
 from pathlib import Path
 
-from PIL import Image, ImageDraw, ImageFont, ImageOps
+from PIL import Image, ImageColor, ImageDraw, ImageFont, ImageOps
 
 BASE = Path(__file__).resolve().parent
 W, H = 1080, 1350
@@ -126,99 +126,6 @@ def slug(texto):
 
 # ------------------------------------------------------------ promoção
 
-def carrossel_promocao(o, foto, pasta):
-    """o = oferta aprovada pelo robô; foto = PIL.Image da loja ou None."""
-    total = 4
-    desc = round((1 - o["preco"] / o["ref"]) * 100)
-    hora = datetime.fromisoformat(o["visto"]).strftime("%d/%m às %H:%M")
-    slides = []
-
-    # 1. capa
-    s = Image.new("RGB", (W, H), BRANCO)
-    d = ImageDraw.Draw(s)
-    logo(s, 64, 56, 0.9)
-    pilula(d, (W - 470, 66), "PROMOÇÃO VERIFICADA", txt(26), ROXO, BRANCO)
-    colar_foto(s, foto, (64, 180, W - 64, 820), modo="conter")
-    d.text((64, 860), f"{o['jogo']} · {o['descricao']}".upper()[:48], font=txt(28), fill=ROXO)
-    f_nome = caber(d, o["produto"], "Fredoka-Bold.ttf", W - 128, 170, 64, 40)
-    escrever(d, (64, 905), o["produto"], f_nome, NAVY, W - 128, 1.08)
-    fp = tit(100)
-    preco = reais(o["preco"])
-    pw = d.textlength(preco, font=fp)
-    d.rounded_rectangle([72, 1110, 72 + pw + 60, 1250], radius=28, fill=NAVY)
-    d.rounded_rectangle([64, 1100, 64 + pw + 60, 1240], radius=28, fill=AMARELO,
-                        outline=NAVY, width=6)
-    d.text((94, 1112), preco, font=fp, fill=NAVY)
-    pilula(d, (64 + pw + 90, 1132), f"−{desc}%", tit(54), CORAL, NAVY, borda=NAVY)
-    numero(d, 1, total)
-    slides.append(s)
-
-    # 2. comparação de preço
-    s = Image.new("RGB", (W, H), NAVY)
-    d = ImageDraw.Draw(s)
-    d.text((72, 90), "QUANTO VOCÊ ECONOMIZA", font=txt(32), fill=AMARELO)
-    d.text((72, 200), "Preço normal", font=txt(40), fill="#C9CEE6")
-    fr = tit(96)
-    ref = reais(o["ref"])
-    d.text((72, 260), ref, font=fr, fill="#C9CEE6")
-    rw = d.textlength(ref, font=fr)
-    d.line([72, 318, 72 + rw, 318], fill=CORAL, width=10)
-    d.text((72, 450), "Agora", font=txt(40), fill=BRANCO)
-    d.text((72, 505), reais(o["preco"]), font=tit(150), fill=AMARELO,
-           stroke_width=8, stroke_fill=NAVY)
-    eco = reais(o["ref"] - o["preco"])
-    pilula(d, (72, 730), f"Economia de {eco} (−{desc}%)", tit(48), CORAL, NAVY)
-    if o.get("cupom") and o.get("preco_final", o["preco"]) < o["preco"]:
-        d.text((72, 840), f"Com o cupom {o['cupom']['codigo']}: {reais(o['preco_final'])}",
-               font=tit(52), fill=AMARELO)
-    escrever(d, (72, 960),
-             "Preço normal = mediana dos preços que o robô registrou nas lojas "
-             "verificadas nos últimos 30 dias.", txt2(32), "#C9CEE6", W - 144)
-    numero(d, 2, total, "#C9CEE6")
-    slides.append(s)
-
-    # 3. loja verificada
-    s = Image.new("RGB", (W, H), ROXO)
-    d = ImageDraw.Draw(s)
-    d.ellipse([72, 100, 232, 260], fill=BRANCO, outline=NAVY, width=8)
-    d.line([(112, 182), (142, 214), (196, 146)], fill=ROXO, width=18, joint="curve")
-    escrever(d, (72, 310), f"{o['loja_nome']}", tit(84), BRANCO, W - 144, 1.05)
-    d.text((72, 520), "Loja verificada pelo Arcos", font=txt(40), fill=AMARELO)
-    y = 620
-    for item in ["CNPJ ativo e contato real", "Boa reputação de atendimento",
-                 "Produto oficial e lacrado", f"Preço conferido em {hora}"]:
-        d.ellipse([72, y + 12, 100, y + 40], fill=AMARELO)
-        d.text((124, y), item, font=txt(40), fill=BRANCO)
-        y += 92
-    escrever(d, (72, 1080), "Preço e estoque podem mudar a qualquer momento.",
-             txt2(30), "#E4DEFF", W - 144)
-    numero(d, 3, total, "#E4DEFF")
-    slides.append(s)
-
-    # 4. chamada e créditos
-    s = Image.new("RGB", (W, H), AMARELO)
-    d = ImageDraw.Draw(s)
-    escrever(d, (72, 150), "O link está no nosso Telegram", tit(104), NAVY, W - 144, 1.0)
-    pilula(d, (72, 560), "Link na bio »", tit(56), NAVY, AMARELO)
-    d.text((72, 720), "Salva e manda pro seu grupo", font=txt(44), fill=NAVY)
-    if o.get("cupom"):
-        pilula(d, (72, 820), f"CUPOM {o['cupom']['codigo']}", tit(56), BRANCO, NAVY, borda=NAVY)
-        d.text((72, 930), o["cupom"].get("descricao", "desconto extra")[:50], font=txt(32), fill=NAVY)
-    creditos = [f"Imagem do produto: {o['loja_nome']}"]
-    if o.get("afiliado"):
-        creditos.append("Link de afiliado")
-    y = 1000
-    for c in creditos:
-        d.text((72, y), c, font=txt2(30), fill=NAVY)
-        y += 44
-    logo(s, 72, 1150, 1.0, sombra=CORAL, cor_tcg=CORAL)
-    numero(d, 4, total, NAVY)
-    slides.append(s)
-
-    nome = f"promo-{slug(o['produto'])}-{o['loja']}-{int(o['preco']*100)}"
-    return salvar(slides, pasta, nome), creditos
-
-
 # ------------------------------------------------------------ curiosidade
 
 def _frases(texto, limite=170):
@@ -251,143 +158,12 @@ def chamada_final(c):
     return CHAMADAS_FINAIS[sum(map(ord, c["id"])) % len(CHAMADAS_FINAIS)]
 
 
-def carrossel_curiosidade(c, foto_info, pasta):
-    """c = item de curiosidades.yaml; foto_info = retorno de buscar_commons ou None."""
-    blocos = _frases(c["texto"])
-    total = 1 + len(blocos) + 2
-    capa = c.get("gancho") or c["titulo"]
-    slides = []
-
-    # 1. capa
-    s = Image.new("RGB", (W, H), AMARELO)
-    d = ImageDraw.Draw(s)
-    pilula(d, (72, 72), f"VOCÊ SABIA? · {c['jogo'].upper()}", txt(30), NAVY, AMARELO)
-    if foto_info:
-        colar_foto(s, foto_info["imagem"], (72, 190, W - 72, 760))
-        f_t = caber(d, capa, "Fredoka-Bold.ttf", W - 144, 360, 110, 60, 1.0)
-        escrever(d, (72, 800), capa, f_t, BRANCO, W - 144, 1.0,
-                 stroke_width=8, stroke_fill=NAVY)
-    else:
-        f_t = caber(d, capa, "Fredoka-Bold.ttf", W - 144, 760, 150, 80, 1.0)
-        escrever(d, (72, 260), capa, f_t, BRANCO, W - 144, 1.0,
-                 stroke_width=10, stroke_fill=NAVY)
-    d.text((72, 1220), "Arrasta pro lado »", font=txt(36), fill=NAVY)
-    numero(d, 1, total, NAVY)
-    slides.append(s)
-
-    # 2.. texto
-    for i, b in enumerate(blocos, 2):
-        s = Image.new("RGB", (W, H), BRANCO)
-        d = ImageDraw.Draw(s)
-        d.rounded_rectangle([72, 90, 200, 110], radius=10, fill=CORAL)
-        f_b = caber(d, b, "Nunito-ExtraBold.ttf", W - 144, 900, 88, 40, 1.25)
-        alt = len(quebrar(d, b, f_b, W - 144)) * int(f_b.size * 1.25)
-        escrever(d, (72, max(200, (H - alt) // 2 - 40)), b, f_b, NAVY, W - 144, 1.25)
-        logo(s, 72, 1180, 0.7)
-        numero(d, i, total)
-        slides.append(s)
-
-    # fonte
-    s = Image.new("RGB", (W, H), NAVY)
-    d = ImageDraw.Draw(s)
-    d.text((72, 120), "FONTE", font=txt(36), fill=AMARELO)
-    escrever(d, (72, 200), c["fonte_nome"], tit(80), BRANCO, W - 144, 1.05)
-    dominio = re.sub(r"^https?://(www\.)?", "", c["fonte_url"]).split("/")[0]
-    d.text((72, 560), dominio, font=txt(40), fill="#C9CEE6")
-    data = datetime.fromisoformat(c["verificado_em"]).strftime("%d/%m/%Y")
-    d.text((72, 640), f"Conferido em {data}", font=txt2(34), fill="#C9CEE6")
-    escrever(d, (72, 900), "No Arcos, toda curiosidade tem fonte. Nada de boato.",
-             txt(46), AMARELO, W - 144)
-    numero(d, total - 1, total, "#C9CEE6")
-    slides.append(s)
-
-    # créditos e chamada
-    s = Image.new("RGB", (W, H), CORAL)
-    d = ImageDraw.Draw(s)
-    y_cta = escrever(d, (72, 150), chamada_final(c), tit(100), BRANCO, W - 144, 1.0,
-                     stroke_width=8, stroke_fill=NAVY)
-    if c.get("pergunta"):
-        y_cta = escrever(d, (72, y_cta + 40), "Comenta aí: " + c["pergunta"], txt(44), NAVY, W - 144, 1.2)
-    d.text((72, max(620, y_cta + 40)), "Promoções verificadas no Telegram · link na bio",
-           font=txt(36), fill=NAVY)
-    creditos = [f"Texto: Arcos TCG, com base em {c['fonte_nome']}"]
-    if foto_info:
-        creditos.append(foto_info["credito"])
-    y = 980
-    for cr in creditos:
-        y = escrever(d, (72, y), cr, txt2(28), NAVY, W - 144) + 6
-    logo(s, 72, 1180, 0.8)
-    numero(d, total, total, NAVY)
-    slides.append(s)
-
-    return salvar(slides, pasta, f"cur-{c['id']}"), creditos
-
-
 # ------------------------------------------------------------ notícia
 
 def _selo_noticia(d, x, y, n):
     if n.get("rumor"):
         return pilula(d, (x, y), "RUMOR · NÃO CONFIRMADO", txt(30), CORAL, NAVY, borda=NAVY)
     return pilula(d, (x, y), "NOTÍCIA", txt(30), ROXO, BRANCO)
-
-
-def story_noticia(n, pasta):
-    """Story 1080×1920. Texto importante longe das bordas (250 px em cima, 340 embaixo)."""
-    SW, SH = 1080, 1920
-    s = Image.new("RGB", (SW, SH), NAVY if not n.get("rumor") else "#1B1F3B")
-    d = ImageDraw.Draw(s)
-    logo(s, 72, 260, 1.0)
-    pilula(d, (72, 400), n["jogo"].upper()[:30], txt(32), AMARELO, NAVY)
-    _selo_noticia(d, 72, 490, n)
-    f_t = caber(d, n["titulo"], "Fredoka-Bold.ttf", SW - 144, 520, 120, 64, 1.02)
-    y = escrever(d, (72, 620), n["titulo"], f_t, BRANCO, SW - 144, 1.02)
-    f_r = caber(d, n["resumo"], "Nunito-ExtraBold.ttf", SW - 144, 1500 - y - 60, 48, 32, 1.3)
-    escrever(d, (72, y + 50), n["resumo"], f_r, "#D7DBF0", SW - 144, 1.3)
-    d.text((72, 1520), f"Fonte: {n['fonte']}"[:60], font=txt2(32), fill=AMARELO)
-    d.text((72, 1570), "Link da fonte no nosso Telegram", font=txt2(30), fill="#C9CEE6")
-    pasta.mkdir(parents=True, exist_ok=True)
-    caminho = pasta / f"news-{slug(n['titulo'])}.jpg"
-    s.save(caminho, "JPEG", quality=85)
-    return caminho
-
-
-def carrossel_noticia(n, pasta):
-    """Carrossel 1080×1350 do destaque do dia: capa, resumo, fonte."""
-    slides = []
-    s = Image.new("RGB", (W, H), ROXO)
-    d = ImageDraw.Draw(s)
-    if n.get("rumor"):
-        pilula(d, (72, 72), f"RUMOR · NÃO CONFIRMADO · {n['jogo'].upper()[:16]}", txt(30), CORAL, NAVY, borda=NAVY)
-    else:
-        pilula(d, (72, 72), f"NOTÍCIA · {n['jogo'].upper()[:24]}", txt(30), AMARELO, NAVY)
-    f_t = caber(d, n["titulo"], "Fredoka-Bold.ttf", W - 144, 820, 140, 70, 1.0)
-    escrever(d, (72, 220), n["titulo"], f_t, BRANCO, W - 144, 1.0, stroke_width=8, stroke_fill=NAVY)
-    d.text((72, 1220), "Arrasta pro lado »", font=txt(36), fill=BRANCO)
-    numero(d, 1, 3, BRANCO)
-    slides.append(s)
-
-    s = Image.new("RGB", (W, H), BRANCO)
-    d = ImageDraw.Draw(s)
-    d.rounded_rectangle([72, 90, 200, 110], radius=10, fill=ROXO)
-    f_b = caber(d, n["resumo"], "Nunito-ExtraBold.ttf", W - 144, 900, 80, 40, 1.25)
-    alt = len(quebrar(d, n["resumo"], f_b, W - 144)) * int(f_b.size * 1.25)
-    escrever(d, (72, max(200, (H - alt) // 2 - 40)), n["resumo"], f_b, NAVY, W - 144, 1.25)
-    logo(s, 72, 1180, 0.7)
-    numero(d, 2, 3)
-    slides.append(s)
-
-    s = Image.new("RGB", (W, H), NAVY)
-    d = ImageDraw.Draw(s)
-    d.text((72, 120), "FONTE", font=txt(36), fill=AMARELO)
-    escrever(d, (72, 200), n["fonte"], tit(80), BRANCO, W - 144, 1.05)
-    dominio = re.sub(r"^https?://(www\.)?", "", n["link"]).split("/")[0]
-    d.text((72, 560), dominio, font=txt(40), fill="#C9CEE6")
-    escrever(d, (72, 860), "Notícia resumida pelo Arcos. Link completo no nosso Telegram.",
-             txt(42), AMARELO, W - 144)
-    logo(s, 72, 1180, 0.8)
-    numero(d, 3, 3, "#C9CEE6")
-    slides.append(s)
-    return salvar(slides, pasta, f"news-{slug(n['titulo'])}")
 
 
 # ------------------------------------------------------------ arte em volta da carta real
@@ -413,9 +189,8 @@ def fundo_arte(w, h, estilo=None, semente=None):
     import random
     from PIL import ImageFilter
     rnd = random.Random(semente)
-    estilo = estilo or rnd.choice(ESTILOS_ARTE)
-    paletas = [(ROXO, CORAL), (NAVY, ROXO), (CORAL, AMARELO), ("#1B1F5E", "#FF5D73")]
-    c1, c2 = rnd.choice(paletas)
+    estilo = estilo or "halftone"  # um estilo só: o feed fica coeso
+    c1, c2 = "#0E1233", "#3B1E8C"  # paleta fixa do feed: grade harmônica
     img = _gradiente(w, h, c1, c2)
     cam = Image.new("RGBA", (w, h), (0, 0, 0, 0))
     d = ImageDraw.Draw(cam)
@@ -522,3 +297,282 @@ def arte_carta_post(carta, titulo, jogo, credito, rumor=False, semente=None):
     escrever(d, (72, y1 + 40), t, ft, BRANCO, W - 144, 1.05, stroke_width=5, stroke_fill=NAVY)
     d.text((72, H - 70), f"Imagem: {credito}"[:70], font=txt2(26), fill=BRANCO, stroke_width=3, stroke_fill=NAVY)
     return img
+
+
+# ------------------------------------------------------------ identidade única do feed
+# Todo post do feed usa a MESMA base (noite azul → roxo, pontilhado suave, brilhos),
+# o mesmo enquadramento (logo em cima à esquerda, selo à direita, número embaixo)
+# e uma cor de destaque por tipo de conteúdo. Assim a grade fica harmônica.
+
+NOITE1, NOITE2 = "#0E1233", "#3B1E8C"
+SUAVE = "#C9CEE6"
+ACENTO = {"curiosidade": AMARELO, "promocao": CORAL, "noticia": "#9C86FF", "rumor": CORAL}
+
+
+def fundo_feed(w=W, h=H, acento=AMARELO, semente="arcos", claro=False):
+    """Base visual de todos os posts: gradiente fixo da marca + textura e brilhos discretos."""
+    import math
+    import random
+    from PIL import ImageFilter
+    rnd = random.Random(semente)
+    img = _gradiente(w, h, NOITE1 if not claro else NOITE2, NOITE2 if not claro else "#5B2FC9")
+    cam = Image.new("RGBA", (w, h), (0, 0, 0, 0))
+    d = ImageDraw.Draw(cam)
+    cx, cy = int(w * 0.85), int(h * 0.12)
+    passo = 36
+    for y in range(0, h, passo):
+        for x in range(0, w, passo):
+            dist = math.hypot(x - cx, y - cy) / max(w, h)
+            rr = int(9 * max(0, 1 - dist * 1.4))
+            if rr:
+                d.ellipse([x - rr, y - rr, x + rr, y + rr], fill=(255, 255, 255, 22))
+    ac = ImageColor.getrgb(acento)
+    for _ in range(9):
+        r = rnd.randint(60, 180)
+        x, y = rnd.randint(-80, w + 80), rnd.randint(-80, h + 80)
+        cor = rnd.choice([(*ac, 46), (108, 77, 255, 52), (255, 255, 255, 18)])
+        d.ellipse([x - r, y - r, x + r, y + r], fill=cor)
+    cam = cam.filter(ImageFilter.GaussianBlur(28))
+    d2 = ImageDraw.Draw(cam)
+    for _ in range(14):
+        x, y, s = rnd.randint(0, w), rnd.randint(0, h), rnd.randint(7, 18)
+        d2.polygon([(x, y - s), (x + s * 0.25, y - s * 0.25), (x + s, y), (x + s * 0.25, y + s * 0.25),
+                    (x, y + s), (x - s * 0.25, y + s * 0.25), (x - s, y), (x - s * 0.25, y - s * 0.25)],
+                   fill=(255, 255, 255, 170))
+    return Image.alpha_composite(img.convert("RGBA"), cam).convert("RGB")
+
+
+def moldura_foto(img, foto, caixa, modo="cobrir", acento=AMARELO):
+    """Foto com borda branca, brilho na cor de destaque e sombra (mesmo estilo das cartas)."""
+    from PIL import ImageFilter
+    x0, y0, x1, y1 = caixa
+    base = img.convert("RGBA")
+    brilho = Image.new("RGBA", img.size, (0, 0, 0, 0))
+    ImageDraw.Draw(brilho).rounded_rectangle([x0 - 30, y0 - 30, x1 + 30, y1 + 30], radius=70,
+                                             fill=(*ImageColor.getrgb(acento), 110))
+    base = Image.alpha_composite(base, brilho.filter(ImageFilter.GaussianBlur(40)))
+    sombra = Image.new("RGBA", img.size, (0, 0, 0, 0))
+    ImageDraw.Draw(sombra).rounded_rectangle([x0 + 14, y0 + 22, x1 + 14, y1 + 22], radius=44,
+                                             fill=(0, 0, 0, 130))
+    base = Image.alpha_composite(base, sombra.filter(ImageFilter.GaussianBlur(16))).convert("RGB")
+    ImageDraw.Draw(base).rounded_rectangle([x0 - 12, y0 - 12, x1 + 12, y1 + 12], radius=48, fill=BRANCO)
+    colar_foto(base, foto, caixa, modo=modo, fundo=BRANCO, raio=38)
+    ImageDraw.Draw(base).rounded_rectangle(caixa, radius=38, outline=BRANCO, width=2)
+    return base
+
+
+def cabecalho(img, selo, acento, cor_selo=NAVY):
+    d = ImageDraw.Draw(img)
+    logo(img, 72, 60, 0.8)
+    f = txt(28)
+    pilula(d, (W - 72 - d.textlength(selo, font=f) - 56, 70), selo, f, acento, cor_selo)
+    return d
+
+
+def rodape(d, i, total, texto="Arrasta pro lado »", acento=AMARELO):
+    if texto:
+        d.text((72, H - 84), texto, font=txt(32), fill=acento)
+    numero(d, i, total, SUAVE)
+
+
+def destaque(d, x, y, largura, acento):
+    d.rounded_rectangle([x, y, x + largura, y + 14], radius=7, fill=acento)
+
+
+def titulo_grande(d, xy, texto, largura, altura, maior, menor, acento=AMARELO):
+    f = caber(d, texto, "Fredoka-Bold.ttf", largura, altura, maior, menor, 1.02)
+    return escrever(d, xy, texto, f, BRANCO, largura, 1.02, stroke_width=max(4, f.size // 14),
+                    stroke_fill=NOITE1)
+
+
+def slide_texto(bloco, i, total, acento, semente, selo="ARCOS TCG"):
+    s = fundo_feed(acento=acento, semente=semente)
+    d = cabecalho(s, selo, acento)
+    f_b = caber(d, bloco, "Nunito-ExtraBold.ttf", W - 144, 820, 84, 40, 1.25)
+    alt = len(quebrar(d, bloco, f_b, W - 144)) * int(f_b.size * 1.25)
+    y = max(260, (H - alt) // 2 - 20)
+    destaque(d, 72, y - 50, 120, acento)
+    escrever(d, (72, y), bloco, f_b, BRANCO, W - 144, 1.25)
+    rodape(d, i, total, "Continua »" if i < total else None, acento)
+    return s
+
+
+def carrossel_curiosidade(c, foto_info, pasta):
+    """c = item de curiosidades.yaml; foto_info = retorno de buscar_commons ou None."""
+    ac = ACENTO["curiosidade"]
+    blocos = _frases(c["texto"])
+    total = 1 + len(blocos) + 2
+    capa = c.get("gancho") or c["titulo"]
+    sem = c["id"]
+    slides = []
+
+    s = fundo_feed(acento=ac, semente=sem)
+    if foto_info:
+        s = moldura_foto(s, foto_info["imagem"], (96, 200, W - 96, 760), acento=ac)
+    d = cabecalho(s, f"VOCÊ SABIA? · {c['jogo'].upper()}"[:34], ac)
+    y0 = 830 if foto_info else 300
+    destaque(d, 72, y0 - 34, 120, ac)
+    titulo_grande(d, (72, y0), capa, W - 144, 360 if foto_info else 760, 104 if foto_info else 140, 56)
+    rodape(d, 1, total, "Arrasta pro lado »", ac)
+    slides.append(s)
+
+    for i, b in enumerate(blocos, 2):
+        slides.append(slide_texto(b, i, total, ac, f"{sem}{i}", f"VOCÊ SABIA? · {c['jogo'].upper()}"[:34]))
+
+    s = fundo_feed(acento=ac, semente=sem + "f")
+    d = cabecalho(s, "FONTE", ac)
+    destaque(d, 72, 250, 120, ac)
+    escrever(d, (72, 290), c["fonte_nome"], tit(76), BRANCO, W - 144, 1.05)
+    dominio = re.sub(r"^https?://(www\.)?", "", c["fonte_url"]).split("/")[0]
+    d.text((72, 620), dominio, font=txt(40), fill=SUAVE)
+    data = datetime.fromisoformat(c["verificado_em"]).strftime("%d/%m/%Y")
+    d.text((72, 690), f"Conferido em {data}", font=txt2(34), fill=SUAVE)
+    escrever(d, (72, 900), "No Arcos, toda curiosidade tem fonte. Nada de boato.", txt(46), ac, W - 144)
+    rodape(d, total - 1, total, None)
+    slides.append(s)
+
+    s = fundo_feed(acento=CORAL, semente=sem + "x", claro=True)
+    d = cabecalho(s, "ARCOS TCG", ac)
+    y = titulo_grande(d, (72, 220), chamada_final(c), W - 144, 420, 104, 60)
+    if c.get("pergunta"):
+        y = escrever(d, (72, y + 50), "Comenta aí: " + c["pergunta"], txt(46), ac, W - 144, 1.2)
+    pilula(d, (72, max(760, y + 60)), "Promoções verificadas no Telegram · link na bio", txt(30), BRANCO, NOITE1)
+    creditos = [f"Texto: Arcos TCG, com base em {c['fonte_nome']}"]
+    if foto_info:
+        creditos.append(foto_info["credito"])
+    yy = 1080
+    for cr in creditos:
+        yy = escrever(d, (72, yy), cr, txt2(28), SUAVE, W - 144) + 6
+    rodape(d, total, total, None)
+    slides.append(s)
+    return salvar(slides, pasta, f"cur-{c['id']}"), creditos
+
+
+def carrossel_promocao(o, foto, pasta):
+    """o = oferta aprovada pelo robô; foto = PIL.Image da loja ou None."""
+    ac = ACENTO["promocao"]
+    total = 4
+    desc = round((1 - o["preco"] / o["ref"]) * 100)
+    hora = datetime.fromisoformat(o["visto"]).strftime("%d/%m às %H:%M")
+    sem = f"{o['produto']}{o['loja']}"
+    slides = []
+
+    s = fundo_feed(acento=ac, semente=sem)
+    s = moldura_foto(s, foto, (120, 190, W - 120, 790), modo="conter", acento=ac)
+    d = cabecalho(s, "PROMOÇÃO VERIFICADA", ac)
+    d.text((72, 850), f"{o['jogo']} · {o['descricao']}".upper()[:46], font=txt(28), fill=AMARELO)
+    f_nome = caber(d, o["produto"], "Fredoka-Bold.ttf", W - 144, 150, 62, 38)
+    escrever(d, (72, 895), o["produto"], f_nome, BRANCO, W - 144, 1.06)
+    fp = tit(104)
+    preco = reais(o["preco"])
+    pw = d.textlength(preco, font=fp)
+    d.rounded_rectangle([72, 1090, 72 + pw + 64, 1232], radius=30, fill=AMARELO)
+    d.text((104, 1100), preco, font=fp, fill=NOITE1)
+    pilula(d, (72 + pw + 94, 1124), f"−{desc}%", tit(54), ac, BRANCO)
+    numero(d, 1, total, SUAVE)
+    slides.append(s)
+
+    s = fundo_feed(acento=ac, semente=sem + "2")
+    d = cabecalho(s, "QUANTO VOCÊ ECONOMIZA", ac)
+    d.text((72, 230), "Preço normal", font=txt(40), fill=SUAVE)
+    fr = tit(96)
+    ref = reais(o["ref"])
+    d.text((72, 290), ref, font=fr, fill=SUAVE)
+    rw = d.textlength(ref, font=fr)
+    d.line([72, 350, 72 + rw, 350], fill=ac, width=10)
+    d.text((72, 480), "Agora", font=txt(40), fill=BRANCO)
+    d.text((72, 530), reais(o["preco"]), font=tit(150), fill=AMARELO, stroke_width=6, stroke_fill=NOITE1)
+    eco = reais(o["ref"] - o["preco"])
+    pilula(d, (72, 760), f"Economia de {eco} (−{desc}%)", tit(46), ac, BRANCO)
+    if o.get("cupom") and o.get("preco_final", o["preco"]) < o["preco"]:
+        d.text((72, 870), f"Com o cupom {o['cupom']['codigo']}: {reais(o['preco_final'])}",
+               font=tit(50), fill=AMARELO)
+    escrever(d, (72, 990), "Preço normal = mediana dos preços que o robô registrou nas lojas "
+             "verificadas nos últimos 30 dias.", txt2(32), SUAVE, W - 144)
+    numero(d, 2, total, SUAVE)
+    slides.append(s)
+
+    s = fundo_feed(acento=ac, semente=sem + "3")
+    d = cabecalho(s, "LOJA VERIFICADA", ac)
+    d.ellipse([72, 220, 212, 360], fill=AMARELO)
+    d.line([(108, 292), (134, 320), (182, 262)], fill=NOITE1, width=16, joint="curve")
+    escrever(d, (72, 400), o["loja_nome"], tit(80), BRANCO, W - 144, 1.05)
+    y = 620
+    for item in ["CNPJ ativo e contato real", "Boa reputação de atendimento",
+                 "Produto oficial e lacrado", f"Preço conferido em {hora}"]:
+        d.ellipse([72, y + 12, 100, y + 40], fill=ac)
+        d.text((124, y), item, font=txt(40), fill=BRANCO)
+        y += 92
+    escrever(d, (72, 1080), "Preço e estoque podem mudar a qualquer momento.", txt2(30), SUAVE, W - 144)
+    numero(d, 3, total, SUAVE)
+    slides.append(s)
+
+    s = fundo_feed(acento=ac, semente=sem + "4", claro=True)
+    d = cabecalho(s, "ARCOS TCG", ac)
+    titulo_grande(d, (72, 220), "O link está no nosso Telegram", W - 144, 380, 104, 60)
+    pilula(d, (72, 620), "Link na bio »", tit(54), AMARELO, NOITE1)
+    d.text((72, 760), "Salva e manda pro seu grupo", font=txt(42), fill=BRANCO)
+    if o.get("cupom"):
+        pilula(d, (72, 850), f"CUPOM {o['cupom']['codigo']}", tit(54), BRANCO, NOITE1)
+        d.text((72, 960), o["cupom"].get("descricao", "desconto extra")[:50], font=txt(32), fill=BRANCO)
+    creditos = [f"Imagem do produto: {o['loja_nome']}"]
+    if o.get("afiliado"):
+        creditos.append("Link de afiliado")
+    y = 1100
+    for c in creditos:
+        d.text((72, y), c, font=txt2(30), fill=SUAVE)
+        y += 44
+    numero(d, 4, total, SUAVE)
+    slides.append(s)
+
+    nome = f"promo-{slug(o['produto'])}-{o['loja']}-{int(o['preco']*100)}"
+    return salvar(slides, pasta, nome), creditos
+
+
+def carrossel_noticia(n, pasta):
+    """Carrossel 1080×1350 do destaque do dia: capa, resumo, fonte."""
+    rumor = bool(n.get("rumor"))
+    ac = ACENTO["rumor" if rumor else "noticia"]
+    sem = n["titulo"]
+    selo = (f"RUMOR · NÃO CONFIRMADO" if rumor else f"NOTÍCIA · {n['jogo'].upper()[:20]}")
+    slides = []
+    s = fundo_feed(acento=ac, semente=sem)
+    d = cabecalho(s, selo, ac, NOITE1 if not rumor else BRANCO)
+    d.text((72, 230), n["jogo"].upper()[:30], font=txt(34), fill=AMARELO)
+    destaque(d, 72, 300, 120, ac)
+    titulo_grande(d, (72, 340), n["titulo"], W - 144, 760, 130, 64)
+    rodape(d, 1, 3, "Arrasta pro lado »", ac)
+    slides.append(s)
+    slides.append(slide_texto(n["resumo"], 2, 3, ac, sem + "2", "RESUMO"))
+    s = fundo_feed(acento=ac, semente=sem + "3")
+    d = cabecalho(s, "FONTE", ac, NOITE1 if not rumor else BRANCO)
+    destaque(d, 72, 250, 120, ac)
+    escrever(d, (72, 290), n["fonte"], tit(76), BRANCO, W - 144, 1.05)
+    dominio = re.sub(r"^https?://(www\.)?", "", n["link"]).split("/")[0]
+    d.text((72, 640), dominio, font=txt(40), fill=SUAVE)
+    escrever(d, (72, 880), "Notícia resumida pelo Arcos. Link completo no nosso Telegram.", txt(42), AMARELO, W - 144)
+    rodape(d, 3, 3, None)
+    slides.append(s)
+    return salvar(slides, pasta, f"news-{slug(n['titulo'])}")
+
+
+def story_noticia(n, pasta):
+    """Story 1080×1920. Texto importante longe das bordas (250 px em cima, 340 embaixo)."""
+    SW, SH = 1080, 1920
+    rumor = bool(n.get("rumor"))
+    ac = ACENTO["rumor" if rumor else "noticia"]
+    s = fundo_feed(SW, SH, acento=ac, semente=n["titulo"])
+    d = ImageDraw.Draw(s)
+    logo(s, 72, 260, 1.0)
+    pilula(d, (72, 400), n["jogo"].upper()[:30], txt(32), AMARELO, NOITE1)
+    _selo_noticia(d, 72, 490, n)
+    f_t = caber(d, n["titulo"], "Fredoka-Bold.ttf", SW - 144, 520, 120, 64, 1.02)
+    y = escrever(d, (72, 620), n["titulo"], f_t, BRANCO, SW - 144, 1.02, stroke_width=5, stroke_fill=NOITE1)
+    f_r = caber(d, n["resumo"], "Nunito-ExtraBold.ttf", SW - 144, 1500 - y - 60, 48, 32, 1.3)
+    escrever(d, (72, y + 50), n["resumo"], f_r, "#E3E6F7", SW - 144, 1.3)
+    d.text((72, 1520), f"Fonte: {n['fonte']}"[:60], font=txt2(32), fill=AMARELO)
+    d.text((72, 1570), "Link da fonte no nosso Telegram", font=txt2(30), fill=SUAVE)
+    pasta.mkdir(parents=True, exist_ok=True)
+    caminho = pasta / f"news-{slug(n['titulo'])}.jpg"
+    s.save(caminho, "JPEG", quality=85)
+    return caminho
