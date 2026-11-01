@@ -21,7 +21,7 @@ jobs:
           print("| Produto | Loja | Resultado |\n|---|---|---|")
           for p in cfg["produtos"]:
               for o in p["ofertas"]:
-                  if o["loja"] not in lojas:
+                  if o["loja"] not in lojas or lojas[o["loja"]].get("coleta_automatica") is False:
                       continue
                   loja = lojas[o["loja"]]
                   termo = None
