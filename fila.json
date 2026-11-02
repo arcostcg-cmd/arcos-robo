@@ -1,0 +1,78 @@
+[
+ {
+  "produto": "Pokemon Tcg - Team Rocket Tin / Lata - Inglês Persian",
+  "jogo": "Pokémon",
+  "loja": "mercadolivre",
+  "loja_nome": "Mercado Livre",
+  "preco": 459.83,
+  "ref": 499.0,
+  "ref_fonte": "loja",
+  "url": "https://produto.mercadolivre.com.br/MLB-7761060986",
+  "link": "https://produto.mercadolivre.com.br/MLB-7761060986",
+  "imagem": "https://http2.mlstatic.com/D_NQ_NP_812362-MLA112325252536_062026-F.jpg",
+  "visto": "2026-11-02T11:45:27-03:00",
+  "descricao": "Lacrado",
+  "afiliado": false,
+  "cupom": null,
+  "preco_final": 459.83,
+  "confianca": 4,
+  "bandeira": "",
+  "unidades": null,
+  "unidade_nome": "unidades",
+  "unidade_singular": "unidade",
+  "reputacao": "",
+  "alerta_loja": "",
+  "frete_gratis": false,
+  "ainda_valendo": false,
+  "slides": [
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/promo-pokemon-tcg-team-rocket-tin-lata-ingl-s-persian-mercadolivre-45983-1.jpg",
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/promo-pokemon-tcg-team-rocket-tin-lata-ingl-s-persian-mercadolivre-45983-2.jpg",
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/promo-pokemon-tcg-team-rocket-tin-lata-ingl-s-persian-mercadolivre-45983-3.jpg",
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/promo-pokemon-tcg-team-rocket-tin-lata-ingl-s-persian-mercadolivre-45983-4.jpg"
+  ],
+  "creditos": [
+   "Imagem do produto: Mercado Livre"
+  ],
+  "destinos": [
+   "telegram"
+  ]
+ },
+ {
+  "produto": "Magic: The Gathering Marvel Super Heroes Play Booster",
+  "jogo": "Magic",
+  "loja": "mercadolivre",
+  "loja_nome": "Mercado Livre",
+  "preco": 1499.99,
+  "ref": 1598.98,
+  "ref_fonte": "loja",
+  "url": "https://produto.mercadolivre.com.br/MLB-5392508221",
+  "link": "https://produto.mercadolivre.com.br/MLB-5392508221",
+  "imagem": "https://http2.mlstatic.com/D_NQ_NP_975310-MLA119339850037_102026-F.jpg",
+  "visto": "2026-11-02T11:43:43-03:00",
+  "descricao": "Lacrado",
+  "afiliado": false,
+  "cupom": null,
+  "preco_final": 1499.99,
+  "confianca": 4,
+  "bandeira": "",
+  "unidades": null,
+  "unidade_nome": "unidades",
+  "unidade_singular": "unidade",
+  "reputacao": "",
+  "alerta_loja": "",
+  "frete_gratis": false,
+  "ainda_valendo": false,
+  "slides": [
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/promo-magic-the-gathering-marvel-super-heroes-play-boost-mercadolivre-149999-1.jpg",
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/promo-magic-the-gathering-marvel-super-heroes-play-boost-mercadolivre-149999-2.jpg",
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/promo-magic-the-gathering-marvel-super-heroes-play-boost-mercadolivre-149999-3.jpg",
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/promo-magic-the-gathering-marvel-super-heroes-play-boost-mercadolivre-149999-4.jpg"
+  ],
+  "creditos": [
+   "Imagem do produto: Mercado Livre"
+  ],
+  "destinos": [
+   "telegram"
+  ]
+ }
+]
