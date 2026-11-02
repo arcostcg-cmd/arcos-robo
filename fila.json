@@ -1,0 +1,78 @@
+[
+ {
+  "produto": "Funko Pop 1472 - Onami (one Piece)",
+  "jogo": "One Piece",
+  "loja": "mercadolivre",
+  "loja_nome": "Mercado Livre",
+  "preco": 142.49,
+  "ref": 149.99,
+  "ref_fonte": "loja",
+  "url": "https://produto.mercadolivre.com.br/MLB-3635806165",
+  "link": "https://produto.mercadolivre.com.br/MLB-3635806165",
+  "imagem": "https://http2.mlstatic.com/D_NQ_NP_739621-MLA99460166324_112025-F.jpg",
+  "visto": "2026-11-02T12:46:30-03:00",
+  "descricao": "Colecionável",
+  "afiliado": false,
+  "cupom": null,
+  "preco_final": 142.49,
+  "confianca": 4,
+  "bandeira": "",
+  "unidades": null,
+  "unidade_nome": "unidades",
+  "unidade_singular": "unidade",
+  "reputacao": "",
+  "alerta_loja": "",
+  "frete_gratis": false,
+  "ainda_valendo": false,
+  "slides": [
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/promo-funko-pop-1472-onami-one-piece-mercadolivre-14249-1.jpg",
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/promo-funko-pop-1472-onami-one-piece-mercadolivre-14249-2.jpg",
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/promo-funko-pop-1472-onami-one-piece-mercadolivre-14249-3.jpg",
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/promo-funko-pop-1472-onami-one-piece-mercadolivre-14249-4.jpg"
+  ],
+  "creditos": [
+   "Imagem do produto: Mercado Livre"
+  ],
+  "destinos": [
+   "telegram"
+  ]
+ },
+ {
+  "produto": "Caixa de Booster Megaevolução 5 - Escuridão Absoluta",
+  "jogo": "Pokémon",
+  "loja": "copag_ml",
+  "loja_nome": "Loja Oficial Pokémon (Mercado Livre)",
+  "preco": 379.9,
+  "ref": 449.98,
+  "ref_fonte": "historico",
+  "url": "https://produto.mercadolivre.com.br/MLB-7077055110",
+  "link": "https://produto.mercadolivre.com.br/MLB-7077055110",
+  "imagem": "https://http2.mlstatic.com/D_NQ_NP_888676-MLA113640309182_072026-F.jpg",
+  "visto": "2026-11-02T12:36:55-03:00",
+  "descricao": "Lacrada, nacional (PT-BR), 36 boosters",
+  "afiliado": false,
+  "cupom": null,
+  "preco_final": 379.9,
+  "confianca": 5,
+  "bandeira": "🇧🇷",
+  "unidades": 36,
+  "unidade_nome": "boosters",
+  "unidade_singular": "booster",
+  "reputacao": "Loja Oficial, MercadoLíder Platinum, +1 mi de vendas",
+  "alerta_loja": "",
+  "frete_gratis": false,
+  "ainda_valendo": true,
+  "slides": [
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/promo-caixa-de-booster-megaevolu-o-5-escurid-o-absoluta-copag_ml-37990-1.jpg",
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/promo-caixa-de-booster-megaevolu-o-5-escurid-o-absoluta-copag_ml-37990-2.jpg",
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/promo-caixa-de-booster-megaevolu-o-5-escurid-o-absoluta-copag_ml-37990-3.jpg",
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/promo-caixa-de-booster-megaevolu-o-5-escurid-o-absoluta-copag_ml-37990-4.jpg"
+  ],
+  "creditos": [
+   "Imagem do produto: Loja Oficial Pokémon (Mercado Livre)"
+  ],
+  "destinos": [
+   "telegram"
+  ]
+ }
+]
