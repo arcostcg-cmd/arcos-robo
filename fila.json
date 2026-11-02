@@ -1,0 +1,78 @@
+[
+ {
+  "produto": "Cartas Starter Deck One Piece Game St-31 Monkey D. Luffy Red One Piece Tcg Starter Deck Re",
+  "jogo": "One Piece",
+  "loja": "mercadolivre",
+  "loja_nome": "Mercado Livre",
+  "preco": 184.25,
+  "ref": 199.95,
+  "ref_fonte": "loja",
+  "url": "https://produto.mercadolivre.com.br/MLB-7502566746",
+  "link": "https://produto.mercadolivre.com.br/MLB-7502566746",
+  "imagem": "https://http2.mlstatic.com/D_NQ_NP_757063-MLA114711438380_082026-F.jpg",
+  "visto": "2026-11-01T23:35:01-03:00",
+  "descricao": "Lacrado",
+  "afiliado": false,
+  "cupom": null,
+  "preco_final": 184.25,
+  "confianca": 4,
+  "bandeira": "",
+  "unidades": null,
+  "unidade_nome": "unidades",
+  "unidade_singular": "unidade",
+  "reputacao": "",
+  "alerta_loja": "",
+  "frete_gratis": false,
+  "ainda_valendo": false,
+  "slides": [
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/promo-cartas-starter-deck-one-piece-game-st-31-monkey-d--mercadolivre-18425-1.jpg",
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/promo-cartas-starter-deck-one-piece-game-st-31-monkey-d--mercadolivre-18425-2.jpg",
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/promo-cartas-starter-deck-one-piece-game-st-31-monkey-d--mercadolivre-18425-3.jpg",
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/promo-cartas-starter-deck-one-piece-game-st-31-monkey-d--mercadolivre-18425-4.jpg"
+  ],
+  "creditos": [
+   "Imagem do produto: Mercado Livre"
+  ],
+  "destinos": [
+   "telegram"
+  ]
+ },
+ {
+  "produto": "Pokemon Tcg - Team Rocket Tin / Lata - Inglês Persian",
+  "jogo": "Pokémon",
+  "loja": "mercadolivre",
+  "loja_nome": "Mercado Livre",
+  "preco": 459.83,
+  "ref": 499.0,
+  "ref_fonte": "loja",
+  "url": "https://produto.mercadolivre.com.br/MLB-7761060986",
+  "link": "https://produto.mercadolivre.com.br/MLB-7761060986",
+  "imagem": "https://http2.mlstatic.com/D_NQ_NP_812362-MLA112325252536_062026-F.jpg",
+  "visto": "2026-11-01T23:37:53-03:00",
+  "descricao": "Lacrado",
+  "afiliado": false,
+  "cupom": null,
+  "preco_final": 459.83,
+  "confianca": 4,
+  "bandeira": "",
+  "unidades": null,
+  "unidade_nome": "unidades",
+  "unidade_singular": "unidade",
+  "reputacao": "",
+  "alerta_loja": "",
+  "frete_gratis": false,
+  "ainda_valendo": false,
+  "slides": [
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/promo-pokemon-tcg-team-rocket-tin-lata-ingl-s-persian-mercadolivre-45983-1.jpg",
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/promo-pokemon-tcg-team-rocket-tin-lata-ingl-s-persian-mercadolivre-45983-2.jpg",
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/promo-pokemon-tcg-team-rocket-tin-lata-ingl-s-persian-mercadolivre-45983-3.jpg",
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/promo-pokemon-tcg-team-rocket-tin-lata-ingl-s-persian-mercadolivre-45983-4.jpg"
+  ],
+  "creditos": [
+   "Imagem do produto: Mercado Livre"
+  ],
+  "destinos": [
+   "telegram"
+  ]
+ }
+]
