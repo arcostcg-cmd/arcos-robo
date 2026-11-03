@@ -1,0 +1,27 @@
+{
+ "item": {
+  "id": "yugioh-guinness",
+  "jogo": "Yu-Gi-Oh!",
+  "titulo": "Recorde mundial de vendas",
+  "gancho": "Yu-Gi-Oh! já foi o TCG mais vendido do mundo",
+  "texto": "Em 2009, o Guinness reconheceu Yu-Gi-Oh! como o jogo de cartas colecionáveis mais vendido do mundo, com mais de 22 bilhões de cartas. Em março de 2011, a Konami já falava em 25,2 bilhões desde 1999.",
+  "pergunta": "Qual é o seu deck favorito de Yu-Gi-Oh!?",
+  "fonte_nome": "Wikipédia (Yu-Gi-Oh! Trading Card Game)",
+  "fonte_url": "https://en.wikipedia.org/wiki/Yu-Gi-Oh!_Trading_Card_Game",
+  "verificado_em": "2026-10-31",
+  "busca_imagem": "Yu-Gi-Oh! Trading Card Game"
+ },
+ "slides": [
+  "/home/runner/work/arcos-robo/arcos-robo/imagens/cur-yugioh-guinness-1.jpg",
+  "/home/runner/work/arcos-robo/arcos-robo/imagens/cur-yugioh-guinness-2.jpg",
+  "/home/runner/work/arcos-robo/arcos-robo/imagens/cur-yugioh-guinness-3.jpg",
+  "/home/runner/work/arcos-robo/arcos-robo/imagens/cur-yugioh-guinness-4.jpg",
+  "/home/runner/work/arcos-robo/arcos-robo/imagens/cur-yugioh-guinness-5.jpg"
+ ],
+ "creditos": [
+  "Texto: Arcos TCG, com base em Wikipédia (Yu-Gi-Oh! Trading Card Game) (conferido em 31/10/2026)",
+  "Foto: Timothy Tsui · CC BY-SA 2.0 · Wikimedia Commons",
+  "Foto: Poniohk · CC BY-SA 4.0 · Wikimedia Commons",
+  "Foto: Stéphane Gallay from Laconnex, Switzerland · CC BY 2.0 · Wikimedia Commons"
+ ]
+}
