@@ -1,0 +1,27 @@
+{
+ "item": {
+  "id": "pikachu-illustrator-origem",
+  "jogo": "Pokémon",
+  "titulo": "A carta que nunca foi vendida em loja",
+  "gancho": "Essa carta nunca foi vendida em loja",
+  "texto": "O Pikachu Illustrator foi desenhado por Atsuko Nishida, creditada como criadora original do Pikachu. A carta nunca foi vendida: foi entregue apenas como prêmio de um concurso de ilustração em 1998.",
+  "pergunta": "Qual carta você nunca venderia?",
+  "fonte_nome": "Guinness World Records",
+  "fonte_url": "https://guinnessworldrecords.com/world-records/452634-most-expensive-pokemon-trading-card-sold-at-auction",
+  "verificado_em": "2026-10-31",
+  "busca_imagem": "Pokémon trading cards"
+ },
+ "slides": [
+  "/home/runner/work/arcos-robo/arcos-robo/imagens/cur-pikachu-illustrator-origem-1.jpg",
+  "/home/runner/work/arcos-robo/arcos-robo/imagens/cur-pikachu-illustrator-origem-2.jpg",
+  "/home/runner/work/arcos-robo/arcos-robo/imagens/cur-pikachu-illustrator-origem-3.jpg",
+  "/home/runner/work/arcos-robo/arcos-robo/imagens/cur-pikachu-illustrator-origem-4.jpg"
+ ],
+ "creditos": [
+  "Texto: Arcos TCG, com base em Guinness World Records (conferido em 31/10/2026)",
+  "Foto: OhanaUnitedTalk page · CC BY-SA 4.0 · Wikimedia Commons",
+  "Foto: One of Many Tims · CC BY 4.0 · Wikimedia Commons",
+  "Foto: Staff Sgt. Kenneth R. Muzny · Public domain · Wikimedia Commons",
+  "Foto: Carole Raddato from FRANKFURT, Germany · CC BY-SA 2.0 · Wikimedia Commons"
+ ]
+}
