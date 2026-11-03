@@ -1,0 +1,78 @@
+[
+ {
+  "produto": "Cartas One Piece Tcg Starter Deck Eustass Captain Kid St-36 Cartas One Piece Tcg Starter D",
+  "jogo": "One Piece",
+  "loja": "mercadolivre",
+  "loja_nome": "Mercado Livre",
+  "preco": 184.0,
+  "ref": 199.95,
+  "ref_fonte": "loja",
+  "url": "https://produto.mercadolivre.com.br/MLB-5126841749",
+  "link": "https://produto.mercadolivre.com.br/MLB-5126841749",
+  "imagem": "https://http2.mlstatic.com/D_NQ_NP_753526-MLA115967323789_082026-F.jpg",
+  "visto": "2026-11-03T07:52:17-03:00",
+  "descricao": "Lacrado",
+  "afiliado": false,
+  "cupom": null,
+  "preco_final": 184.0,
+  "confianca": 4,
+  "bandeira": "",
+  "unidades": null,
+  "unidade_nome": "unidades",
+  "unidade_singular": "unidade",
+  "reputacao": "",
+  "alerta_loja": "",
+  "frete_gratis": false,
+  "ainda_valendo": true,
+  "slides": [
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/promo-cartas-one-piece-tcg-starter-deck-eustass-captain--mercadolivre-18400-1.jpg",
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/promo-cartas-one-piece-tcg-starter-deck-eustass-captain--mercadolivre-18400-2.jpg",
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/promo-cartas-one-piece-tcg-starter-deck-eustass-captain--mercadolivre-18400-3.jpg",
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/promo-cartas-one-piece-tcg-starter-deck-eustass-captain--mercadolivre-18400-4.jpg"
+  ],
+  "creditos": [
+   "Imagem do produto: Mercado Livre"
+  ],
+  "destinos": [
+   "telegram"
+  ]
+ },
+ {
+  "produto": "Cartas Starter Deck One Piece Game St-31 Monkey D. Luffy Red One Piece Tcg Starter Deck Re",
+  "jogo": "One Piece",
+  "loja": "mercadolivre",
+  "loja_nome": "Mercado Livre",
+  "preco": 184.25,
+  "ref": 199.95,
+  "ref_fonte": "loja",
+  "url": "https://produto.mercadolivre.com.br/MLB-7502566746",
+  "link": "https://produto.mercadolivre.com.br/MLB-7502566746",
+  "imagem": "https://http2.mlstatic.com/D_NQ_NP_757063-MLA114711438380_082026-F.jpg",
+  "visto": "2026-11-03T07:51:47-03:00",
+  "descricao": "Lacrado",
+  "afiliado": false,
+  "cupom": null,
+  "preco_final": 184.25,
+  "confianca": 4,
+  "bandeira": "",
+  "unidades": null,
+  "unidade_nome": "unidades",
+  "unidade_singular": "unidade",
+  "reputacao": "",
+  "alerta_loja": "",
+  "frete_gratis": false,
+  "ainda_valendo": true,
+  "slides": [
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/promo-cartas-starter-deck-one-piece-game-st-31-monkey-d--mercadolivre-18425-1.jpg",
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/promo-cartas-starter-deck-one-piece-game-st-31-monkey-d--mercadolivre-18425-2.jpg",
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/promo-cartas-starter-deck-one-piece-game-st-31-monkey-d--mercadolivre-18425-3.jpg",
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/promo-cartas-starter-deck-one-piece-game-st-31-monkey-d--mercadolivre-18425-4.jpg"
+  ],
+  "creditos": [
+   "Imagem do produto: Mercado Livre"
+  ],
+  "destinos": [
+   "telegram"
+  ]
+ }
+]
