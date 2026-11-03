@@ -1,0 +1,78 @@
+[
+ {
+  "produto": "Blister Quádruplo Megaevolução 5 - Escuridão Absoluta",
+  "jogo": "Pokémon",
+  "loja": "mercadolivre",
+  "loja_nome": "Mercado Livre",
+  "preco": 41.48,
+  "ref": 55.99,
+  "ref_fonte": "historico",
+  "url": "https://produto.mercadolivre.com.br/MLB-5321027967",
+  "link": "https://produto.mercadolivre.com.br/MLB-5321027967",
+  "imagem": "https://http2.mlstatic.com/D_NQ_NP_917866-MLA114013158499_072026-F.jpg",
+  "visto": "2026-11-03T18:15:53-03:00",
+  "descricao": "Lacrado, nacional (PT-BR), 4 boosters",
+  "afiliado": false,
+  "cupom": null,
+  "preco_final": 41.48,
+  "confianca": 4,
+  "bandeira": "🇧🇷",
+  "unidades": 4,
+  "unidade_nome": "boosters",
+  "unidade_singular": "booster",
+  "reputacao": "",
+  "alerta_loja": "",
+  "frete_gratis": false,
+  "ainda_valendo": true,
+  "slides": [
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/promo-blister-qu-druplo-megaevolu-o-5-escurid-o-absoluta-mercadolivre-4148-1.jpg",
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/promo-blister-qu-druplo-megaevolu-o-5-escurid-o-absoluta-mercadolivre-4148-2.jpg",
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/promo-blister-qu-druplo-megaevolu-o-5-escurid-o-absoluta-mercadolivre-4148-3.jpg",
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/promo-blister-qu-druplo-megaevolu-o-5-escurid-o-absoluta-mercadolivre-4148-4.jpg"
+  ],
+  "creditos": [
+   "Imagem do produto: Mercado Livre"
+  ],
+  "destinos": [
+   "telegram"
+  ]
+ },
+ {
+  "produto": "Model Kit Jigglypuff - Pokemon - Bandai",
+  "jogo": "Pokémon",
+  "loja": "mercadolivre",
+  "loja_nome": "Mercado Livre",
+  "preco": 148.0,
+  "ref": 189.99,
+  "ref_fonte": "loja",
+  "url": "https://produto.mercadolivre.com.br/MLB-7652600718",
+  "link": "https://produto.mercadolivre.com.br/MLB-7652600718",
+  "imagem": "https://http2.mlstatic.com/D_NQ_NP_942213-MLA96213331326_102025-F.jpg",
+  "visto": "2026-11-03T18:26:03-03:00",
+  "descricao": "Colecionável",
+  "afiliado": false,
+  "cupom": null,
+  "preco_final": 148.0,
+  "confianca": 4,
+  "bandeira": "",
+  "unidades": null,
+  "unidade_nome": "unidades",
+  "unidade_singular": "unidade",
+  "reputacao": "",
+  "alerta_loja": "",
+  "frete_gratis": false,
+  "ainda_valendo": true,
+  "slides": [
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/promo-model-kit-jigglypuff-pokemon-bandai-mercadolivre-14800-1.jpg",
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/promo-model-kit-jigglypuff-pokemon-bandai-mercadolivre-14800-2.jpg",
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/promo-model-kit-jigglypuff-pokemon-bandai-mercadolivre-14800-3.jpg",
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/promo-model-kit-jigglypuff-pokemon-bandai-mercadolivre-14800-4.jpg"
+  ],
+  "creditos": [
+   "Imagem do produto: Mercado Livre"
+  ],
+  "destinos": [
+   "telegram"
+  ]
+ }
+]
