@@ -1,0 +1,18 @@
+[
+ {
+  "titulo": "Rumor: Jogadores encontram carta não anunciada de Star Trek",
+  "resumo": "Jogadores descobriram uma carta de Tribble não anunciada para Magic: The Gathering. A descoberta ocorre antes do lançamento oficial e dos eventos de pré-lançamento.",
+  "jogo": "Magic",
+  "fonte": "MTG Rocks",
+  "link": "https://mtgrocks.com/unannounced-mtg-star-trek-tribble-cards/",
+  "rumor": true,
+  "data": "2026-11-03T16:58:48+00:00",
+  "formato": "furo_rumor",
+  "story": [
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/news-rumor-jogadores-encontram-carta-n-o-anunciada-de-s.jpg"
+  ],
+  "slides": [
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/news-rumor-jogadores-encontram-carta-n-o-anunciada-de-s.jpg"
+  ]
+ }
+]
