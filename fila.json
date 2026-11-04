@@ -1,0 +1,78 @@
+[
+ {
+  "produto": "Yu-gi-oh! Booster Pack Première Ouro Gold Infinito Cards",
+  "jogo": "Yu-Gi-Oh!",
+  "loja": "mercadolivre",
+  "loja_nome": "Mercado Livre",
+  "preco": 211.5,
+  "ref": 229.9,
+  "ref_fonte": "loja",
+  "url": "https://produto.mercadolivre.com.br/MLB-5865381654",
+  "link": "https://produto.mercadolivre.com.br/MLB-5865381654",
+  "imagem": "https://http2.mlstatic.com/D_NQ_NP_908328-MLA96499609277_102025-F.jpg",
+  "visto": "2026-11-04T00:26:58-03:00",
+  "descricao": "Lacrado",
+  "afiliado": false,
+  "cupom": null,
+  "preco_final": 211.5,
+  "confianca": 4,
+  "bandeira": "",
+  "unidades": null,
+  "unidade_nome": "unidades",
+  "unidade_singular": "unidade",
+  "reputacao": "",
+  "alerta_loja": "",
+  "frete_gratis": false,
+  "ainda_valendo": true,
+  "slides": [
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/promo-yu-gi-oh-booster-pack-premi-re-ouro-gold-infinito--mercadolivre-21150-1.jpg",
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/promo-yu-gi-oh-booster-pack-premi-re-ouro-gold-infinito--mercadolivre-21150-2.jpg",
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/promo-yu-gi-oh-booster-pack-premi-re-ouro-gold-infinito--mercadolivre-21150-3.jpg",
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/promo-yu-gi-oh-booster-pack-premi-re-ouro-gold-infinito--mercadolivre-21150-4.jpg"
+  ],
+  "creditos": [
+   "Imagem do produto: Mercado Livre"
+  ],
+  "destinos": [
+   "telegram"
+  ]
+ },
+ {
+  "produto": "Magic The Gathering Starter Kit Inicial 2023 Portugues",
+  "jogo": "Magic",
+  "loja": "mercadolivre",
+  "loja_nome": "Mercado Livre",
+  "preco": 298.08,
+  "ref": 324.0,
+  "ref_fonte": "loja",
+  "url": "https://produto.mercadolivre.com.br/MLB-7143947634",
+  "link": "https://produto.mercadolivre.com.br/MLB-7143947634",
+  "imagem": "https://http2.mlstatic.com/D_NQ_NP_742185-MLA99958246617_112025-F.jpg",
+  "visto": "2026-11-04T00:29:16-03:00",
+  "descricao": "Lacrado",
+  "afiliado": false,
+  "cupom": null,
+  "preco_final": 298.08,
+  "confianca": 4,
+  "bandeira": "",
+  "unidades": null,
+  "unidade_nome": "unidades",
+  "unidade_singular": "unidade",
+  "reputacao": "",
+  "alerta_loja": "",
+  "frete_gratis": false,
+  "ainda_valendo": true,
+  "slides": [
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/promo-magic-the-gathering-starter-kit-inicial-2023-portu-mercadolivre-29808-1.jpg",
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/promo-magic-the-gathering-starter-kit-inicial-2023-portu-mercadolivre-29808-2.jpg",
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/promo-magic-the-gathering-starter-kit-inicial-2023-portu-mercadolivre-29808-3.jpg",
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/promo-magic-the-gathering-starter-kit-inicial-2023-portu-mercadolivre-29808-4.jpg"
+  ],
+  "creditos": [
+   "Imagem do produto: Mercado Livre"
+  ],
+  "destinos": [
+   "telegram"
+  ]
+ }
+]
