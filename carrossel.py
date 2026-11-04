@@ -817,3 +817,123 @@ def carrossel_enquete(e, imagens_cartas, pasta, prefixo):
     numero(d, total, total, SUAVE)
     slides.append(s)
     return salvar(slides, pasta, prefixo)
+
+
+# ------------------------------------------------------------ estilo "revista" (linha dos posts salvos)
+# Imagem ocupando o slide todo, título ENORME condensado em caixa alta, centralizado,
+# com 1 ou 2 palavras em destaque (amarelo), e quase nada além disso.
+
+def cond(t): return _f("Anton-Regular.ttf", t)
+
+
+def _fundo_carta(carta, semente):
+    """A própria carta oficial ampliada e desfocada cobrindo o slide (sem perder a cor dela)."""
+    from PIL import ImageFilter, ImageEnhance
+    b = ImageOps.fit(carta.convert("RGB"), (W, H), Image.LANCZOS, centering=(0.5, 0.35))
+    b = b.filter(ImageFilter.GaussianBlur(34))
+    b = ImageEnhance.Color(b).enhance(1.35)
+    b = ImageEnhance.Brightness(b).enhance(0.62)
+    veu = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+    dv = ImageDraw.Draw(veu)
+    ini = int(H * 0.50)
+    for y in range(ini, H):
+        dv.line([(0, y), (W, y)], fill=(6, 7, 16, int(250 * ((y - ini) / (H - ini)) ** 0.7)))
+    return Image.alpha_composite(b.convert("RGBA"), veu).convert("RGB")
+
+
+def _titulo_revista(d, texto, topo, destaques=(), maior=118, menor=70, larg=W - 120, alt=430, cor_dest=AMARELO):
+    """Título centralizado, caixa alta, palavras em `destaques` pintadas na cor de destaque."""
+    texto = texto.upper()
+    dest = {x.upper() for x in destaques}
+    tam = maior
+    while tam > menor:
+        f = cond(tam)
+        linhas = quebrar(d, texto, f, larg)
+        if len(linhas) * tam * 1.04 <= alt:
+            break
+        tam -= 4
+    f = cond(tam)
+    linhas = quebrar(d, texto, f, larg)
+    y = topo
+    esp = d.textlength(" ", font=f)
+    for ln in linhas:
+        pal = ln.split()
+        wtot = sum(d.textlength(p, font=f) for p in pal) + esp * (len(pal) - 1)
+        x = (W - wtot) / 2
+        for p in pal:
+            limpo = re.sub(r"[^\wÀ-ÿ]", "", p)
+            cor = cor_dest if limpo in dest else BRANCO
+            d.text((x + 4, y + 5), p, font=f, fill=(0, 0, 0))
+            d.text((x, y), p, font=f, fill=cor)
+            x += d.textlength(p, font=f) + esp
+        y += int(tam * 1.04)
+    return y
+
+
+def _faixa_marca(d, y, texto="MONTOP TCG"):
+    """—— MONTOP TCG —— : assinatura discreta acima do título."""
+    f = txt(24)
+    w = d.textlength(texto, font=f)
+    cx = W / 2
+    d.text((cx - w / 2, y - 14), texto, font=f, fill=SUAVE)
+    d.line([(90, y), (cx - w / 2 - 24, y)], fill=SUAVE, width=2)
+    d.line([(cx + w / 2 + 24, y), (W - 90, y)], fill=SUAVE, width=2)
+
+
+def carrossel_revista(c, imagens_cartas, pasta, prefixo):
+    """c = {credito_imagem, slides:[{carta: i, titulo, destaques:[...], sub?}], fontes:[...]}"""
+    from PIL import ImageFilter
+    sl = c["slides"]
+    total = len(sl) + 1
+    cred = f"Imagens: {c.get('credito_imagem', 'The Pokémon Company').split(' (')[0]}"
+    out = []
+    for k, s_ in enumerate(sl):
+        carta = imagens_cartas[s_["carta"]]
+        s = _fundo_carta(carta, f"{prefixo}{k}")
+        alt_c = 700 if k == 0 else 640
+        c_ = ImageOps.contain(_carta_nitida(carta, alt_c), (int(alt_c * 0.72), alt_c), Image.LANCZOS).convert("RGBA")
+        x, y = (W - c_.width) // 2, 70 if k == 0 else 90
+        sombra = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+        ImageDraw.Draw(sombra).rounded_rectangle([x + 10, y + 26, x + c_.width + 10, y + c_.height + 26], radius=26,
+                                                 fill=(0, 0, 0, 170))
+        s = Image.alpha_composite(s.convert("RGBA"), sombra.filter(ImageFilter.GaussianBlur(22))).convert("RGB")
+        m = Image.new("L", c_.size, 0)
+        ImageDraw.Draw(m).rounded_rectangle([0, 0, c_.width - 1, c_.height - 1], radius=18, fill=255)
+        s.paste(c_.convert("RGB"), (x, y), m)
+        d = ImageDraw.Draw(s)
+        topo = y + c_.height + 70
+        _faixa_marca(d, topo)
+        fim = _titulo_revista(d, s_["titulo"], topo + 34, s_.get("destaques", ()),
+                              maior=120 if k == 0 else 96, menor=60, alt=H - topo - (200 if s_.get("sub") else 150))
+        if s_.get("sub"):
+            fs = txt(32)
+            yy = fim + 34
+            for ln in quebrar(d, s_["sub"], fs, W - 180):
+                d.text(((W - d.textlength(ln, font=fs)) / 2, yy), ln, font=fs, fill=SUAVE)
+                yy += 40
+        rod = "DESLIZE PARA MAIS  >>>" if k == 0 else f"{k + 1}/{total}"
+        f = txt(24)
+        d.text(((W - d.textlength(rod, font=f)) / 2, H - 70), rod, font=f, fill=BRANCO if k == 0 else SUAVE)
+        d.text((40, H - 40), cred, font=txt2(18), fill=SUAVE)
+        out.append(s)
+
+    # último: pergunta + fontes, sobre a primeira carta desfocada
+    s = _fundo_carta(imagens_cartas[sl[0]["carta"]], f"{prefixo}f")
+    d = ImageDraw.Draw(s)
+    logo(s, (W - 300) // 2, 300, 1.1)
+    _faixa_marca(d, 520, "E VOCÊ?")
+    fim = _titulo_revista(d, c.get("pergunta", "Você sabia disso?"), 570, c.get("destaques_pergunta", ()),
+                          maior=96, menor=60, alt=380)
+    fs = txt(34)
+    yy = fim + 50
+    for ln in quebrar(d, "Comenta aqui embaixo e salva pra mostrar pro amigo do TCG.", fs, W - 180):
+        d.text(((W - d.textlength(ln, font=fs)) / 2, yy), ln, font=fs, fill=BRANCO)
+        yy += 44
+    y = H - 60 - 30 * len(c.get("fontes", []))
+    d.text((90, y - 36), "Fontes:", font=txt(24), fill=SUAVE)
+    for fnt in c.get("fontes", []):
+        d.text((90, y), fnt[:80], font=txt2(22), fill=SUAVE)
+        y += 30
+    d.text((90, H - 50), cred, font=txt2(22), fill=SUAVE)
+    out.append(s)
+    return salvar(out, pasta, prefixo)

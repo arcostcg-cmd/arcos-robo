@@ -1,0 +1,17 @@
+id: curiosidade-mega-ex-3-premios
+quando: "2026-11-05T13:00"
+jogo: Pokémon
+credito_imagem: "The Pokémon Company (pokemon.com/br)"
+imagem_base: "https://assets.pokemon.com/static-assets/content-assets/cms2-pt-br/img/cards/web/ME01/ME01_PT-BR_{n}.png"
+cartas: [179, 178, 177, 180, 188]
+pergunta: "Qual Mega você mais teme do outro lado da mesa?"
+destaques_pergunta: [TEME]
+fontes:
+  - "Texto das cartas (Regra de Megaevolução ex) · pokemon.com/br"
+  - "Bulbapedia: Mega Evolution (TCG) · bulbagarden.net"
+slides:
+  - {carta: 0, titulo: "Derrubar um Mega ex vale metade da partida.", destaques: [METADE]}
+  - {carta: 1, titulo: "Cada jogador começa com 6 cartas de Prêmio.", destaques: ["6"], sub: "Quem pega todas primeiro, vence."}
+  - {carta: 2, titulo: "Pokémon comum: 1 Prêmio. Pokémon ex: 2. Mega ex: 3.", destaques: ["3"], sub: "Está escrito na própria carta, na Regra de Megaevolução ex."}
+  - {carta: 3, titulo: "Ou seja: 2 Mega ex nocauteados e acabou o jogo.", destaques: [ACABOU]}
+  - {carta: 4, titulo: "As Megas estrearam no TCG em 2014 e voltaram em 2025.", destaques: ["2014", "2025"], sub: "A coleção Megaevolução chegou às lojas em 26/09/2025."}
