@@ -597,7 +597,7 @@ def carrossel_noticia(n, pasta, fotos=None):
     escrever(d, (72, 860), "Notícia resumida pela equipe, com a fonte citada na legenda.", txt(42), AMARELO, W - 144)
     yy = 1060
     for f in fotos[:2]:
-        yy = escrever(d, (72, yy), f["credito"], txt2(24), SUAVE, W - 144) + 4
+        yy = escrever(d, (72, yy), f["credito"].replace("Foto:", "Foto ilustrativa:"), txt2(24), SUAVE, W - 144) + 4
     rodape(d, 3, 3, None)
     slides.append(s)
     return salvar(slides, pasta, f"news-{slug(n['titulo'])}")
@@ -630,7 +630,7 @@ def story_noticia(n, pasta, foto=None):
     escrever(d, (72, y + 30), n["resumo"], f_r, "#E3E6F7", SW - 144, 1.3)
     d.text((72, 1520), f"Fonte: {n['fonte']}"[:60], font=txt2(32), fill=AMARELO)
     if foto:
-        escrever(d, (72, 1570), foto["credito"], txt2(24), SUAVE, SW - 144)
+        escrever(d, (72, 1570), foto["credito"].replace("Foto:", "Foto ilustrativa:"), txt2(24), SUAVE, SW - 144)
     pasta.mkdir(parents=True, exist_ok=True)
     caminho = pasta / f"news-{slug(n['titulo'])}.jpg"
     s.save(caminho, "JPEG", quality=85)

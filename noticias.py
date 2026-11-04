@@ -466,7 +466,7 @@ def preparar(cfg, con):
             termos = curiosidades.BUSCAS_JOGO.get(noticia["jogo"], []) + curiosidades.GERAIS
             fotos = imagens.buscar_commons_varias(termos, 2) if n.get("fotos_commons") else []
             if fotos:
-                noticia["credito_imagem"] = fotos[0]["credito"].replace("Foto: ", "")
+                noticia["credito_imagem"] = "foto ilustrativa, " + fotos[0]["credito"].replace("Foto: ", "")
             story = [] if formato == "post" else [str(carrossel.story_noticia(
                 noticia, BASE / "imagens", fotos[0] if fotos else None))]
             feed = [str(x) for x in carrossel.carrossel_noticia(noticia, BASE / "imagens", fotos)] if no_feed else []
