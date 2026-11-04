@@ -15,7 +15,7 @@ pausa_entre_paginas_seg: 5
 telegram:
   so_promocoes: true          # decisão do Marcos (04/11): no Telegram só promoções; notícias, curiosidades e Top 10 vão para o Instagram
   ativo: true
-  canal: "@montoptcg"          # o bot precisa ser administrador do canal
+  canal: "-1004467534303"     # ID numérico do canal (não muda quando o @ muda); o bot precisa ser administrador
   admin_chat: ""              # seu ID pessoal: recebe alertas de falha, cupons e radar
 
 instagram:
