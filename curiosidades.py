@@ -206,7 +206,7 @@ def main():
     dados = json.loads(PREPARADA.read_text(encoding="utf-8"))
     c = dados["item"]
     ok = False
-    if cfg["telegram"].get("ativo"):
+    if cfg["telegram"].get("ativo") and not cfg["telegram"].get("so_promocoes"):  # Telegram = só promoções
         try:
             publicar.telegram_album(cfg, dados["slides"], texto_post(dados, cfg, "telegram"))
             ok = True

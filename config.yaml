@@ -9,10 +9,11 @@ banco_curiosidades: curiosidades.db
 banco_noticias: noticias.db
 # Pokémon e One Piece em destaque (notícias ganham vantagem de 6 h na fila; curiosidades
 # seguem o rodízio Pokémon, One Piece, outro jogo). Os outros jogos nunca ficam de fora.
-destaque_jogos: {"Pokémon": 6, "One Piece": 6}       # um banco por módulo: os agendamentos não brigam
+destaque_jogos: {"Pokémon": 18, "One Piece": 12}       # um banco por módulo: os agendamentos não brigam
 pausa_entre_paginas_seg: 5
 
 telegram:
+  so_promocoes: true          # decisão do Marcos (04/11): no Telegram só promoções; notícias, curiosidades e Top 10 vão para o Instagram
   ativo: true
   canal: "@arcostcg"          # o bot precisa ser administrador do canal
   admin_chat: ""              # seu ID pessoal: recebe alertas de falha, cupons e radar
@@ -1267,6 +1268,7 @@ noticias:
   max_stories_dia: 5
   max_posts_dia: 1           # o destaque do dia vira carrossel (nunca um rumor)
   instagram_feed: false      # notícias vão para os stories; o feed fica com os 3 posts planejados
+  fotos_commons: true        # toda notícia sai com foto livre do Commons (pessoas, eventos, cartas)
   janela_horas: 24          # roda a cada 10 min, 24h; pega o furo assim que sai
   # Furo: notícia CONFIRMADA e importante, de fonte oficial ou imprensa, publicada há
   # até 90 minutos. Sai em story E no feed, fora do limite diário, sem destaque de "furo".
@@ -1312,6 +1314,11 @@ noticias:
     # o Reddit bloqueia os servidores do GitHub (429) e PokéBeach/blogs davam poucos itens.
     - {nome: "Google Notícias: Pokémon TCG", url: "https://news.google.com/rss/search?q=%22Pok%C3%A9mon+TCG%22+OR+%22Pok%C3%A9mon+Estampas+Ilustradas%22&hl=pt-BR&gl=BR&ceid=BR:pt-419", tipo: imprensa, jogo: Pokémon, idioma: pt}
     - {nome: "Google Notícias: Pokémon TCG (EN)", url: "https://news.google.com/rss/search?q=%22Pokemon+TCG%22+when:2d&hl=en-US&gl=US&ceid=US:en", tipo: imprensa, jogo: Pokémon, idioma: en}
+    - {nome: "Google Notícias: PokéBeach", url: "https://news.google.com/rss/search?q=site:pokebeach.com+when:3d&hl=en-US&gl=US&ceid=US:en", tipo: imprensa, jogo: Pokémon, idioma: en}
+    - {nome: "Google Notícias: PokeGuardian", url: "https://news.google.com/rss/search?q=site:pokeguardian.com+when:3d&hl=en-US&gl=US&ceid=US:en", tipo: imprensa, jogo: Pokémon, idioma: en}
+    - {nome: "Google Notícias: Pokémon TCG Japão", url: "https://news.google.com/rss/search?q=%22Pokemon+TCG%22+Japan+new+set+OR+reveal+when:3d&hl=en-US&gl=US&ceid=US:en", tipo: imprensa, jogo: Pokémon, idioma: en}
+    - {nome: "Google Notícias: ICv2 Pokémon", url: "https://news.google.com/rss/search?q=site:icv2.com+pokemon+when:5d&hl=en-US&gl=US&ceid=US:en", tipo: imprensa, jogo: Pokémon, idioma: en}
+    - {nome: "Google Notícias: One Piece TCG (PT)", url: "https://news.google.com/rss/search?q=%22One+Piece+Card+Game%22&hl=pt-BR&gl=BR&ceid=BR:pt-419", tipo: imprensa, jogo: One Piece, idioma: pt}
     - {nome: "Google Notícias: One Piece Card Game", url: "https://news.google.com/rss/search?q=%22One+Piece+Card+Game%22+when:3d&hl=en-US&gl=US&ceid=US:en", tipo: imprensa, jogo: One Piece, idioma: en}
     - {nome: "Google Notícias: Magic", url: "https://news.google.com/rss/search?q=%22Magic:+The+Gathering%22+when:2d&hl=en-US&gl=US&ceid=US:en", tipo: imprensa, jogo: Magic, idioma: en}
     - {nome: "Google Notícias: Yu-Gi-Oh!", url: "https://news.google.com/rss/search?q=%22Yu-Gi-Oh%22+card+when:3d&hl=en-US&gl=US&ceid=US:en", tipo: imprensa, jogo: Yu-Gi-Oh!, idioma: en}
@@ -1326,7 +1333,7 @@ noticias:
     - {nome: "Reddit r/PokeLeaks", url: "https://www.reddit.com/r/PokeLeaks/.rss", tipo: forum, jogo: Pokémon, intervalo_minutos: 30}
     # - {nome: "PokeGuardian", url: "https://www.pokeguardian.com/feed", tipo: blog, jogo: Pokémon}   # 404 em 01/11/2026
     - {nome: "MTG Rocks", url: "https://mtgrocks.com/feed/", tipo: blog, jogo: Magic}
-    - {nome: "Draftsim", url: "https://draftsim.com/feed/", tipo: blog, jogo: Magic}
+    # - {nome: "Draftsim", url: "https://draftsim.com/feed/", tipo: blog, jogo: Magic}   # 04/11: guias demais, pouco furo
     # Fontes OFICIAIS (pesam mais, saem sem selo de rumor e PODEM usar a imagem real da
     # carta, com crédito, montada na arte do Arcos). Rumor e vazamento nunca levam imagem.
     # Os sites oficiais testados em 01/11/2026 não têm RSS (404 / formato inválido).

@@ -460,8 +460,16 @@ def preparar(cfg, con):
                     carta, noticia["titulo"], noticia["jogo"], credito, semente=chave), "capa", chave)
                 feed = [str(capa)] + [str(x) for x in carrossel.carrossel_noticia(noticia, BASE / "imagens")][1:]
         else:
-            story = [] if formato == "post" else [str(carrossel.story_noticia(noticia, BASE / "imagens"))]
-            feed = [str(x) for x in carrossel.carrossel_noticia(noticia, BASE / "imagens")] if no_feed else []
+            # imagem, imagem, imagem: fotos livres do Commons (pessoas, eventos, cartas do jogo)
+            import curiosidades
+            import imagens
+            termos = curiosidades.BUSCAS_JOGO.get(noticia["jogo"], []) + curiosidades.GERAIS
+            fotos = imagens.buscar_commons_varias(termos, 2) if n.get("fotos_commons") else []
+            if fotos:
+                noticia["credito_imagem"] = fotos[0]["credito"].replace("Foto: ", "")
+            story = [] if formato == "post" else [str(carrossel.story_noticia(
+                noticia, BASE / "imagens", fotos[0] if fotos else None))]
+            feed = [str(x) for x in carrossel.carrossel_noticia(noticia, BASE / "imagens", fotos)] if no_feed else []
         fila.append({**noticia, "formato": formato, "story": story, "slides": feed or story})
     FILA.write_text(json.dumps(fila, ensure_ascii=False, indent=1), encoding="utf-8")
     log.info("Notícias na fila: %d", len(fila))
@@ -534,7 +542,7 @@ def publicar_fila(cfg, con, simular):
             print(legenda(n, cfg, "telegram"))
             continue
         ok = False
-        if cfg["telegram"].get("ativo"):
+        if cfg["telegram"].get("ativo") and not cfg["telegram"].get("so_promocoes"):  # Telegram = só promoções
             try:
                 if len(n["slides"]) > 1:
                     publicar.telegram_album(cfg, n["slides"], legenda(n, cfg, "telegram"))

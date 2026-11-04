@@ -570,49 +570,67 @@ def carrossel_promocao(o, foto, pasta):
     return salvar(slides, pasta, nome), creditos
 
 
-def carrossel_noticia(n, pasta):
-    """Carrossel 1080×1350 do destaque do dia: capa, resumo, fonte."""
+def carrossel_noticia(n, pasta, fotos=None):
+    """Carrossel 1080×1350: capa com foto (Commons livre) e título, resumo sobre outra foto, fonte."""
+    fotos = [f for f in (fotos or []) if f]
     rumor = bool(n.get("rumor"))
     ac = ACENTO["rumor" if rumor else "noticia"]
     sem = n["titulo"]
     selo = ("RUMOR · NÃO CONFIRMADO" if rumor else f"NOTÍCIA · {n['jogo'].upper()[:20]}")
     slides = []
-    s = fundo_feed(acento=ac, semente=sem)
+    s = foto_cheia(fotos[0]["imagem"] if fotos else None, ac, sem)
     d = cabecalho(s, selo, ac, NOITE1 if not rumor else BRANCO)
-    d.text((72, 230), n["jogo"].upper()[:30], font=txt(34), fill=AMARELO)
-    destaque(d, 72, 300, 120, ac)
-    titulo_grande(d, (72, 340), n["titulo"], W - 144, 760, 130, 64)
+    _texto_rodape(d, n["titulo"], ac, 104, 56)
     rodape(d, 1, 3, "Arrasta pro lado »", ac)
     slides.append(s)
-    slides.append(slide_texto(n["resumo"], 2, 3, ac, sem + "2", "RESUMO"))
+    s = foto_cheia(fotos[1 % len(fotos)]["imagem"] if fotos else None, ac, sem + "2", escuro_de=0.15)
+    d = cabecalho(s, "RESUMO", ac, NOITE1 if not rumor else BRANCO)
+    _texto_rodape(d, n["resumo"], ac, 64, 38)
+    rodape(d, 2, 3, "Continua »", ac)
+    slides.append(s)
     s = fundo_feed(acento=ac, semente=sem + "3")
     d = cabecalho(s, "FONTE", ac, NOITE1 if not rumor else BRANCO)
     destaque(d, 72, 250, 120, ac)
     escrever(d, (72, 290), n["fonte"], tit(76), BRANCO, W - 144, 1.05)
     dominio = re.sub(r"^https?://(www\.)?", "", n["link"]).split("/")[0]
     d.text((72, 640), dominio, font=txt(40), fill=SUAVE)
-    escrever(d, (72, 880), "Notícia resumida pelo Arcos. Link completo no nosso Telegram.", txt(42), AMARELO, W - 144)
+    escrever(d, (72, 860), "Notícia resumida pela equipe, com a fonte citada na legenda.", txt(42), AMARELO, W - 144)
+    yy = 1060
+    for f in fotos[:2]:
+        yy = escrever(d, (72, yy), f["credito"], txt2(24), SUAVE, W - 144) + 4
     rodape(d, 3, 3, None)
     slides.append(s)
     return salvar(slides, pasta, f"news-{slug(n['titulo'])}")
 
 
-def story_noticia(n, pasta):
-    """Story 1080×1920. Texto importante longe das bordas (250 px em cima, 340 embaixo)."""
+def story_noticia(n, pasta, foto=None):
+    """Story 1080×1920: foto no topo (Commons livre), título e resumo embaixo, longe das bordas."""
     SW, SH = 1080, 1920
     rumor = bool(n.get("rumor"))
     ac = ACENTO["rumor" if rumor else "noticia"]
     s = fundo_feed(SW, SH, acento=ac, semente=n["titulo"])
+    if foto:
+        topo = foto_cheia(foto["imagem"], ac, n["titulo"], escuro_de=0.55).resize((SW, 1350))
+        s.paste(topo.crop((0, 0, SW, 1000)), (0, 0))
+        veu = Image.new("RGBA", (SW, 420), (0, 0, 0, 0))
+        dv = ImageDraw.Draw(veu)
+        r, g, b = ImageColor.getrgb(NOITE1)
+        for y in range(420):
+            dv.line([(0, y), (SW, y)], fill=(r, g, b, int(255 * y / 420)))
+        s = s.convert("RGBA")
+        s.alpha_composite(veu, (0, 600))
+        s = s.convert("RGB")
     d = ImageDraw.Draw(s)
     logo(s, 72, 260, 1.0)
-    pilula(d, (72, 400), n["jogo"].upper()[:30], txt(32), AMARELO, NOITE1)
-    _selo_noticia(d, 72, 490, n)
-    f_t = caber(d, n["titulo"], "Fredoka-Bold.ttf", SW - 144, 520, 120, 64, 1.02)
-    y = escrever(d, (72, 620), n["titulo"], f_t, BRANCO, SW - 144, 1.02, stroke_width=5, stroke_fill=NOITE1)
-    f_r = caber(d, n["resumo"], "Nunito-ExtraBold.ttf", SW - 144, 1500 - y - 60, 48, 32, 1.3)
-    escrever(d, (72, y + 50), n["resumo"], f_r, "#E3E6F7", SW - 144, 1.3)
+    pilula(d, (72, 860), n["jogo"].upper()[:30], txt(32), AMARELO, NOITE1)
+    _selo_noticia(d, 72, 940, n)
+    f_t = caber(d, n["titulo"], "Fredoka-Bold.ttf", SW - 144, 300, 96, 56, 1.02)
+    y = escrever(d, (72, 1040), n["titulo"], f_t, BRANCO, SW - 144, 1.02, stroke_width=5, stroke_fill=NOITE1)
+    f_r = caber(d, n["resumo"], "Nunito-ExtraBold.ttf", SW - 144, 1500 - y - 40, 42, 28, 1.3)
+    escrever(d, (72, y + 30), n["resumo"], f_r, "#E3E6F7", SW - 144, 1.3)
     d.text((72, 1520), f"Fonte: {n['fonte']}"[:60], font=txt2(32), fill=AMARELO)
-    d.text((72, 1570), "Link da fonte no nosso Telegram", font=txt2(30), fill=SUAVE)
+    if foto:
+        escrever(d, (72, 1570), foto["credito"], txt2(24), SUAVE, SW - 144)
     pasta.mkdir(parents=True, exist_ok=True)
     caminho = pasta / f"news-{slug(n['titulo'])}.jpg"
     s.save(caminho, "JPEG", quality=85)
