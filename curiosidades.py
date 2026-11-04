@@ -3,7 +3,7 @@
 
 Roda pelo cron 3 vezes por dia. Cada execução escolhe UMA curiosidade inédita
 (alternando o jogo), procura uma foto de licença livre no Wikimedia Commons,
-monta o carrossel com a identidade do Arcos e posta com os créditos.
+monta o carrossel com a identidade do Montop e posta com os créditos.
 
 Uso:
   python curiosidades.py --simular              # gera os slides sem postar

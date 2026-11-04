@@ -242,7 +242,7 @@ def shopee_confiavel(n, loja):
     tipos = n.get("shopType") or []
     tipos = tipos if isinstance(tipos, list) else [tipos]
     if n.get("shopId") in set(loja.get("shopee_lojas") or []):
-        return True, "Loja aprovada pelo Arcos"
+        return True, "Loja aprovada pelo Montop"
     if 1 in tipos:
         return True, "Shopee Mall (loja oficial)"
     return False, "vendedor sem selo Shopee Mall"

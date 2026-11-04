@@ -5,14 +5,14 @@ O que faz:
   - abre a página pública https://t.me/s/<canal> (sem login, sem entrar em grupo);
   - abre páginas PÚBLICAS de promoção em sites (`radar.sites`), como uma página
     de ofertas aberta, e lê os trechos com preço em R$;
-  - extrai de cada post o preço em R$ e tenta casar com os produtos do Arcos;
+  - extrai de cada post o preço em R$ e tenta casar com os produtos do Montop;
   - se um concorrente anunciou um preço menor que o melhor preço confirmado do
-    Arcos, avisa o admin para o Caçador de Ofertas checar a loja;
+    Montop, avisa o admin para o Caçador de Ofertas checar a loja;
   - gera um relatório semanal: quem postou o quê, quando e por quanto.
 
 O que NÃO faz (de propósito):
   - não copia texto, imagem nem link de concorrente;
-  - não posta nada sozinho: o Arcos só posta depois de conferir na loja,
+  - não posta nada sozinho: o Montop só posta depois de conferir na loja,
     com o próprio link;
   - não lê grupos de WhatsApp nem Instagram (os termos de uso proíbem robôs).
 
@@ -100,7 +100,7 @@ def extrair_posts(pagina):
 
 
 def casar_produto(texto, produtos):
-    """Acha o produto do Arcos citado no post pelas palavras-chave (`palavras` no config)."""
+    """Acha o produto do Montop citado no post pelas palavras-chave (`palavras` no config)."""
     t = normalizar(texto)
     melhor, pontos = None, 0
     for p in produtos:
@@ -169,7 +169,7 @@ def varrer(cfg, con, simular=False):
     con.commit()
     log.info("Radar: %d posts novos, %d alertas", novos, len(alertas))
     if alertas:
-        msg = ("🛰️ Radar Arcos: preço menor ou link suspeito nos concorrentes. Confira se a loja é "
+        msg = ("🛰️ Radar Montop: preço menor ou link suspeito nos concorrentes. Confira se a loja é "
                "aprovada e o preço é real antes de postar com o NOSSO link:\n" + "\n".join(alertas[:15]))
         if simular:
             print(msg)
@@ -185,13 +185,13 @@ def relatorio(con, dias=7):
     for canal, total, com_produto in con.execute(
             "SELECT canal, COUNT(*), SUM(produto IS NOT NULL) FROM radar "
             "WHERE lido_em>=? GROUP BY canal ORDER BY 2 DESC", (desde,)):
-        print(f"• {canal}: {total} posts, {com_produto or 0} de produtos que o Arcos acompanha")
+        print(f"• {canal}: {total} posts, {com_produto or 0} de produtos que o Montop acompanha")
     print("\nMenores preços vistos nos concorrentes:")
     for prod, preco, canal in con.execute(
             "SELECT produto, MIN(preco), canal FROM radar WHERE produto IS NOT NULL "
             "AND preco IS NOT NULL AND lido_em>=? GROUP BY produto", (desde,)):
         nosso, _ = melhor_preco_arcos(con, prod)
-        comp = f" | Arcos: {reais(nosso)}" if nosso else ""
+        comp = f" | Montop: {reais(nosso)}" if nosso else ""
         print(f"• {prod}: {reais(preco)} ({canal}){comp}")
 
 

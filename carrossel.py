@@ -1,4 +1,4 @@
-"""Monta os carrosséis do Arcos TCG (1080×1350) com a identidade da marca.
+"""Monta os carrosséis do Montop TCG (1080×1350) com a identidade da marca.
 
 Cores e fontes seguem a identidade: azul-noite, amarelo ouro, rosa-coral,
 roxo e branco; Fredoka nos títulos e Nunito nos textos.
@@ -78,10 +78,10 @@ def logo(img, x, y, escala=1.0, sombra=AMARELO, cor_tcg=CORAL):
     d = ImageDraw.Draw(img)
     f, f2 = tit(int(64 * escala)), tit(int(32 * escala))
     sw, off = max(3, int(7 * escala)), max(3, int(5 * escala))
-    d.text((x + off, y + off), "ARCOS", font=f, fill=sombra,
+    d.text((x + off, y + off), "MONTOP", font=f, fill=sombra,
            stroke_width=sw, stroke_fill=sombra)
-    d.text((x, y), "ARCOS", font=f, fill=BRANCO, stroke_width=sw, stroke_fill=NAVY)
-    lx = x + d.textlength("ARCOS", font=f) + int(18 * escala)
+    d.text((x, y), "MONTOP", font=f, fill=BRANCO, stroke_width=sw, stroke_fill=NAVY)
+    lx = x + d.textlength("MONTOP", font=f) + int(18 * escala)
     d.text((lx, y + int(30 * escala)), "TCG", font=f2, fill=cor_tcg,
            stroke_width=max(2, int(5 * escala)), stroke_fill=NAVY)
 
@@ -167,7 +167,7 @@ def _selo_noticia(d, x, y, n):
 
 
 # ------------------------------------------------------------ arte em volta da carta real
-# A carta (imagem oficial) fica INTACTA no centro; só o fundo é arte generativa do Arcos.
+# A carta (imagem oficial) fica INTACTA no centro; só o fundo é arte generativa do Montop.
 # Sem personagens nem logos de terceiros no fundo: só formas, luz e cores da marca.
 
 ESTILOS_ARTE = ["explosao", "neon", "holo", "halftone"]
@@ -385,7 +385,7 @@ def titulo_grande(d, xy, texto, largura, altura, maior, menor, acento=AMARELO):
                     stroke_fill=NOITE1)
 
 
-def slide_texto(bloco, i, total, acento, semente, selo="ARCOS TCG"):
+def slide_texto(bloco, i, total, acento, semente, selo="MONTOP TCG"):
     s = fundo_feed(acento=acento, semente=semente)
     d = cabecalho(s, selo, acento)
     f_b = caber(d, bloco, "Nunito-ExtraBold.ttf", W - 144, 820, 84, 40, 1.25)
@@ -468,13 +468,13 @@ def carrossel_curiosidade(c, fotos, pasta, cartas=None):
     s = montar(total - 1) if len(visuais) > 1 else fundo_feed(acento=CORAL, semente=sem + "x", claro=True)
     if len(visuais) > 1:  # escurece mais para a chamada final
         s = Image.blend(s, fundo_feed(acento=CORAL, semente=sem + "x", claro=True), 0.55)
-    d = cabecalho(s, "ARCOS TCG", ac)
+    d = cabecalho(s, "MONTOP TCG", ac)
     y = titulo_grande(d, (72, 230), chamada_final(c), W - 144, 400, 108, 60)
     if c.get("pergunta"):
         y = escrever(d, (72, y + 50), "Comenta aí: " + c["pergunta"], txt(46), ac, W - 144, 1.2)
     pilula(d, (72, max(740, y + 60)), "Promoções verificadas no Telegram · link na bio", txt(30), BRANCO, NOITE1)
     data = datetime.fromisoformat(c["verificado_em"]).strftime("%d/%m/%Y")
-    creditos = [f"Texto: Arcos TCG, com base em {c['fonte_nome']} (conferido em {data})"]
+    creditos = [f"Texto: Montop TCG, com base em {c['fonte_nome']} (conferido em {data})"]
     creditos += [x["credito"] for x in cartas] + [x["credito"] for x in fotos]
     vistos, cred_unicos = set(), []
     for cr in creditos:
@@ -549,7 +549,7 @@ def carrossel_promocao(o, foto, pasta):
     slides.append(s)
 
     s = fundo_feed(acento=ac, semente=sem + "4", claro=True)
-    d = cabecalho(s, "ARCOS TCG", ac)
+    d = cabecalho(s, "MONTOP TCG", ac)
     titulo_grande(d, (72, 220), "O link está no nosso Telegram", W - 144, 380, 104, 60)
     pilula(d, (72, 620), "Link na bio »", tit(54), AMARELO, NOITE1)
     d.text((72, 760), "Salva e manda pro seu grupo", font=txt(42), fill=BRANCO)

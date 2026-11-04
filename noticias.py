@@ -12,7 +12,7 @@ Fluxo:
   5. Gera story (1080×1920) e, para o destaque do dia, um carrossel.
   6. Posta: stories no Instagram, fotos no canal do Telegram.
 
-Nunca copia o texto da notícia nem usa imagem da fonte: o design é do Arcos,
+Nunca copia o texto da notícia nem usa imagem da fonte: o design é do Montop,
 o texto é resumo próprio e a fonte vai com link em todo post.
 
 Uso:
@@ -209,7 +209,7 @@ def numeros_conferem(resumo_pt, original):
     return numeros(resumo_pt) <= numeros(original)
 
 
-PROMPT = """Você é o editor de notícias do Arcos TCG, canal brasileiro de informação para fãs de cartas colecionáveis.
+PROMPT = """Você é o editor de notícias do Montop TCG, canal brasileiro de informação para fãs de cartas colecionáveis.
 Escreva em português do Brasil correto, com acentos, com suas palavras, a partir APENAS do texto abaixo.
 Tom: jornalístico, claro e neutro, como uma agência de notícias. Sem exclamação, sem caixa alta,
 sem emoji e sem palavras como urgente, bomba, furo, exclusivo, imperdível, chocante.
@@ -282,7 +282,7 @@ def modelo_gemini(ia):
 
 
 def regras_equipe():
-    """Instruções fixas da equipe Arcos (resumo da skill), enviadas como instrução de sistema."""
+    """Instruções fixas da equipe Montop (resumo da skill), enviadas como instrução de sistema."""
     arq = Path(__file__).resolve().parent / "equipe" / "regras-ia.md"
     return arq.read_text(encoding="utf-8") if arq.exists() else ""
 

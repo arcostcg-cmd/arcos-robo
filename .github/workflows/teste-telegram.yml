@@ -19,13 +19,13 @@ jobs:
           import yaml, publicar
           cfg = yaml.safe_load(open("config.yaml", encoding="utf-8"))
           publicar.telegram_texto(cfg, (
-              "🔥 Bem-vindo ao Arcos TCG!\n\n"
+              "🔥 Bem-vindo ao Montop TCG!\n\n"
               "Aqui você encontra promoções de Pokémon, Magic, One Piece, Yu-Gi-Oh!, Lorcana e mais.\n\n"
               "✅ Só lojas verificadas\n"
               "💰 Preço conferido antes de postar\n"
               "🎟️ Cupons testados\n"
               "📰 Notícias e rumores (rumor sempre marcado)\n\n"
               "Ative as notificações 🔔 para não perder nenhuma oferta.\n"
-              "Instagram: instagram.com/arcostcg"))
+              "Instagram: instagram.com/montoptcg"))
           print("Mensagem enviada ao canal", cfg["telegram"]["canal"])
           PY

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Arcos TCG: comando central do robô, com os dois sistemas internos.
+"""Montop TCG: comando central do robô, com os dois sistemas internos.
 
 SISTEMA DE PROMOÇÕES (só promoções; dinheiro do canal)
   python arcos.py promocoes            coleta preços, aplica cupons, monta e posta os carrosséis

@@ -1,4 +1,4 @@
-# Arcos TCG: configuração do robô. Copie para config.yaml e preencha.
+# Montop TCG: configuração do robô. Copie para config.yaml e preencha.
 # Tokens NÃO ficam aqui: use variáveis de ambiente (ou segredos do GitHub)
 #   TELEGRAM_TOKEN   (do @BotFather)
 #   INSTAGRAM_TOKEN  (token de longa duração da Meta, vence em ~60 dias)
@@ -15,7 +15,7 @@ pausa_entre_paginas_seg: 5
 telegram:
   so_promocoes: true          # decisão do Marcos (04/11): no Telegram só promoções; notícias, curiosidades e Top 10 vão para o Instagram
   ativo: true
-  canal: "@arcostcg"          # o bot precisa ser administrador do canal
+  canal: "@montoptcg"          # o bot precisa ser administrador do canal
   admin_chat: ""              # seu ID pessoal: recebe alertas de falha, cupons e radar
 
 instagram:
@@ -1335,7 +1335,7 @@ noticias:
     - {nome: "MTG Rocks", url: "https://mtgrocks.com/feed/", tipo: blog, jogo: Magic}
     # - {nome: "Draftsim", url: "https://draftsim.com/feed/", tipo: blog, jogo: Magic}   # 04/11: guias demais, pouco furo
     # Fontes OFICIAIS (pesam mais, saem sem selo de rumor e PODEM usar a imagem real da
-    # carta, com crédito, montada na arte do Arcos). Rumor e vazamento nunca levam imagem.
+    # carta, com crédito, montada na arte do Montop). Rumor e vazamento nunca levam imagem.
     # Os sites oficiais testados em 01/11/2026 não têm RSS (404 / formato inválido).
     # Quando houver um feed oficial, cadastre assim (credito_imagem aparece na arte e na legenda):
     # - {nome: "Editora X (oficial)", url: "https://.../feed", tipo: oficial, jogo: Pokémon, idioma: en, credito_imagem: "Editora X"}

@@ -1,0 +1,27 @@
+name: Ferramenta - nome, descrição e foto do canal no Telegram
+on:
+  push:
+    paths: ["pedidos/renomear-telegram.txt"]
+  workflow_dispatch: {}
+jobs:
+  renomear:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: pip install requests pyyaml
+      - env:
+          TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
+        run: |
+          python - <<'PY'
+          import os, requests, yaml
+          cfg = yaml.safe_load(open("config.yaml", encoding="utf-8"))
+          api = f"https://api.telegram.org/bot{os.environ['TELEGRAM_TOKEN']}"
+          chat = cfg["telegram"]["canal"]
+          print("titulo:", requests.post(f"{api}/setChatTitle", data={"chat_id": chat, "title": "Montop TCG | Promoções de TCG"}).text)
+          desc = ("Promoções de cartas colecionáveis (Pokémon, One Piece, Magic, Yu-Gi-Oh! e mais) só de lojas verificadas, "
+                  "com cupons. Todos são bem-vindos! Notícias, Top 10 e curiosidades no Instagram @montoptcg. "
+                  "O Montop só mostra promoções: a compra é livre e espontânea.")
+          print("descricao:", requests.post(f"{api}/setChatDescription", data={"chat_id": chat, "description": desc}).text)
+          with open("assets/montop-logo-perfil-1080.png", "rb") as f:
+              print("foto:", requests.post(f"{api}/setChatPhoto", data={"chat_id": chat}, files={"photo": f}).text)
+          PY

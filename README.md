@@ -1,6 +1,6 @@
-# Arcos TCG · robô
+# Montop TCG · robô
 
-Robô do Arcos TCG com dois sistemas internos:
+Robô do Montop TCG com dois sistemas internos:
 
 - **Sistema de Promoções:** coleta preços só em lojas aprovadas, confere, aplica cupons testados, barra golpes e posta carrosséis no Telegram e no Instagram.
 - **Sistema de Notícias e Rumores:** lê fontes do mundo todo a cada 10 minutos, traduz com o Gemini e posta stories e posts (rumor sempre marcado como "Rumor").

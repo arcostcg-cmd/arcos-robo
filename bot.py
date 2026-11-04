@@ -29,7 +29,7 @@ import yaml
 import afiliados
 import marketplaces
 
-AVISO_COMPRA = ("ℹ️ O Arcos só mostra promoções. A compra é livre e espontânea, "
+AVISO_COMPRA = ("ℹ️ O Montop só mostra promoções. A compra é livre e espontânea, "
                 "por decisão de cada um: não forçamos nem incentivamos.")
 
 BASE = Path(__file__).resolve().parent
@@ -302,7 +302,7 @@ def registrar_falha(cfg, con, loja, erro):
     ontem = iso(agora() - timedelta(hours=24))
     if falhas >= 5 and (not alerta or alerta < ontem):
         import publicar
-        publicar.avisar_admin(cfg, f"⚠️ Robô Arcos: {falhas} falhas seguidas na loja "
+        publicar.avisar_admin(cfg, f"⚠️ Robô Montop: {falhas} falhas seguidas na loja "
                                    f"{loja['nome']}. Último erro: {erro[:150]}")
         con.execute("UPDATE saude SET ultimo_alerta=? WHERE loja=?",
                     (iso(agora()), loja["id"]))
@@ -541,7 +541,7 @@ def texto_telegram(o):
         if final < o["preco"]:
             linhas.append(f"💸 Com o cupom: <b>{reais(final)}</b>*")
     vend = f" ({o['reputacao']})" if o.get("reputacao") else ""
-    linhas.append(f"🏪 Loja: <b>{o['loja_nome']}</b>{vend} ✅ verificada pelo Arcos")
+    linhas.append(f"🏪 Loja: <b>{o['loja_nome']}</b>{vend} ✅ verificada pelo Montop")
     if o.get("frete_gratis"):
         linhas.append("🚚 Frete grátis")
     if o.get("bandeira") in ("🇯🇵", "🇨🇳", "🇺🇸", "🇰🇷"):
@@ -675,7 +675,7 @@ def aviso_diario_cupons(cfg, con):
                                         + cupons.cupons_aprovados(con)})
     if avisos:
         import publicar
-        publicar.avisar_admin(cfg, "🎟️ Cupons do Arcos:\n" + "\n".join(avisos))
+        publicar.avisar_admin(cfg, "🎟️ Cupons do Montop:\n" + "\n".join(avisos))
     con.execute("INSERT INTO saude VALUES ('__cupons__',0,?) ON CONFLICT(loja) DO UPDATE "
                 "SET ultimo_alerta=excluded.ultimo_alerta", (iso(agora()),))
     con.commit()

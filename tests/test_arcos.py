@@ -1,4 +1,4 @@
-"""Testes do robô Arcos TCG. Rode da pasta bot/:  python -m unittest discover tests"""
+"""Testes do robô Montop TCG. Rode da pasta bot/:  python -m unittest discover tests"""
 import sys
 import tempfile
 import unittest

@@ -25,7 +25,7 @@ def legendas(t):
           f"📊 {comum}\n📷 Imagens das cartas: {t.get('credito_imagem', 'The Pokémon Company (pokemon.com/br)')}\n\n"
           f"💬 {t.get('pergunta', 'Qual dessas você tem ou queria ter?')}\n🔖 Salva pra consultar depois\n\n"
           f"🔔 Promoções verificadas no nosso Telegram (link na bio).\n\n"
-          + t.get("hashtags", "#pokemontcg #pokemon #cartaspokemon #tcgbrasil #arcostcg"))
+          + t.get("hashtags", "#pokemontcg #pokemon #cartaspokemon #tcgbrasil #montoptcg"))
     tg = (f"🏆 {t['titulo'].upper()}\n\n{corpo}\n\n📊 {comum}\nFonte: {t['fonte_url']}\n"
           f"📷 Imagens: {t.get('credito_imagem', 'The Pokémon Company (pokemon.com/br)')}\n\n💬 {t.get('pergunta', 'Qual dessas você tem?')}")
     return tg, ig
