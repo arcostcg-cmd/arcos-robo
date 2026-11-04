@@ -730,3 +730,90 @@ def carrossel_top10(top, imagens_cartas, pasta, prefixo):
         numero(d, k, 10, SUAVE)
         slides.append(s)
     return salvar(slides, pasta, prefixo)
+
+
+# ------------------------------------------------------------ enquete "Escolha 1" (engajamento)
+
+def _carta_moldurada(s, carta, x, y, larg, alt, acento):
+    """Carta inteira numa caixa (larg×alt), borda branca e brilho; devolve a caixa real."""
+    from PIL import ImageFilter
+    c = ImageOps.contain(_carta_nitida(carta, alt), (larg, alt), Image.LANCZOS).convert("RGBA")
+    cx, cy = x + (larg - c.width) // 2, y + (alt - c.height) // 2
+    base = s.convert("RGBA")
+    br = Image.new("RGBA", s.size, (0, 0, 0, 0))
+    ImageDraw.Draw(br).rounded_rectangle([cx - 22, cy - 22, cx + c.width + 22, cy + c.height + 22],
+                                         radius=40, fill=(*ImageColor.getrgb(acento), 120))
+    base = Image.alpha_composite(base, br.filter(ImageFilter.GaussianBlur(26))).convert("RGB")
+    d = ImageDraw.Draw(base)
+    d.rounded_rectangle([cx - 9, cy - 9, cx + c.width + 9, cy + c.height + 9], radius=22, fill=BRANCO)
+    m = Image.new("L", c.size, 0)
+    ImageDraw.Draw(m).rounded_rectangle([0, 0, c.width - 1, c.height - 1], radius=16, fill=255)
+    base.paste(c.convert("RGB"), (cx, cy), m)
+    return base, (cx, cy, cx + c.width, cy + c.height)
+
+
+def _bolha_num(d, x, y, n, acento, r=46):
+    d.ellipse([x - r + 5, y - r + 7, x + r + 5, y + r + 7], fill=NOITE1)
+    d.ellipse([x - r, y - r, x + r, y + r], fill=acento, outline=NOITE1, width=5)
+    f = tit(int(r * 1.35))
+    t = str(n)
+    d.text((x - d.textlength(t, font=f) / 2, y - r * 0.82), t, font=f, fill=NOITE1)
+
+
+def carrossel_enquete(e, imagens_cartas, pasta, prefixo):
+    """e = {pergunta, jogo, credito_imagem, opcoes:[{nome, detalhe}]} com 4 opções.
+    Capa com as 4 cartas numeradas (2×2), um slide por opção e o slide final pedindo o voto."""
+    ac = AMARELO
+    ops = e["opcoes"]
+    n = len(ops)
+    total = n + 2
+    selo = f"ESCOLHA 1 · {e['jogo'].upper()}"
+    cred = f"Imagens: {e.get('credito_imagem', 'The Pokémon Company').split(' (')[0]}"
+    slides = []
+
+    def grade(s, y0, alt):
+        larg, gap = 400, 60
+        x0 = (W - (2 * larg + gap)) // 2
+        for k in range(n):
+            col, lin = k % 2, k // 2
+            x, y = x0 + col * (larg + gap), y0 + lin * (alt + 50)
+            s, (a, b, c_, _) = _carta_moldurada(s, imagens_cartas[k], x, y, larg, alt, [AMARELO, CORAL, "#9C86FF", AMARELO][k])
+            _bolha_num(ImageDraw.Draw(s), a + 6, b + 6, k + 1, [AMARELO, CORAL, "#9C86FF", AMARELO][k])
+        return s
+
+    # capa
+    s = fundo_feed(acento=ac, semente=f"{prefixo}0")
+    s = grade(s, 300, 400)
+    d = cabecalho(s, selo, ac)
+    titulo_grande(d, (72, 168), e["pergunta"], W - 144, 120, 76, 48)
+    d.text((72, H - 150), "Comenta o número!", font=tit(56), fill=AMARELO, stroke_width=4, stroke_fill=NOITE1)
+    rodape(d, 1, total, None, ac)
+    d.text((72, H - 64), cred, font=txt2(22), fill=SUAVE)
+    slides.append(s)
+
+    # uma opção por slide
+    for k, op in enumerate(ops):
+        cor = [AMARELO, CORAL, "#9C86FF", AMARELO][k]
+        s = fundo_feed(acento=cor, semente=f"{prefixo}{k + 1}")
+        s, (x0, y0, x1, y1) = colar_carta(s, _carta_nitida(imagens_cartas[k], 760), 760, 620)
+        d = cabecalho(s, selo, cor)
+        _bolha_num(d, x0 + 10, y0 + 10, k + 1, cor, r=62)
+        escrever(d, (72, y1 + 40), op["nome"], tit(60), BRANCO, W - 144, 1.05, stroke_width=4, stroke_fill=NOITE1)
+        if op.get("detalhe"):
+            escrever(d, (72, y1 + 120), op["detalhe"], txt(32), SUAVE, W - 144, 1.15)
+        d.text((72, H - 64), cred, font=txt2(22), fill=SUAVE)
+        numero(d, k + 2, total, SUAVE)
+        slides.append(s)
+
+    # final: grade menor + chamada
+    s = fundo_feed(acento=CORAL, semente=f"{prefixo}f", claro=True)
+    s = grade(s, 250, 330)
+    d = cabecalho(s, "SUA VEZ!", CORAL)
+    f = tit(72)
+    t = "1, 2, 3 ou 4?"
+    d.text(((W - d.textlength(t, font=f)) / 2, 1010), t, font=f, fill=AMARELO, stroke_width=5, stroke_fill=NOITE1)
+    escrever(d, (72, 1110), e.get("chamada", "Vota nos comentários e marca quem escolheria diferente!"),
+             txt(36), BRANCO, W - 144, 1.15)
+    numero(d, total, total, SUAVE)
+    slides.append(s)
+    return salvar(slides, pasta, prefixo)

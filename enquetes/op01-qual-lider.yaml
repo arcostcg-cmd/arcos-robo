@@ -1,0 +1,11 @@
+id: enquete-op01-qual-lider
+quando: "2026-11-06T13:00"
+jogo: One Piece
+pergunta: "Qual Alt Art você escolhe?"
+credito_imagem: "Bandai (onepiece-cardgame.com)"
+hashtags: "#onepiececardgame #onepiecetcg #onepiece #romancedawn #tcgbrasil #montoptcg"
+opcoes:
+  - {nome: "Roronoa Zoro", detalhe: "Alt Art · OP01-001", imagem: "https://en.onepiece-cardgame.com/images/cardlist/card/OP01-001_p1.png"}
+  - {nome: "Trafalgar Law", detalhe: "Alt Art · OP01-002", imagem: "https://en.onepiece-cardgame.com/images/cardlist/card/OP01-002_p1.png"}
+  - {nome: "Monkey.D.Luffy", detalhe: "Alt Art · OP01-003", imagem: "https://en.onepiece-cardgame.com/images/cardlist/card/OP01-003_p1.png"}
+  - {nome: "Donquixote Doflamingo", detalhe: "Alt Art · OP01-060", imagem: "https://en.onepiece-cardgame.com/images/cardlist/card/OP01-060_p1.png"}
