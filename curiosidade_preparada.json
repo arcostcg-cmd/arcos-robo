@@ -1,0 +1,27 @@
+{
+ "item": {
+  "id": "lorcana-estreia",
+  "jogo": "Lorcana",
+  "titulo": "A estreia da Disney nos TCGs",
+  "gancho": "A Disney entrou no mundo dos TCGs",
+  "texto": "Disney Lorcana, da Ravensburger, estreou em agosto de 2023 com The First Chapter, primeiro nas lojas independentes e de hobby. O set inicial tinha mais de 200 cartas com ilustrações originais de personagens Disney.",
+  "pergunta": "Qual personagem Disney você quer ver em carta?",
+  "fonte_nome": "License Global",
+  "fonte_url": "https://www.licenseglobal.com/toys-games/ravensburger-s-disney-lorcana-announces-first-release-date",
+  "verificado_em": "2026-10-31",
+  "busca_imagem": "Disney Lorcana"
+ },
+ "slides": [
+  "/home/runner/work/arcos-robo/arcos-robo/imagens/cur-lorcana-estreia-1.jpg",
+  "/home/runner/work/arcos-robo/arcos-robo/imagens/cur-lorcana-estreia-2.jpg",
+  "/home/runner/work/arcos-robo/arcos-robo/imagens/cur-lorcana-estreia-3.jpg",
+  "/home/runner/work/arcos-robo/arcos-robo/imagens/cur-lorcana-estreia-4.jpg"
+ ],
+ "creditos": [
+  "Texto: Montop TCG, com base em License Global (conferido em 31/10/2026)",
+  "Foto: Pokemon World Champ · CC BY-SA 4.0 · Wikimedia Commons",
+  "Foto: Mother's Cookies · Public domain · Wikimedia Commons",
+  "Foto: Unknown authorUnknown author · Public domain · Wikimedia Commons",
+  "Foto: autor desconhecido · Public domain · Wikimedia Commons"
+ ]
+}
