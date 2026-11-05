@@ -1,0 +1,24 @@
+id: curiosidade-pokemon-30-anos
+quando: "2026-11-06T19:00"
+jogo: Pokémon
+credito_imagem: "The Pokémon Company · Pikachus de coleções promocionais"
+hashtags: "#pokemon30anos #pokemon #pikachu #pokemontcg #cartaspokemon #tcgbrasil #montoptcg"
+cartas:
+  - "https://assets.pokemon.com/static-assets/content-assets/cms2/img/cards/web/SVP/SVP_EN_27.png"
+  - "https://assets.pokemon.com/static-assets/content-assets/cms2/img/cards/web/SVP/SVP_EN_88.png"
+  - "https://assets.pokemon.com/static-assets/content-assets/cms2/img/cards/web/SVP/SVP_EN_106.png"
+  - "https://assets.pokemon.com/static-assets/content-assets/cms2/img/cards/web/SVP/SVP_EN_85.png"
+  - "https://assets.pokemon.com/static-assets/content-assets/cms2/img/cards/web/SVP/SVP_EN_225.png"
+pergunta: "Qual Pikachu é o seu favorito desses 30 anos?"
+destaques_pergunta: [PIKACHU]
+fontes:
+  - "Wikipedia: Pokémon Winds and Waves"
+  - "ICv2: Pokémon TCG 30th Celebration"
+  - "Critical Hits: Celebração de 30 Anos"
+  - "Nintendo/Pokémon Blog: lançamentos de novembro de 2026"
+slides:
+  - {carta: 0, titulo: "Pokémon fez 30 anos em 2026.", destaques: ["30"], sub: "Pocket Monsters Red e Green saíram no Japão em 27/02/1996."}
+  - {carta: 1, titulo: "Na festa, veio a 10ª geração: Winds e Waves.", destaques: ["10ª"], sub: "Para Nintendo Switch 2, em 2027."}
+  - {carta: 2, titulo: "Celebração de 30 Anos: 1 Pikachu raro em cada booster.", destaques: ["1", PIKACHU], sub: "São 30 Pikachus raros diferentes."}
+  - {carta: 3, titulo: "30 cartas clássicas voltaram ao jogo.", destaques: [CLÁSSICAS], sub: "E estreou a raridade Rara Futurista, com arte de YOSHIROTTEN."}
+  - {carta: 4, titulo: "Nos EUA, a Coleção Ultra Premium sai hoje com 30 boosters.", destaques: ["30", BOOSTERS], sub: "E 3 cartas gravadas da Coleção Clássica."}

@@ -5,9 +5,11 @@ Uso: python revista.py revista/mega-ex-3-premios.yaml
 Imagens só de URL OFICIAL. Cada fato precisa de fonte em `fontes`.
 """
 import sys
+import time
 from pathlib import Path
 
 import yaml
+from PIL import Image
 
 import carrossel
 import imagens
@@ -29,12 +31,33 @@ def main(arq):
     if not c.get("fontes"):
         raise SystemExit("curiosidade sem fonte: não monto")
     cartas = []
-    for n in c["cartas"]:
+    def pegar(n):
         url = n if str(n).startswith("http") else c["imagem_base"].format(n=n)
-        img = imagens.baixar(url)
-        if img is None:
-            raise SystemExit(f"sem imagem oficial ({url}): não monto")
-        cartas.append(img)
+        local = BASE / "cache_cartas" / url.rsplit("/", 1)[-1]
+        if local.exists():  # cópia da mesma imagem oficial, baixada antes
+            return Image.open(local).convert("RGB")
+        for _ in range(6):  # o CDN oficial às vezes recusa na primeira
+            img = imagens.baixar(url)
+            if img is not None:
+                local.parent.mkdir(exist_ok=True)
+                img.save(local)
+                return img
+            time.sleep(2)
+        raise SystemExit(f"sem imagem oficial ({url}): não monto")
+
+    for n in c["cartas"]:
+        if isinstance(n, dict) and n.get("junta"):  # duas metades lado a lado (ex.: Estádio Lendário)
+            partes = [pegar(x).convert("RGB") for x in n["junta"]]
+            h = min(p.height for p in partes)
+            partes = [p.resize((int(p.width * h / p.height), h)) for p in partes]
+            junto = Image.new("RGB", (sum(p.width for p in partes), h))
+            x = 0
+            for p in partes:
+                junto.paste(p, (x, 0))
+                x += p.width
+            cartas.append(junto)
+        else:
+            cartas.append(pegar(n))
     slides = carrossel.carrossel_revista(c, cartas, BASE / "imagens", c["id"])
     ig = legenda(c)
     agenda = BASE / "agenda.yaml"

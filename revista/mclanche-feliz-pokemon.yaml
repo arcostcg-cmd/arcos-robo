@@ -1,0 +1,33 @@
+id: curiosidade-mclanche-feliz-pokemon
+quando: "2026-11-06T13:00"
+jogo: Pokémon
+credito_imagem: "The Pokémon Company (pokemon.com)"
+hashtags: "#mclanchefeliz #pokemon #pokemontcg #cartaspokemon #mcdonalds #tcgbrasil #montoptcg"
+cartas:
+  - "https://mcdn.pokemon.com/image/upload/c_fit,w_734,h_1024/f_png/v1/live/pcom-cms/static-assets/cms3/us/img/merchandise/tiles/2026/mcdonalds/cards/M26_EN_1.png"
+  - "https://mcdn.pokemon.com/image/upload/c_fit,w_734,h_1024/f_png/v1/live/pcom-cms/static-assets/cms3/us/img/merchandise/tiles/2026/mcdonalds/cards/M26_EN_2.png"
+  - "https://mcdn.pokemon.com/image/upload/c_fit,w_734,h_1024/f_png/v1/live/pcom-cms/static-assets/cms3/us/img/merchandise/tiles/2026/mcdonalds/cards/M26_EN_3.png"
+  - "https://mcdn.pokemon.com/image/upload/c_fit,w_734,h_1024/f_png/v1/live/pcom-cms/static-assets/cms3/us/img/merchandise/tiles/2026/mcdonalds/cards/M26_EN_4.png"
+  - "https://mcdn.pokemon.com/image/upload/c_fit,w_734,h_1024/f_png/v1/live/pcom-cms/static-assets/cms3/us/img/merchandise/tiles/2026/mcdonalds/cards/M26_EN_5.png"
+  - "https://mcdn.pokemon.com/image/upload/c_fit,w_734,h_1024/f_png/v1/live/pcom-cms/static-assets/cms3/us/img/merchandise/tiles/2026/mcdonalds/cards/M26_EN_6.png"
+  - "https://mcdn.pokemon.com/image/upload/c_fit,w_734,h_1024/f_png/v1/live/pcom-cms/static-assets/cms3/us/img/merchandise/tiles/2026/mcdonalds/cards/M26_EN_7.png"
+  - "https://mcdn.pokemon.com/image/upload/c_fit,w_734,h_1024/f_png/v1/live/pcom-cms/static-assets/cms3/us/img/merchandise/tiles/2026/mcdonalds/cards/M26_EN_8.png"
+  - "https://mcdn.pokemon.com/image/upload/c_fit,w_734,h_1024/f_png/v1/live/pcom-cms/static-assets/cms3/us/img/merchandise/tiles/2026/mcdonalds/cards/M26_EN_9.png"
+  - "https://mcdn.pokemon.com/image/upload/c_fit,w_734,h_1024/f_png/v1/live/pcom-cms/static-assets/cms3/us/img/merchandise/tiles/2026/mcdonalds/cards/M26_EN_10.png"
+  - "https://mcdn.pokemon.com/image/upload/c_fit,w_734,h_1024/f_png/v1/live/pcom-cms/static-assets/cms3/us/img/merchandise/tiles/2026/mcdonalds/cards/M26_EN_11.png"
+  - "https://mcdn.pokemon.com/image/upload/c_fit,w_734,h_1024/f_png/v1/live/pcom-cms/static-assets/cms3/us/img/merchandise/tiles/2026/mcdonalds/cards/M26_EN_12.png"
+  - "https://mcdn.pokemon.com/image/upload/c_fit,w_734,h_1024/f_png/v1/live/pcom-cms/static-assets/cms3/us/img/merchandise/tiles/2026/mcdonalds/cards/M26_EN_13.png"
+  - "https://mcdn.pokemon.com/image/upload/c_fit,w_734,h_1024/f_png/v1/live/pcom-cms/static-assets/cms3/us/img/merchandise/tiles/2026/mcdonalds/cards/M26_EN_14.png"
+  - "https://mcdn.pokemon.com/image/upload/c_fit,w_734,h_1024/f_png/v1/live/pcom-cms/static-assets/cms3/us/img/merchandise/tiles/2026/mcdonalds/cards/M26_EN_15.png"
+pergunta: "Qual carta você quer tirar primeiro?"
+destaques_pergunta: [PRIMEIRO]
+fontes:
+  - "Times Brasil: McLanche Feliz terá 15 brinquedos e cartas"
+  - "Cartas: pokemon.com (coleção McDonald's 2026)"
+slides:
+  - {carta: 3, multi: [12, 3, 13, 11, 8], titulo: "Pokémon no McLanche Feliz chega ao Brasil em janeiro de 2027.", destaques: [JANEIRO, "2027"]}
+  - {carta: 3, titulo: "São 15 cartas, numeradas de 001 a 015.", destaques: ["15"], sub: "O Pikachu é a 004/015."}
+  - {carta: 11, titulo: "Nos EUA, a promoção começa em 10 de novembro.", destaques: ["10"], sub: "O Brasil entra na leva de janeiro, com México e Itália."}
+  - {carta: 12, titulo: "Vêm também 15 miniaturas no formato da caixinha.", destaques: ["15", "MINIATURAS"], sub: "Cada uma com o rosto de um Pokémon, e dá pra usar como chaveiro."}
+  - {carta: 13, titulo: "Um QR Code na caixa abre um jogo para achar os 15 brinquedos.", destaques: ["QR", "CODE"]}
+  - {carta: 0, multi: [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14], titulo: "Do Decidueye ao Wooloo: as 15 da coleção.", destaques: ["15"], sub: "Imagens da versão dos EUA."}

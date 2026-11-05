@@ -1,0 +1,21 @@
+id: curiosidade-reinado-delta
+quando: "2026-11-06T09:00"
+jogo: Pokémon
+credito_imagem: "The Pokémon Company (pokemon.com/br)"
+hashtags: "#reinadodelta #megarayquaza #pokemontcg #cartaspokemon #megaevolucao #tcgbrasil #montoptcg"
+cartas:
+  - "https://mcdn.pokemon.com/image/upload/f_png/v1/live/pcom-cms/static-assets/cms3/br/img/cards/full/ME06/ME06_PT-BR_138.png"
+  - {junta: ["https://mcdn.pokemon.com/image/upload/f_png/v1/live/pcom-cms/static-assets/cms3/br/img/cards/full/ME06/ME06_PT-BR_96.png", "https://mcdn.pokemon.com/image/upload/f_png/v1/live/pcom-cms/static-assets/cms3/br/img/cards/full/ME06/ME06_PT-BR_97.png"]}
+  - "https://mcdn.pokemon.com/image/upload/f_png/v1/live/pcom-cms/static-assets/cms3/br/img/cards/full/ME06/ME06_PT-BR_84.png"
+  - "https://mcdn.pokemon.com/image/upload/f_png/v1/live/pcom-cms/static-assets/cms3/br/img/cards/full/ME06/ME06_PT-BR_139.png"
+pergunta: "Vai abrir booster da Reinado Delta?"
+destaques_pergunta: [REINADO, DELTA]
+fontes:
+  - "PokéGuardian: Mega Evolution—Delta Reign Revealed"
+  - "TCGplayer: Delta Reign Quick Facts"
+slides:
+  - {carta: 0, titulo: "O Mega Rayquaza volta hoje na Reinado Delta.", destaques: [HOJE], sub: "A coleção chega às lojas hoje, 6/11."}
+  - {carta: 1, titulo: "Duas cartas, uma arte só.", destaques: [UMA], sub: "Pico Lendário (096 + 097): lado a lado, viram um Estádio Lendário. São 3 na coleção."}
+  - {carta: 2, titulo: "São 4 Mega ex: Rayquaza, Golurk, Malamar e Golisopod.", destaques: ["4"]}
+  - {carta: 3, titulo: "Mais de 135 cartas no total.", destaques: ["135"], sub: "103 na lista principal, mais as raras secretas."}
+  - {carta: 2, titulo: "No Japão, a base se chama Storm Emeralda.", destaques: [STORM, EMERALDA], sub: "O mesmo nome do ataque do Mega Rayquaza: Tempestade Esmeralda."}

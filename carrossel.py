@@ -880,6 +880,47 @@ def _faixa_marca(d, y, texto="MONTOP TCG"):
     d.line([(cx + w / 2 + 24, y), (W - 90, y)], fill=SUAVE, width=2)
 
 
+def _arredondar(im, raio=None):
+    im = im.convert("RGBA")
+    m = Image.new("L", im.size, 0)
+    ImageDraw.Draw(m).rounded_rectangle([0, 0, im.width - 1, im.height - 1], radius=raio or int(im.width * 0.045), fill=255)
+    im.putalpha(m)
+    return im
+
+
+def _leque(cartas, larg, alt):
+    """Várias cartas inteiras em leque (até 5) ou em grade (6 ou mais), fundo transparente."""
+    from PIL import ImageFilter
+    tela = Image.new("RGBA", (larg, alt), (0, 0, 0, 0))
+    n = len(cartas)
+    if n >= 6:
+        cols = 5
+        lin = (n + cols - 1) // cols
+        ch = int((alt - 16 * (lin - 1)) / lin)
+        cw = int(ch * 0.716)
+        x0 = (larg - (cols * cw + 14 * (cols - 1))) // 2
+        for k, c in enumerate(cartas):
+            im = _arredondar(ImageOps.contain(c.convert("RGB"), (cw, ch), Image.LANCZOS))
+            tela.alpha_composite(im, (x0 + (k % cols) * (cw + 14), (k // cols) * (ch + 16)))
+        return tela
+    ch = int(alt * 0.86)
+    cw = int(ch * 0.716)
+    passo = (larg - cw) / max(1, n - 1)
+    meio = (n - 1) / 2
+    ordem = sorted(range(n), key=lambda k: -abs(k - meio))
+    for k in ordem:
+        im = _arredondar(ImageOps.contain(_carta_nitida(cartas[k], ch), (cw, ch), Image.LANCZOS))
+        ang = (meio - k) * 7
+        rot = im.rotate(ang, expand=True, resample=Image.BICUBIC)
+        x = int(k * passo + cw / 2 - rot.width / 2)
+        y = int(alt - rot.height - abs(k - meio) * 22) - 10
+        sombra = Image.new("RGBA", rot.size, (0, 0, 0, 0))
+        sombra.putalpha(rot.split()[-1].point(lambda a: int(a * 0.6)))
+        tela.alpha_composite(sombra.filter(ImageFilter.GaussianBlur(14)), (max(0, x + 8), max(0, y + 16)))
+        tela.alpha_composite(rot, (max(0, x), max(0, y)))
+    return tela
+
+
 def carrossel_revista(c, imagens_cartas, pasta, prefixo):
     """c = {credito_imagem, slides:[{carta: i, titulo, destaques:[...], sub?}], fontes:[...]}"""
     from PIL import ImageFilter
@@ -891,15 +932,22 @@ def carrossel_revista(c, imagens_cartas, pasta, prefixo):
         carta = imagens_cartas[s_["carta"]]
         s = _fundo_carta(carta, f"{prefixo}{k}")
         alt_c = 700 if k == 0 else 640
-        c_ = ImageOps.contain(_carta_nitida(carta, alt_c), (int(alt_c * 0.72), alt_c), Image.LANCZOS).convert("RGBA")
+        if s_.get("multi"):
+            c_ = _leque([imagens_cartas[i] for i in s_["multi"]], W - 100, alt_c)
+        else:
+            c_ = ImageOps.contain(_carta_nitida(carta, alt_c), (W - 120, alt_c), Image.LANCZOS).convert("RGBA")
         x, y = (W - c_.width) // 2, 70 if k == 0 else 90
-        sombra = Image.new("RGBA", (W, H), (0, 0, 0, 0))
-        ImageDraw.Draw(sombra).rounded_rectangle([x + 10, y + 26, x + c_.width + 10, y + c_.height + 26], radius=26,
-                                                 fill=(0, 0, 0, 170))
-        s = Image.alpha_composite(s.convert("RGBA"), sombra.filter(ImageFilter.GaussianBlur(22))).convert("RGB")
-        m = Image.new("L", c_.size, 0)
-        ImageDraw.Draw(m).rounded_rectangle([0, 0, c_.width - 1, c_.height - 1], radius=18, fill=255)
-        s.paste(c_.convert("RGB"), (x, y), m)
+        if not s_.get("multi"):
+            sombra = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+            ImageDraw.Draw(sombra).rounded_rectangle([x + 10, y + 26, x + c_.width + 10, y + c_.height + 26],
+                                                     radius=26, fill=(0, 0, 0, 170))
+            s = Image.alpha_composite(s.convert("RGBA"), sombra.filter(ImageFilter.GaussianBlur(22))).convert("RGB")
+        if s_.get("multi"):
+            s.paste(c_.convert("RGB"), (x, y), c_)
+        else:
+            m = Image.new("L", c_.size, 0)
+            ImageDraw.Draw(m).rounded_rectangle([0, 0, c_.width - 1, c_.height - 1], radius=18, fill=255)
+            s.paste(c_.convert("RGB"), (x, y), m)
         d = ImageDraw.Draw(s)
         topo = y + c_.height + 70
         _faixa_marca(d, topo)
