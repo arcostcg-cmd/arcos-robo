@@ -1,7 +1,7 @@
 name: Sistema de Noticias - curiosidades
 on:
   schedule:
-    - cron: "0 12,16,22 * * *"   # 9h, 13h e 19h no horário de Brasília (UTC-3)
+    - cron: "2 * * * *"   # toda hora; o robô só posta nos 3 melhores horários do dia (config: horarios_feed)
   workflow_dispatch: {}
 concurrency:
   group: robo-curiosidades

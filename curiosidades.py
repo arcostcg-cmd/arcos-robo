@@ -115,7 +115,7 @@ def preparar(cfg, con, itens):
 AGENDA = BASE / "agenda.yaml"
 
 
-def post_da_agenda(con, janela_horas=3):
+def post_da_agenda(con, janela_horas=1):
     """Post planejado (ex.: Top 10) cujo horário chegou. Fica em agenda.yaml e as imagens em imagens/.
 
     Formato de cada item: quando ("2026-11-02T09:00", horário de Brasília), id, jogo, slides (nomes em
@@ -139,6 +139,19 @@ def post_da_agenda(con, janela_horas=3):
     return None
 
 
+DIAS = ["seg", "ter", "qua", "qui", "sex", "sab", "dom"]
+PADRAO_HORARIOS = {"seg": [18, 19, 20], "ter": [15, 17, 19], "qua": [8, 12, 18], "qui": [9, 18, 20],
+                   "sex": [6, 20, 22], "sab": [20, 21, 22], "dom": [20, 21, 22]}
+
+
+def horario_do_dia(cfg, agora=None):
+    """Horário (hora cheia, Brasília) do slot atual, ou None se agora não é um dos 3 melhores horários."""
+    from datetime import datetime, timedelta, timezone
+    agora = agora or datetime.now(timezone(timedelta(hours=-3)))
+    tab = (cfg.get("instagram", {}) or {}).get("horarios_feed") or PADRAO_HORARIOS
+    return agora.hour if agora.hour in tab.get(DIAS[agora.weekday()], []) else None
+
+
 def texto_post(dados, cfg, rede):
     if dados.get("legendas"):
         return dados["legendas"][rede]
@@ -159,6 +172,7 @@ def main():
     ap.add_argument("--config", default=str(BASE / "config.yaml"))
     ap.add_argument("--simular", action="store_true")
     ap.add_argument("--etapa", choices=["tudo", "preparar", "publicar"], default="tudo")
+    ap.add_argument("--forcar", action="store_true", help="roda fora dos melhores horários (teste manual)")
     a = ap.parse_args()
     logging.basicConfig(
         level=logging.INFO, format="%(asctime)s %(levelname)s %(message)s",
@@ -167,6 +181,9 @@ def main():
 
     with open(a.config, encoding="utf-8") as f:
         cfg = yaml.safe_load(f)
+    if not (a.forcar or a.simular or a.etapa == "publicar") and horario_do_dia(cfg) is None:
+        log.info("Fora dos 3 melhores horários de hoje: nada a fazer")
+        return
     arq = BASE / cfg.get("curiosidades", {}).get("arquivo", "curiosidades.yaml")
     with open(arq, encoding="utf-8") as f:
         itens = [c for c in (yaml.safe_load(f) or [])
