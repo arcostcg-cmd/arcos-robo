@@ -33,7 +33,7 @@ instagram:
     sex: [6, 20, 22]
     sab: [20, 21, 22]
     dom: [20, 21, 22]
-  hashtags: ["#pokemontcg", "#tcgbrasil", "#promocao", "#cartaspokemon", "#mtgbrasil"]
+  # hashtags: escolhidas por hashtags.py (máx. 5, limite do Instagram desde dez/2025)
 
 curiosidades:
   arquivo: curiosidades.yaml
@@ -41,7 +41,7 @@ curiosidades:
   #   GitHub Actions: "https://raw.githubusercontent.com/USUARIO/REPO/main/imagens"
   #   Oracle (nginx): "http://IP_DO_SERVIDOR/imagens"
   url_publica_imagens: "https://raw.githubusercontent.com/arcostcg-cmd/arcos-robo/main/imagens"
-  hashtags: ["#tcg", "#pokemontcg", "#mtg", "#yugioh", "#onepiececardgame", "#lorcana", "#vocesabia"]
+  # hashtags: escolhidas por hashtags.py (máx. 5, limite do Instagram desde dez/2025)
 
 regras:
   desconto_minimo: 0.05       # decisão do Marcos (01/11): mostra a partir de 5%, sempre com o % real no post
@@ -1289,7 +1289,7 @@ noticias:
     palavras: ["announce", "announced", "reveal", "revealed", "release date", "new set",
       "new expansion", "ban list", "banned", "errata", "world championship", "worlds",
       "anuncia", "anunciad", "revelad", "data de lançamento", "nova coleção", "banimento"]
-  hashtags: ["#noticiastcg", "#pokemontcg", "#mtg", "#onepiececardgame", "#yugioh", "#lorcana"]
+  # hashtags: escolhidas por hashtags.py (máx. 5, limite do Instagram desde dez/2025)
   # IA que resume e traduz SÓ o que está na fonte; números são conferidos pelo robô.
   #   anthropic -> variável ANTHROPIC_API_KEY (pago, barato por notícia)
   #   gemini    -> variável GEMINI_API_KEY (tem plano gratuito com limites; confira o

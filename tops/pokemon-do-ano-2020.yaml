@@ -9,7 +9,6 @@ fonte_url: "https://pokemondb.net/news/281/pokemon-of-the-year-results-announced
 data: "fev/2020"
 pergunta: "Seu favorito está na lista? Qual é?"
 nota_legenda: "Resultado do Pokémon do Ano, votação oficial da The Pokémon Company com o Google em 2020: mais de 6,6 milhões de votos no mundo todo (dados divulgados em 27/02/2020, via Pokémon Database). As cartas são só ilustração de cada Pokémon."
-hashtags: "#pokemon #pokemontcg #greninja #pokemondoano #tcgbrasil #montoptcg"
 itens:
   - {pos: 1, nome: "Greninja", preco: "140.559 votos", imagem: "https://assets.pokemon.com/static-assets/content-assets/cms2-pt-br/img/cards/web/ME04/ME04_PT-BR_116.png"}
   - {pos: 2, nome: "Lucario", preco: "102.259 votos", imagem: "https://assets.pokemon.com/static-assets/content-assets/cms2-pt-br/img/cards/web/SVP/SVP_PT-BR_17.png"}

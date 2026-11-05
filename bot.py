@@ -11,6 +11,7 @@ Uso:
   python bot.py --diagnostico --testar-lojas        # confere config, tokens e lojas
   python bot.py --etapa preparar | publicar         # duas etapas (GitHub Actions)
 """
+import hashtags
 import argparse
 import json
 import logging
@@ -565,7 +566,7 @@ def texto_telegram(o):
 def texto_instagram(o, cfg):
     desc = round((1 - o["preco"] / o["ref"]) * 100)
     hora = datetime.fromisoformat(o["visto"]).strftime("%d/%m às %H:%M")
-    tags = " ".join(cfg["instagram"].get("hashtags", []))
+    tags = hashtags.escolher(o.get("jogo") or o.get("produto"), "promocao")
     cup = (f"🎟️ Cupom {o['cupom']['codigo']}: {o['cupom'].get('descricao', 'desconto extra')}\n"
            if o.get("cupom") else "")
     afil = f"\nImagem do produto: {o['loja_nome']}."

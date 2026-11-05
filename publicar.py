@@ -1,4 +1,5 @@
 """Postagem de carrosséis: álbum no Telegram e carrossel no Instagram."""
+import hashtags
 import json
 import os
 import time
@@ -119,7 +120,7 @@ def instagram_carrossel(cfg, caminhos, legenda, furo=False):
         filhos.append(r.json()["id"])
     r = requests.post(f"{base}/media", timeout=60, data={
         "media_type": "CAROUSEL", "children": ",".join(filhos),
-        "caption": legenda[:2200], "access_token": token})
+        "caption": hashtags.limitar(legenda)[:2200], "access_token": token})
     r.raise_for_status()
     pai = r.json()["id"]
     for _ in range(12):  # espera o Instagram processar as imagens

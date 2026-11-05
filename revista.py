@@ -4,6 +4,7 @@
 Uso: python revista.py revista/mega-ex-3-premios.yaml
 Imagens só de URL OFICIAL. Cada fato precisa de fonte em `fontes`.
 """
+import hashtags
 import sys
 import time
 from pathlib import Path
@@ -23,7 +24,7 @@ def legenda(c):
     return (f"🃏 {c['slides'][0]['titulo']}\n\n{corpo}\n\n💬 {c['pergunta']}\n🔖 Salva e manda pro amigo do TCG\n\n"
             f"📚 Fontes:\n{fontes}\n📷 Imagens das cartas: {c['credito_imagem']}\n\n"
             f"🔔 Promoções verificadas no nosso Telegram (link na bio).\n\n"
-            + c.get("hashtags", "#pokemontcg #pokemon #cartaspokemon #curiosidades #tcgbrasil #montoptcg"))
+            + hashtags.escolher(c.get("jogo"), "curiosidade"))
 
 
 def main(arq):

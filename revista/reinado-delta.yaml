@@ -2,7 +2,6 @@ id: curiosidade-reinado-delta
 quando: "2026-11-06T20:00"
 jogo: Pokémon
 credito_imagem: "The Pokémon Company (pokemon.com/br)"
-hashtags: "#reinadodelta #megarayquaza #pokemontcg #cartaspokemon #megaevolucao #tcgbrasil #montoptcg"
 cartas:
   - "https://mcdn.pokemon.com/image/upload/f_png/v1/live/pcom-cms/static-assets/cms3/br/img/cards/full/ME06/ME06_PT-BR_138.png"
   - {junta: ["https://mcdn.pokemon.com/image/upload/f_png/v1/live/pcom-cms/static-assets/cms3/br/img/cards/full/ME06/ME06_PT-BR_96.png", "https://mcdn.pokemon.com/image/upload/f_png/v1/live/pcom-cms/static-assets/cms3/br/img/cards/full/ME06/ME06_PT-BR_97.png"]}

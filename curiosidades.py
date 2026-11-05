@@ -11,6 +11,7 @@ Uso:
   python curiosidades.py --etapa publicar       # posta os slides já gerados
   python curiosidades.py                        # tudo de uma vez (servidor próprio)
 """
+import hashtags
 import argparse
 import json
 import logging
@@ -67,7 +68,7 @@ def escolher(con, itens, destaques=None):
 
 
 def legenda(c, creditos, cfg, rede):
-    tags = " ".join(cfg.get("curiosidades", {}).get("hashtags", []))
+    tags = hashtags.escolher(c.get("jogo"), "curiosidade")
     cred = "\n".join(creditos)
     if rede == "telegram":
         perg = f"💬 {c['pergunta']}\n\n" if c.get("pergunta") else ""

@@ -21,6 +21,7 @@ Uso:
   python noticias.py --etapa publicar       # posta a fila
   python noticias.py --testar-fontes        # mostra quais feeds respondem
 """
+import hashtags
 import argparse
 import seguranca
 import email.utils
@@ -528,7 +529,7 @@ def salvar_arte(img, tipo, chave):
 
 def legenda(n, cfg, rede):
     selo = "🟠 RUMOR — não confirmado oficialmente\n\n" if n["rumor"] else ""
-    tags = " ".join(cfg.get("noticias", {}).get("hashtags", []))
+    tags = hashtags.escolher(n.get("jogo"), "rumor" if n.get("rumor") else "noticia")
     if rede == "telegram":
         cred = f"\n📷 Imagem: {n['credito_imagem']}" if n.get("credito_imagem") else ""
         return (f"📰 {n['jogo'].upper()} | {selo}{n['titulo']}\n\n{n['resumo']}\n\n"

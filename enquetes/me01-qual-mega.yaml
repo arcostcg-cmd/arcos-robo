@@ -4,7 +4,6 @@ jogo: Pokémon
 pergunta: "Qual Mega você leva pra casa?"
 credito_imagem: "The Pokémon Company (pokemon.com/br)"
 imagem_base: "https://assets.pokemon.com/static-assets/content-assets/cms2-pt-br/img/cards/web/ME01/ME01_PT-BR_{n}.png"
-hashtags: "#pokemontcg #megaevolucao #pokemon #cartaspokemon #tcgbrasil #montoptcg"
 opcoes:
   - {n: 177, nome: "Mega Venusaur ex", detalhe: "Megaevolução · 177/132"}
   - {n: 178, nome: "Mega Gardevoir ex", detalhe: "Megaevolução · 178/132"}

@@ -4,6 +4,7 @@
 Uso: python top10.py tops/me01-mais-valiosas.yaml
 Imagens das cartas: só URL OFICIAL (pokemon.com). Preços: fonte e data escritas no post.
 """
+import hashtags
 import sys
 from pathlib import Path
 
@@ -25,7 +26,7 @@ def legendas(t):
           f"📊 {comum}\n📷 Imagens das cartas: {t.get('credito_imagem', 'The Pokémon Company (pokemon.com/br)')}\n\n"
           f"💬 {t.get('pergunta', 'Qual dessas você tem ou queria ter?')}\n🔖 Salva pra consultar depois\n\n"
           f"🔔 Promoções verificadas no nosso Telegram (link na bio).\n\n"
-          + t.get("hashtags", "#pokemontcg #pokemon #cartaspokemon #tcgbrasil #montoptcg"))
+          + hashtags.escolher(t.get("jogo", "Pokémon"), "ranking"))
     tg = (f"🏆 {t['titulo'].upper()}\n\n{corpo}\n\n📊 {comum}\nFonte: {t['fonte_url']}\n"
           f"📷 Imagens: {t.get('credito_imagem', 'The Pokémon Company (pokemon.com/br)')}\n\n💬 {t.get('pergunta', 'Qual dessas você tem?')}")
     return tg, ig
