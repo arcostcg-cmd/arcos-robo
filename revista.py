@@ -18,7 +18,7 @@ BASE = Path(__file__).resolve().parent
 
 
 def legenda(c):
-    corpo = "\n".join(f"▪️ {s['titulo']}" for s in c["slides"])
+    corpo = "\n".join(f"▪️ {s['titulo']}" for s in c["slides"][1:])
     fontes = "\n".join(c["fontes"])
     return (f"🃏 {c['slides'][0]['titulo']}\n\n{corpo}\n\n💬 {c['pergunta']}\n🔖 Salva e manda pro amigo do TCG\n\n"
             f"📚 Fontes:\n{fontes}\n📷 Imagens das cartas: {c['credito_imagem']}\n\n"

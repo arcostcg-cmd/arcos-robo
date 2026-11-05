@@ -1,5 +1,5 @@
 id: curiosidade-pokemon-30-anos
-quando: "2026-11-06T19:00"
+quando: "2026-11-08T20:00"
 jogo: Pokémon
 credito_imagem: "The Pokémon Company · Pikachus de coleções promocionais"
 hashtags: "#pokemon30anos #pokemon #pikachu #pokemontcg #cartaspokemon #tcgbrasil #montoptcg"
@@ -21,4 +21,4 @@ slides:
   - {carta: 1, titulo: "Na festa, veio a 10ª geração: Winds e Waves.", destaques: ["10ª"], sub: "Para Nintendo Switch 2, em 2027."}
   - {carta: 2, titulo: "Celebração de 30 Anos: 1 Pikachu raro em cada booster.", destaques: ["1", PIKACHU], sub: "São 30 Pikachus raros diferentes."}
   - {carta: 3, titulo: "30 cartas clássicas voltaram ao jogo.", destaques: [CLÁSSICAS], sub: "E estreou a raridade Rara Futurista, com arte de YOSHIROTTEN."}
-  - {carta: 4, titulo: "Nos EUA, a Coleção Ultra Premium sai hoje com 30 boosters.", destaques: ["30", BOOSTERS], sub: "E 3 cartas gravadas da Coleção Clássica."}
+  - {carta: 4, titulo: "Nos EUA, a Coleção Ultra Premium saiu em 6/11 com 30 boosters.", destaques: ["30", BOOSTERS], sub: "E 3 cartas gravadas da Coleção Clássica."}
