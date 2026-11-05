@@ -25,7 +25,7 @@ instagram:
   api_host: "graph.instagram.com"  # login do Instagram (sem página do Facebook)
   reserva_cota: 3             # publicações guardadas na cota diária da API só para os furos
   max_feed_dia: 3             # pedido do Marcos: 3 posts por dia no feed, nos 3 melhores horários
-  formato_dia: {reel: 1, carrossel: 2}   # pedido do Marcos: dos 3 posts do dia, 1 é vídeo (Reels)
+  formato_dia: {reel: 0, carrossel: 3}   # vídeos pausados pelo Marcos (05/11): só carrosséis
   # Melhores horários por dia (Brasília), pelos estudos Buffer (9,6 mi de posts) e Metricool (24 mi), nov/2026
   horarios_feed:
     seg: [18, 19, 20]
