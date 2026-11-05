@@ -1,0 +1,78 @@
+[
+ {
+  "produto": "Cartas Pokémon Coleção Escuridão Absoluta Treinador Avançado 121 Cards Copag",
+  "jogo": "Pokémon",
+  "loja": "mercadolivre",
+  "loja_nome": "Mercado Livre",
+  "preco": 433.0,
+  "ref": 635.98,
+  "ref_fonte": "loja",
+  "url": "https://produto.mercadolivre.com.br/MLB-4931077899",
+  "link": "https://produto.mercadolivre.com.br/MLB-4931077899",
+  "imagem": "https://http2.mlstatic.com/D_NQ_NP_724710-MLA114014129011_072026-F.jpg",
+  "visto": "2026-11-05T11:17:53-03:00",
+  "descricao": "Lacrado",
+  "afiliado": false,
+  "cupom": null,
+  "preco_final": 433.0,
+  "confianca": 4,
+  "bandeira": "",
+  "unidades": null,
+  "unidade_nome": "unidades",
+  "unidade_singular": "unidade",
+  "reputacao": "",
+  "alerta_loja": "",
+  "frete_gratis": false,
+  "ainda_valendo": false,
+  "slides": [
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/promo-cartas-pok-mon-cole-o-escurid-o-absoluta-treinador-mercadolivre-43300-1.jpg",
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/promo-cartas-pok-mon-cole-o-escurid-o-absoluta-treinador-mercadolivre-43300-2.jpg",
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/promo-cartas-pok-mon-cole-o-escurid-o-absoluta-treinador-mercadolivre-43300-3.jpg",
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/promo-cartas-pok-mon-cole-o-escurid-o-absoluta-treinador-mercadolivre-43300-4.jpg"
+  ],
+  "creditos": [
+   "Imagem do produto: Mercado Livre"
+  ],
+  "destinos": [
+   "telegram"
+  ]
+ },
+ {
+  "produto": "Bandai Card One Piece Tcg St-30 Starter Deck Ex Luffy & Ace",
+  "jogo": "One Piece",
+  "loja": "mercadolivre",
+  "loja_nome": "Mercado Livre",
+  "preco": 234.64,
+  "ref": 259.99,
+  "ref_fonte": "loja",
+  "url": "https://produto.mercadolivre.com.br/MLB-7651145140",
+  "link": "https://produto.mercadolivre.com.br/MLB-7651145140",
+  "imagem": "https://http2.mlstatic.com/D_NQ_NP_956088-MLA113052337612_072026-F.jpg",
+  "visto": "2026-11-05T11:19:07-03:00",
+  "descricao": "Lacrado",
+  "afiliado": false,
+  "cupom": null,
+  "preco_final": 234.64,
+  "confianca": 4,
+  "bandeira": "",
+  "unidades": null,
+  "unidade_nome": "unidades",
+  "unidade_singular": "unidade",
+  "reputacao": "",
+  "alerta_loja": "",
+  "frete_gratis": false,
+  "ainda_valendo": true,
+  "slides": [
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/promo-bandai-card-one-piece-tcg-st-30-starter-deck-ex-lu-mercadolivre-23464-1.jpg",
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/promo-bandai-card-one-piece-tcg-st-30-starter-deck-ex-lu-mercadolivre-23464-2.jpg",
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/promo-bandai-card-one-piece-tcg-st-30-starter-deck-ex-lu-mercadolivre-23464-3.jpg",
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/promo-bandai-card-one-piece-tcg-st-30-starter-deck-ex-lu-mercadolivre-23464-4.jpg"
+  ],
+  "creditos": [
+   "Imagem do produto: Mercado Livre"
+  ],
+  "destinos": [
+   "telegram"
+  ]
+ }
+]
