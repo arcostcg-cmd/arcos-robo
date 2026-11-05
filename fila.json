@@ -1,0 +1,78 @@
+[
+ {
+  "produto": "Pokemon Tcg - Team Rocket Tin / Lata - Inglês Persian",
+  "jogo": "Pokémon",
+  "loja": "mercadolivre",
+  "loja_nome": "Mercado Livre",
+  "preco": 459.83,
+  "ref": 499.0,
+  "ref_fonte": "loja",
+  "url": "https://produto.mercadolivre.com.br/MLB-7761060986",
+  "link": "https://produto.mercadolivre.com.br/MLB-7761060986",
+  "imagem": "https://http2.mlstatic.com/D_NQ_NP_812362-MLA112325252536_062026-F.jpg",
+  "visto": "2026-11-05T18:20:50-03:00",
+  "descricao": "Lacrado",
+  "afiliado": false,
+  "cupom": null,
+  "preco_final": 459.83,
+  "confianca": 4,
+  "bandeira": "",
+  "unidades": null,
+  "unidade_nome": "unidades",
+  "unidade_singular": "unidade",
+  "reputacao": "",
+  "alerta_loja": "",
+  "frete_gratis": false,
+  "ainda_valendo": true,
+  "slides": [
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/promo-pokemon-tcg-team-rocket-tin-lata-ingl-s-persian-mercadolivre-45983-1.jpg",
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/promo-pokemon-tcg-team-rocket-tin-lata-ingl-s-persian-mercadolivre-45983-2.jpg",
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/promo-pokemon-tcg-team-rocket-tin-lata-ingl-s-persian-mercadolivre-45983-3.jpg",
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/promo-pokemon-tcg-team-rocket-tin-lata-ingl-s-persian-mercadolivre-45983-4.jpg"
+  ],
+  "creditos": [
+   "Imagem do produto: Mercado Livre"
+  ],
+  "destinos": [
+   "telegram"
+  ]
+ },
+ {
+  "produto": "Combo de Booster Pokémon TCG ME 6 Reinado Delta",
+  "jogo": "Pokémon",
+  "loja": "mercadolivre",
+  "loja_nome": "Mercado Livre",
+  "preco": 257.9,
+  "ref": 279.9,
+  "ref_fonte": "historico",
+  "url": "https://produto.mercadolivre.com.br/MLB-5515778321",
+  "link": "https://produto.mercadolivre.com.br/MLB-5515778321",
+  "imagem": "https://http2.mlstatic.com/D_NQ_NP_652276-MLA118741284984_102026-F.jpg",
+  "visto": "2026-11-05T18:21:25-03:00",
+  "descricao": "Lacrado",
+  "afiliado": false,
+  "cupom": null,
+  "preco_final": 257.9,
+  "confianca": 4,
+  "bandeira": "",
+  "unidades": null,
+  "unidade_nome": "unidades",
+  "unidade_singular": "unidade",
+  "reputacao": "",
+  "alerta_loja": "",
+  "frete_gratis": false,
+  "ainda_valendo": true,
+  "slides": [
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/promo-combo-de-booster-pok-mon-tcg-me-6-reinado-delta-mercadolivre-25789-1.jpg",
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/promo-combo-de-booster-pok-mon-tcg-me-6-reinado-delta-mercadolivre-25789-2.jpg",
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/promo-combo-de-booster-pok-mon-tcg-me-6-reinado-delta-mercadolivre-25789-3.jpg",
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/promo-combo-de-booster-pok-mon-tcg-me-6-reinado-delta-mercadolivre-25789-4.jpg"
+  ],
+  "creditos": [
+   "Imagem do produto: Mercado Livre"
+  ],
+  "destinos": [
+   "telegram"
+  ]
+ }
+]
