@@ -24,7 +24,16 @@ instagram:
   versao_api: "v23.0"         # confira a versão atual no painel da Meta
   api_host: "graph.instagram.com"  # login do Instagram (sem página do Facebook)
   reserva_cota: 3             # publicações guardadas na cota diária da API só para os furos
-  max_feed_dia: 3             # pedido do Marcos: no máximo 3 posts por dia no feed (9h, 13h e 19h)
+  max_feed_dia: 3             # pedido do Marcos: 3 posts por dia no feed, nos 3 melhores horários
+  # Melhores horários por dia (Brasília), pelos estudos Buffer (9,6 mi de posts) e Metricool (24 mi), nov/2026
+  horarios_feed:
+    seg: [18, 19, 20]
+    ter: [15, 17, 19]
+    qua: [8, 12, 18]
+    qui: [9, 18, 20]
+    sex: [6, 20, 22]
+    sab: [20, 21, 22]
+    dom: [20, 21, 22]
   hashtags: ["#pokemontcg", "#tcgbrasil", "#promocao", "#cartaspokemon", "#mtgbrasil"]
 
 curiosidades:
