@@ -1,0 +1,37 @@
+id: reel-pokemon-franquia-mais-rica
+quando: "2026-11-06T22:00"
+credito_padrao: "Imagem: The Pokémon Company (pokemon.com)"
+fontes:
+  - "Wikipedia: List of highest-grossing media franchises"
+  - "License Global 2024 (via PocketGamer.biz)"
+  - "The Pokémon Company: dados do TCG (31/03/2026)"
+  - "Wikipedia: The Pokémon Company"
+chamada: "Cada carta na sua mão é um pedaço desse império."
+destaques_chamada: [IMPÉRIO]
+legenda: |
+  💰 Como Pokémon virou a franquia que mais faturou na história?
+
+  ▪️ Cerca de US$ 99 bilhões em 30 anos (estimativa)
+  ▪️ Mais que Mickey (US$ 61 bi) e Ursinho Pooh (US$ 49 bi)
+  ▪️ A The Pokémon Company (1998) cuida da marca. Nintendo tem 32%; Game Freak e Creatures são os outros donos
+  ▪️ Só em 2023: US$ 10,8 bi em produtos licenciados
+  ▪️ Mais de 85 bilhões de cartas impressas; cerca de 10 bi só no último ano fiscal
+  ▪️ Jogo, anime, cartas e filmes lançados juntos: a estratégia "media mix"
+
+  💬 Qual desses segredos te surpreendeu mais?
+  🔖 Salva e manda pro amigo que ainda acha que é "só desenho"
+
+  📚 Fontes: Wikipedia (List of highest-grossing media franchises; The Pokémon Company), License Global 2024 via PocketGamer.biz, dados oficiais do TCG da The Pokémon Company (31/03/2026).
+  📷 Cartas: The Pokémon Company (pokemon.com) · Foto: Maplestrip (CC BY 3.0, Wikimedia Commons)
+
+  🔔 Promoções verificadas no nosso Telegram (link na bio).
+
+  #pokemon #pokemontcg #negocios #curiosidades #cartaspokemon #tcgbrasil #montoptcg
+cenas:
+  - {imagem: SVP_EN_106.png, titulo: "Como Pokémon virou a franquia mais rica do mundo", destaques: [MAIS, RICA], seg: 3.4}
+  - {tipo: foto, imagem: pokemon-center-mega-tokyo.jpg, credito: "Foto: Maplestrip, CC BY 3.0 (Wikimedia Commons)", titulo: "Cerca de US$ 99 bilhões em 30 anos", destaques: ["US$", "99", BILHÕES], sub: "Estimativa de receita total da franquia."}
+  - {imagem: M26_EN_14.png, titulo: "Mais que Mickey e Ursinho Pooh", destaques: [MAIS], sub: "Mickey: US$ 61 bi. Pooh: US$ 49 bi."}
+  - {imagem: M26_EN_12.png, rotulo: "Segredo 1", titulo: "Ninguém manda sozinho", destaques: [SOZINHO], sub: "A The Pokémon Company (1998) cuida da marca. Nintendo tem 32%; Game Freak e Creatures são os outros donos.", seg: 4.4}
+  - {imagem: M26_EN_13.png, rotulo: "Segredo 2", titulo: "Vender a marca, não só o jogo", destaques: [MARCA], sub: "Só em 2023: US$ 10,8 bi em produtos licenciados.", seg: 4.0}
+  - {imagem: ME01_PT-BR_188.png, rotulo: "Segredo 3", titulo: "Mais de 85 bilhões de cartas impressas", destaques: ["85", BILHÕES], sub: "Cerca de 10 bilhões só no último ano fiscal.", seg: 4.0}
+  - {imagem: ME06_PT-BR_138.png, rotulo: "Segredo 4", titulo: "Tudo lançado junto", destaques: [JUNTO], sub: "Jogo, anime, cartas e filmes ao mesmo tempo: a estratégia japonesa de \"media mix\".", seg: 4.4}

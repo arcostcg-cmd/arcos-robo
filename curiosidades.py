@@ -129,6 +129,8 @@ def post_da_agenda(con, janela_horas=1):
     feitos = {r[0] for r in con.execute("SELECT id FROM curiosidades_postadas")}
     for it in yaml.safe_load(AGENDA.read_text(encoding="utf-8")) or []:
         quando = datetime.fromisoformat(it["quando"]).replace(tzinfo=br)
+        if it.get("tipo") == "reel":
+            continue  # vídeo: publicado à parte (Reels)
         if it["id"] in feitos or not (quando <= agora_br < quando + timedelta(hours=janela_horas)):
             continue
         slides = [str(BASE / "imagens" / n) for n in it["slides"]]
