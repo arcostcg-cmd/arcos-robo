@@ -66,10 +66,10 @@ class TestRegras(unittest.TestCase):
         self.cfg = {
             "regras": {"desconto_minimo": 0.10, "alerta_suspeito": 0.40, "dias_historico": 30,
                        "minimo_leituras": 1, "nao_repetir_horas": 24},
-            "lojas": [{"id": l, "nome": l.upper(), "aprovada": True} for l in "abcd"]
+            "lojas": [{"id": l, "nome": l.upper(), "aprovada": True, "dominios": ["loja-teste.com.br"]} for l in "abcd"]
                      + [{"id": "x", "nome": "X", "aprovada": False}],
             "produtos": [{"nome": "Box", "referencia_manual": 1000,
-                          "ofertas": [{"loja": l, "url": f"http://{l}"} for l in "abcdx"]}],
+                          "ofertas": [{"loja": l, "url": f"https://{l}.loja-teste.com.br"} for l in "abcdx"]}],
         }
 
     def tearDown(self):
@@ -80,7 +80,7 @@ class TestRegras(unittest.TestCase):
         for i in range(vezes):
             quando = bot.iso(bot.agora() - timedelta(minutes=30 * (vezes - i)))
             self.con.execute("INSERT INTO precos VALUES (?,?,?,?,?,?,?)",
-                             ("Box", loja, f"http://{loja}", preco, estoque, None, quando))
+                             ("Box", loja, f"https://{loja}.loja-teste.com.br", preco, estoque, None, quando))
 
     def test_filtros(self):
         self.ler("a", 850)            # 15% abaixo: aprovada
@@ -438,18 +438,18 @@ class TestSistemaPromocoes(unittest.TestCase):
             con = bot.abrir_banco(Path(d) / "t.db")
             cfg = {"regras": {"desconto_minimo": 0.10, "alerta_suspeito": 0.40, "dias_historico": 30,
                               "minimo_leituras": 1, "confianca_minima": 3, "cupom_teste_dias": 7},
-                   "lojas": [{"id": "a", "nome": "A", "aprovada": True, "confianca": 4},
+                   "lojas": [{"id": "a", "nome": "A", "aprovada": True, "confianca": 4, "dominios": ["loja-teste.com.br"]},
                              {"id": "b", "nome": "B", "aprovada": True, "confianca": 5},
                              {"id": "c", "nome": "C", "aprovada": True, "confianca": 2}],
                    "cupons": [{"loja": "b", "codigo": "B20", "percentual": 20,
                                "valido_ate": (hoje + timedelta(days=5)).isoformat(),
                                "testado_em": hoje.isoformat()}],
                    "produtos": [{"nome": "Box", "referencia_manual": 1000,
-                                 "ofertas": [{"loja": l, "url": f"http://{l}"} for l in "abc"]}]}
+                                 "ofertas": [{"loja": l, "url": f"https://{l}.loja-teste.com.br"} for l in "abc"]}]}
             for loja, preco in [("a", 800), ("b", 880), ("c", 700)]:
                 for i in range(2):
                     con.execute("INSERT INTO precos VALUES (?,?,?,?,?,?,?)",
-                                ("Box", loja, f"http://{loja}", preco, 1, None,
+                                ("Box", loja, f"https://{loja}.loja-teste.com.br", preco, 1, None,
                                  bot.iso(bot.agora() - timedelta(minutes=30 * (2 - i)))))
             aprovadas, descartadas = bot.avaliar(cfg, con)
             con.close()
@@ -481,7 +481,7 @@ class TestAntiGolpe(unittest.TestCase):
         con = bot.abrir_banco(Path(tmp.name) / "t.db")
         cfg = {"regras": {"desconto_minimo": 0.10, "alerta_suspeito": 0.40, "dias_historico": 30,
                           "minimo_leituras": 1, "nao_repetir_horas": 24},
-               "lojas": [{"id": "a", "nome": "A", "aprovada": True}],
+               "lojas": [{"id": "a", "nome": "A", "aprovada": True, "dominios": ["loja-teste.com.br"]}],
                "produtos": [{"nome": "Box", "referencia_manual": 1000,
                              "ofertas": [{"loja": "a", "url": "https://clone-loja.com/box"}]}],
                **self.cfg}
@@ -622,7 +622,7 @@ class TestArteCarta(unittest.TestCase):
     def test_rss_com_imagem(self):
         import noticias
         xml = ('<rss xmlns:media="http://search.yahoo.com/mrss/"><channel><item><title>New card</title>'
-               '<link>http://o.com/a</link><media:content url="http://o.com/c.jpg"/></item></channel></rss>')
+               '<link>https://o.com/a</link><media:content url="http://o.com/c.jpg"/></item></channel></rss>')
         self.assertEqual(noticias.ler_feed(xml)[0]["imagem"], "http://o.com/c.jpg")
 
 

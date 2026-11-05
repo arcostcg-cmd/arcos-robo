@@ -10,9 +10,12 @@ import logging
 import re
 
 import requests
+
+import seguranca
 from PIL import Image
 
 log = logging.getLogger("imagens")
+Image.MAX_IMAGE_PIXELS = 60_000_000  # trava contra "bomba" de descompressão
 UA = {"User-Agent": "ArcosTCGBot/1.0 (robo de promocoes TCG; contato no canal)"}
 LICENCAS_OK = re.compile(
     r"^(cc0|public domain|domínio público|pd|cc[ -]by([ -]sa)?[ -][0-9.]+)", re.I)
@@ -36,8 +39,14 @@ NAO_FOTO = re.compile(r"diagram|scheme|schema|template|anatomy|logo|icon|map|cha
 def baixar(url):
     """Baixa uma imagem e devolve um PIL.Image em RGB, ou None."""
     try:
+        if not url.startswith("https://"):
+            raise ValueError("só imagem por HTTPS")
         r = _get(url.split("?utm_")[0])
         r.raise_for_status()
+        if not seguranca.imagem_segura(r):
+            raise ValueError("arquivo não é imagem ou é grande demais")
+        img = Image.open(io.BytesIO(r.content))
+        img.verify()  # confere que é imagem de verdade antes de usar
         img = Image.open(io.BytesIO(r.content))
         return img.convert("RGB")
     except Exception as e:

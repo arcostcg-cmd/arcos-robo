@@ -27,6 +27,7 @@ import requests
 import yaml
 
 import afiliados
+import seguranca
 import marketplaces
 
 AVISO_COMPRA = ("ℹ️ O Montop só mostra promoções. A compra é livre e espontânea, "
@@ -485,6 +486,9 @@ def avaliar(cfg, con):
             elif loja.get("confianca", 3) < conf_min:
                 motivo = f"loja com nota de confiança {loja.get('confianca')} (mínimo {conf_min})"
             link, eh_afiliado = afiliados.link_afiliado(loja, url)
+            if not seguranca.link_seguro(link or url, cfg):
+                log.warning("SEGURANÇA: link bloqueado (domínio não aprovado ou suspeito): %s", link or url)
+                motivo = motivo or "link bloqueado pela segurança (domínio não aprovado ou suspeito)"
             cupom = afiliados.cupom_valido(cfg_cupons, loja_id)
             preco_final = afiliados.preco_com_cupom(preco, cupom)
             item = {

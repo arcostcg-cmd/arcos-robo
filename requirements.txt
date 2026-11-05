@@ -1,0 +1,5 @@
+# versões fixas e auditadas (pip-audit sem falhas conhecidas em 05/11/2026)
+requests==2.34.2
+PyYAML==6.0.3
+pillow==13.0.0
+defusedxml==0.7.1

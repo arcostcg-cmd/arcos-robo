@@ -80,7 +80,7 @@ def trechos_site(url, pagina):
     for m in PRECO_RE.finditer(texto):  # cada trecho vai do preço anterior até este preço
         trecho = texto[max(fim_anterior, m.start() - 200): m.end()].strip()
         fim_anterior = m.end()
-        chave = hashlib.sha1(normalizar(trecho).encode()).hexdigest()[:16]
+        chave = hashlib.sha1(normalizar(trecho).encode(), usedforsecurity=False).hexdigest()[:16]
         if chave not in vistos:
             vistos.add(chave)
             posts.append((f"site:{dominio(url)}:{chave}", trecho, ""))

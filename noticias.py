@@ -22,6 +22,7 @@ Uso:
   python noticias.py --testar-fontes        # mostra quais feeds respondem
 """
 import argparse
+import seguranca
 import email.utils
 import html as html_lib
 import json
@@ -29,7 +30,9 @@ import logging
 import os
 import re
 from pathlib import Path
-import xml.etree.ElementTree as ET
+import xml.etree.ElementTree as ET  # só para tipos; o parse usa defusedxml
+
+import defusedxml.ElementTree as DET
 from datetime import datetime, timedelta, timezone
 
 import requests
@@ -74,7 +77,7 @@ def limpar(texto):
 
 def ler_feed(xml_texto):
     """Lê RSS 2.0 ou Atom. Devolve [{titulo, link, data, resumo}]."""
-    raiz = ET.fromstring(xml_texto)
+    raiz = DET.fromstring(xml_texto)  # defusedxml: bloqueia XML malicioso (XXE, "bilhão de risadas")
     ns = {"a": "http://www.w3.org/2005/Atom"}
     itens = []
     for it in raiz.iter("item"):  # RSS
@@ -95,7 +98,7 @@ def ler_feed(xml_texto):
                                            "{http://www.w3.org/2005/Atom}published")),
                       "resumo": limpar(_texto(it, "{http://www.w3.org/2005/Atom}content",
                                               "{http://www.w3.org/2005/Atom}summary"))[:1500]})
-    return [i for i in itens if i["titulo"] and i["link"]]
+    return [i for i in itens if i["titulo"] and i["link"] and seguranca.link_noticia_seguro(i["link"])]
 
 
 class FonteBloqueou(Exception):
@@ -343,6 +346,8 @@ def resumir(cfg, item, fonte):
     if not numeros_conferem(f"{dados['titulo']} {dados['resumo']}", original):
         log.warning("Resumo com número que não está na fonte; descartado: %s", item["link"])
         return None
+    dados["titulo"] = seguranca.limpar_texto_ia(str(dados["titulo"]), 120)
+    dados["resumo"] = seguranca.limpar_texto_ia(str(dados["resumo"]), 400)
     bom = texto_ok(dados["titulo"][:90], dados["resumo"][:300])
     if not bom:
         log.warning("Texto fora do padrão de qualidade; descartado: %s", item["link"])
