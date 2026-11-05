@@ -3,3 +3,5 @@ cron.log
 __pycache__/
 .env
 config.local.yaml
+vozes/*.onnx
+videos/tmp/
