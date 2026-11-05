@@ -1,0 +1,78 @@
+[
+ {
+  "produto": "Magic: The Gathering Marvel Super Heroes Play Booster",
+  "jogo": "Magic",
+  "loja": "mercadolivre",
+  "loja_nome": "Mercado Livre",
+  "preco": 1499.99,
+  "ref": 1598.98,
+  "ref_fonte": "loja",
+  "url": "https://produto.mercadolivre.com.br/MLB-5392508221",
+  "link": "https://produto.mercadolivre.com.br/MLB-5392508221",
+  "imagem": "https://http2.mlstatic.com/D_NQ_NP_975310-MLA119339850037_102026-F.jpg",
+  "visto": "2026-11-05T19:19:34-03:00",
+  "descricao": "Lacrado",
+  "afiliado": false,
+  "cupom": null,
+  "preco_final": 1499.99,
+  "confianca": 4,
+  "bandeira": "",
+  "unidades": null,
+  "unidade_nome": "unidades",
+  "unidade_singular": "unidade",
+  "reputacao": "",
+  "alerta_loja": "",
+  "frete_gratis": false,
+  "ainda_valendo": true,
+  "slides": [
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/promo-magic-the-gathering-marvel-super-heroes-play-boost-mercadolivre-149999-1.jpg",
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/promo-magic-the-gathering-marvel-super-heroes-play-boost-mercadolivre-149999-2.jpg",
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/promo-magic-the-gathering-marvel-super-heroes-play-boost-mercadolivre-149999-3.jpg",
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/promo-magic-the-gathering-marvel-super-heroes-play-boost-mercadolivre-149999-4.jpg"
+  ],
+  "creditos": [
+   "Imagem do produto: Mercado Livre"
+  ],
+  "destinos": [
+   "telegram"
+  ]
+ },
+ {
+  "produto": "Funko Pop! Pokémon - Turtwig",
+  "jogo": "Pokémon",
+  "loja": "mercadolivre",
+  "loja_nome": "Mercado Livre",
+  "preco": 120.9,
+  "ref": 148.0,
+  "ref_fonte": "historico",
+  "url": "https://produto.mercadolivre.com.br/MLB-7938938818",
+  "link": "https://produto.mercadolivre.com.br/MLB-7938938818",
+  "imagem": "https://http2.mlstatic.com/D_NQ_NP_925785-MLA99852784795_112025-F.jpg",
+  "visto": "2026-11-05T19:24:50-03:00",
+  "descricao": "Colecionável",
+  "afiliado": false,
+  "cupom": null,
+  "preco_final": 120.9,
+  "confianca": 4,
+  "bandeira": "",
+  "unidades": null,
+  "unidade_nome": "unidades",
+  "unidade_singular": "unidade",
+  "reputacao": "",
+  "alerta_loja": "",
+  "frete_gratis": false,
+  "ainda_valendo": true,
+  "slides": [
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/promo-funko-pop-pok-mon-turtwig-mercadolivre-12090-1.jpg",
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/promo-funko-pop-pok-mon-turtwig-mercadolivre-12090-2.jpg",
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/promo-funko-pop-pok-mon-turtwig-mercadolivre-12090-3.jpg",
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/promo-funko-pop-pok-mon-turtwig-mercadolivre-12090-4.jpg"
+  ],
+  "creditos": [
+   "Imagem do produto: Mercado Livre"
+  ],
+  "destinos": [
+   "telegram"
+  ]
+ }
+]
