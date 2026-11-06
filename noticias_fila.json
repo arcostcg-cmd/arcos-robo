@@ -1,0 +1,53 @@
+[
+ {
+  "titulo": "Aumento no preco de pacotes de cartas",
+  "resumo": "A Creatures anunciou um novo reajuste nos precos de pacotes de expansao com inicio previsto para maio. A informacao foi divulgada pelo site PokeBeach.",
+  "jogo": "Pokémon",
+  "fonte": "PokeBeach",
+  "link": "https://news.google.com/rss/articles/CBMiswFBVV95cUxPTjEtVlY2MUxseXpZQlJ4X1UzSDRUZnAxMVppZzRUanJ4VzFIVlJlNjFaQWNSaTFtLXpTQ09va2V4UzRtRXdzUFlLYkJnMG9wN3NFRkhaWXloY1NVdDdSUHBEZ2dTRElpMFVhWkVLa01GVDdFU0VraExQcHJ5SzA4bGNoNkxMS0hEcnF6STQtVE42V3VJTC1ZeHdfWDBHUEVHTkRMWDNlVlpYaFNQSFJreE44QQ?oc=5",
+  "rumor": false,
+  "data": "2026-11-06T20:52:22+00:00",
+  "credito_imagem": "foto ilustrativa, Pokemon World Champ · CC BY-SA 4.0 · Wikimedia Commons",
+  "formato": "post",
+  "story": [],
+  "slides": [
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/news-aumento-no-preco-de-pacotes-de-cartas-1.jpg",
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/news-aumento-no-preco-de-pacotes-de-cartas-2.jpg",
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/news-aumento-no-preco-de-pacotes-de-cartas-3.jpg"
+  ]
+ },
+ {
+  "titulo": "Creatures anuncia novo reajuste de preço",
+  "resumo": "A empresa Creatures anunciou um novo aumento no preço de pacotes de booster com início em maio. A informacao foi divulgada pelo site PokeBeach.",
+  "jogo": "Pokémon",
+  "fonte": "PokeBeach",
+  "link": "https://news.google.com/rss/articles/CBMixAFBVV95cUxPRG9uOXRDcE03M2wwSGl1VXU2UmlzQ3BKcTRtU0hoRk8zQjNXdm5RcFVRV0VoMnhuMTRiZzBBdVVqS2pOZjJRUVVvM1BwUlV0SUJHZnpZN0hTMFk2ekNNTUt5U1RrMzFFQ19SOXRwRWwxS0hVOVdBLVlZV2hZS0lzTjMzOTlNNXEwYXBMNU9MX3FCMWp0NlByZkIzeFV5bk1uZlJjQTNjcGo5Ry1jVmNRWmJITHZfNGtJQkVQNlE1S051UlVk?oc=5",
+  "rumor": false,
+  "data": "2026-11-06T20:48:51+00:00",
+  "credito_imagem": "foto ilustrativa, Pokemon World Champ · CC BY-SA 4.0 · Wikimedia Commons",
+  "formato": "story",
+  "story": [
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/news-creatures-anuncia-novo-reajuste-de-pre-o.jpg"
+  ],
+  "slides": [
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/news-creatures-anuncia-novo-reajuste-de-pre-o.jpg"
+  ]
+ },
+ {
+  "titulo": "Pokémon TCG Anuncia Distribuição de Cartas Promocionais",
+  "resumo": "A The Pokémon Company iniciou uma nova distribuição de cartas promocionais em alusão ao aniversário de trinta anos da franquia, incluindo três cartas exclusivas no Japão. A ação foi divulgada por portais especializados no país.",
+  "jogo": "Pokémon",
+  "fonte": "Essential Japan",
+  "link": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxPbkVUby1qTmFPeGVfUFZjY3YxNEMyY0htb2xmRTFfSUJYMVpkTGN6RmJpN3JjYjZjZFJ4bWJHeHE3dnhOT0tqa2dOQmx3RmwxTm9YMjUxdVRxZHlyTlkySnUxQzE2R3dHM3B1cGl2MVNnaXdqb1Yyak9mbmZVU2NyZXJ2M3ByTjhhY183MnNCeWhRWVl6S3NTcTRtSmNQYjZiak02MHB3ZEpBbW1GMm9ZbVU1M0lLNXA0MXVR?oc=5",
+  "rumor": false,
+  "data": "2026-11-06T17:22:46+00:00",
+  "credito_imagem": "foto ilustrativa, Pokemon World Champ · CC BY-SA 4.0 · Wikimedia Commons",
+  "formato": "story",
+  "story": [
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/news-pok-mon-tcg-anuncia-distribui-o-de-cartas-promocio.jpg"
+  ],
+  "slides": [
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/news-pok-mon-tcg-anuncia-distribui-o-de-cartas-promocio.jpg"
+  ]
+ }
+]
