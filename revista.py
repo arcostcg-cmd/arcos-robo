@@ -23,7 +23,12 @@ def legenda(c):
     Gancho na 1ª linha, fatos em tópicos curtos, pergunta no fim, créditos numa linha só."""
     gancho = c.get("gancho_legenda") or c["slides"][0]["titulo"]
     fatos = "\n".join(f"📌 {s['titulo']}" for s in c["slides"][1:])
-    fontes = ", ".join(f.split(":")[0].split(" ·")[0] for f in c["fontes"])
+    def curta(f):
+        nome, _, resto = f.partition(":")
+        if nome.strip().lower() in {"cartas", "texto das cartas", "imagens"} and resto:
+            return resto.strip().split(" (")[0].split(" ·")[0]
+        return nome.split(" ·")[0].strip()
+    fontes = ", ".join(dict.fromkeys(curta(f) for f in c["fontes"]))
     img = c["credito_imagem"].split(" (")[0]
     return (f"{gancho} {c.get('emoji', '👀')}\n\n{fatos}\n\n{c['pergunta']} 👇\n\n"
             f"Fontes: {fontes} · Imagens: {img}\n"
