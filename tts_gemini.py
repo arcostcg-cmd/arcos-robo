@@ -29,7 +29,8 @@ def modelos_tts(chave):
 
 def gerar(pedido, chave, modelos):
     instr = pedido.get("estilo", "")
-    texto = f"{instr}\n\n{pedido['texto']}" if instr else pedido["texto"]
+    # formato do Gemini TTS: "instrução de estilo: texto" (sem isso ele lê a instrução em voz alta)
+    texto = f"{instr.rstrip(': .')}: {pedido['texto']}" if instr else pedido["texto"]
     corpo = {"contents": [{"parts": [{"text": texto}]}],
              "generationConfig": {"responseModalities": ["AUDIO"],
                                   "speechConfig": {"voiceConfig": {"prebuiltVoiceConfig":
