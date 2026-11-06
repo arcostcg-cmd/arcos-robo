@@ -1,0 +1,24 @@
+id: serie-pokedex-006
+quando: 2026-11-12T18:00
+jogo: Pokémon
+credito_imagem: The Pokémon Company (pokemon.com/br)
+gancho_legenda: 'Pokédex Montop #006/1025: Charizard'
+emoji: 📖
+cartas:
+- https://assets.pokemon.com/static-assets/content-assets/cms2-pt-br/img/cards/web/SV3PT5/SV3PT5_PT-BR_6.png
+pergunta: Qual é o Pokémon nº 007? Comenta aí
+destaques_pergunta:
+- '007'
+fontes:
+- 'Pokédex oficial: pokemon.com/br/pokedex'
+- 'Cartas: Coleção 151 (pokemon.com/br)'
+slides:
+- carta: 0
+  titulo: 'Pokédex Montop #006: Charizard.'
+  destaques:
+  - '#006'
+  sub: Tipo Fogo/Voador. Uma carta por dia, na ordem da Pokédex.
+- carta: 0
+  titulo: Ele não solta fogo em quem é mais fraco.
+  destaques: []
+  sub: E o fogo fica mais quente depois de batalhas duras.

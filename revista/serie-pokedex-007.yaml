@@ -1,0 +1,24 @@
+id: serie-pokedex-007
+quando: 2026-11-13T20:00
+jogo: Pokémon
+credito_imagem: The Pokémon Company (pokemon.com/br)
+gancho_legenda: 'Pokédex Montop #007/1025: Squirtle'
+emoji: 📖
+cartas:
+- https://assets.pokemon.com/static-assets/content-assets/cms2-pt-br/img/cards/web/SV3PT5/SV3PT5_PT-BR_7.png
+pergunta: Qual é o Pokémon nº 008? Comenta aí
+destaques_pergunta:
+- 008
+fontes:
+- 'Pokédex oficial: pokemon.com/br/pokedex'
+- 'Cartas: Coleção 151 (pokemon.com/br)'
+slides:
+- carta: 0
+  titulo: 'Pokédex Montop #007: Squirtle.'
+  destaques:
+  - '#007'
+  sub: Tipo Água. Uma carta por dia, na ordem da Pokédex.
+- carta: 0
+  titulo: O casco dele endurece depois que nasce.
+  destaques: []
+  sub: E ele ataca jogando espuma pela boca.

@@ -1,0 +1,24 @@
+id: serie-pokedex-001
+quando: 2026-11-07T21:00
+jogo: Pokémon
+credito_imagem: The Pokémon Company (pokemon.com/br)
+gancho_legenda: 'Pokédex Montop #001/1025: Bulbasaur'
+emoji: 📖
+cartas:
+- https://assets.pokemon.com/static-assets/content-assets/cms2-pt-br/img/cards/web/SV3PT5/SV3PT5_PT-BR_1.png
+pergunta: Qual é o Pokémon nº 002? Comenta aí
+destaques_pergunta:
+- '002'
+fontes:
+- 'Pokédex oficial: pokemon.com/br/pokedex'
+- 'Cartas: Coleção 151 (pokemon.com/br)'
+slides:
+- carta: 0
+  titulo: 'Pokédex Montop #001: Bulbasaur.'
+  destaques:
+  - '#001'
+  sub: Tipo Planta/Venenoso. Uma carta por dia, na ordem da Pokédex.
+- carta: 0
+  titulo: Ele nasce com uma semente nas costas.
+  destaques: []
+  sub: A semente cresce junto com ele.

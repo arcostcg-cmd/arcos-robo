@@ -1,0 +1,24 @@
+id: serie-pokedex-004
+quando: 2026-11-10T17:00
+jogo: Pokémon
+credito_imagem: The Pokémon Company (pokemon.com/br)
+gancho_legenda: 'Pokédex Montop #004/1025: Charmander'
+emoji: 📖
+cartas:
+- https://assets.pokemon.com/static-assets/content-assets/cms2-pt-br/img/cards/web/SV3PT5/SV3PT5_PT-BR_4.png
+pergunta: Qual é o Pokémon nº 005? Comenta aí
+destaques_pergunta:
+- '005'
+fontes:
+- 'Pokédex oficial: pokemon.com/br/pokedex'
+- 'Cartas: Coleção 151 (pokemon.com/br)'
+slides:
+- carta: 0
+  titulo: 'Pokédex Montop #004: Charmander.'
+  destaques:
+  - '#004'
+  sub: Tipo Fogo. Uma carta por dia, na ordem da Pokédex.
+- carta: 0
+  titulo: A chama da cauda mostra a saúde dele.
+  destaques: []
+  sub: Charmander saudável, chama bem acesa.

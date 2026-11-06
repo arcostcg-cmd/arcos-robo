@@ -1,0 +1,24 @@
+id: serie-pokedex-005
+quando: 2026-11-11T12:00
+jogo: Pokémon
+credito_imagem: The Pokémon Company (pokemon.com/br)
+gancho_legenda: 'Pokédex Montop #005/1025: Charmeleon'
+emoji: 📖
+cartas:
+- https://assets.pokemon.com/static-assets/content-assets/cms2-pt-br/img/cards/web/SV3PT5/SV3PT5_PT-BR_5.png
+pergunta: Qual é o Pokémon nº 006? Comenta aí
+destaques_pergunta:
+- '006'
+fontes:
+- 'Pokédex oficial: pokemon.com/br/pokedex'
+- 'Cartas: Coleção 151 (pokemon.com/br)'
+slides:
+- carta: 0
+  titulo: 'Pokédex Montop #005: Charmeleon.'
+  destaques:
+  - '#005'
+  sub: Tipo Fogo. Uma carta por dia, na ordem da Pokédex.
+- carta: 0
+  titulo: Balançando a cauda, ele esquenta o ar em volta.
+  destaques: []
+  sub: A Pokédex diz que a temperatura fica insuportável.

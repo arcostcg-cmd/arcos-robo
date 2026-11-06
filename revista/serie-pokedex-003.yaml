@@ -1,0 +1,24 @@
+id: serie-pokedex-003
+quando: 2026-11-09T19:00
+jogo: Pokémon
+credito_imagem: The Pokémon Company (pokemon.com/br)
+gancho_legenda: 'Pokédex Montop #003/1025: Venusaur'
+emoji: 📖
+cartas:
+- https://assets.pokemon.com/static-assets/content-assets/cms2-pt-br/img/cards/web/SV3PT5/SV3PT5_PT-BR_3.png
+pergunta: Qual é o Pokémon nº 004? Comenta aí
+destaques_pergunta:
+- '004'
+fontes:
+- 'Pokédex oficial: pokemon.com/br/pokedex'
+- 'Cartas: Coleção 151 (pokemon.com/br)'
+slides:
+- carta: 0
+  titulo: 'Pokédex Montop #003: Venusaur.'
+  destaques:
+  - '#003'
+  sub: Tipo Planta/Venenoso. Uma carta por dia, na ordem da Pokédex.
+- carta: 0
+  titulo: A flor dele solta um aroma que acalma.
+  destaques: []
+  sub: A cor fica mais forte com sol e boa alimentação.
