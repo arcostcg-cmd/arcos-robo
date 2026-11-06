@@ -1,0 +1,78 @@
+[
+ {
+  "produto": "Box Pokémon: Coleção Mega Forças Mega Dragonite Ex",
+  "jogo": "Pokémon",
+  "loja": "mercadolivre",
+  "loja_nome": "Mercado Livre",
+  "preco": 149.99,
+  "ref": 179.9,
+  "ref_fonte": "historico",
+  "url": "https://produto.mercadolivre.com.br/MLB-7784451072",
+  "link": "https://produto.mercadolivre.com.br/MLB-7784451072",
+  "imagem": "https://http2.mlstatic.com/D_NQ_NP_909152-MLA115308873102_082026-F.jpg",
+  "visto": "2026-11-05T23:58:24-03:00",
+  "descricao": "Lacrado",
+  "afiliado": false,
+  "cupom": null,
+  "preco_final": 149.99,
+  "confianca": 4,
+  "bandeira": "",
+  "unidades": null,
+  "unidade_nome": "unidades",
+  "unidade_singular": "unidade",
+  "reputacao": "",
+  "alerta_loja": "",
+  "frete_gratis": false,
+  "ainda_valendo": false,
+  "slides": [
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/promo-box-pok-mon-cole-o-mega-for-as-mega-dragonite-ex-mercadolivre-14999-1.jpg",
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/promo-box-pok-mon-cole-o-mega-for-as-mega-dragonite-ex-mercadolivre-14999-2.jpg",
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/promo-box-pok-mon-cole-o-mega-for-as-mega-dragonite-ex-mercadolivre-14999-3.jpg",
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/promo-box-pok-mon-cole-o-mega-for-as-mega-dragonite-ex-mercadolivre-14999-4.jpg"
+  ],
+  "creditos": [
+   "Imagem do produto: Mercado Livre"
+  ],
+  "destinos": [
+   "telegram"
+  ]
+ },
+ {
+  "produto": "Booster Yu-Gi-Oh! Investida Crescente (Edição Especial)",
+  "jogo": "Yu-Gi-Oh!",
+  "loja": "mercadolivre",
+  "loja_nome": "Mercado Livre",
+  "preco": 39.99,
+  "ref": 59.9,
+  "ref_fonte": "loja",
+  "url": "https://produto.mercadolivre.com.br/MLB-3443273577",
+  "link": "https://produto.mercadolivre.com.br/MLB-3443273577",
+  "imagem": "https://http2.mlstatic.com/D_NQ_NP_993945-MLA99508686712_112025-F.jpg",
+  "visto": "2026-11-05T23:52:52-03:00",
+  "descricao": "Lacrado, nacional (português)",
+  "afiliado": false,
+  "cupom": null,
+  "preco_final": 39.99,
+  "confianca": 4,
+  "bandeira": "🇧🇷",
+  "unidades": null,
+  "unidade_nome": "unidades",
+  "unidade_singular": "unidade",
+  "reputacao": "",
+  "alerta_loja": "",
+  "frete_gratis": false,
+  "ainda_valendo": true,
+  "slides": [
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/promo-booster-yu-gi-oh-investida-crescente-edi-o-especia-mercadolivre-3999-1.jpg",
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/promo-booster-yu-gi-oh-investida-crescente-edi-o-especia-mercadolivre-3999-2.jpg",
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/promo-booster-yu-gi-oh-investida-crescente-edi-o-especia-mercadolivre-3999-3.jpg",
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/promo-booster-yu-gi-oh-investida-crescente-edi-o-especia-mercadolivre-3999-4.jpg"
+  ],
+  "creditos": [
+   "Imagem do produto: Mercado Livre"
+  ],
+  "destinos": [
+   "telegram"
+  ]
+ }
+]
