@@ -19,13 +19,16 @@ BASE = Path(__file__).resolve().parent
 
 
 def legenda(c):
-    corpo = "\n".join(f"▪️ {s['titulo']}" for s in c["slides"][1:])
-    fontes = "\n".join(c["fontes"])
-    return (f"🃏 {c['slides'][0]['titulo']}\n\n{corpo}\n\n💬 {c['pergunta']}\n🔖 Salva e manda pro amigo do TCG\n\n"
-            f"📚 Fontes:\n{fontes}\n📷 Imagens das cartas: {c['credito_imagem']}\n\n"
-            f"🔔 Promoções verificadas no nosso Telegram (link na bio).\n\n"
+    """Estilo Montop (pedido do Marcos): jovem, jornalístico, simples e viral.
+    Gancho na 1ª linha, fatos em tópicos curtos, pergunta no fim, créditos numa linha só."""
+    gancho = c.get("gancho_legenda") or c["slides"][0]["titulo"]
+    fatos = "\n".join(f"📌 {s['titulo']}" for s in c["slides"][1:])
+    fontes = ", ".join(f.split(":")[0].split(" ·")[0] for f in c["fontes"])
+    img = c["credito_imagem"].split(" (")[0]
+    return (f"{gancho} {c.get('emoji', '👀')}\n\n{fatos}\n\n{c['pergunta']} 👇\n\n"
+            f"Fontes: {fontes} · Imagens: {img}\n"
+            f"Promo de TCG verificada no Telegram 🔗 bio\n\n"
             + hashtags.escolher(c.get("jogo"), "curiosidade"))
-
 
 def main(arq):
     c = yaml.safe_load(open(arq, encoding="utf-8"))
