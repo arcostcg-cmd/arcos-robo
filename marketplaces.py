@@ -10,6 +10,7 @@
 Nunca raspa página de marketplace (os termos de uso proíbem e eles bloqueiam).
 """
 import logging
+import seguranca  # noqa: F401 (protege os logs)
 import os
 import re
 import time

@@ -25,3 +25,36 @@ def test_varredura_acha_token(tmp_path, monkeypatch):
     monkeypatch.setattr(s, "_arquivos_rastreados", lambda: [f])
     graves, _ = s.varrer()
     assert any("Telegram" in g for g in graves)
+
+
+def test_comando_cupom_validado(tmp_path):
+    import sqlite3
+    import cupons
+    con = sqlite3.connect(tmp_path / "c.db")
+    cupons.preparar_banco(con)
+    assert "inválido" in cupons.aplicar_comando(con, "/cupom_ok <script> 10 30/12")
+    assert "fora do normal" in cupons.aplicar_comando(con, "/cupom_ok PROMO10 95 30/12")
+
+
+def test_erro_telegram_sem_token(monkeypatch):
+    import publicar
+
+    class R:
+        status_code = 400
+        def json(self):
+            return {"description": "Bad Request: chat not found"}
+
+    monkeypatch.setenv("TELEGRAM_TOKEN", "123456789:AAsegredo")
+    monkeypatch.setattr(publicar.requests, "post", lambda *a, **k: R())
+    try:
+        publicar._tg("sendMessage", {"chat_id": 1, "text": "x"})
+    except publicar.ErroTelegram as e:
+        assert "segredo" not in str(e) and "chat not found" in str(e)
+
+
+def test_log_sem_token(monkeypatch, caplog):
+    import logging
+    monkeypatch.setenv("GEMINI_API_KEY", "AIzaFAKEKEYFAKEKEYFAKEKEYFAKEKEY12345")
+    with caplog.at_level(logging.WARNING):
+        logging.getLogger("x").warning("IA falhou: %s", "https://api/x?key=AIzaFAKEKEYFAKEKEYFAKEKEYFAKEKEY12345&a=1")
+    assert "FAKEKEY" not in caplog.text and "***" in caplog.text

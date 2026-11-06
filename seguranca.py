@@ -111,6 +111,49 @@ def imagem_segura(resposta):
     return len(resposta.content) <= MAX_IMAGEM
 
 
+# ------------------------------------------------------------------ logs sem segredo
+
+_SEGREDOS_ENV = ("TELEGRAM_TOKEN", "INSTAGRAM_TOKEN", "GEMINI_API_KEY", "ANTHROPIC_API_KEY", "ML_CLIENT_SECRET",
+                 "ML_REFRESH_TOKEN", "ALI_APP_SECRET", "SHOPEE_SECRET", "AMAZON_SECRET_KEY")
+
+
+def ocultar(texto):
+    """Troca por *** qualquer token conhecido (variáveis de ambiente e padrões de chave)."""
+    import os
+    t = str(texto)
+    for nome in _SEGREDOS_ENV:
+        v = os.environ.get(nome)
+        if v and len(v) >= 8:
+            t = t.replace(v, "***")
+    for padrao in list(PADROES_SEGREDO.values())[:4]:
+        t = re.sub(padrao, "***", t)
+    t = re.sub(r"(?i)((?:access_token|key|token|secret|sign)=)[^&\s]+", r"\1***", t)
+    return t
+
+
+def proteger_logs():
+    """Todo log do robô passa por ocultar() antes de ser escrito (vale para qualquer módulo)."""
+    import logging
+    if getattr(logging, "_montop_protegido", False):
+        return
+    antiga = logging.getLogRecordFactory()
+
+    def fabrica(*a, **k):
+        rec = antiga(*a, **k)
+        try:
+            rec.msg = ocultar(rec.getMessage())
+            rec.args = ()
+        except Exception:
+            pass
+        return rec
+
+    logging.setLogRecordFactory(fabrica)
+    logging._montop_protegido = True
+
+
+proteger_logs()
+
+
 # ------------------------------------------------------------------ varredura do repositório
 
 def _arquivos_rastreados():

@@ -10,6 +10,7 @@ Travas (o AliExpress tem muita falsificação):
 Uso: python aliexpress.py [--simular]
 """
 import hashlib
+import seguranca  # noqa: F401 (protege os logs)
 import hmac
 import json
 import logging

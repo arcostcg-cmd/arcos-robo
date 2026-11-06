@@ -9,9 +9,41 @@ from pathlib import Path
 import requests
 
 
+class ErroTelegram(RuntimeError):
+    """Erro do Telegram SEM o token (a URL da API leva o token; nunca vai para o log)."""
+
+
+def _tg(metodo, data, files=None, timeout=60, tentativas=3):
+    """Chama a API do Telegram respeitando o limite (429 + retry_after) e sem vazar o token em erro."""
+    token = os.environ["TELEGRAM_TOKEN"]
+    url = f"https://api.telegram.org/bot{token}/{metodo}"
+    for n in range(tentativas):
+        try:
+            r = requests.post(url, data=data, files=files, timeout=timeout)
+        except requests.RequestException as e:
+            raise ErroTelegram(f"{metodo}: falha de rede ({type(e).__name__})") from None
+        if r.status_code == 429 and n < tentativas - 1:
+            try:
+                espera = int(r.json().get("parameters", {}).get("retry_after", 5))
+            except Exception:
+                espera = 5
+            time.sleep(min(espera, 60) + 1)
+            if files:
+                for f in files.values():
+                    f.seek(0)
+            continue
+        if r.status_code >= 400:
+            try:
+                desc = r.json().get("description", "")
+            except Exception:
+                desc = ""
+            raise ErroTelegram(f"{metodo}: HTTP {r.status_code} {desc}".strip())
+        return r
+    raise ErroTelegram(f"{metodo}: limite do Telegram, tentei {tentativas} vezes")
+
+
 def telegram_album(cfg, caminhos, legenda, html=False):
     """Envia até 10 imagens como um álbum, com a legenda na primeira."""
-    token = os.environ["TELEGRAM_TOKEN"]
     media, arquivos = [], {}
     with ExitStack() as pilha:
         for i, c in enumerate(caminhos[:10]):
@@ -23,20 +55,14 @@ def telegram_album(cfg, caminhos, legenda, html=False):
                 if html:
                     item["parse_mode"] = "HTML"
             media.append(item)
-        r = requests.post(
-            f"https://api.telegram.org/bot{token}/sendMediaGroup", timeout=120,
-            data={"chat_id": cfg["telegram"]["canal"], "media": json.dumps(media)},
-            files=arquivos)
-    r.raise_for_status()
+        _tg("sendMediaGroup", {"chat_id": cfg["telegram"]["canal"], "media": json.dumps(media)},
+            files=arquivos, timeout=120)
 
 
 def telegram_texto(cfg, texto, chat=None, html=False):
-    token = os.environ["TELEGRAM_TOKEN"]
-    r = requests.post(f"https://api.telegram.org/bot{token}/sendMessage", timeout=30,
-                      data={"chat_id": chat or cfg["telegram"]["canal"], "text": texto,
-                            "disable_web_page_preview": False,
-                            **({"parse_mode": "HTML"} if html else {})})
-    r.raise_for_status()
+    _tg("sendMessage", {"chat_id": chat or cfg["telegram"]["canal"], "text": texto[:4096],
+                        "disable_web_page_preview": False, **({"parse_mode": "HTML"} if html else {})},
+        timeout=30)
 
 
 def url_publica(cfg, caminho):
@@ -148,12 +174,9 @@ def avisar_admin(cfg, texto):
 
 
 def telegram_foto(cfg, caminho, legenda):
-    token = os.environ["TELEGRAM_TOKEN"]
     with open(caminho, "rb") as f:
-        r = requests.post(f"https://api.telegram.org/bot{token}/sendPhoto", timeout=60,
-                          data={"chat_id": cfg["telegram"]["canal"], "caption": legenda[:1024]},
-                          files={"photo": f})
-    r.raise_for_status()
+        _tg("sendPhoto", {"chat_id": cfg["telegram"]["canal"], "caption": legenda[:1024]},
+            files={"photo": f}, timeout=60)
 
 
 def instagram_story(cfg, caminho, furo=False):

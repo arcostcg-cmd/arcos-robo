@@ -20,10 +20,11 @@ Uso:
   python cupons.py --listar     # mostra cupons ativos e candidatos
 """
 import argparse
+import seguranca  # noqa: F401 (protege os logs)
 import logging
 import os
 import re
-from datetime import date
+from datetime import date, timedelta
 
 import requests
 import yaml
@@ -133,6 +134,15 @@ def aplicar_comando(con, texto):
             minimo = float(partes[4].replace(",", ".")) if len(partes) > 4 else None
         except ValueError:
             return "Formato: /cupom_ok CODIGO 10 30/11 [mínimo]"
+        # validação: código simples, desconto plausível, validade futura e próxima, mínimo positivo
+        if not re.fullmatch(r"[A-Z0-9_-]{3,30}", codigo):
+            return "Código de cupom inválido (só letras, números, - e _)."
+        if not 1 <= pct <= 60:
+            return "Desconto fora do normal (aceito de 1% a 60%). Confira e mande de novo."
+        if not agora().date() <= validade <= agora().date() + timedelta(days=180):
+            return "Validade precisa ser de hoje até 6 meses."
+        if minimo is not None and not 0 < minimo <= 50000:
+            return "Pedido mínimo inválido."
         n = con.execute("UPDATE cupons SET status='ok', percentual=?, valido_ate=?, minimo=?, "
                         "testado_em=? WHERE codigo=?",
                         (pct, validade.isoformat(), minimo, agora().date().isoformat(), codigo)).rowcount
@@ -142,6 +152,8 @@ def aplicar_comando(con, texto):
                 f"Não achei o cupom {codigo} entre os candidatos.")
     if cmd == "/cupom_ruim" and len(partes) >= 2:
         codigo = partes[1].upper()
+        if not re.fullmatch(r"[A-Z0-9_-]{3,30}", codigo):
+            return "Código de cupom inválido."
         n = con.execute("UPDATE cupons SET status='ruim', testado_em=? WHERE codigo=?",
                         (agora().date().isoformat(), codigo)).rowcount
         con.commit()
@@ -173,8 +185,13 @@ def ler_comandos(cfg, con):
     for u in updates:
         offset = max(offset, u["update_id"] + 1)
         msg = u.get("message") or {}
-        if str(msg.get("chat", {}).get("id")) != admin:
-            continue  # só o admin manda no robô
+        if str(msg.get("chat", {}).get("id")) != admin or str((msg.get("from") or {}).get("id")) != admin:
+            if (msg.get("text") or "").startswith("/"):  # alguém de fora tentando mandar no robô
+                quem = (msg.get("from") or {}).get("username") or (msg.get("from") or {}).get("id")
+                log.warning("SEGURANÇA: comando de quem não é admin ignorado (%s)", quem)
+                publicar.avisar_admin(cfg, f"⚠️ Segurança: alguém que não é você tentou mandar um comando "
+                                           f"no bot (@{quem}). Ignorei.")
+            continue  # só o admin manda no robô (chat privado do admin)
         resposta = aplicar_comando(con, msg.get("text", ""))
         if resposta:
             publicar.avisar_admin(cfg, resposta)

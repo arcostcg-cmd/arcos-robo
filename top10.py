@@ -5,6 +5,7 @@ Uso: python top10.py tops/me01-mais-valiosas.yaml
 Imagens das cartas: só URL OFICIAL (pokemon.com). Preços: fonte e data escritas no post.
 """
 import hashtags
+import seguranca  # noqa: F401 (protege os logs)
 import sys
 from pathlib import Path
 

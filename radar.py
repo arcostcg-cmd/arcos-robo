@@ -21,6 +21,7 @@ Uso:
   python radar.py --relatorio  # resumo dos últimos 7 dias
 """
 import argparse
+import seguranca  # noqa: F401 (protege os logs)
 import html as html_lib
 import logging
 import re

@@ -6,6 +6,7 @@ Mais produtos vigiados = mais chances de promoção de verdade no Telegram.
 Uso: python descobrir.py termos.json saida.yaml
 """
 import json
+import seguranca  # noqa: F401 (protege os logs)
 import re
 import sys
 

@@ -12,6 +12,7 @@ Uso:
   python curiosidades.py                        # tudo de uma vez (servidor próprio)
 """
 import hashtags
+import seguranca  # noqa: F401 (protege os logs)
 import argparse
 import json
 import logging
