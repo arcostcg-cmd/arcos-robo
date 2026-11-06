@@ -23,8 +23,8 @@ def modelos_tts(chave):
     r = requests.get(f"{API}/models", headers={"x-goog-api-key": chave}, params={"pageSize": 200}, timeout=30)
     r.raise_for_status()
     nomes = [m["name"].split("/")[-1] for m in r.json().get("models", []) if "tts" in m["name"].lower()]
-    # preferir pro > flash, e a versão mais nova
-    return sorted(nomes, key=lambda n: ("pro" in n, n), reverse=True)
+    # mais nova primeiro; "pro" por último (no plano grátis costuma dar 429)
+    return sorted(nomes, key=lambda n: ("pro" not in n, "lite" not in n, n), reverse=True)
 
 
 def gerar(pedido, chave, modelos):
@@ -43,9 +43,16 @@ def gerar(pedido, chave, modelos):
             print("tentei", ultimo)
             continue
         parte = r.json()["candidates"][0]["content"]["parts"][0]["inlineData"]
-        pcm = base64.b64decode(parte["data"])
-        taxa = int(parte.get("mimeType", "rate=24000").split("rate=")[-1].split(";")[0] or 24000)
-        return m, pcm, taxa
+        dados = base64.b64decode(parte["data"])
+        tipo = parte.get("mimeType", "")
+        if "wav" in tipo or dados[:4] == b"RIFF":  # já veio como WAV
+            import io
+            with wave.open(io.BytesIO(dados)) as w:
+                return m, w.readframes(w.getnframes()), w.getframerate()
+        taxa = 24000
+        if "rate=" in tipo:
+            taxa = int(tipo.split("rate=")[-1].split(";")[0])
+        return m, dados, taxa
     raise SystemExit(f"nenhum modelo de voz funcionou: {ultimo}")
 
 
