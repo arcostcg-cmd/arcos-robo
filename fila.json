@@ -1,0 +1,78 @@
+[
+ {
+  "produto": "Magic: The Gathering Avatar The Last Airbender Play Booster Box de 30 Unidades",
+  "jogo": "Magic",
+  "loja": "mercadolivre",
+  "loja_nome": "Mercado Livre",
+  "preco": 1079.95,
+  "ref": 1199.95,
+  "ref_fonte": "loja",
+  "url": "https://produto.mercadolivre.com.br/MLB-6993573532",
+  "link": "https://produto.mercadolivre.com.br/MLB-6993573532",
+  "imagem": "https://http2.mlstatic.com/D_NQ_NP_979693-MLA100072523043_122025-F.jpg",
+  "visto": "2026-11-06T06:27:40-03:00",
+  "descricao": "Lacrado",
+  "afiliado": false,
+  "cupom": null,
+  "preco_final": 1079.95,
+  "confianca": 4,
+  "bandeira": "",
+  "unidades": null,
+  "unidade_nome": "unidades",
+  "unidade_singular": "unidade",
+  "reputacao": "",
+  "alerta_loja": "",
+  "frete_gratis": false,
+  "ainda_valendo": true,
+  "slides": [
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/promo-magic-the-gathering-avatar-the-last-airbender-play-mercadolivre-107995-1.jpg",
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/promo-magic-the-gathering-avatar-the-last-airbender-play-mercadolivre-107995-2.jpg",
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/promo-magic-the-gathering-avatar-the-last-airbender-play-mercadolivre-107995-3.jpg",
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/promo-magic-the-gathering-avatar-the-last-airbender-play-mercadolivre-107995-4.jpg"
+  ],
+  "creditos": [
+   "Imagem do produto: Mercado Livre"
+  ],
+  "destinos": [
+   "telegram"
+  ]
+ },
+ {
+  "produto": "Blister Triplo Megaevolução 5 - Escuridão Absoluta",
+  "jogo": "Pokémon",
+  "loja": "copag_ml",
+  "loja_nome": "Loja Oficial Pokémon (Mercado Livre)",
+  "preco": 29.9,
+  "ref": 42.99,
+  "ref_fonte": "historico",
+  "url": "https://produto.mercadolivre.com.br/MLB-7077055152",
+  "link": "https://produto.mercadolivre.com.br/MLB-7077055152",
+  "imagem": "https://http2.mlstatic.com/D_NQ_NP_650344-MLA116714869329_082026-F.jpg",
+  "visto": "2026-11-06T06:24:09-03:00",
+  "descricao": "Lacrado, nacional (PT-BR), 3 boosters",
+  "afiliado": false,
+  "cupom": null,
+  "preco_final": 29.9,
+  "confianca": 5,
+  "bandeira": "🇧🇷",
+  "unidades": 3,
+  "unidade_nome": "boosters",
+  "unidade_singular": "booster",
+  "reputacao": "Loja Oficial, MercadoLíder Platinum, +1 mi de vendas",
+  "alerta_loja": "",
+  "frete_gratis": false,
+  "ainda_valendo": true,
+  "slides": [
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/promo-blister-triplo-megaevolu-o-5-escurid-o-absoluta-copag_ml-2990-1.jpg",
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/promo-blister-triplo-megaevolu-o-5-escurid-o-absoluta-copag_ml-2990-2.jpg",
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/promo-blister-triplo-megaevolu-o-5-escurid-o-absoluta-copag_ml-2990-3.jpg",
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/promo-blister-triplo-megaevolu-o-5-escurid-o-absoluta-copag_ml-2990-4.jpg"
+  ],
+  "creditos": [
+   "Imagem do produto: Loja Oficial Pokémon (Mercado Livre)"
+  ],
+  "destinos": [
+   "telegram"
+  ]
+ }
+]
