@@ -25,6 +25,11 @@ jobs:
         run: |
           git config user.name "robo-tcg"
           git config user.email "robo-tcg@users.noreply.github.com"
+      - name: Reels da agenda (vídeo no horário marcado; conta no limite de 3 por dia)
+        env:
+          TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
+          INSTAGRAM_TOKEN: ${{ secrets.INSTAGRAM_TOKEN }}
+        run: python reels.py
       - name: Montar o carrossel e publicar as imagens (o Instagram exige link público)
         run: |
           python arcos.py curiosidades preparar
@@ -36,7 +41,8 @@ jobs:
         env:
           TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
           INSTAGRAM_TOKEN: ${{ secrets.INSTAGRAM_TOKEN }}
-        run: python arcos.py curiosidades publicar
+        run: |
+          if [ -f .reel_agora ]; then echo "Reels saiu neste horário: carrossel fica para o próximo"; rm .reel_agora; else python arcos.py curiosidades publicar; fi
       - name: Salvar o que foi postado
         run: |
           git add -A

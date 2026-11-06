@@ -5,3 +5,4 @@ __pycache__/
 config.local.yaml
 vozes/*.onnx
 videos/tmp/
+.reel_agora

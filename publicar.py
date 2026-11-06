@@ -162,6 +162,44 @@ def instagram_carrossel(cfg, caminhos, legenda, furo=False):
     r.raise_for_status()
 
 
+def url_publica_repo(cfg, caminho_relativo):
+    """Link público (raw do GitHub) de um arquivo do repositório, ex.: videos/ep02.mp4."""
+    base = (cfg.get("curiosidades", {}) or {}).get("url_publica_imagens", "")
+    raiz = base.rsplit("/imagens", 1)[0]
+    if not raiz.startswith("https://"):
+        raise RuntimeError("defina curiosidades.url_publica_imagens")
+    return f"{raiz}/{caminho_relativo.lstrip('/')}"
+
+
+def instagram_reel(cfg, video_rel, legenda, capa_rel=None, no_feed=True):
+    """Publica um Reels pela API oficial (o vídeo precisa estar no GitHub, com link público)."""
+    conferir_cota(cfg)
+    token = os.environ["INSTAGRAM_TOKEN"]
+    ig = cfg["instagram"]["conta_id"]
+    base = f"{_ig(cfg)}/{ig}"
+    dados = {"media_type": "REELS", "video_url": url_publica_repo(cfg, video_rel),
+             "caption": hashtags.limitar(legenda)[:2200], "share_to_feed": "true" if no_feed else "false",
+             "access_token": token}
+    if capa_rel:
+        dados["cover_url"] = url_publica_repo(cfg, capa_rel)
+    r = requests.post(f"{base}/media", timeout=90, data=dados)
+    r.raise_for_status()
+    criacao = r.json()["id"]
+    for _ in range(40):  # vídeo demora: até ~6 min processando
+        time.sleep(10)
+        st = requests.get(f"{_ig(cfg)}/{criacao}", timeout=30, params={
+            "fields": "status_code,status", "access_token": token}).json()
+        if st.get("status_code") == "FINISHED":
+            break
+        if st.get("status_code") == "ERROR":
+            raise RuntimeError(f"Instagram recusou o vídeo: {st.get('status')}")
+    else:
+        raise RuntimeError("o Instagram não terminou de processar o vídeo a tempo")
+    r = requests.post(f"{base}/media_publish", timeout=60, data={"creation_id": criacao, "access_token": token})
+    r.raise_for_status()
+    return r.json().get("id")
+
+
 def avisar_admin(cfg, texto):
     """Mensagem privada para o administrador (telegram.admin_chat). Nunca derruba o robô."""
     chat = cfg.get("telegram", {}).get("admin_chat")
