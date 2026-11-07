@@ -2,7 +2,7 @@ name: Segurança - varredura
 on:
   push:
   schedule:
-    - cron: "17 9 * * *"   # todo dia às 6h17 (Brasília)
+    - cron: "17 9 * * 1"   # toda segunda às 6h17 (Brasília)
   workflow_dispatch: {}
 permissions:
   contents: read

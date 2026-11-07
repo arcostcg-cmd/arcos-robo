@@ -1,7 +1,14 @@
 name: Sistema de Noticias - curiosidades
 on:
   schedule:
-    - cron: "2 * * * *"   # toda hora; o robô só posta nos 3 melhores horários do dia (config: horarios_feed)
+    # Só nos 3 melhores horários de cada dia (Brasília = UTC-3), para caber no plano grátis do repositório privado
+    - cron: "2 0,1,23 * * 0"   # UTC; dia dom (UTC)
+    - cron: "2 0,1,21,22,23 * * 1"   # UTC; dia seg (UTC)
+    - cron: "2 18,20,22 * * 2"   # UTC; dia ter (UTC)
+    - cron: "2 11,15,21 * * 3"   # UTC; dia qua (UTC)
+    - cron: "2 12,21,23 * * 4"   # UTC; dia qui (UTC)
+    - cron: "2 9,23 * * 5"   # UTC; dia sex (UTC)
+    - cron: "2 1,23 * * 6"   # UTC; dia sab (UTC)
   workflow_dispatch: {}
 concurrency:
   group: robo-curiosidades

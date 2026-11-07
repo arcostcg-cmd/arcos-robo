@@ -1,7 +1,7 @@
 name: Sistema de Noticias - noticias e rumores
 on:
   schedule:
-    - cron: "*/10 * * * *"   # a cada 10 minutos, 24 horas (o GitHub pode atrasar alguns minutos)
+    - cron: "30 */4 * * *"   # a cada 4 horas (6 por dia), para caber no plano grátis privado
   workflow_dispatch: {}
 concurrency:
   group: robo-noticias

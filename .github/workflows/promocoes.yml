@@ -1,7 +1,7 @@
 name: Sistema de Promocoes
 on:
   schedule:
-    - cron: "*/15 * * * *"   # a cada 15 min (o GitHub pode atrasar alguns minutos)
+    - cron: "0 11,15,20,23 * * *"   # 8h, 12h, 17h e 20h (Brasília): 4 rodadas por dia, cabe no plano grátis privado
   workflow_dispatch: {}
 concurrency:
   group: robo-promocoes
@@ -40,7 +40,6 @@ jobs:
           git add -A
           git diff --cached --quiet || git commit -m "precos e carrosseis"
           for i in 1 2 3 4 5; do git pull --rebase && git push && break; sleep $((i*7)); done
-          sleep 60
       - name: Postar os carrosséis
         env:
           TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
