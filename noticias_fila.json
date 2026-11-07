@@ -1,0 +1,53 @@
+[
+ {
+  "titulo": "Creatures anuncia novo aumento no preço de boosters",
+  "resumo": "A empresa Creatures anunciou outro reajuste no preço de pacotes de booster com início previsto para maio. A informação foi divulgada pelo site PokéBeach.",
+  "jogo": "Pokémon",
+  "fonte": "PokeBeach",
+  "link": "https://news.google.com/rss/articles/CBMiswFBVV95cUxPTjEtVlY2MUxseXpZQlJ4X1UzSDRUZnAxMVppZzRUanJ4VzFIVlJlNjFaQWNSaTFtLXpTQ09va2V4UzRtRXdzUFlLYkJnMG9wN3NFRkhaWXloY1NVdDdSUHBEZ2dTRElpMFVhWkVLa01GVDdFU0VraExQcHJ5SzA4bGNoNkxMS0hEcnF6STQtVE42V3VJTC1ZeHdfWDBHUEVHTkRMWDNlVlpYaFNQSFJreE44QQ?oc=5",
+  "rumor": false,
+  "data": "2026-11-06T23:50:04+00:00",
+  "credito_imagem": "foto ilustrativa, Pokemon World Champ · CC BY-SA 4.0 · Wikimedia Commons",
+  "formato": "post",
+  "story": [],
+  "slides": [
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/news-creatures-anuncia-novo-aumento-no-pre-o-de-booster-1.jpg",
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/news-creatures-anuncia-novo-aumento-no-pre-o-de-booster-2.jpg",
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/news-creatures-anuncia-novo-aumento-no-pre-o-de-booster-3.jpg"
+  ]
+ },
+ {
+  "titulo": "Anunciado cronograma de eventos do Pokémon TCG Pocket",
+  "resumo": "O Pokémon TCG Pocket divulgou o calendário de eventos com foco em fusões duplas, reedições de cartas promocionais, partidas ranqueadas e recompensas de aniversário. A programação foi detalhada recentemente por veículos especializados.",
+  "jogo": "Pokémon",
+  "fonte": "OTIA Sports",
+  "link": "https://news.google.com/rss/articles/CBMitAFBVV95cUxPTXBxLWJOR3lwSm5IWnpFNC1Lc18zZHdlWmk5MXdUbVJZbmRJVGUtdHFPVWtIa3JDM0thUXlmdUFJeUNWYWpwdkhVU3JuYW5mNTRxU3ZBZi1wTUpURGFSNEZid3F2ekt2RlZKWTFyVmJzOGlrLTVxM1Y0cUxoOER4VTVsWUdTQW1IWHpHNkFrakJscmh1NUJQeHpTZWNrNG5VVEVDQzEtbFA4Ry15Yks5WmQ0WnE?oc=5",
+  "rumor": false,
+  "data": "2026-11-06T18:24:18+00:00",
+  "credito_imagem": "foto ilustrativa, Pokemon World Champ · CC BY-SA 4.0 · Wikimedia Commons",
+  "formato": "story",
+  "story": [
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/news-anunciado-cronograma-de-eventos-do-pok-mon-tcg-poc.jpg"
+  ],
+  "slides": [
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/news-anunciado-cronograma-de-eventos-do-pok-mon-tcg-poc.jpg"
+  ]
+ },
+ {
+  "titulo": "Nova expansão do Pokémon TCG é lançada",
+  "resumo": "A expansão Mega Evolution—Delta Reign do Pokémon TCG já está disponível. O anúncio foi feito pelo site oficial de Pokémon.",
+  "jogo": "Pokémon",
+  "fonte": "Pokemon.com",
+  "link": "https://news.google.com/rss/articles/CBMiowFBVV95cUxQOTBaUW5STWYzd1dzMzkySDFpRXRtT0wyVEdoNndOamxnejhwcGM2Tnpxc3VxMEdSQkwzLTB4aWlrNXk3ajRvNWdhVktXRHFaa0h1S195VzdIdV9xUlpLSlpIQ2Nsb0FlUmJNM1c4R09nWWFsLXVPWEFRU21KN2F4ejZ1NVVtbFpIamZudXEyVW9qb013V3Q1YVJJTkVuakRnWVlR?oc=5",
+  "rumor": false,
+  "data": "2026-11-06T14:08:45+00:00",
+  "credito_imagem": "foto ilustrativa, Pokemon World Champ · CC BY-SA 4.0 · Wikimedia Commons",
+  "formato": "story",
+  "story": [
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/news-nova-expans-o-do-pok-mon-tcg-lan-ada.jpg"
+  ],
+  "slides": [
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/news-nova-expans-o-do-pok-mon-tcg-lan-ada.jpg"
+  ]
+ }
+]
