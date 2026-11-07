@@ -1,0 +1,78 @@
+[
+ {
+  "produto": "Combo de Booster Pokémon TCG ME 6 Reinado Delta",
+  "jogo": "Pokémon",
+  "loja": "mercadolivre",
+  "loja_nome": "Mercado Livre",
+  "preco": 243.99,
+  "ref": 260.5,
+  "ref_fonte": "historico",
+  "url": "https://produto.mercadolivre.com.br/MLB-7953148958",
+  "link": "https://produto.mercadolivre.com.br/MLB-7953148958",
+  "imagem": "https://http2.mlstatic.com/D_NQ_NP_652276-MLA118741284984_102026-F.jpg",
+  "visto": "2026-11-06T23:12:40-03:00",
+  "descricao": "Lacrado",
+  "afiliado": false,
+  "cupom": null,
+  "preco_final": 243.99,
+  "confianca": 4,
+  "bandeira": "",
+  "unidades": null,
+  "unidade_nome": "unidades",
+  "unidade_singular": "unidade",
+  "reputacao": "",
+  "alerta_loja": "",
+  "frete_gratis": false,
+  "ainda_valendo": true,
+  "slides": [
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/promo-combo-de-booster-pok-mon-tcg-me-6-reinado-delta-mercadolivre-24399-1.jpg",
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/promo-combo-de-booster-pok-mon-tcg-me-6-reinado-delta-mercadolivre-24399-2.jpg",
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/promo-combo-de-booster-pok-mon-tcg-me-6-reinado-delta-mercadolivre-24399-3.jpg",
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/promo-combo-de-booster-pok-mon-tcg-me-6-reinado-delta-mercadolivre-24399-4.jpg"
+  ],
+  "creditos": [
+   "Imagem do produto: Mercado Livre"
+  ],
+  "destinos": [
+   "telegram"
+  ]
+ },
+ {
+  "produto": "Magic: The Gathering Marvel Super Heroes Play Booster",
+  "jogo": "Magic",
+  "loja": "mercadolivre",
+  "loja_nome": "Mercado Livre",
+  "preco": 1499.99,
+  "ref": 1598.98,
+  "ref_fonte": "loja",
+  "url": "https://produto.mercadolivre.com.br/MLB-5392508221",
+  "link": "https://produto.mercadolivre.com.br/MLB-5392508221",
+  "imagem": "https://http2.mlstatic.com/D_NQ_NP_975310-MLA119339850037_102026-F.jpg",
+  "visto": "2026-11-06T23:10:13-03:00",
+  "descricao": "Lacrado",
+  "afiliado": false,
+  "cupom": null,
+  "preco_final": 1499.99,
+  "confianca": 4,
+  "bandeira": "",
+  "unidades": null,
+  "unidade_nome": "unidades",
+  "unidade_singular": "unidade",
+  "reputacao": "",
+  "alerta_loja": "",
+  "frete_gratis": false,
+  "ainda_valendo": true,
+  "slides": [
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/promo-magic-the-gathering-marvel-super-heroes-play-boost-mercadolivre-149999-1.jpg",
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/promo-magic-the-gathering-marvel-super-heroes-play-boost-mercadolivre-149999-2.jpg",
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/promo-magic-the-gathering-marvel-super-heroes-play-boost-mercadolivre-149999-3.jpg",
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/promo-magic-the-gathering-marvel-super-heroes-play-boost-mercadolivre-149999-4.jpg"
+  ],
+  "creditos": [
+   "Imagem do produto: Mercado Livre"
+  ],
+  "destinos": [
+   "telegram"
+  ]
+ }
+]
