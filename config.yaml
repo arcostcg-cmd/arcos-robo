@@ -1349,3 +1349,8 @@ noticias:
     # Os sites oficiais testados em 01/11/2026 não têm RSS (404 / formato inválido).
     # Quando houver um feed oficial, cadastre assim (credito_imagem aparece na arte e na legenda):
     # - {nome: "Editora X (oficial)", url: "https://.../feed", tipo: oficial, jogo: Pokémon, idioma: en, credito_imagem: "Editora X"}
+
+# Vídeos: o mesmo vídeo vai para todas as redes (pedido do Marcos, 07/11/2026).
+# YouTube e TikTok recebem só vídeos; o Instagram recebe carrosséis e vídeos.
+videos:
+  redes: [youtube, tiktok, instagram]   # instagram por aqui só se a API da Meta não estiver ligada

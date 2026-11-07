@@ -30,6 +30,13 @@ jobs:
           TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
           INSTAGRAM_TOKEN: ${{ secrets.INSTAGRAM_TOKEN }}
         run: python reels.py
+      - name: Mesmo vídeo no YouTube Shorts e no TikTok (Postiz)
+        env:
+          POSTIZ_API_KEY: ${{ secrets.POSTIZ_API_KEY }}
+          INSTAGRAM_TOKEN: ${{ secrets.INSTAGRAM_TOKEN }}
+        run: |
+          if [ -n "$POSTIZ_API_KEY" ]; then npm install -g postiz@2.0.27 >/dev/null 2>&1; fi
+          python distribuir.py
       - name: Montar o carrossel e publicar as imagens (o Instagram exige link público)
         run: |
           python arcos.py curiosidades preparar
