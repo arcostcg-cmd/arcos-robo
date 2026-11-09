@@ -1,0 +1,78 @@
+[
+ {
+  "produto": "Yu-Gi-Oh! Booster Pack Guerra dos Gigantes Konami 15 Cartas Português",
+  "jogo": "Yu-Gi-Oh!",
+  "loja": "mercadolivre",
+  "loja_nome": "Mercado Livre",
+  "preco": 169.91,
+  "ref": 193.9,
+  "ref_fonte": "historico",
+  "url": "https://produto.mercadolivre.com.br/MLB-5826894948",
+  "link": "https://produto.mercadolivre.com.br/MLB-5826894948",
+  "imagem": "https://http2.mlstatic.com/D_NQ_NP_791990-MLA99964568287_112025-F.jpg",
+  "visto": "2026-11-09T20:39:12-03:00",
+  "descricao": "Lacrado",
+  "afiliado": false,
+  "cupom": null,
+  "preco_final": 169.91,
+  "confianca": 4,
+  "bandeira": "",
+  "unidades": null,
+  "unidade_nome": "unidades",
+  "unidade_singular": "unidade",
+  "reputacao": "",
+  "alerta_loja": "",
+  "frete_gratis": false,
+  "ainda_valendo": false,
+  "slides": [
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/promo-yu-gi-oh-booster-pack-guerra-dos-gigantes-konami-1-mercadolivre-16991-1.jpg",
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/promo-yu-gi-oh-booster-pack-guerra-dos-gigantes-konami-1-mercadolivre-16991-2.jpg",
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/promo-yu-gi-oh-booster-pack-guerra-dos-gigantes-konami-1-mercadolivre-16991-3.jpg",
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/promo-yu-gi-oh-booster-pack-guerra-dos-gigantes-konami-1-mercadolivre-16991-4.jpg"
+  ],
+  "creditos": [
+   "Imagem do produto: Mercado Livre"
+  ],
+  "destinos": [
+   "telegram"
+  ]
+ },
+ {
+  "produto": "Caixa de Booster Megaevolução 5 - Escuridão Absoluta",
+  "jogo": "Pokémon",
+  "loja": "mercadolivre",
+  "loja_nome": "Mercado Livre",
+  "preco": 409.0,
+  "ref": 449.98,
+  "ref_fonte": "historico",
+  "url": "https://produto.mercadolivre.com.br/MLB-4924860605",
+  "link": "https://produto.mercadolivre.com.br/MLB-4924860605",
+  "imagem": "https://http2.mlstatic.com/D_NQ_NP_888676-MLA113640309182_072026-F.jpg",
+  "visto": "2026-11-09T20:37:19-03:00",
+  "descricao": "Lacrada, nacional (PT-BR), 36 boosters",
+  "afiliado": false,
+  "cupom": null,
+  "preco_final": 409.0,
+  "confianca": 4,
+  "bandeira": "🇧🇷",
+  "unidades": 36,
+  "unidade_nome": "boosters",
+  "unidade_singular": "booster",
+  "reputacao": "",
+  "alerta_loja": "",
+  "frete_gratis": false,
+  "ainda_valendo": false,
+  "slides": [
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/promo-caixa-de-booster-megaevolu-o-5-escurid-o-absoluta-mercadolivre-40900-1.jpg",
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/promo-caixa-de-booster-megaevolu-o-5-escurid-o-absoluta-mercadolivre-40900-2.jpg",
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/promo-caixa-de-booster-megaevolu-o-5-escurid-o-absoluta-mercadolivre-40900-3.jpg",
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/promo-caixa-de-booster-megaevolu-o-5-escurid-o-absoluta-mercadolivre-40900-4.jpg"
+  ],
+  "creditos": [
+   "Imagem do produto: Mercado Livre"
+  ],
+  "destinos": [
+   "telegram"
+  ]
+ }
+]
