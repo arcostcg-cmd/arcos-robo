@@ -1,0 +1,78 @@
+[
+ {
+  "produto": "Yu-gi-oh! Booster Pack Première Ouro Gold Infinito Cards",
+  "jogo": "Yu-Gi-Oh!",
+  "loja": "mercadolivre",
+  "loja_nome": "Mercado Livre",
+  "preco": 195.41,
+  "ref": 211.5,
+  "ref_fonte": "historico",
+  "url": "https://produto.mercadolivre.com.br/MLB-5865381654",
+  "link": "https://produto.mercadolivre.com.br/MLB-5865381654",
+  "imagem": "https://http2.mlstatic.com/D_NQ_NP_908328-MLA96499609277_102025-F.jpg",
+  "visto": "2026-11-10T12:46:51-03:00",
+  "descricao": "Lacrado",
+  "afiliado": false,
+  "cupom": null,
+  "preco_final": 195.41,
+  "confianca": 4,
+  "bandeira": "",
+  "unidades": null,
+  "unidade_nome": "unidades",
+  "unidade_singular": "unidade",
+  "reputacao": "",
+  "alerta_loja": "",
+  "frete_gratis": false,
+  "ainda_valendo": true,
+  "slides": [
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/promo-yu-gi-oh-booster-pack-premi-re-ouro-gold-infinito--mercadolivre-19541-1.jpg",
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/promo-yu-gi-oh-booster-pack-premi-re-ouro-gold-infinito--mercadolivre-19541-2.jpg",
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/promo-yu-gi-oh-booster-pack-premi-re-ouro-gold-infinito--mercadolivre-19541-3.jpg",
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/promo-yu-gi-oh-booster-pack-premi-re-ouro-gold-infinito--mercadolivre-19541-4.jpg"
+  ],
+  "creditos": [
+   "Imagem do produto: Mercado Livre"
+  ],
+  "destinos": [
+   "telegram"
+  ]
+ },
+ {
+  "produto": "Booster Box 36 pacotes - Display 216 Cartas Pokémon Caos Ascendente Copag Português",
+  "jogo": "Pokémon",
+  "loja": "mercadolivre",
+  "loja_nome": "Mercado Livre",
+  "preco": 418.99,
+  "ref": 544.98,
+  "ref_fonte": "loja",
+  "url": "https://produto.mercadolivre.com.br/MLB-6808430118",
+  "link": "https://produto.mercadolivre.com.br/MLB-6808430118",
+  "imagem": "https://http2.mlstatic.com/D_NQ_NP_962562-MLA112024689031_052026-F.jpg",
+  "visto": "2026-11-10T12:47:44-03:00",
+  "descricao": "Lacrado",
+  "afiliado": false,
+  "cupom": null,
+  "preco_final": 418.99,
+  "confianca": 4,
+  "bandeira": "",
+  "unidades": null,
+  "unidade_nome": "unidades",
+  "unidade_singular": "unidade",
+  "reputacao": "",
+  "alerta_loja": "",
+  "frete_gratis": false,
+  "ainda_valendo": true,
+  "slides": [
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/promo-booster-box-36-pacotes-display-216-cartas-pok-mon--mercadolivre-41899-1.jpg",
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/promo-booster-box-36-pacotes-display-216-cartas-pok-mon--mercadolivre-41899-2.jpg",
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/promo-booster-box-36-pacotes-display-216-cartas-pok-mon--mercadolivre-41899-3.jpg",
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/promo-booster-box-36-pacotes-display-216-cartas-pok-mon--mercadolivre-41899-4.jpg"
+  ],
+  "creditos": [
+   "Imagem do produto: Mercado Livre"
+  ],
+  "destinos": [
+   "telegram"
+  ]
+ }
+]
