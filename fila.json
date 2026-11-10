@@ -1,0 +1,78 @@
+[
+ {
+  "produto": "Cartas Pokemon Deck Baralho Batalha Deoxys V Copag Português",
+  "jogo": "Pokémon",
+  "loja": "mercadolivre",
+  "loja_nome": "Mercado Livre",
+  "preco": 129.99,
+  "ref": 149.9,
+  "ref_fonte": "historico",
+  "url": "https://produto.mercadolivre.com.br/MLB-4140977228",
+  "link": "https://produto.mercadolivre.com.br/MLB-4140977228",
+  "imagem": "https://http2.mlstatic.com/D_NQ_NP_794294-MLA99933370693_112025-F.jpg",
+  "visto": "2026-11-10T08:50:33-03:00",
+  "descricao": "Lacrado",
+  "afiliado": false,
+  "cupom": null,
+  "preco_final": 129.99,
+  "confianca": 4,
+  "bandeira": "",
+  "unidades": null,
+  "unidade_nome": "unidades",
+  "unidade_singular": "unidade",
+  "reputacao": "",
+  "alerta_loja": "",
+  "frete_gratis": false,
+  "ainda_valendo": false,
+  "slides": [
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/promo-cartas-pokemon-deck-baralho-batalha-deoxys-v-copag-mercadolivre-12999-1.jpg",
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/promo-cartas-pokemon-deck-baralho-batalha-deoxys-v-copag-mercadolivre-12999-2.jpg",
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/promo-cartas-pokemon-deck-baralho-batalha-deoxys-v-copag-mercadolivre-12999-3.jpg",
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/promo-cartas-pokemon-deck-baralho-batalha-deoxys-v-copag-mercadolivre-12999-4.jpg"
+  ],
+  "creditos": [
+   "Imagem do produto: Mercado Livre"
+  ],
+  "destinos": [
+   "telegram"
+  ]
+ },
+ {
+  "produto": "Pokémon Coleção Treinador Avançado Box Astros Cintilantes Copag 90 cartas",
+  "jogo": "Pokémon",
+  "loja": "mercadolivre",
+  "loja_nome": "Mercado Livre",
+  "preco": 2668.0,
+  "ref": 2813.0,
+  "ref_fonte": "historico",
+  "url": "https://produto.mercadolivre.com.br/MLB-5040406229",
+  "link": "https://produto.mercadolivre.com.br/MLB-5040406229",
+  "imagem": "https://http2.mlstatic.com/D_NQ_NP_933878-MLU79056956657_092024-F.jpg",
+  "visto": "2026-11-10T08:50:29-03:00",
+  "descricao": "Lacrado",
+  "afiliado": false,
+  "cupom": null,
+  "preco_final": 2668.0,
+  "confianca": 4,
+  "bandeira": "",
+  "unidades": null,
+  "unidade_nome": "unidades",
+  "unidade_singular": "unidade",
+  "reputacao": "",
+  "alerta_loja": "",
+  "frete_gratis": false,
+  "ainda_valendo": false,
+  "slides": [
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/promo-pok-mon-cole-o-treinador-avan-ado-box-astros-cinti-mercadolivre-266800-1.jpg",
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/promo-pok-mon-cole-o-treinador-avan-ado-box-astros-cinti-mercadolivre-266800-2.jpg",
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/promo-pok-mon-cole-o-treinador-avan-ado-box-astros-cinti-mercadolivre-266800-3.jpg",
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/promo-pok-mon-cole-o-treinador-avan-ado-box-astros-cinti-mercadolivre-266800-4.jpg"
+  ],
+  "creditos": [
+   "Imagem do produto: Mercado Livre"
+  ],
+  "destinos": [
+   "telegram"
+  ]
+ }
+]
