@@ -1,0 +1,78 @@
+[
+ {
+  "produto": "Funko Pop 1472 - Onami (one Piece)",
+  "jogo": "One Piece",
+  "loja": "mercadolivre",
+  "loja_nome": "Mercado Livre",
+  "preco": 142.49,
+  "ref": 149.99,
+  "ref_fonte": "loja",
+  "url": "https://produto.mercadolivre.com.br/MLB-3635806165",
+  "link": "https://produto.mercadolivre.com.br/MLB-3635806165",
+  "imagem": "https://http2.mlstatic.com/D_NQ_NP_739621-MLA99460166324_112025-F.jpg",
+  "visto": "2026-11-11T12:51:38-03:00",
+  "descricao": "Colecionável",
+  "afiliado": false,
+  "cupom": null,
+  "preco_final": 142.49,
+  "confianca": 4,
+  "bandeira": "",
+  "unidades": null,
+  "unidade_nome": "unidades",
+  "unidade_singular": "unidade",
+  "reputacao": "",
+  "alerta_loja": "",
+  "frete_gratis": false,
+  "ainda_valendo": true,
+  "slides": [
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/promo-funko-pop-1472-onami-one-piece-mercadolivre-14249-1.jpg",
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/promo-funko-pop-1472-onami-one-piece-mercadolivre-14249-2.jpg",
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/promo-funko-pop-1472-onami-one-piece-mercadolivre-14249-3.jpg",
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/promo-funko-pop-1472-onami-one-piece-mercadolivre-14249-4.jpg"
+  ],
+  "creditos": [
+   "Imagem do produto: Mercado Livre"
+  ],
+  "destinos": [
+   "telegram"
+  ]
+ },
+ {
+  "produto": "Booster Yu-Gi-Oh! Investida Crescente (Edição Especial)",
+  "jogo": "Yu-Gi-Oh!",
+  "loja": "mercadolivre",
+  "loja_nome": "Mercado Livre",
+  "preco": 39.9,
+  "ref": 59.9,
+  "ref_fonte": "loja",
+  "url": "https://produto.mercadolivre.com.br/MLB-3443273577",
+  "link": "https://produto.mercadolivre.com.br/MLB-3443273577",
+  "imagem": "https://http2.mlstatic.com/D_NQ_NP_993945-MLA99508686712_112025-F.jpg",
+  "visto": "2026-11-11T12:47:27-03:00",
+  "descricao": "Lacrado, nacional (português)",
+  "afiliado": false,
+  "cupom": null,
+  "preco_final": 39.9,
+  "confianca": 4,
+  "bandeira": "🇧🇷",
+  "unidades": null,
+  "unidade_nome": "unidades",
+  "unidade_singular": "unidade",
+  "reputacao": "",
+  "alerta_loja": "",
+  "frete_gratis": false,
+  "ainda_valendo": true,
+  "slides": [
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/promo-booster-yu-gi-oh-investida-crescente-edi-o-especia-mercadolivre-3990-1.jpg",
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/promo-booster-yu-gi-oh-investida-crescente-edi-o-especia-mercadolivre-3990-2.jpg",
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/promo-booster-yu-gi-oh-investida-crescente-edi-o-especia-mercadolivre-3990-3.jpg",
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/promo-booster-yu-gi-oh-investida-crescente-edi-o-especia-mercadolivre-3990-4.jpg"
+  ],
+  "creditos": [
+   "Imagem do produto: Mercado Livre"
+  ],
+  "destinos": [
+   "telegram"
+  ]
+ }
+]
