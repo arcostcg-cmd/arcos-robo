@@ -1,0 +1,78 @@
+[
+ {
+  "produto": "Yu-Gi-Oh! Booster Neotempestade Negra Konami 9 Cartões Card Game",
+  "jogo": "Yu-Gi-Oh!",
+  "loja": "mercadolivre",
+  "loja_nome": "Mercado Livre",
+  "preco": 19.99,
+  "ref": 30.06,
+  "ref_fonte": "historico",
+  "url": "https://produto.mercadolivre.com.br/MLB-5760589630",
+  "link": "https://produto.mercadolivre.com.br/MLB-5760589630",
+  "imagem": "https://http2.mlstatic.com/D_NQ_NP_865351-MLA99526680878_122025-F.jpg",
+  "visto": "2026-11-14T12:35:35-03:00",
+  "descricao": "Lacrado",
+  "afiliado": false,
+  "cupom": null,
+  "preco_final": 19.99,
+  "confianca": 4,
+  "bandeira": "",
+  "unidades": null,
+  "unidade_nome": "unidades",
+  "unidade_singular": "unidade",
+  "reputacao": "",
+  "alerta_loja": "",
+  "frete_gratis": false,
+  "ainda_valendo": false,
+  "slides": [
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/promo-yu-gi-oh-booster-neotempestade-negra-konami-9-cart-mercadolivre-1998-1.jpg",
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/promo-yu-gi-oh-booster-neotempestade-negra-konami-9-cart-mercadolivre-1998-2.jpg",
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/promo-yu-gi-oh-booster-neotempestade-negra-konami-9-cart-mercadolivre-1998-3.jpg",
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/promo-yu-gi-oh-booster-neotempestade-negra-konami-9-cart-mercadolivre-1998-4.jpg"
+  ],
+  "creditos": [
+   "Imagem do produto: Mercado Livre"
+  ],
+  "destinos": [
+   "telegram"
+  ]
+ },
+ {
+  "produto": "Booster Box Inglês Magic The Gathering Marvel Spiderman Holográfica",
+  "jogo": "Magic",
+  "loja": "mercadolivre",
+  "loja_nome": "Mercado Livre",
+  "preco": 862.9,
+  "ref": 1289.99,
+  "ref_fonte": "historico",
+  "url": "https://produto.mercadolivre.com.br/MLB-5147118809",
+  "link": "https://produto.mercadolivre.com.br/MLB-5147118809",
+  "imagem": "https://http2.mlstatic.com/D_NQ_NP_813399-MLA99453939724_112025-F.jpg",
+  "visto": "2026-11-14T12:35:26-03:00",
+  "descricao": "Lacrado",
+  "afiliado": false,
+  "cupom": null,
+  "preco_final": 862.9,
+  "confianca": 4,
+  "bandeira": "",
+  "unidades": null,
+  "unidade_nome": "unidades",
+  "unidade_singular": "unidade",
+  "reputacao": "",
+  "alerta_loja": "",
+  "frete_gratis": false,
+  "ainda_valendo": false,
+  "slides": [
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/promo-booster-box-ingl-s-magic-the-gathering-marvel-spid-mercadolivre-86290-1.jpg",
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/promo-booster-box-ingl-s-magic-the-gathering-marvel-spid-mercadolivre-86290-2.jpg",
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/promo-booster-box-ingl-s-magic-the-gathering-marvel-spid-mercadolivre-86290-3.jpg",
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/promo-booster-box-ingl-s-magic-the-gathering-marvel-spid-mercadolivre-86290-4.jpg"
+  ],
+  "creditos": [
+   "Imagem do produto: Mercado Livre"
+  ],
+  "destinos": [
+   "telegram"
+  ]
+ }
+]
