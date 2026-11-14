@@ -1,0 +1,78 @@
+[
+ {
+  "produto": "Boneco Funko Pop! Dragon Ball - Krillin",
+  "jogo": "Dragon Ball",
+  "loja": "mercadolivre",
+  "loja_nome": "Mercado Livre",
+  "preco": 124.29,
+  "ref": 139.99,
+  "ref_fonte": "historico",
+  "url": "https://produto.mercadolivre.com.br/MLB-4177458247",
+  "link": "https://produto.mercadolivre.com.br/MLB-4177458247",
+  "imagem": "https://http2.mlstatic.com/D_NQ_NP_661934-MLA99992501685_112025-F.jpg",
+  "visto": "2026-11-14T08:38:36-03:00",
+  "descricao": "Colecionável",
+  "afiliado": false,
+  "cupom": null,
+  "preco_final": 124.29,
+  "confianca": 4,
+  "bandeira": "",
+  "unidades": null,
+  "unidade_nome": "unidades",
+  "unidade_singular": "unidade",
+  "reputacao": "",
+  "alerta_loja": "",
+  "frete_gratis": false,
+  "ainda_valendo": false,
+  "slides": [
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/promo-boneco-funko-pop-dragon-ball-krillin-mercadolivre-12429-1.jpg",
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/promo-boneco-funko-pop-dragon-ball-krillin-mercadolivre-12429-2.jpg",
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/promo-boneco-funko-pop-dragon-ball-krillin-mercadolivre-12429-3.jpg",
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/promo-boneco-funko-pop-dragon-ball-krillin-mercadolivre-12429-4.jpg"
+  ],
+  "creditos": [
+   "Imagem do produto: Mercado Livre"
+  ],
+  "destinos": [
+   "telegram"
+  ]
+ },
+ {
+  "produto": "Pokémon Elite Trainer Box Prismatic Evolutions Edição Inglês",
+  "jogo": "Pokémon",
+  "loja": "mercadolivre",
+  "loja_nome": "Mercado Livre",
+  "preco": 1094.54,
+  "ref": 1191.04,
+  "ref_fonte": "historico",
+  "url": "https://produto.mercadolivre.com.br/MLB-4647770479",
+  "link": "https://produto.mercadolivre.com.br/MLB-4647770479",
+  "imagem": "https://http2.mlstatic.com/D_NQ_NP_832569-MLA117870611308_102026-F.jpg",
+  "visto": "2026-11-14T08:34:36-03:00",
+  "descricao": "Lacrado",
+  "afiliado": false,
+  "cupom": null,
+  "preco_final": 1094.54,
+  "confianca": 4,
+  "bandeira": "",
+  "unidades": null,
+  "unidade_nome": "unidades",
+  "unidade_singular": "unidade",
+  "reputacao": "",
+  "alerta_loja": "",
+  "frete_gratis": false,
+  "ainda_valendo": false,
+  "slides": [
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/promo-pok-mon-elite-trainer-box-prismatic-evolutions-edi-mercadolivre-109454-1.jpg",
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/promo-pok-mon-elite-trainer-box-prismatic-evolutions-edi-mercadolivre-109454-2.jpg",
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/promo-pok-mon-elite-trainer-box-prismatic-evolutions-edi-mercadolivre-109454-3.jpg",
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/promo-pok-mon-elite-trainer-box-prismatic-evolutions-edi-mercadolivre-109454-4.jpg"
+  ],
+  "creditos": [
+   "Imagem do produto: Mercado Livre"
+  ],
+  "destinos": [
+   "telegram"
+  ]
+ }
+]
