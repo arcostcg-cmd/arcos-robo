@@ -1,0 +1,78 @@
+[
+ {
+  "produto": "Cartas Pokémon Booster Box TCG Coleção Caos Ascendentes Com 108 Cards Copag",
+  "jogo": "Pokémon",
+  "loja": "mercadolivre",
+  "loja_nome": "Mercado Livre",
+  "preco": 269.9,
+  "ref": 308.99,
+  "ref_fonte": "historico",
+  "url": "https://produto.mercadolivre.com.br/MLB-4840114937",
+  "link": "https://produto.mercadolivre.com.br/MLB-4840114937",
+  "imagem": "https://http2.mlstatic.com/D_NQ_NP_860136-MLA110838121620_052026-F.jpg",
+  "visto": "2026-11-18T17:52:00-03:00",
+  "descricao": "Lacrado",
+  "afiliado": false,
+  "cupom": null,
+  "preco_final": 269.9,
+  "confianca": 4,
+  "bandeira": "",
+  "unidades": null,
+  "unidade_nome": "unidades",
+  "unidade_singular": "unidade",
+  "reputacao": "",
+  "alerta_loja": "",
+  "frete_gratis": false,
+  "ainda_valendo": true,
+  "slides": [
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/promo-cartas-pok-mon-booster-box-tcg-cole-o-caos-ascende-mercadolivre-26989-1.jpg",
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/promo-cartas-pok-mon-booster-box-tcg-cole-o-caos-ascende-mercadolivre-26989-2.jpg",
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/promo-cartas-pok-mon-booster-box-tcg-cole-o-caos-ascende-mercadolivre-26989-3.jpg",
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/promo-cartas-pok-mon-booster-box-tcg-cole-o-caos-ascende-mercadolivre-26989-4.jpg"
+  ],
+  "creditos": [
+   "Imagem do produto: Mercado Livre"
+  ],
+  "destinos": [
+   "telegram"
+  ]
+ },
+ {
+  "produto": "Pokémon Elite Trainer Box Prismatic Evolutions Edição Inglês",
+  "jogo": "Pokémon",
+  "loja": "mercadolivre",
+  "loja_nome": "Mercado Livre",
+  "preco": 1089.85,
+  "ref": 1188.88,
+  "ref_fonte": "historico",
+  "url": "https://produto.mercadolivre.com.br/MLB-4647770479",
+  "link": "https://produto.mercadolivre.com.br/MLB-4647770479",
+  "imagem": "https://http2.mlstatic.com/D_NQ_NP_832569-MLA117870611308_102026-F.jpg",
+  "visto": "2026-11-18T17:52:05-03:00",
+  "descricao": "Lacrado",
+  "afiliado": false,
+  "cupom": null,
+  "preco_final": 1089.85,
+  "confianca": 4,
+  "bandeira": "",
+  "unidades": null,
+  "unidade_nome": "unidades",
+  "unidade_singular": "unidade",
+  "reputacao": "",
+  "alerta_loja": "",
+  "frete_gratis": false,
+  "ainda_valendo": true,
+  "slides": [
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/promo-pok-mon-elite-trainer-box-prismatic-evolutions-edi-mercadolivre-108984-1.jpg",
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/promo-pok-mon-elite-trainer-box-prismatic-evolutions-edi-mercadolivre-108984-2.jpg",
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/promo-pok-mon-elite-trainer-box-prismatic-evolutions-edi-mercadolivre-108984-3.jpg",
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/promo-pok-mon-elite-trainer-box-prismatic-evolutions-edi-mercadolivre-108984-4.jpg"
+  ],
+  "creditos": [
+   "Imagem do produto: Mercado Livre"
+  ],
+  "destinos": [
+   "telegram"
+  ]
+ }
+]
