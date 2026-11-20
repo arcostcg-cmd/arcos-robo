@@ -1,0 +1,53 @@
+[
+ {
+  "titulo": "Ultra PRO anuncia novos fichários de Pokémon",
+  "resumo": "A Ultra PRO revelou novos fichários de cartas com a temática Mega Evolution e Flowing Fists. Os produtos foram divulgados pelo portal PokeGuardian.",
+  "jogo": "Pokémon",
+  "fonte": "PokeGuardian",
+  "link": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxNY243RWN3ekZjNUd1N2hPd2ZkYi1PQmJCVGJzWmFwaVBWNmxyNzlmLTZXVTFCckNRMzduVHJXNy1Db1RiVms1eGd5cGN3RW9vVUxrdFNyM1k1b1BTSFlYdi1hd0M3MUhHMlVRdW43aFgtbnA0TXhnYTM1X2lhMUE2MFp6RS04TXhPRnVWRVI2OVgwS0w5eG1Fd3E0WGxKZXdFYlV0MUZlSU4?oc=5",
+  "rumor": false,
+  "data": "2026-11-19T21:33:08+00:00",
+  "credito_imagem": "foto ilustrativa, Pokemon World Champ · CC BY-SA 4.0 · Wikimedia Commons",
+  "formato": "post",
+  "story": [],
+  "slides": [
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/news-ultra-pro-anuncia-novos-fich-rios-de-pok-mon-1.jpg",
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/news-ultra-pro-anuncia-novos-fich-rios-de-pok-mon-2.jpg",
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/news-ultra-pro-anuncia-novos-fich-rios-de-pok-mon-3.jpg"
+  ]
+ },
+ {
+  "titulo": "The Pokémon Company anuncia Mega-Evolution - Flowing Fists",
+  "resumo": "A The Pokémon Company anunciou a nova expansão Mega-Evolution - Flowing Fists. A novidade foi divulgada pelo portal ICv2.",
+  "jogo": "Pokémon",
+  "fonte": "ICv2",
+  "link": "https://news.google.com/rss/articles/CBMiogFBVV95cUxOcmxUNk9uYjNuaXMtNGlUWWF5X1h4Q0ZmQ1B2NjhVV01WUDgwajRIZnVPWHZ2MGRQWnoyc2hCNk9CbE01UDcyNkJOdGx2R3JHNWpqM2xaTGhrVFdkbWNEbC1GdFRFU0tGdUM1ajkwbnk0STd2OHBiT21rcF9mT2pmTzNnWG02SkgxUzEwNTdnTmljVWpMTTFwc3B5RENfQ2ZHQVE?oc=5",
+  "rumor": false,
+  "data": "2026-11-19T19:27:58+00:00",
+  "credito_imagem": "foto ilustrativa, Pokemon World Champ · CC BY-SA 4.0 · Wikimedia Commons",
+  "formato": "story",
+  "story": [
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/news-the-pok-mon-company-anuncia-mega-evolution-flowing.jpg"
+  ],
+  "slides": [
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/news-the-pok-mon-company-anuncia-mega-evolution-flowing.jpg"
+  ]
+ },
+ {
+  "titulo": "Nova expansão do Pokémon TCG chega em 2027",
+  "resumo": "A expansão Mega Evolution—Flowing Fists do Pokémon TCG tem lançamento previsto para o dia 6 de fevereiro de 2027. A informação foi divulgada pelo portal GoNintendo.",
+  "jogo": "Pokémon",
+  "fonte": "GoNintendo",
+  "link": "https://news.google.com/rss/articles/CBMirwFBVV95cUxOMWtqd0FvRWc5Nk9jbFFLbWNJdGxGTkE1VmVmVHFEc1RUNzRMbGptcU5velE4cjVMV1ZPTnFZNndfb29KQXBkTnRvajJoSzYtRW9aRl82SFNRemxUdlFkU1FpUTIzTWNMaGU4eDlEMkYtbnVYYThnQlEwVlkxZElLQ3h1aS0tUnMwbURSREM2QnU4ckFFVlowOWV2S0oxeFpKZzBCMTZvQ1NLMXBHOGRR?oc=5",
+  "rumor": false,
+  "data": "2026-11-19T18:29:29+00:00",
+  "credito_imagem": "foto ilustrativa, Pokemon World Champ · CC BY-SA 4.0 · Wikimedia Commons",
+  "formato": "story",
+  "story": [
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/news-nova-expans-o-do-pok-mon-tcg-chega-em-2027.jpg"
+  ],
+  "slides": [
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/news-nova-expans-o-do-pok-mon-tcg-chega-em-2027.jpg"
+  ]
+ }
+]
