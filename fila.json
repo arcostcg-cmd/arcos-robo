@@ -1,0 +1,78 @@
+[
+ {
+  "produto": "Blister Quádruplo Megaevolução 5 - Escuridão Absoluta",
+  "jogo": "Pokémon",
+  "loja": "copag_ml",
+  "loja_nome": "Loja Oficial Pokémon (Mercado Livre)",
+  "preco": 43.5,
+  "ref": 55.99,
+  "ref_fonte": "historico",
+  "url": "https://produto.mercadolivre.com.br/MLB-4836905127",
+  "link": "https://produto.mercadolivre.com.br/MLB-4836905127",
+  "imagem": "https://http2.mlstatic.com/D_NQ_NP_917866-MLA114013158499_072026-F.jpg",
+  "visto": "2026-11-21T08:43:02-03:00",
+  "descricao": "Lacrado, nacional (PT-BR), 4 boosters",
+  "afiliado": false,
+  "cupom": null,
+  "preco_final": 43.5,
+  "confianca": 5,
+  "bandeira": "🇧🇷",
+  "unidades": 4,
+  "unidade_nome": "boosters",
+  "unidade_singular": "booster",
+  "reputacao": "Loja Oficial, MercadoLíder Platinum, +1 mi de vendas",
+  "alerta_loja": "",
+  "frete_gratis": false,
+  "ainda_valendo": true,
+  "slides": [
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/promo-blister-qu-druplo-megaevolu-o-5-escurid-o-absoluta-copag_ml-4350-1.jpg",
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/promo-blister-qu-druplo-megaevolu-o-5-escurid-o-absoluta-copag_ml-4350-2.jpg",
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/promo-blister-qu-druplo-megaevolu-o-5-escurid-o-absoluta-copag_ml-4350-3.jpg",
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/promo-blister-qu-druplo-megaevolu-o-5-escurid-o-absoluta-copag_ml-4350-4.jpg"
+  ],
+  "creditos": [
+   "Imagem do produto: Loja Oficial Pokémon (Mercado Livre)"
+  ],
+  "destinos": [
+   "telegram"
+  ]
+ },
+ {
+  "produto": "One Piece Card Game Starter Deck Charlotte Katakuri: Edição ST-34 em Inglês",
+  "jogo": "One Piece",
+  "loja": "mercadolivre",
+  "loja_nome": "Mercado Livre",
+  "preco": 189.95,
+  "ref": 199.95,
+  "ref_fonte": "historico",
+  "url": "https://produto.mercadolivre.com.br/MLB-7502592184",
+  "link": "https://produto.mercadolivre.com.br/MLB-7502592184",
+  "imagem": "https://http2.mlstatic.com/D_NQ_NP_719108-MLA114680647304_082026-F.jpg",
+  "visto": "2026-11-21T08:44:19-03:00",
+  "descricao": "Lacrado",
+  "afiliado": false,
+  "cupom": null,
+  "preco_final": 189.95,
+  "confianca": 4,
+  "bandeira": "",
+  "unidades": null,
+  "unidade_nome": "unidades",
+  "unidade_singular": "unidade",
+  "reputacao": "",
+  "alerta_loja": "",
+  "frete_gratis": false,
+  "ainda_valendo": true,
+  "slides": [
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/promo-one-piece-card-game-starter-deck-charlotte-katakur-mercadolivre-18995-1.jpg",
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/promo-one-piece-card-game-starter-deck-charlotte-katakur-mercadolivre-18995-2.jpg",
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/promo-one-piece-card-game-starter-deck-charlotte-katakur-mercadolivre-18995-3.jpg",
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/promo-one-piece-card-game-starter-deck-charlotte-katakur-mercadolivre-18995-4.jpg"
+  ],
+  "creditos": [
+   "Imagem do produto: Mercado Livre"
+  ],
+  "destinos": [
+   "telegram"
+  ]
+ }
+]
