@@ -1,0 +1,78 @@
+[
+ {
+  "produto": "Box Pokémon: Coleção Mega Forças Mega Dragonite Ex",
+  "jogo": "Pokémon",
+  "loja": "mercadolivre",
+  "loja_nome": "Mercado Livre",
+  "preco": 149.99,
+  "ref": 179.9,
+  "ref_fonte": "historico",
+  "url": "https://produto.mercadolivre.com.br/MLB-7784451072",
+  "link": "https://produto.mercadolivre.com.br/MLB-7784451072",
+  "imagem": "https://http2.mlstatic.com/D_NQ_NP_909152-MLA115308873102_082026-F.jpg",
+  "visto": "2026-11-23T13:02:56-03:00",
+  "descricao": "Lacrado",
+  "afiliado": false,
+  "cupom": null,
+  "preco_final": 149.99,
+  "confianca": 4,
+  "bandeira": "",
+  "unidades": null,
+  "unidade_nome": "unidades",
+  "unidade_singular": "unidade",
+  "reputacao": "",
+  "alerta_loja": "",
+  "frete_gratis": false,
+  "ainda_valendo": true,
+  "slides": [
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/promo-box-pok-mon-cole-o-mega-for-as-mega-dragonite-ex-mercadolivre-14999-1.jpg",
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/promo-box-pok-mon-cole-o-mega-for-as-mega-dragonite-ex-mercadolivre-14999-2.jpg",
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/promo-box-pok-mon-cole-o-mega-for-as-mega-dragonite-ex-mercadolivre-14999-3.jpg",
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/promo-box-pok-mon-cole-o-mega-for-as-mega-dragonite-ex-mercadolivre-14999-4.jpg"
+  ],
+  "creditos": [
+   "Imagem do produto: Mercado Livre"
+  ],
+  "destinos": [
+   "telegram"
+  ]
+ },
+ {
+  "produto": "Pokémon Elite Trainer Box White Flare para Colecionadores de Cartas em Inglês",
+  "jogo": "Pokémon",
+  "loja": "mercadolivre",
+  "loja_nome": "Mercado Livre",
+  "preco": 2174.99,
+  "ref": 2626.4,
+  "ref_fonte": "historico",
+  "url": "https://produto.mercadolivre.com.br/MLB-7723848116",
+  "link": "https://produto.mercadolivre.com.br/MLB-7723848116",
+  "imagem": "https://http2.mlstatic.com/D_NQ_NP_692299-MLA99903475857_112025-F.jpg",
+  "visto": "2026-11-23T13:00:52-03:00",
+  "descricao": "Lacrado",
+  "afiliado": false,
+  "cupom": null,
+  "preco_final": 2174.99,
+  "confianca": 4,
+  "bandeira": "",
+  "unidades": null,
+  "unidade_nome": "unidades",
+  "unidade_singular": "unidade",
+  "reputacao": "",
+  "alerta_loja": "",
+  "frete_gratis": false,
+  "ainda_valendo": true,
+  "slides": [
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/promo-pok-mon-elite-trainer-box-white-flare-para-colecio-mercadolivre-217498-1.jpg",
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/promo-pok-mon-elite-trainer-box-white-flare-para-colecio-mercadolivre-217498-2.jpg",
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/promo-pok-mon-elite-trainer-box-white-flare-para-colecio-mercadolivre-217498-3.jpg",
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/promo-pok-mon-elite-trainer-box-white-flare-para-colecio-mercadolivre-217498-4.jpg"
+  ],
+  "creditos": [
+   "Imagem do produto: Mercado Livre"
+  ],
+  "destinos": [
+   "telegram"
+  ]
+ }
+]
