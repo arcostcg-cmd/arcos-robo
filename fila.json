@@ -1,0 +1,78 @@
+[
+ {
+  "produto": "Funko Pop! Pokémon - Turtwig",
+  "jogo": "Pokémon",
+  "loja": "mercadolivre",
+  "loja_nome": "Mercado Livre",
+  "preco": 99.99,
+  "ref": 120.9,
+  "ref_fonte": "historico",
+  "url": "https://produto.mercadolivre.com.br/MLB-5178049423",
+  "link": "https://produto.mercadolivre.com.br/MLB-5178049423",
+  "imagem": "https://http2.mlstatic.com/D_NQ_NP_925785-MLA99852784795_112025-F.jpg",
+  "visto": "2026-11-23T13:04:12-03:00",
+  "descricao": "Colecionável",
+  "afiliado": false,
+  "cupom": null,
+  "preco_final": 99.99,
+  "confianca": 4,
+  "bandeira": "",
+  "unidades": null,
+  "unidade_nome": "unidades",
+  "unidade_singular": "unidade",
+  "reputacao": "",
+  "alerta_loja": "",
+  "frete_gratis": false,
+  "ainda_valendo": true,
+  "slides": [
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/promo-funko-pop-pok-mon-turtwig-mercadolivre-9999-1.jpg",
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/promo-funko-pop-pok-mon-turtwig-mercadolivre-9999-2.jpg",
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/promo-funko-pop-pok-mon-turtwig-mercadolivre-9999-3.jpg",
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/promo-funko-pop-pok-mon-turtwig-mercadolivre-9999-4.jpg"
+  ],
+  "creditos": [
+   "Imagem do produto: Mercado Livre"
+  ],
+  "destinos": [
+   "telegram"
+  ]
+ },
+ {
+  "produto": "Bandai Card One Piece Tcg St-30 Starter Deck Ex Luffy & Ace",
+  "jogo": "One Piece",
+  "loja": "mercadolivre",
+  "loja_nome": "Mercado Livre",
+  "preco": 234.64,
+  "ref": 259.99,
+  "ref_fonte": "loja",
+  "url": "https://produto.mercadolivre.com.br/MLB-7651145140",
+  "link": "https://produto.mercadolivre.com.br/MLB-7651145140",
+  "imagem": "https://http2.mlstatic.com/D_NQ_NP_956088-MLA113052337612_072026-F.jpg",
+  "visto": "2026-11-23T13:02:59-03:00",
+  "descricao": "Lacrado",
+  "afiliado": false,
+  "cupom": null,
+  "preco_final": 234.64,
+  "confianca": 4,
+  "bandeira": "",
+  "unidades": null,
+  "unidade_nome": "unidades",
+  "unidade_singular": "unidade",
+  "reputacao": "",
+  "alerta_loja": "",
+  "frete_gratis": false,
+  "ainda_valendo": true,
+  "slides": [
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/promo-bandai-card-one-piece-tcg-st-30-starter-deck-ex-lu-mercadolivre-23464-1.jpg",
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/promo-bandai-card-one-piece-tcg-st-30-starter-deck-ex-lu-mercadolivre-23464-2.jpg",
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/promo-bandai-card-one-piece-tcg-st-30-starter-deck-ex-lu-mercadolivre-23464-3.jpg",
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/promo-bandai-card-one-piece-tcg-st-30-starter-deck-ex-lu-mercadolivre-23464-4.jpg"
+  ],
+  "creditos": [
+   "Imagem do produto: Mercado Livre"
+  ],
+  "destinos": [
+   "telegram"
+  ]
+ }
+]
