@@ -1,0 +1,78 @@
+[
+ {
+  "produto": "Pokémon Action Figure Surpresa + 2 Boosters Tcg 151",
+  "jogo": "Pokémon",
+  "loja": "mercadolivre",
+  "loja_nome": "Mercado Livre",
+  "preco": 298.0,
+  "ref": 339.0,
+  "ref_fonte": "historico",
+  "url": "https://produto.mercadolivre.com.br/MLB-4823280717",
+  "link": "https://produto.mercadolivre.com.br/MLB-4823280717",
+  "imagem": "https://http2.mlstatic.com/D_NQ_NP_627565-MLA110128077307_042026-F.jpg",
+  "visto": "2026-11-23T13:03:34-03:00",
+  "descricao": "Colecionável",
+  "afiliado": false,
+  "cupom": null,
+  "preco_final": 298.0,
+  "confianca": 4,
+  "bandeira": "",
+  "unidades": null,
+  "unidade_nome": "unidades",
+  "unidade_singular": "unidade",
+  "reputacao": "",
+  "alerta_loja": "",
+  "frete_gratis": false,
+  "ainda_valendo": true,
+  "slides": [
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/promo-pok-mon-action-figure-surpresa-2-boosters-tcg-151-mercadolivre-29800-1.jpg",
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/promo-pok-mon-action-figure-surpresa-2-boosters-tcg-151-mercadolivre-29800-2.jpg",
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/promo-pok-mon-action-figure-surpresa-2-boosters-tcg-151-mercadolivre-29800-3.jpg",
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/promo-pok-mon-action-figure-surpresa-2-boosters-tcg-151-mercadolivre-29800-4.jpg"
+  ],
+  "creditos": [
+   "Imagem do produto: Mercado Livre"
+  ],
+  "destinos": [
+   "telegram"
+  ]
+ },
+ {
+  "produto": "Yu-gi-oh! Booster Pack Première Ouro Gold Infinito Cards",
+  "jogo": "Yu-Gi-Oh!",
+  "loja": "mercadolivre",
+  "loja_nome": "Mercado Livre",
+  "preco": 211.5,
+  "ref": 229.9,
+  "ref_fonte": "loja",
+  "url": "https://produto.mercadolivre.com.br/MLB-5865381654",
+  "link": "https://produto.mercadolivre.com.br/MLB-5865381654",
+  "imagem": "https://http2.mlstatic.com/D_NQ_NP_908328-MLA96499609277_102025-F.jpg",
+  "visto": "2026-11-23T13:01:59-03:00",
+  "descricao": "Lacrado",
+  "afiliado": false,
+  "cupom": null,
+  "preco_final": 211.5,
+  "confianca": 4,
+  "bandeira": "",
+  "unidades": null,
+  "unidade_nome": "unidades",
+  "unidade_singular": "unidade",
+  "reputacao": "",
+  "alerta_loja": "",
+  "frete_gratis": false,
+  "ainda_valendo": true,
+  "slides": [
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/promo-yu-gi-oh-booster-pack-premi-re-ouro-gold-infinito--mercadolivre-21150-1.jpg",
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/promo-yu-gi-oh-booster-pack-premi-re-ouro-gold-infinito--mercadolivre-21150-2.jpg",
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/promo-yu-gi-oh-booster-pack-premi-re-ouro-gold-infinito--mercadolivre-21150-3.jpg",
+   "/home/runner/work/arcos-robo/arcos-robo/imagens/promo-yu-gi-oh-booster-pack-premi-re-ouro-gold-infinito--mercadolivre-21150-4.jpg"
+  ],
+  "creditos": [
+   "Imagem do produto: Mercado Livre"
+  ],
+  "destinos": [
+   "telegram"
+  ]
+ }
+]
